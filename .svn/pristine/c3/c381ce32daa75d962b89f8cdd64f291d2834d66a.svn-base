@@ -1,0 +1,181 @@
+%h4
+  = t('.title_opening')
+%table.table_operating
+  %thead
+    %tr
+      %th        
+      %th 
+        .checkbox
+          %label.checkbox-custom
+            %input{:checked => "checked",:id => "day_open1", :name => "checkdate", :type => "checkbox"}
+            %i.icon-unchecked
+            = t('.monday')
+      %th
+        .checkbox
+          %label.checkbox-custom
+            %input{:checked => "checked",:id => "day_open2", :name => "checkdate", :type => "checkbox"}
+            %i.icon-unchecked
+            = t('.tuesday')        
+            
+      %th
+        .checkbox
+          %label.checkbox-custom
+            %input{:checked => "checked",:id => "day_open3", :name => "checkdate", :type => "checkbox"}
+            %i.icon-unchecked
+            = t('.wedsday')
+      %th
+        .checkbox
+          %label.checkbox-custom
+            %input{:checked => "checked",:id => "day_open4", :name => "checkdate", :type => "checkbox"}
+            %i.icon-unchecked
+            = t('.thursday')
+      %th
+        .checkbox
+          %label.checkbox-custom
+            %input{:checked => "checked",:id => "day_open5", :name => "checkdate", :type => "checkbox"}
+            %i.icon-unchecked
+            = t('.friday')
+      %th
+        .checkbox
+          %label.checkbox-custom
+            %input{:name => "checkdate",:id => "day_open6", :type => "checkbox"}
+            %i.icon-unchecked
+            = t('.saturday')
+      %th
+        .checkbox
+          %label.checkbox-custom
+            %input{:name => "checkdate",:id => "day_open7", :type => "checkbox"}
+            %i.icon-unchecked
+            = t('.sunday')   
+  %tbody
+    %tr
+      %td
+        = t('.from')
+      %td
+        = select_tag 'from_open1', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'from_open2', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'from_open3', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'from_open4', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'from_open5', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'from_open6', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'from_open7', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+    %tr
+      %td
+        = t('.to')
+      %td
+        = select_tag 'to_open1', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'to_open2', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'to_open3', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'to_open4', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'to_open5', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'to_open6', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'to_open7', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+
+%hr/
+
+%h4
+  = t('.title_break')
+%table.table_operating
+  %thead
+    %tr
+      %th        
+      %th 
+        .checkbox
+          %label.checkbox-custom
+            %input{:checked => "checked",:id => "day_close1", :name => "checkdate", :type => "checkbox"}
+            %i.icon-unchecked
+            = t('.monday')
+      %th
+        .checkbox
+          %label.checkbox-custom
+            %input{:checked => "checked",:id => "day_close2", :name => "checkdate", :type => "checkbox"}
+            %i.icon-unchecked
+            = t('.tuesday')        
+            
+      %th
+        .checkbox
+          %label.checkbox-custom
+            %input{:checked => "checked",:id => "day_close3", :name => "checkdate", :type => "checkbox"}
+            %i.icon-unchecked
+            = t('.wedsday')
+      %th
+        .checkbox
+          %label.checkbox-custom
+            %input{:checked => "checked",:id => "day_close4", :name => "checkdate", :type => "checkbox"}
+            %i.icon-unchecked
+            = t('.thursday')
+      %th
+        .checkbox
+          %label.checkbox-custom
+            %input{:checked => "checked",:id => "day_close5", :name => "checkdate", :type => "checkbox"}
+            %i.icon-unchecked
+            = t('.friday')
+      %th
+        .checkbox
+          %label.checkbox-custom
+            %input{:name => "checkdate",:id => "day_close6", :type => "checkbox"}
+            %i.icon-unchecked
+            = t('.saturday')
+      %th
+        .checkbox
+          %label.checkbox-custom
+            %input{:name => "checkdate",:id => "day_close7", :type => "checkbox"}
+            %i.icon-unchecked
+            = t('.sunday')   
+  %tbody
+    %tr
+      %td
+        = t('.from')
+      %td
+        = select_tag 'from_close1', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'from_close2', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'from_close3', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'from_close4', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'from_close5', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'from_close6', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'from_close7', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+    %tr
+      %td
+        = t('.to')
+      %td
+        = select_tag 'to_close1', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'to_close2', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'to_close3', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'to_close4', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'to_close5', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'to_close6', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+      %td
+        = select_tag 'to_close7', options_for_select([['1:00AM',1], ['2:00AM',2], ['3:00AM',3], ['4:00AM',4],['5:00AM',5],['6:00AM',6],['7:00AM',7],['8:00AM',8],['9:00AM',9],['10:00AM',10],['11:00AM',11],['12:00AM',12]]), :class => 'hour'
+%br/
+
+= javascript_include_tag "schedule_closed"
+  
+  
+  
+  
+  
+  
+  

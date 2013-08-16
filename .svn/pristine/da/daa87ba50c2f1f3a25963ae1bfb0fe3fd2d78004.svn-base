@@ -1,0 +1,39 @@
+.modal-dialog
+  .modal-content
+    .modal-header.text-center
+      %h4.modal-title
+        Replace Confirmation
+    .modal-body
+      %center
+        There are some timeslots are booked by other appointments, would you like to replace the existing ones?
+        .table
+          %table.table.table-bordered
+            %tbody
+              %tr.table-head
+                %td.left Date
+                %td.left Time
+                %td.left Duration
+                %td.left Customer
+                %td.left Service
+                %td.center Action
+              %tr
+                %td.left Aug 08 2013
+                %td.left 09:00AM-10:30AM
+                %td.left 1: 30 hours
+                %td.left Cindy Pham
+                %td.left Massage
+                %td.center
+                  = link_to "Omit", "", :class => "label-control"
+              %tr
+                %td.left Aug 09 2013
+                %td.left 2:00PM-3:30PM
+                %td.left 1: 30 hours
+                %td.left Cindy Pham
+                %td.left Massage
+                %td.center
+                  = link_to "Omit", "", :class => "label-control"
+    .text-center
+      %a.btn.btn-primary{:href => "#"}
+        = t('button.btn-yes')
+      %a.btn{'data-dismiss' => 'modal'}
+        = t('button.btn-no')

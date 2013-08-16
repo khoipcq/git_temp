@@ -1,0 +1,31 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+ $(document).ready(function(){
+  // var dates = $( "#from_date, #to_date" ).datepicker().on('changeDate', function(ev){
+  //     var option = this.id == "from_date" ? "minDate" : "maxDate",
+  //               instance = $( this ).data( "datepicker" );
+  //                  date = $.datepicker.parseDate(
+  //                   instance.settings.dateFormat ||
+  //                   $.datepicker._defaults.dateFormat,
+  //                   selectedDate, instance.settings );
+  //           dates.not( this ).datepicker( "option", option, date );
+  //     $('#from_date, #to_date').datepicker('hide');
+  //   });
+
+    var dates = $( "#from_date, #to_date" ).datepicker({
+        defaultDate: "+1w",
+        dateFormat: I18n.t('time.datepicker_format'),
+        autoSize: true,
+        numberOfMonths: 1,
+        onSelect: function( selectedDate ) {
+            var option = this.id == "from_date" ? "minDate" : "maxDate",
+                instance = $( this ).data( "datepicker" );
+                   date = $.datepicker.parseDate(
+                    instance.settings.dateFormat ||
+                    $.datepicker._defaults.dateFormat,
+                    selectedDate, instance.settings );
+            dates.not( this ).datepicker( "option", option, date );
+        }
+    });
+
+});

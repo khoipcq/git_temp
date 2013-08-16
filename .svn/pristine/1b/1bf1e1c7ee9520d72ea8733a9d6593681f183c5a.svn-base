@@ -1,0 +1,4 @@
+$('#update_admin_infor').modal('hide');
+// user_info = <%= current_user || nil %>;
+$('#user_login_welcome').html("<%= @full_name%>");
+user_info = <%=raw @existed_user.to_json %>;

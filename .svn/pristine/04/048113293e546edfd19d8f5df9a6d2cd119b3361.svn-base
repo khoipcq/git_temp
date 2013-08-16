@@ -1,0 +1,365 @@
+.row
+  .col.col-lg-12
+    %section.toolbar.clearfix.m-t-large.m-b
+      %a.btn.btn-white.btn-circle{:href => "mail.html"}
+        %i.icon-envelope-alt>
+        Inbox
+        %b.badge.bg-white 5
+      %a.btn.btn-primary.btn-circle.active{:href => "#"}
+        %i.icon-lightbulb>
+        Projects
+      %a.btn.btn-success.btn-circle{:href => "#"}
+        %i.icon-check>
+        Tasks
+      %a.btn.btn-info.btn-circle.active{:href => "#"}
+        %i.icon-time>
+        Timeline
+        %b.badge.bg-info
+          %i.icon-plus
+      %a.btn.btn-inverse.btn-circle{:href => "#"}
+        %i.icon-bar-chart>
+        Stats
+      %a.btn.btn-warning.btn-circle{:href => "calendar.html"}
+        %i.icon-calendar-empty>
+        Calendar
+      %a.btn.btn-danger.btn-circle{:href => "#"}
+        %i.icon-group>
+        Groups
+      %a.btn.btn-circle{:href => "#"}
+        %i.icon-plus>
+        More
+  .col.col-lg-6
+    .row
+      / easypiechart
+      .col.col-sm-6
+        %section.panel
+          %header.panel-heading.bg-white
+            .text-center.h5 Play/Pause pie
+          .pull-in.text-center
+            .inline
+              .easypiechart{"data-loop" => "true", "data-percent" => "55"}
+                %span.h2{:style => "margin-left:10px;margin-top:10px;display:inline-block"}> 55
+                \%
+                .easypie-text
+                  %button.btn.btn-link.m-t-n-small{"data-toggle" => "class:pie"}
+                    %i.icon-play.text-active.text-muted
+                    %i.icon-pause.text.text-muted
+      .col.col-sm-6
+        %section.panel
+          %header.panel-heading.bg-white
+            .text-center.h5
+              Total:
+              %strong 5,000
+          .pull-in.text-center
+            .inline
+              .easypiechart{"data-bar-color" => "#576879", "data-percent" => "75"}
+                %span.h2{:style => "margin-left:10px;margin-top:10px;display:inline-block"}> 75
+                \%
+                .easypie-text.text-muted new visits
+      / easypiechart end
+    %section.panel
+      .text-muted.l-h-2x
+        %span.badge 3,3121
+        %span.m-r-small Orders
+        %span.badge.bg-success 25,129
+        %span.m-r-small Selling Items
+        %span.badge 59,973
+        %span.m-r-small Items
+        %span.badge 3,141
+        Customers
+  .col.col-lg-6
+    / sparkline stats
+    %section.panel
+      %header.panel-heading
+        %ul.nav.nav-pills.pull-right
+          %li
+            %a{"data-loading-text" => "loading...", :href => "#"}
+              %i.icon-retweet
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %span.text Day
+              %span.caret
+            %ul.dropdown-menu.pull-right
+              %li.active
+                %a{:href => "#"} Day
+              %li
+                %a{:href => "#"} Week
+              %li
+                %a{:href => "#"} Month
+        %span Snapshot
+      %ul.list-group.list-group-flush.m-t-n
+        %li.list-group-item
+          .media
+            .pull-left.text-center.media-large
+              .h4.m-t-mini
+                %strong 890
+              %small.text-muted Total views
+            .pull-right.hidden-sm.text-right.m-t
+              %b.badge.bg-info{"data-title" => "New", "data-toggle" => "tooltip"} 250
+            .media-body
+              .sparkline{"data-bar-color" => "#8e98a9", "data-bar-width" => "10", "data-height" => "28", "data-type" => "bar"}
+                / 20,10,15,21,12,5,21,30,24,15,8,19
+              %ul.list-inline.text-muted.axis
+                %li
+                  12
+                  %br a
+                %li 2
+                %li 4
+                %li 6
+                %li 8
+                %li 10
+                %li
+                  12
+                  %br p
+                %li 2
+                %li 4
+                %li 6
+                %li 8
+                %li 10
+        %li.list-group-item
+          .media
+            .pull-left.text-center.media-large
+              .h4.m-t-mini
+                %strong $4,800
+              %small.text-muted Revenue
+            .pull-right.hidden-sm.text-right.m-t
+              %b.badge.bg-success{"data-title" => "Captured", "data-toggle" => "tooltip"} $4,000
+            .media-body
+              .sparkline{"data-bar-color" => "#13c4a5", "data-bar-width" => "10", "data-height" => "28", "data-type" => "bar"}
+                / 200,400,500,100,90,1200,1500,1000,800,500,80,50
+              %ul.list-inline.text-muted.axis
+                %li
+                  12
+                  %br a
+                %li 2
+                %li 4
+                %li 6
+                %li 8
+                %li 10
+                %li
+                  12
+                  %br p
+                %li 2
+                %li 4
+                %li 6
+                %li 8
+                %li 10
+        %li.list-group-item
+          .media
+            .pull-left.text-center.media-large
+              .h4.m-t-mini
+                %strong 595
+              %small.text-muted Orders
+            .pull-right.hidden-sm.text-right.m-t
+              %b.badge{"data-title" => "Awaiting", "data-toggle" => "tooltip"}
+                120
+                %i.icon-plane
+            .media-body
+              .sparkline{"data-bar-color" => "#61a1e1", "data-bar-width" => "10", "data-height" => "28", "data-type" => "bar"}
+                / 15,21,30,24,15,8,19,20,10,15,21,12
+              %ul.list-inline.text-muted.axis
+                %li
+                  12
+                  %br a
+                %li 2
+                %li 4
+                %li 6
+                %li 8
+                %li 10
+                %li
+                  12
+                  %br p
+                %li 2
+                %li 4
+                %li 6
+                %li 8
+                %li 10
+    / sparkline stats end
+.row
+  .col.col-lg-6
+    / scrollable inbox widget
+    %section.panel
+      %header.panel-heading
+        %ul.nav.nav-pills.pull-right
+          %li
+            %a.panel-toggle.text-muted{:href => "#"}
+              %i.icon-caret-down.icon-large.text-active
+              %i.icon-caret-up.icon-large.text
+        %span.label.label-large.bg-default 15
+        Inbox
+      %section.panel-content.scrollbar.scroll-y{:style => "height:214px"}
+        %article.media
+          %span.pull-left.thumb-small
+            %img.img-circle{:alt => "John said", :src => "/assets/avatar.jpg"}/
+          .media-body
+            .pull-right.media-mini.text-center.text-muted
+              %strong.h4 12:18
+              %br
+                %small.label.bg-light pm
+            %a.h4{:href => "#"} Bootstrap 3.0 is comming
+            %small.block
+              %a{:href => "#"} John Smith
+              %span.label.label-success Circle
+            %small.block Sleek, intuitive, and powerful mobile-first front-end framework for faster and easier web development.
+        .line.pull-in
+        %article.media
+          %span.pull-left.thumb-small
+            %i.icon-user.icon-2x.text-muted
+          .media-body
+            .pull-right.media-mini.text-center.text-muted
+              %strong.h4 17
+              %br
+                %small.label.bg-light feb
+            %a.h4{:href => "#"} Bootstrap documents
+            %small.block
+              %a{:href => "#"} John Smith
+              %span.label.label-info Friends
+            %small.block There are a few easy ways to quickly get started with Bootstrap, each one appealing to a different skill level and use case. Read through to see what suits your particular needs.
+        .line.pull-in
+        %article.media
+          .media-body
+            .pull-right.media-mini.text-center.text-muted
+              %strong.h4 09
+              %br
+                %small.label.bg-light jan
+            %a.h4.text-success{:href => "#"} Mobile first html/css framework
+            %small.block Bootstrap, Ratchet
+    / / scrollable inbox widget
+  .col.col-lg-6
+    / task
+    %section.panel
+      %header.panel-heading
+        %a.btn.btn-link.pull-right.nav
+          %i.icon-search.text-default.icon-large
+        Tasks
+      %ul.panel-content.list-group.list-group-flush.m-t-n
+        %li.list-group-item{"data-target" => "#todo-1", "data-toggle" => "class:active"}
+          .media
+            %span.pull-left.thumb-small.m-t-mini
+              %i.icon-code.icon-xlarge.text-default
+            #todo-1.pull-right.text-primary.m-t-small
+              %i.icon-circle.icon-large.text.text-default
+              %i.icon-ok-sign.icon-large.text-active.text-primary
+            .media-body
+              %div
+                %a.h5{:href => "#"} Coding on app
+              %small.text-muted 9:30 am every day
+        %li.list-group-item.bg{"data-target" => "#todo-2", "data-toggle" => "class:active"}
+          .media
+            %span.pull-left.thumb-small.m-t-mini
+              %i.icon-reply.icon-xlarge.text-default
+            #todo-2.pull-right.text-primary.m-t-small
+              %i.icon-circle.icon-large.text.text-default
+              %i.icon-ok-sign.icon-large.text-active.text-primary
+            .media-body
+              %div
+                %a.h5{:href => "#"} Reply email
+              %small.text-muted Check Gmail and reply
+        %li.list-group-item{"data-target" => "#todo-3", "data-toggle" => "class:active"}
+          .media
+            %span.pull-left.thumb-small.m-t-mini
+              %i.icon-coffee.icon-xlarge.text-default
+            #todo-3.pull-right.text-primary.m-t-small
+              %i.icon-circle.icon-large.text.text-default
+              %i.icon-ok-sign.icon-large.text-active.text-primary
+            .media-body
+              %div
+                %a.h5{:href => "#"} Coffee time
+              %small.text-muted Freetime as you want
+        %li.list-group-item.bg{"data-target" => "#todo-4", "data-toggle" => "class:active"}
+          .media
+            %span.pull-left.thumb-small.m-t-mini
+              %i.icon-music.icon-xlarge.text-default
+            #todo-4.pull-right.text-primary.m-t-small
+              %i.icon-circle.icon-large.text.text-default
+              %i.icon-ok-sign.icon-large.text-active.text-primary
+            .media-body
+              %div
+                %a.h5{:href => "#"} Listen music
+              %small.text-muted Listening and finding
+    / / task
+  .col.col-lg-12
+    / .comment-list
+    %section.comment-list.block
+      %article#comment-id-1.comment-item.media.arrow-left
+        %a.pull-left.thumb-small.avatar
+          %img.img-circle{:src => "/assets/avatar.jpg"}/
+        %section.media-body.panel
+          %header.panel-heading.clearfix
+            %a{:href => "#"} John smith
+            %label.label.bg-info.m-l-mini Editor
+            %span.text-muted.m-l-small.pull-right
+              %i.icon-time>
+              24 minutes ago
+          %div Lorem ipsum dolor sit amet, consecteter adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+          .comment-action.m-t-small
+            %a.btn.btn-white.btn-mini.active{"data-toggle" => "class", :href => "#"}
+              %i.icon-star-empty.text-muted.text
+              = succeed "Like" do
+                %i.icon-star.text-danger.text-active
+            %a.btn.btn-white.btn-mini{:href => "#comment-form"}
+              %i.icon-mail-reply.text-muted>
+              Reply
+      / .comment-reply
+      %article#comment-id-2.comment-item.comment-reply.media.arrow-left
+        %a.pull-left.thumb-small
+          %span.btn.btn-circle.btn-white.btn-mini
+            %i.icon-user
+        %section.media-body.panel.text-small
+          %a{:href => "#"} Mika Sam
+          %label.label.bg-inverse.m-l-mini Admin
+          Report this comment is helpful
+          %span.text-muted.m-l-small.pull-right
+            %i.icon-time>
+            10 minutes ago
+      / / .comment-reply
+      %article#comment-id-3.comment-item.media.arrow-left
+        %a.pull-left.thumb-small.avatar
+          %img.img-circle{:src => "/assets/avatar.jpg"}/
+        %section.media-body.panel
+          %header.panel-heading.clearfix
+            %a{:href => "#"} By me
+            %label.label.bg-default.m-l-mini User
+            %span.text-muted.m-l-small.pull-right
+              %i.icon-time>
+              about 1 hour ago
+          %div This comment was posted by you.
+          .comment-action.m-t-small
+            %a.btn.btn-white.btn-mini{"data-dismiss" => "alert", :href => "#comment-id-3"}
+              %i.icon-trash.text-muted>
+              Remove
+      %article#comment-id-4.comment-item.media.arrow-left
+        %a.pull-left.thumb-small.avatar
+          %img.img-circle{:src => "/assets/avatar.jpg"}/
+        %section.media-body.panel
+          %header.panel-heading.clearfix
+            %a{:href => "#"} Peter
+            %label.label.bg-primary.m-l-mini Vip
+            %span.text-muted.m-l-small.pull-right
+              %i.icon-time>
+              2 hours ago
+          %blockquote
+            %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+            %small
+              Someone famous in
+              %cite{:title => "Source Title"} Source Title
+          %div Lorem ipsum dolor sit amet, consecteter adipiscing elit...
+          .comment-action.m-t-small
+            %a.btn.btn-white.btn-mini{"data-toggle" => "class", :href => "#"}
+              %i.icon-star-empty.text-muted.text
+              = succeed "Like" do
+                %i.icon-star.text-danger.text-active
+            %a.btn.btn-white.btn-mini{:href => "#comment-form"}
+              %i.icon-mail-reply.text-muted>
+              Reply
+      / comment form
+      %article#comment-form.comment-item.media
+        %a.pull-left.thumb-small.avatar
+          %img.img-circle{:src => "/assets/avatar.jpg"}/
+        %section.media-body
+          %form.m-b-none{:action => ""}
+            .input-group
+              %input{:placeholder => "Input your comment here", :type => "text"}
+                %span.input-group-btn
+                  %button.btn.btn-primary{:type => "button"} POST
+    / / .comment-list

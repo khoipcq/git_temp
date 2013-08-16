@@ -1,0 +1,18 @@
+common: &common
+  adapter: postgresql
+  database: apotori_dev
+  username: postgres
+  password: '1qazxsw2'
+  pool: 5
+  timeout: 5000
+  host: localhost
+  port: 5432
+
+development:
+  <<: *common
+
+test:
+  <<: *common
+
+production:
+  <<: *common

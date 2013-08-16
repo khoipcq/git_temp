@@ -1,0 +1,8 @@
+#warning-dialog .text-center a {
+  width: 150px;
+  border-radius: 25px;
+  margin: 0 10px 10px;
+}
+#warning-dialog .modal-dialog {
+  top: 250px;
+}

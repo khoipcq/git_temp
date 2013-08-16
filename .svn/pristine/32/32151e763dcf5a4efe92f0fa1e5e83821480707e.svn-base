@@ -1,0 +1,80 @@
+%div
+  %h5
+    %strong
+      = t('.pro_plan')
+  %hr/
+  .row
+    .col.col-lg-4
+      %h4
+        %strong $3,900
+      %p 
+        = t('.per_month')
+      = button_tag t('button.choose_plan'), :class => 'btn btn-info '
+    .col.col-lg-4
+      %p . Stores        
+      %p . User - staff
+      %p . 24/7 Appointment Scheduling
+      %p . Facebook/Google sign in
+      %p . Daily Backups
+      %p . Secure HTTPS access
+      %p . Export data to CSV
+      %p . Instant Appointment Confirmation
+      %p . Email Notifications
+      %p . Appointment Scheduling Web Page
+    .col.col-lg-4
+      %p . Offer Unlimited Services
+      %p . 12 Month Appointment Calendar
+      %p . Automatic Appointment Reminders
+      %p . Mobile/Tablet Web App
+      %p . Collect & Promote Reviews
+      %p . Customer Database & Analytics
+      %p . Customer Support
+      %p . Individual Staff Logins
+      %p . Phone support 
+  %br/
+    
+%div
+  %h5
+    %strong 
+      = t('.basic_plan')	
+  %hr/
+  .row
+    .col.col-lg-4
+      %h4
+        %strong $1,995
+      %p 
+        = t('.per_month')
+      = button_to t('button.reactivate'), organization_user_reorder_path(current_user.organization_id, current_user.id), :method => :get, :class => 'btn btn-info '    
+    .col.col-lg-4
+      %p . Stores        
+      %p . User - staff
+      %p . 24/7 Appointment Scheduling
+      %p . Facebook/Google sign in
+      %p . Daily Backups
+      %p . Secure HTTPS access
+      %p . Export data to CSV
+      %p . Instant Appointment Confirmation
+      %p . Email Notifications
+      %p . Appointment Scheduling Web Page
+    .col.col-lg-4   
+      %p . Offer Unlimited Services
+      %p . 12 Month Appointment Calendar
+      %p . Automatic Appointment Reminders
+      %p . Mobile/Tablet Web App
+      %p . Collect & Promote Reviews
+      %p . Customer Database & Analytics
+      %p . Customer Support 
+  %br/     
+  .row
+    .col.col-lg-4
+    .col.col-lg-8
+      %p
+        %strong
+          = "#{t('.note')}:"      
+      %p
+        = "- #{t('.note_content')}"
+      %br/
+      %br/
+      %p.custom_datatable
+        = t('.find_more')        
+        = link_to t('.apotori_feature'), "#", :class => "action-link"

@@ -1,0 +1,12 @@
+#warning-dialog
+  .modal-dialog
+    .modal-content
+      .modal-header.text-center
+        %h4.modal-title
+          = message_header
+      .modal-body
+        = message_body
+      .text-center        
+        %a.btn.btn-warning{'data-dismiss' => 'modal'}
+          = t('button.ok')
+      %br/

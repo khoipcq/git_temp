@@ -1,0 +1,155 @@
+.modal-body
+  %form.form-horizontal{"data-validate" => "parsley", :method => "get"}
+    .row
+      %label.col.col-lg-4.control-label
+        = t('.name')
+        %span.required *
+      .col.col-lg-8
+        %input.parsley-validated{"data-required" => "true", "data-type" => "text", :name => "name", :type => "text",:autofocus => true,tabindex:"1" }
+    .row
+      %label.col.col-lg-4.control-label
+        = t('.description')
+      .col.col-lg-8
+        %textarea.parsley-validated{"data-rangelength" => "[20,200]", :rows => "3",tabindex:"2"}
+    .row
+      %label.col.col-lg-4.control-label
+        = t('.price_per_month')
+        %span.required *
+      .col.col-lg-4
+        %input.parsley-validated{"data-required" => "true", "data-type" => "text", :name => "price_per_month", :type => "text", tabindex:"3"}
+      .col.col-lg-4
+        .right_align
+          .btn-group{"data-toggle" => "buttons-radio", tabindex:"4"}
+            %label.btn.btn-big.btn-white.active
+              %input#option1{:name => "price_per_month", :type => "radio"}
+              JPY
+            %label.btn.btn-big.btn-white
+              %input#option2{:name => "price_per_month", :type => "radio"}
+              USD
+    .row
+      %label.col.col-lg-4.control-label
+        = t('.number_of_stores')
+        %span.required *
+      .col.col-lg-8
+        %input.parsley-validated{"data-required" => "true", "data-type" => "number", :name => "number_of_stores", :type => "text", tabindex:"5"}
+    .row
+      %label.col.col-lg-4.control-label
+        = t('.users_staff')
+        %span.required *
+      .col.col-lg-8
+        %select{:name => "users_staff",tabindex:"6"}
+          %option{:value => "1"} 1
+          %option{:value => "100"} 100
+    .row
+      %label.col.col-lg-4.control-label
+        = t('.status.name')
+        %span.required *
+      .col.col-lg-8
+        %select{:name => "status", tabindex:"7"}
+          %option{:value => "1"}
+            = t('.status.active')
+          %option{:value => "0"}
+            = t('.status.inactive')
+    %br/
+    .feature_table_include
+      %b
+        = t('.features_included')
+      %br/
+      %br/
+      %table.table.table-bordered
+        %thead
+          %tr
+            %th
+              = t('features.edit_feature.name')
+            %th
+              %center
+                = t('features.edit_feature.support')
+        %tbody
+          - if value_is_off
+            %tr
+              %td
+                Store
+              %td
+                %center
+                  .radio_button
+                    .btn-group{"data-toggle" => "buttons-radio", tabindex:"8"}
+                      %label.btn.btn-small.btn-white
+                        %input#option1{:name => "option_store", :type => "radio"}
+                        = t('feature.option.on')
+                      %label.btn.btn-small.btn-white.active
+                        %input#option2{:name => "option_store", :type => "radio"}
+                        = t('feature.option.off')
+            %tr
+              %td
+                User-staff
+              %td
+                %center
+                  .radio_button
+                    .btn-group{"data-toggle" => "buttons-radio", tabindex:"9"}
+                      %label.btn.btn-small.btn-white
+                        %input#option1{:name => "option_user_staff", :type => "radio"}
+                        = t('feature.option.on')
+                      %label.btn.btn-small.btn-white.active
+                        %input#option2{:name => "option_user_staff", :type => "radio"}
+                        = t('feature.option.off')
+            %tr
+              %td
+                24/7 Appoinment Scheduling
+              %td
+                %center
+                  .radio_button
+                    .btn-group{"data-toggle" => "buttons-radio", tabindex:"10"}
+                      %label.btn.btn-small.btn-white
+                        %input#option1{:name => "option_appoinment", :type => "radio"}
+                        = t('feature.option.on')
+                      %label.btn.btn-small.btn-white.active
+                        %input#option2{:name => "option_appoinment", :type => "radio"}
+                        = t('feature.option.off')
+          - if !value_is_off
+            %tr
+              %td
+                Store
+              %td
+                %center
+                  .radio_button
+                    .btn-group{"data-toggle" => "buttons-radio", tabindex:"8"}
+                      %label.btn.btn-small.btn-white.active
+                        %input#option1{:name => "option_store", :type => "radio"}
+                        = t('feature.option.on')
+                      %label.btn.btn-small.btn-white
+                        %input#option2{:name => "option_store", :type => "radio"}
+                        = t('feature.option.off')
+            %tr
+              %td
+                User-staff
+              %td
+                %center
+                  .radio_button
+                    .btn-group{"data-toggle" => "buttons-radio", tabindex:"9"}
+                      %label.btn.btn-small.btn-white.active
+                        %input#option1{:name => "option_user_staff", :type => "radio"}
+                        = t('feature.option.on')
+                      %label.btn.btn-small.btn-white
+                        %input#option2{:name => "option_user_staff", :type => "radio"}
+                        = t('feature.option.off')
+            %tr
+              %td
+                24/7 Appoinment Scheduling
+              %td
+                %center
+                  .radio_button
+                    .btn-group{"data-toggle" => "buttons-radio", tabindex:"10"}
+                      %label.btn.btn-small.btn-white.active
+                        %input#option1{:name => "option_appoinment", :type => "radio"}
+                        = t('feature.option.on')
+                      %label.btn.btn-small.btn-white
+                        %input#option2{:name => "option_appoinment", :type => "radio"}
+                        = t('feature.option.off')
+      %br/
+      .row.center
+
+        %button.btn.btn-success{:type => "submit",tabindex:"11"}
+          = t('button.save')
+        %buton.btn.btn-warning{"data-dismiss" => "modal", :type => "button", tabindex:"12"}
+          = t('button.cancel')
+.modal-footer

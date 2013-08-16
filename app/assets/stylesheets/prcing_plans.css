@@ -1,0 +1,35 @@
+#pricing_plan .active {
+  border-color: #c3c6c9;
+  color: #fff;
+  background-color: rgb(19, 40, 196);
+}
+#pricing_plan .control-label {
+  padding-left: 0;
+}
+#pricing_plan  .right_align{
+  text-align: right;
+}
+#pricing_plan  .center{
+  text-align: center;
+}
+/*#pricing_plan  .radio_button .btn-group label{
+  color: #fff;
+}*/
+#pricing_plan label.btn{
+  font-family: Arial !important;
+}
+#pricing_plan  button{
+  width: 70px;
+}
+#edit_feature .btn-success,#edit_feature .btn-warning{
+  width: 70px;
+}
+#edit_feature .center{
+  text-align: center;
+}
+#pricing_plan textarea,  #feature textarea{
+   resize: none;
+}
+#pricing_plan .feature_table_include {
+  width: 100%;
+}

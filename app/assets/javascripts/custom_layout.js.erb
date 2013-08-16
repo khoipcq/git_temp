@@ -1,0 +1,24 @@
+function getWidthSreen(){
+  var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName('body')[0],
+      x = w.innerWidth || e.clientWidth || g.clientWidth;
+  return x;
+}
+
+function getHeightSreen(){
+  var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName('body')[0],
+      y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+  return y;
+}
+
+$(document).ready(function(){
+  $('.password-container').pschecker();
+  minHeight = getHeightSreen() - 175;
+  $('.main').css("min-height", minHeight);
+
+});

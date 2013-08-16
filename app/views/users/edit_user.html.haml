@@ -1,0 +1,73 @@
+.content
+  %h2
+    = link_to  t('users.edit.name'),edit_organization_user_path(params['organization_id'],@user)
+    |
+    = link_to "User Groups"
+  - if !@user.errors.messages[:username].blank?
+    %div{:style=>'color: red'}
+      = t('users.new.exist')
+  - if !@user.errors.messages[:email].blank?
+    %div{:style=>'color: red'}
+      = t('users.new.email_exist')
+  %br
+  .new_form
+    = form_for(@user,:url => organization_user_path,:html=>{:id=>"edit_user"}) do |f|
+      .column_left
+        .text_input
+          %div
+            = t('users.edit.user_name')
+            %span.require (*)
+          %div
+            = f.text_field :username, :autofocus => true
+        .text_input
+          %div
+            = t('users.edit.email')
+            %span.require (*)
+          %div
+            = f.text_field :email
+        .text_input
+          %div
+            = t('users.edit.first_name')
+            %span.require (*)
+          %div
+            = f.text_field :first_name
+        .text_input
+          %div
+            = t('users.edit.last_name')
+            %span.require (*)
+          %div
+            = f.text_field :last_name
+        .text_input
+          %div
+            = t('users.new.password')
+            %i
+              = t('users.edit.password_change_info')
+          = f.password_field :password
+        .text_input
+          %div
+            = t('users.new.password_confirmation')
+          = f.password_field :password_confirmation
+      .column_right
+        %div
+          %div
+            = t('users.edit.groups')
+            %br
+            = render "user_groups", :groups => @user_groups, :selected_groups => @user.user_groups
+        %br
+        %div
+          = t('users.edit.status')
+          %label
+            = f.radio_button :is_deleted, false
+            = t('users.edit.enable')
+          %label
+            = f.radio_button :is_deleted, true
+            = t('users.edit.disable')
+      .space
+      %div
+        = f.submit t('button.update'),:class=>"btn_submit"
+        = f.button t('button.cancel'),:class=>"btn_submit",:onclick =>"window.location = g_usersPath;return false;"
+
+= javascript_include_tag "user"
+:javascript
+  //Default focus
+  $("#user_username").focus();

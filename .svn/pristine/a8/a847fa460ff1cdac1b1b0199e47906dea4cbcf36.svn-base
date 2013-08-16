@@ -1,0 +1,15 @@
+#user_grid
+  .grid_toolbar
+    .grid_title
+      = t('user_group.list_name')
+    .right_search_panel
+      %input.btn_add_user{:type=>"button",:value=>t('button.add_user_group'),:onclick=>"window.location = g_newUserGroupPath"}
+  .grid{:style=>"clear:both"}
+    %table#user_group_table.display
+      %div
+
+= javascript_include_tag "user_group"
+:javascript
+  // Variable Declaration
+  var g_token = '#{form_authenticity_token}';
+

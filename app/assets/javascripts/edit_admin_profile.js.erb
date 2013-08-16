@@ -1,0 +1,69 @@
+
+$(document).ready(function(){
+  $("#update_user_profile").validate({
+    rules:{
+      "last_name": {
+        required: true,
+        maxlength: 256,
+        regex: /^[A-Za-z0-9\. ]+$/
+      },
+      "first_name": {
+        required: true,
+        regex: /^[A-Za-z0-9\. ]+$/,
+        maxlength: 256
+      },
+       "email": {
+        required: true,
+        email: true
+      },
+      "pass": {
+        required: true,
+        minlength: 6,
+        maxlength: 32
+      },
+      "confirm_pass": {
+        equalTo: "#user_password"
+      },
+      "accept_term": {
+        required: true
+      }
+    },
+    messages: {
+      
+      "first_name":{
+        required: I18n.t('required_msg', {field : I18n.t('firstname')}),
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('firstname'), length: 256}),
+        regex: I18n.t('regex_textfield', {field : I18n.t('firstname')})
+      },
+      "email":{
+        required: I18n.t('required_msg', {field : I18n.t('email')}),
+      },
+      "last_name":{
+        required: I18n.t('required_msg', {field : I18n.t('lastname')}),
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('lastname'), length: 256}),
+        regex: I18n.t('regex_textfield', {field : I18n.t('lastname')})
+      },
+      "pass":{
+        required: I18n.t('required_msg', {field : I18n.t('password')}),
+        minlength: I18n.t('minlength_msg', {field : I18n.t('password'), length: 6}),
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('password'), length: 32})
+      },
+      "confirm_pass": {
+        equalTo: I18n.t('password_not_match')
+      }
+    },
+    errorPlacement: function(error, element){
+      error.appendTo(element.parent());
+    }
+  });
+  get_user_info(user_info);
+
+});
+function get_user_info(obj)
+{
+  $("#first_name").val(obj.first_name);
+  $("#last_name").val(obj.last_name);
+  $("#email").val(obj.email);
+  $("#hidden_user_id").val(obj.id);
+    
+}

@@ -1,0 +1,93 @@
+.content
+  .row#devise-register-new
+    .form
+      %section.panel
+        %header.panel-heading.text-center
+          = t('.title')
+        - p flash[:error]
+        - unless flash[:error].nil?
+          %div{:style=>'color: red'}
+            = flash[:error]
+        = devise_error_messages!
+        = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {:class => 'form-horizontal', id: "new_user"}) do |f|
+          .row
+            %label.col.col-lg-4.control-label
+              = "#{t('.business_name')} *"
+            .col.col-lg-7.form-control
+              = text_field_tag 'business_name', '', autofocus: true
+            .clearfix
+          %br
+
+          .row
+            %label.col.col-lg-4.control-label
+              = "#{t('.last_name')} *"
+            .col.col-lg-7.form-control
+              = f.text_field :last_name
+            .clearfix
+          %br
+
+          .row
+            %label.col.col-lg-4.control-label
+              = "#{t('.first_name')} *"
+            .col.col-lg-7.form-control
+              = f.text_field :first_name
+            .clearfix
+          %br
+
+          .row
+            %label.col.col-lg-4.control-label
+              = "#{t('.email')} *"
+            .col.col-lg-7
+              = f.text_field :email, :value => ""
+            .clearfix
+          %br
+
+          .row.password-container
+            %label.col.col-lg-4.control-label
+              = "#{t('.password')} *"
+            .col.col-lg-7
+              = f.password_field :password, :class => "strong-password"
+            .clearfix
+          %br
+
+          .row
+            .col.col-lg-4
+            .col.col-lg-7
+              .row
+              .progress.meter
+                .progress-bar#weak
+                  = t('users.password_strength.weak')
+                .progress-bar#fair
+                  = t('users.password_strength.fair')
+                .progress-bar#strong
+                  = t('users.password_strength.strong')
+            .col.col-lg-1
+              .pull-left
+                %a#image_help.icon-question-sign.icon-large
+            .clearfix
+          %br
+
+          .row
+            %label.col.col-lg-4.control-label
+              = "#{t('.password_confirm')} *"
+            .col.col-lg-7
+              = f.password_field :password_confirmation
+            .clearfix
+          
+          .row
+            .col.col-lg-4
+            .col.col-lg-8
+              .checkbox
+                %label.control-label.checkbox-custom
+                  = check_box_tag 'accept_term'
+                  %i.icon-unchecked
+                  = t('.accept')
+                  %u
+                    = link_to t('.term_service'), "#", class: 'link'
+              
+
+          %br
+          .row
+            .text-center
+              = f.submit t('.start_trial'), :class => 'btn btn-info'
+= javascript_include_tag "pass_meter"

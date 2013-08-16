@@ -1,0 +1,43 @@
+#show_review.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h4.modal-title
+          = t('.title')
+      .modal-body
+        %form.form-horizontal
+          .row
+            %label.col.col-lg-4.control-label
+              = t('.service_rate')
+              %span :
+            .col.col-lg-8
+              .content-label
+                - 3.times do
+                  %i.icon-star
+          .row
+            %label.col.col-lg-4.control-label
+              = t('.customer_name')
+              %span :
+            .col.col-lg-8
+              .content-label
+                Marco Botton
+          .row
+            %label.col.col-lg-4.control-label
+              = t('.review_title')
+              %span :
+            .col.col-lg-8
+              .content-label
+                Professional Service
+          .row
+            %label.col.col-lg-4.control-label
+              = t('.content')
+              %span :
+            .col.col-lg-8
+              %textarea{"data-rangelength" => "[20,200]", :rows => "3", tabindex: "2",disabled: true}
+                This is a professional Service
+        %br/
+        .row.center
+          %buton.btn.btn-warning{"data-dismiss" => "modal", :type => "button", }
+            = t('button.btn-close')
+
+      .modal-footer

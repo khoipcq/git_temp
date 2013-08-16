@@ -1,0 +1,33 @@
+.row#devise-session-new
+  .col.col-lg-4.col-offset-4.m-t-large
+    %section.panel
+      %header.panel-heading.text-center
+        = t('.title')      
+      = form_for(resource, :as => resource_name, :url => user_session_path) do |f|
+        - if flash[:alert]
+          %p(style="color: red")= flash[:alert]
+        .block
+          = f.email_field :email, placeholder: t('.username'), autofocus: true
+        .block
+          = f.password_field :password, placeholder: t('.password')
+        - if devise_mapping.rememberable?
+          .checkbox
+            %label
+              = f.check_box :remember_me
+              = t('.remember')
+        .text-center
+          = f.submit t('.log_in'),:class=>"btn btn-info"
+          %br/
+          - if devise_mapping.recoverable? && controller_name != 'passwords'
+            .link
+              = link_to t('devise.link.forgot_pass'), new_password_path(resource_name)
+        %hr
+        .text-center        
+          = f.button t('.log_in_with_facebook'),:class=>"btn btn-info btn-block" 
+        %hr/   
+        .text-center    
+          %label
+            = t('.ask_account')             
+            = link_to t('sign_up_here') , new_user_registration_path, :id=> 'link_sign_up'
+= javascript_include_tag "user"
+

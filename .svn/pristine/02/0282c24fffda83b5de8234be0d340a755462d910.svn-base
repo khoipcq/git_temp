@@ -1,0 +1,38 @@
+/ reset password is wrong, user can go to confirmation by enter url
+.row#confirmation-new
+  .col.col-lg-4.col-offset-4.m-t-large
+    %section.panel
+      %header.panel-heading.text-center
+        = t('.title')
+      %h5
+        = t('.welcome')
+      = form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
+        .col{style: 'color: red'}
+          = devise_error_messages!
+        .block.col-lg-large.password-container
+          = f.password_field :password, placeholder: t('.new_password'), autofocus: true,:class => "strong-password"
+        .progress.col-lg-large.pull-left
+          .progress.meter
+            .progress-bar#weak
+              = t('users.password_strength.weak')
+            .progress-bar#fair
+              = t('users.password_strength.fair')
+            .progress-bar#strong
+              = t('users.password_strength.strong')
+          / .progress-bar.progress-bar-success#weak= t('.weak')
+          / .progress-bar#fair= t('.fair')
+          / .progress-bar#strong= t('.strong')
+        .pull-left
+          %a.icon-question-sign.icon-large#question{'data-content' => t('.password_description')}
+        .block.col-lg-large
+          = f.password_field :password_confirmation, placeholder: t('.password_confirm')
+        .text-center
+          = f.submit t('.submit'),:class=>"btn btn-success"
+:javascript
+  $(document).ready(function () {
+    $("#question").popover({
+      trigger: 'hover',
+      html: true
+    });
+    $('.password-container').pschecker();
+  })

@@ -1,0 +1,14 @@
+#warning-dialog
+  .modal-dialog
+    .modal-content
+      .modal-header.text-center
+        %h4.modal-title
+          = message_header
+      .modal-body
+        = text_field_tag 'content'
+      .text_center
+        %a.btn.btn-success{:href => "#"}
+          = button_main
+        %a.btn.btn-warning{'data-dismiss' => 'modal'}
+          = t('button.cancel')
+      %br/

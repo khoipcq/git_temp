@@ -1,0 +1,15 @@
+#staff_group_name
+  .modal-dialog
+    .modal-content
+      .modal-body
+        %center
+          %form
+            %h3
+              = message_title
+            = text_field_tag "name"
+      .text-center
+        %a.btn.btn-primary{:href => "#"}
+          = first_button
+        %a.btn{'data-dismiss' => 'modal'}
+          = second_button
+      %br/

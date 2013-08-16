@@ -1,0 +1,17 @@
+class StoreOwnersController < ApplicationController
+
+  def index
+    @per_page = Settings.per_page
+    if request.xhr?
+      per_page = params[:iDisplayLength] ||  Settings.per_page
+      page = params[:iDisplayStart] ? ((params[:iDisplayStart].to_i/per_page.to_i) + 1) : 1
+      cols = ["name", "point","category","repeatable","completion","activities.status"]
+      sort_field =  cols[(params[:iSortCol_0].to_i) -1]+" " + params[:sSortDir_0]
+      search_text = params["sSearch"] || ""
+      arel_org = Organization.arel_table
+      @orgs = Organization.order(sort_field).where(arel_org[:name].matches("%#{search_text}%").and(arel_org[:is_super_org].eq(false))).paginate(:page => page, :per_page => per_page)
+
+      render :json => {"aaData" => @orgs,"iTotalRecords"=>@orgs.total_entries,"iTotalDisplayRecords"=>@orgs.total_entries}
+    end
+  end
+end

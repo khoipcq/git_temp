@@ -1,0 +1,55 @@
+%form.form-horizontal
+
+  .row
+    %label.col.col-lg-3.control-label.text-right
+      = "#{t('.business_name')} *"
+    .col.col-lg-7.form-control
+      = text_field_tag 'business_name', '', autofocus: true
+    .clearfix
+  %br
+
+  .row
+    %label.col.col-lg-3.control-label.text-right
+      = "#{t('.last_name')} *"
+    .col.col-lg-7.form-control
+      = text_field_tag :last_name
+    .clearfix
+  %br
+
+  .row
+    %label.col.col-lg-3.control-label.text-right
+      = "#{t('.first_name')} *"
+    .col.col-lg-7.form-control
+      = text_field_tag :first_name
+    .clearfix
+  %br
+
+  .row
+    %label.col.col-lg-3.control-label.text-right
+      = "#{t('.email')} *"
+    .col.col-lg-7
+      = text_field_tag :email
+    .clearfix
+  %br        
+
+  .row
+    %label.col.col-lg-3.control-label.text-right
+      = t('.password')
+    .col.col-lg-7
+      = password_field_tag :password
+    .clearfix
+  %br          
+
+  .row
+    %label.col.col-lg-3.control-label.text-right
+      = t('.password_confirm')
+    .col.col-lg-7
+      = password_field_tag :password_confirmation
+    .clearfix
+    %br
+  .row.text-center
+    .btn.btn-success#button_update_admin{:type => "submit"}
+      = t('button.save')
+
+    .btn.btn-warning#button_update_admin{'data-dismiss' => 'modal'}
+      = t('button.cancel')

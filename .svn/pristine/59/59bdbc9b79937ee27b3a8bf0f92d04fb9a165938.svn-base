@@ -1,0 +1,30 @@
+.row.custom_datatable
+  .panel
+    .button_add
+      %input.btn.btn-primary{:type=>"button",:value=>t('button.add'), "data-toggle" => "modal", "data-target" => "#new_pricing_plan"}
+    .panel-heading
+      = t('.list')
+    %table#pricing_plan_table.table.table-striped.dataTable
+      %div
+  #pricing_plan
+    = render "edit_pricing_plan"
+    = render "new_pricing_plan"
+    #delete_notice.modal.fade
+      = render "shared/warning_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body')
+
+= javascript_include_tag "pricing_plan"
+
+:javascript
+  //variable Declaration
+
+  var g_token = '#{form_authenticity_token}';
+  var g_bDeletePricingPlan = true;
+  var g_bEditPricingPlan = true;
+  var g_newPricingPlanPath = "#{new_pricing_plan_path}";
+  var g_pricingPlanPath = "#{pricing_plans_path}";
+  var g_editPricingPlanPath = "#{edit_pricing_plan_path( '[id]')}";
+
+
+
+
+

@@ -1,0 +1,92 @@
+- if current_user
+  - org_id = (controller.controller_name == 'organizations' && !params[:id] && !params[:organization_id]) ? current_user.organization_id : (params[:organization_id] || params[:id] || current_user.organization_id)
+  %nav#nav.nav-primary.visible-lg.nav-vertical
+    %ul.nav{"data-offset-top" => "50", "data-spy" => "affix"}
+      / -if can? :manage, :all
+      /   %li#store-owners
+      /     %a{:href => "#{store_owners_path}"}
+      /       %i.icon-th.icon-xlarge
+      /       = t('menu.store_owner')
+      /   %li.active
+      /     %a{:href => "#{pricing_plans_path}"}
+      /       %i.icon-th.icon-xlarge>
+      /       = t('menu.pricing_plan')
+      /   %li#features
+      /     %a{:href => "#{features_path}"}
+      /       %i.icon-th.icon-xlarge>
+      /       = t('menu.feature')
+      /   %li#billing-reports
+      /     %a{:href => "#{billing_reports_path}"}
+      /       %i.icon-th.icon-xlarge
+      /       = t('menu.billing_reports')
+
+      %li
+        %a{:href => "#{organization_appointments_path(org_id)}"}
+          %i.icon-th.icon-xlarge>
+          = t('menu.appointments')
+      %li
+        %a{:href => "#{organization_customers_path(org_id)}"}
+          %i.icon-th.icon-xlarge>
+          = t('menu.customers')
+      %li
+        %a{:href => "#{organization_reviews_path(org_id)}"}
+          %i.icon-th.icon-xlarge>
+          = t('menu.reviews')
+      %li
+        %a{:href => "/"}
+          %i.icon-th.icon-xlarge>
+          = t('menu.staff')
+      %li
+        %a{:href => "/"}
+          %i.icon-th.icon-xlarge>
+          = t('menu.locations')
+      %li
+        %a{:href => "/"}
+          %i.icon-th.icon-xlarge>
+          = t('menu.services')
+      %li
+        %a{:href => "/"}
+          %i.icon-th.icon-xlarge>
+          = t('menu.email_campaigns')
+      %li
+        %a{:href => "/"}
+          %i.icon-th.icon-xlarge>
+          = t('menu.settings')
+
+
+      / %li
+      /   - if can? :index, User
+      /     %a{:href => "#{organization_users_path(org_id)}"}
+      /       %i.icon-th.icon-xlarge>
+      /       = t('menu.user_management')
+      / %li
+      /   - if can? :index, UserGroup
+      /     %a{:href => "#{organization_user_groups_path(org_id)}"}
+      /       %i.icon-th.icon-xlarge
+      /       = t('menu.user_group_management')
+      / %li
+      /   - if can? :index, Activity
+      /     %a{:href => "#{organization_activities_path(org_id)}"}
+      /       %i.icon-th.icon-xlarge
+      /       = t('menu.log')
+
+
+      / %li
+      /   - if can? :index, Organization
+      /     %a{:href => "#{organizations_path}"}
+      /       %i.icon-th.icon-xlarge>
+      /       = t('menu.organization')
+      / %li
+      /   - if can? :show, Organization
+      /     %a{:href => "#{organization_path(current_user.organization_id)}"}
+      /       %i.icon-th.icon-xlarge>
+      /       = t('menu.my_organization')
+
+      / %li
+      /   %a{:href => "#"}
+      /     %i.icon-list.icon-xlarge>
+      /     Appointment
+      / %li
+      /   %a{:href => "#"}
+      /     %i.icon-signal.icon-xlarge>
+      /     Analytics

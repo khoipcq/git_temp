@@ -1,0 +1,91 @@
+.row.store-owners
+  .col#billing_div
+    %h3 Billing Report #00001
+    %br/
+    %form.form-horizontal{"data-validate" => "parsley", :method => "get"}
+      %div
+        .col.col-lg-6
+          = t('store_owners.index.business_name')
+          \: Marco Botton
+        .col.col-lg-6
+          = t('billing_report.card_holder_name')
+          \: Marco Botton
+        .clearfix
+      %br
+      %div
+        .col.col-lg-6
+          %div
+            = t('billing_report.subcription_from')
+            \: May 28, 2013
+        .col.col-lg-6
+          %div
+            = t('store_owners.index.card_number')
+            \: 1111
+        .clearfix
+      %br
+
+      %div
+        .col.col-lg-6
+          %div
+            = t('billing_report.account_expiry')
+            \: June 28, 2016
+        .col.col-lg-6
+          %div
+            = t('billing_report.expiration_date')
+            \: Jul, 2015
+        .clearfix
+      %br
+
+      %div
+        .col.col-lg-6
+          %div
+            = t('billing_report.subcription_plan')
+            \: Basic Plan
+        .clearfix
+      %br
+      %table.table.table-bordered.table-striped.dataTable#billing_report
+        .col.sm-9
+          %thead#trhead
+            %tr
+              %th#col_date
+                = t('billing_report.billing_date')
+              %th#col_amount
+                = t('billing_report.transaction_amount')
+              %th#col_note
+                = t('billing_report.note')
+          %tbody
+            - 10.times do
+              %tr
+                %td#tcell
+                  = "May 28 2013"
+                %td#tcell_amount
+                  = "100"
+                %td#tcell
+                  = "Free Trial"          
+            %tr
+              %td#tcell_foot
+                = "Total"
+              %td#tcell_foot_amount
+                = "19950"
+              %td#tcell_foot
+                = ""
+      .text-center
+        %button.btn-link{'data-dismiss' => 'modal'}
+          = t('link.back')
+        %buton.btn.btn-primary
+          = t('billing_report.export')
+:javascript
+  $(document).ready(function(){
+    $("#billing_report").dataTable({
+      sPaginationType: "full_numbers",
+      "bFilter": fasle,
+      "bLengthChange": fasle,
+      "bInfo": fasle,
+      "bProcessing": fasle,
+      "sPaginationType": "full_numbers",
+      sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6">>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>'
+    });
+    $("nav#nav li").removeClass("active");
+    $("nav#nav li#billing-reports").addClass("active");
+  });
+

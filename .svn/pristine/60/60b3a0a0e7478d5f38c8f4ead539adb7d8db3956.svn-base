@@ -1,0 +1,13 @@
+$(document).ready(function(){
+  $( "#tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+  $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+  $("#store_closed_table").dataTable({
+    sPaginationType: "full_numbers",
+    sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6">>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+     aoColumnDefs:
+      [{"bSortable": false, "aTargets": [0,1,2,3]}]
+  });
+
+  
+  
+});

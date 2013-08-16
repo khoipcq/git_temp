@@ -1,0 +1,21 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+// Author: ThuyLC
+// Description: This JavaScript code capture onload event
+// Created Date: Agu 16, 2013
+
+
+
+
+// Author: ThuyLC
+// Description: This JavaScript code customize render only date column(not include time)
+// Created Date: July 26, 2013
+function render_date(obj)
+{
+  if (obj){
+    format_date = Date.parse(obj);
+    return format_date.toString('MMMM d, yyyy');
+  }else{
+    return "";
+  }
+}

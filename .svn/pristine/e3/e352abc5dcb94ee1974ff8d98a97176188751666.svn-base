@@ -1,0 +1,58 @@
+.custom_datatable
+  .action-link
+    text-decoration: underline
+    &:hover
+      color: blue
+    padding:
+      left: 3px
+      right: 3px
+  .left
+    text-align: left !important
+    padding: 6px 15px
+  .center
+    text-align: center
+  .text-center
+    text-align: center !important
+    a
+      width: 150px
+      border-radius: 25px
+      margin: 0 10px 10px
+  .col-lg-4, .col-lg-7 .col-offset-5, .col-lg-3, .col-lg-9
+    float: left
+  .panel
+    margin: 8px 5px
+    padding-bottom: 0px
+  .button_add
+    float: right
+    margin-right: 20px
+  .table
+    margin-bottom: 0
+  .panel .row
+    margin-left: 0
+    margin-right: 0
+  .panel-heading
+    margin-bottom: 3px
+  .dataTables_info, .dataTables_paginate
+    padding: 10px 0
+  .dataTables_filter, .dataTables_filter label
+    margin: 0
+  .paginate_button, .paginate_active
+    padding-top: 3px !important
+    padding-bottom: 3px !important
+  table input[type="text"], table select
+    margin: 3px 0 !important
+  #tbfoot select, #tbhead input[type="text"]
+    padding: 3px !important
+    margin-bottom: 3px !important
+  #tbfoot select
+    width: 54px
+    margin-bottom: 1px
+  #list_length, .dataTables_length
+    margin-top: 3px
+    select
+      height: 26px
+  .custom_filter
+    .active
+      border-color: #c3c6c9
+      color: #fff
+      background-color: rgb(19, 40, 196)

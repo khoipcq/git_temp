@@ -1,0 +1,41 @@
+.row.custom_datatable.store-owners
+  .panel      
+    .panel-heading
+      = t('.title')    
+      %a.btn.btn-primary.button_right.margin_bottom{:href => "#{new_organization_location_path}"} 
+        = t('.add_new_location')
+      .clearfix    
+    
+    %table#locations_table.table.table-striped.dataTable.locations.table_location
+      %thead
+        %tr
+          %th.text-center
+            = t('.location_name')
+          %th.text-center
+            = t('.address')
+          %th.text-center
+            = t('.website')
+          %th.text-center
+            = t('.phone')
+          %th.text-center
+            = t('.action')
+      %tbody
+        - 10.times do
+          %tr
+            %td
+              = "Adias 1"
+            %td
+              = "12 Helen Street- New York City"
+            %td.text_left
+              = "adidas1.com"
+            %td.text_left
+              = "(800)254618"
+            %td
+              = link_to t('link.edit'), edit_organization_location_path(current_user.organization_id,1), :class => 'action-link'
+              = link_to t('link.delete'), '#', :class => 'action-link', "data-toggle" => "modal", :href => "#delModal"
+
+
+= javascript_include_tag "locations"
+
+#delModal.modal.fade
+  = render "shared/warning_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body')

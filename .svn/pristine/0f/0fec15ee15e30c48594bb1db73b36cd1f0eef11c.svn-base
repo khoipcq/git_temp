@@ -1,0 +1,22 @@
+#user_grid
+  .grid_toolbar
+    .grid_title
+      = t('users.name')
+    .right_search_panel
+      %input.btn_add_user{:type=>"button",:value=>t('button.add_user'),:onclick=>"window.location = g_newUserPath"}
+
+  .grid{:style=>"clear:both"}
+    %table#user_table.display
+      %div
+
+= javascript_include_tag "user"
+:javascript
+  //variable Declaration
+
+  var g_token = '#{form_authenticity_token}';
+  var g_bDeletePermission = #{can? :destroy, User};
+  var g_bEditPermission = #{can? :edit, User};
+
+
+
+

@@ -1,0 +1,63 @@
+function renderStaffAction(obj){
+    var editString = '<a data-toggle="modal" href="#edit_staff.modal" class="action-link">Edit</a>';
+    var deleteString = '<a data-toggle="modal" href="#delete_staff_notice.modal" class="action-link">Delete</a>';
+    return editString+" "+deleteString;
+  }
+ $(document).ready(function(){
+  $('.group-staff-dataTable').each(function() {
+      var table = $(this).dataTable({
+        sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+        "bFilter": true,
+        "bLengthChange": true,
+        "bInfo": true,
+        "bProcessing": true,
+        "bServerSide": false,
+        "sPaginationType": "full_numbers",
+        "iDisplayLength": g_displayLength,
+        "aaSorting": [[ 1, "asc" ]],
+        "aoColumns": [
+          { "sTitle": I18n.t('staff.j_name'),
+            "sClass": "left",
+            'bSortable': false,
+            "sWidth": "30%"
+          },
+          { "sTitle": I18n.t('staff.j_email'),
+            "sClass": "left",
+            "sClass": "left",
+            'bSortable': false,
+            "sWidth": "30%"
+          },
+          { "sTitle": I18n.t('staff.j_phone'),
+            'bSortable': false,
+            "sClass": "left",
+            "sWidth": "20%"
+           },
+          { "sTitle": I18n.t('staff.j_action'),
+            'bSortable': false,
+            "fnRender": renderStaffAction,
+            "sClass": "center",
+            "sWidth": "20%"
+          },
+          {  "bVisible": false }
+        ],
+        "sAjaxSource": "#{users_path}",
+        "fnServerParams": function ( aoData ) {
+          aoData.push( { "name": "staff_group_id", "value": $(this).attr('id')});
+        },
+        "fnInitComplete": function () {
+          $('div.dataTables_filter input').focus();
+        }
+      });
+    });
+
+    $("#staff_hour td").live('click', function(){
+      $("#change_status").modal('show');
+    });
+
+    $('#calendar').fullCalendar({
+      header:
+      {
+        right: 'prev,next today'
+      }
+    });
+});

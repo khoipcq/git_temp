@@ -1,0 +1,28 @@
+.row.custom_datatable.store-owners
+  .panel
+    .panel-heading
+      = t('.title') 
+    %table.table.table_order
+      %thead     
+        %tr
+          %th.text_left.border_cell
+            = t('.description')
+          %th.text_right.border_cell
+            = "#{t('shared.subtotal')} (#{t('shared.jpy')})"      
+      %tbody
+        %tr
+          %td.text-left.border_cell 
+            = "Purchase Editon (Basic) until Sep 6, 2013"
+          %td.text-right.border_cell 
+            = "3,990"
+        %tr
+          %td.text-right
+            = "#{t('shared.total')} (#{t('shared.jpy')})"
+          %td.text-right.border_cell
+            = "3,990"
+    %br/
+    = render 'form_credit_card_info'
+    .text-center
+      .btn.btn-success{:type => "submit"}
+        = t('.subscribe')
+    %br/

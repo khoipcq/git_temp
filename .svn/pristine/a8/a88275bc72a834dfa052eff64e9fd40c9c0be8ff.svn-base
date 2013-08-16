@@ -1,0 +1,41 @@
+%br/
+.row.text-right.margin_fit_table
+  = link_to t('button.add_new_group'), '#',:class => "btn btn-primary "
+
+.panel#list-panel
+  .panel-heading.font_normal
+    = "Group 1"
+    .text-right
+      = link_to t('link.rename'), '#', :class => "text-link"
+      |
+      = link_to t('link.delete'), '#'
+      |
+      = link_to t('link.add_new_staff'), '#'
+
+  %table#staff_table.table.table-striped.dataTable.table_staff
+    %thead
+      %tr
+        %th.text-center
+          = t('.staff_name')
+        %th.text-center
+          = t('.email')
+        %th.text-center
+          = t('.phone')      
+        %th.text-center
+          = t('.action')
+    %tbody
+      - 50.times do
+        %tr
+          %td
+            = "Ken Nguyen"
+          %td
+            = "kenng@gmail.com"
+          %td.text_left
+            = "(555) 435 1245"
+          %td.text_center
+            = link_to t('link.edit'), '#', :class => 'action-link'
+            = link_to t('link.delete'), '#', :class => 'action-link', "data-toggle" => "modal", :href => "#delModalStaff"
+%br/
+
+#delModalStaff.modal.fade
+  = render "shared/warning_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body')

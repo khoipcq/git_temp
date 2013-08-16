@@ -1,0 +1,85 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}
+    %title= t(:project_name)
+    %meta{:content => "mobile first, app, web app, responsive, admin dashboard, flat, flat ui", :name => "description"}
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}    
+    = analytics_init
+    / include style css
+    = stylesheet_link_tag "application"
+    = csrf_meta_tag
+    / include js file
+    = javascript_include_tag "application"
+    
+
+    / Fav and touch icons
+    = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+  %body
+    / header
+    %header#header.navbar.navbar-sm
+      %ul.nav.navbar-nav.navbar-avatar.pull-right
+        - if !current_user
+          %li
+            = link_to t('greeting.login'), new_user_session_path
+          %li
+            = link_to t('greeting.sign_up'), new_user_registration_path
+        - else
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %span.hidden-sm-only#user_login_welcome
+                =current_user.first_name + " " + current_user.last_name 
+              %span.thumb-small.avatar.inline
+                %img.img-circle{:alt => "Mika Sokeil", :src => "/assets/avatar.jpg"}/
+              %b.caret.hidden-sm-only
+            %ul.dropdown-menu
+              %li
+                - if !current_user.organization.is_super_org
+                  = link_to 'Profile', edit_organization_user_path(current_user.organization_id, current_user.id)
+                - else
+                  = link_to 'Profile', '#', :class => 'action-link', data: {toggle: 'modal', target: '#update_admin_infor'}
+
+
+              %li.divider
+              %li
+                = link_to 'Dashboard',organization_path(current_user.organization)
+              %li.divider
+              %li
+                = link_to t('greeting.logout'), destroy_user_session_path, :method =>'delete'
+      %a.navbar-brand{:href => "#"}
+        = t(:project_name)
+    / / header
+    / nav
+    = render :partial => 'shared/menu'
+    %section#content
+      %section.main
+        = yield
+    / footer
+    %footer#footer
+      - unless %w(passwords devise/sessions registrations).include? params[:controller]
+        .text-center.padder.clearfix
+          %p
+            %small &copy; first 2013, Mobile first web app framework base on Bootstrap
+            %br
+              %br
+                %a.btn.btn-mini.btn-circle.btn-twitter{:href => "#"}
+                  %i.icon-twitter
+                %a.btn.btn-mini.btn-circle.btn-facebook{:href => "#"}
+                  %i.icon-facebook
+                %a.btn.btn-mini.btn-circle.btn-gplus{:href => "#"}
+                  %i.icon-google-plus
+    %a.hide.slide-nav-block{"data-target" => "body", "data-toggle" => "class:slide-nav slide-nav-left", :href => "#"}
+    / update admin account
+    = render 'users/edit_admin',:locals => {:user => current_user || nil}
+    - if params[:organization_id]
+      :javascript
+        var g_newUserPath = "#{new_organization_user_path}";
+        var g_usersPath = "#{organization_users_path}";
+        var g_editUserPath = "#{edit_organization_user_path(params[:organization_id], '[id]')}";
+        var g_newUserGroupPath = "#{new_organization_user_group_path}";
+        var g_userGroupsPath = "#{organization_user_groups_path}";
+        var g_editUserGroupPath = "#{edit_organization_user_group_path(params[:organization_id],'[id]')}";
+
+    :javascript
+      var g_displayLength = #{Settings.per_page};
+

@@ -1,0 +1,21 @@
+.row#devise-password-new
+  .col.col-lg-4.col-offset-4.m-t-large.centering
+    %section.panel
+      %header.panel-heading.text-center
+        = t('.title')
+      %h3.text-center
+        = t('.forgot')
+      .text-center
+        = "#{t('.description')}."
+      %br/
+      = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+        .block
+          = f.email_field :email, autofocus: true, placeholder: t('.email')
+        = devise_error_messages!
+        - if flash[:error]
+          .require
+            = flash[:error]
+          - flash.delete :error
+        .text-center
+          = f.submit t('.submit'), :class => "btn btn-info"      
+= javascript_include_tag "user"

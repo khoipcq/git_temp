@@ -1,0 +1,19 @@
+#user_grid
+  .grid_toolbar
+    .grid_title
+      = t('.list')
+    .right_search_panel
+      %input.btn_add_org{:type=>"button",:value=> t('button.add_org'),:onclick=>"window.location = g_newOrgPath"}
+
+  .grid{:style=>"clear:both"}
+    %table#organization_table.display
+      %div
+
+= javascript_include_tag "organization"
+:javascript
+  var g_token = '#{form_authenticity_token}';
+  var g_newOrgPath = "#{new_organization_path}";
+  var g_orgsPath = "#{organizations_path}";
+  var g_editOrgPath = "#{edit_organization_path('[id]')}";
+  var g_bDeletePermission = #{can? :destroy, Organization};
+  var g_bEditPermission = #{can? :edit, Organization};

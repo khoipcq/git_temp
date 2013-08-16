@@ -1,0 +1,53 @@
+- if current_user
+  %nav#nav.nav-primary.visible-lg.nav-vertical
+    %ul.nav{"data-offset-top" => "50", "data-spy" => "affix"}
+      - if !current_user.organization.is_super_org
+        %li
+          %a{:href => "#{organization_appointments_path(current_user.organization_id)}"}
+            %i.icon-th.icon-xlarge>
+            = t('menu.appointments')
+        %li
+          %a{:href => "#{organization_customers_path(current_user.organization_id)}"}
+            %i.icon-th.icon-xlarge>
+            = t('menu.customers')
+        %li
+          %a{:href => "#{organization_reviews_path(current_user.organization_id)}"}
+            %i.icon-th.icon-xlarge>
+            = t('menu.reviews')
+        %li
+          %a{:href => "#{organization_staffs_path(current_user.organization_id)}"}
+            %i.icon-th.icon-xlarge>
+            = t('menu.staff')
+        %li
+          %a{:href => "#{organization_locations_path(current_user.organization_id)}"}
+            %i.icon-th.icon-xlarge>
+            = t('menu.locations')
+        %li
+          %a{:href => "#{organization_services_path(current_user.organization_id)}"}
+            %i.icon-th.icon-xlarge>
+            = t('menu.services')
+        %li
+          %a{:href => "/"}
+            %i.icon-th.icon-xlarge>
+            = t('menu.email_campaigns')
+        %li
+          %a{:href => "/"}
+            %i.icon-th.icon-xlarge>
+            = t('menu.settings')
+      - else
+        %li
+          %a{:href => "#{store_owners_path}"}
+            %i.icon-th.icon-xlarge>
+            = t('menu.store_owner')
+        %li
+          %a{:href => "#{features_path}"}
+            %i.icon-th.icon-xlarge>
+            = t('menu.feature')
+        %li
+          %a{:href => "#{pricing_plans_path}"}
+            %i.icon-th.icon-xlarge>
+            = t('menu.pricing_plan')
+        %li
+          %a{:href => "#{billing_reports_path}"}
+            %i.icon-th.icon-xlarge>
+            = t('menu.billing_report')

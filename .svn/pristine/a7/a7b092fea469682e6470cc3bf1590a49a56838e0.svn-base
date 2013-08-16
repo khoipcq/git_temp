@@ -1,0 +1,41 @@
+.content
+  %h2= t('user_group.edit')
+  - unless flash[:error].nil?
+    %div{:style=>'color: red'}
+      = flash[:error]
+    %br
+  .new_form
+    = form_for(@user_group,:url => organization_user_group_path,:method=>"PUT", :html => {:id=>"edit_user_group"}) do |f|
+      .text_input
+        %div
+          = t('user_group.name')
+          %span{:class=>"require"} (*)
+        =f.text_field :name
+      .text_input
+        %div
+          = t('user_group.description')
+          %span{:class=>"require"} (*)
+        =f.text_area :description, :size => "24x6"
+      = t('permission.title')
+      = render "permissions", :permissions => @permissions,:selected_permission_ids => @user_group.permission_ids
+      %br
+      %div
+        = t('user_group.status')
+        %label
+          = f.radio_button :is_active, true
+          = t('user_group.status_enable')
+        %label
+          = f.radio_button :is_active, false
+          = t('user_group.status_disable')
+      %br
+      .space
+      %div
+        = f.submit t('button.save'),:class=>"btn_submit"
+        = f.button t('button.cancel'),:class=>"btn_submit",:onclick =>"window.location = g_userGroupsPath;return false;"
+
+= javascript_include_tag "user_group"
+:javascript
+  //Variable Declaration
+  var id = "#{params[:id]}";
+  //Default focus
+  $("#user_group_name").focus();

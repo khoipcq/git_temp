@@ -1,0 +1,170 @@
+.row.custom_datatable.store-owners.locations
+  .panel      
+    .panel-heading
+      = t('.title')    
+      %a.btn.btn-primary.button_right.margin_bottom.no_margin_right{"data-toggle" => "modal", :href => "#new_shop"} 
+        = t('.add_new_location')
+      .clearfix
+    .row.custom_datatable.store-owners.locations
+      %div 
+        .row
+          .col.col-lg-7
+            %h4
+              = t('.location')
+            %br/  
+            %form.form-horizontal
+              .row
+                %label.col.col-lg-4.control-label.text-right
+                  = "#{t('.company_name')} *"
+                .col.col-lg-5.form-control
+                  = text_field_tag 'company_name'
+                .clearfix
+                %br/  
+              .row
+                %label.col.col-lg-4.control-label.text-right
+                  = "#{t('.location_name')} *"
+                .col.col-lg-5.form-control
+                  = text_field_tag 'location_name'
+                .clearfix
+              %br/ 
+              .row
+                %label.col.col-lg-4.control-label.text-right
+                  = "#{t('.address')} *"
+                .col.col-lg-5.form-control
+                  = text_field_tag 'address'
+                .clearfix
+              %br/
+              .row
+                %label.col.col-lg-4.control-label.text-right
+                  = "#{t('.city')} *"
+                .col.col-lg-5.form-control
+                  = text_field_tag 'city'
+                .clearfix
+              %br/
+              .row
+                %label.col.col-lg-4.control-label.text-right
+                  = "#{t('.state')}"
+                .col.col-lg-5.form-control
+                  = text_field_tag 'state'
+                .clearfix
+              %br/
+              .row
+                %label.col.col-lg-4.control-label.text-right
+                  = "#{t('.postal_code')} *"
+                .col.col-lg-5.form-control
+                  = text_field_tag 'postal_code'
+                .clearfix
+              %br/
+              .row
+                %label.col.col-lg-4.control-label.text-right
+                  = "#{t('.country')}"
+                .col.col-lg-5.form-control
+                  = select_tag "language", options_for_select(["Japan", "Singapore", "Viet Nam"])
+                .clearfix
+              %br/
+              .row
+                %label.col.col-lg-4.control-label.text-right
+                  = "#{t('.web_address')}"
+                .col.col-lg-5.form-control
+                  = text_field_tag 'web_address'
+                %label.col.col-lg-2.control-label
+                  = ".apotori.com"
+                .clearfix          
+              %br/
+
+              .row
+                %label.col.col-lg-4.control-label.text-right
+                  = "#{t('.use_headquater_value')}"
+                .col.col-lg-6
+                  .radio.col.col-lg-4
+                    %label.radio-custom
+                      %input{:checked => "checked", :name => "answer", :type => "radio"}/
+                      %i.icon-circle-blank.checked
+                      = t('.yes')
+                  .radio.col.col-lg-4
+                    %label.radio-custom
+                      %input{:name => "answer", :type => "radio"}/
+                      %i.icon-circle-blank
+                      = t('.no')
+                  .col.col-lg-4.margin_radio
+                    %a.icon-question-sign.icon-large.vertical_align_middle
+                    
+                .clearfix        
+              %br/
+
+              .row
+                %label.col.col-lg-4.control-label.text-right
+                  = "#{t('.direction')}"
+                .col.col-lg-5
+                  %textarea.parsley-validated{"data-rangelength" => "[20,200]", "data-trigger" => "keyup", :rows => "5"}
+                .clearfix          
+              %br/
+
+              .row
+                %label.col.col-lg-4.control-label.text-right
+                  = "#{t('.time_zone')}"
+                .col.col-lg-5.form-control
+                  = select_tag "time_zone", options_for_select(["Asia/Singapore", "Asia/Tokyo", "Germany/Berlin"])
+                .clearfix
+              %br/
+
+              .row
+                %label.col.col-lg-4.control-label.text-right
+                  = "#{t('.status')}"
+                .col.col-lg-5.form-control
+                  = select_tag "status", options_for_select(["Active", "Inactive"])
+                .clearfix
+              %br/
+
+
+
+
+          .col.col-lg-5
+            %h4
+              = t('.contact_person')
+            %br/
+            %form.form-horizontal
+              .row
+                %label.col.col-lg-4.control-label.text-right
+                  = "#{t('.last_name')} *"
+                .col.col-lg-7.form-control
+                  = text_field_tag 'last_name'            
+                .clearfix
+              %br/   
+              .row
+                %label.col.col-lg-4.control-label.text-right
+                  = "#{t('.first_name')} *"
+                .col.col-lg-7.form-control
+                  = text_field_tag 'first_name'            
+                .clearfix
+              %br/ 
+              .row
+                %label.col.col-lg-4.control-label.text-right
+                  = "#{t('.phone')} *"
+                .col.col-lg-7.form-control
+                  = text_field_tag 'phone'            
+                .clearfix
+              %br/ 
+              .row
+                %label.col.col-lg-4.control-label.text-right
+                  = "#{t('.fax')}"
+                .col.col-lg-7.form-control
+                  = text_field_tag 'fax'            
+                .clearfix
+              %br/ 
+              .row
+                %label.col.col-lg-4.control-label.text-right
+                  = "#{t('.email_address')} *"
+                .col.col-lg-7.form-control
+                  = text_field_tag 'email_address'            
+                .clearfix
+              %br/  
+        .text-center
+          .btn.btn-success#button_update_admin{:type => "submit"}
+            = t('button.save')
+
+          .btn.btn-warning#button_update_admin{'data-dismiss' => 'modal'}
+            = t('button.cancel')  
+        %br/        
+  
+      

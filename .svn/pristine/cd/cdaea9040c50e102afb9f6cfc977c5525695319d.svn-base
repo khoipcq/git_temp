@@ -1,0 +1,306 @@
+#new_appointment
+  %section.panel
+    %header.panel-heading.text-right
+      %ul.nav.nav-tabs.pull-left
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#customer-tab"} Customer
+        %li
+          %a{"data-toggle" => "tab", :href => "#recurring-tab"} Recurring
+
+    .tab-content
+      #customer-tab.tab-pane.active
+        %form.form-horizontal
+          %fieldset
+            .row
+              %label.col.col-lg-3.control-label
+                Staff
+              .col.col-lg-7
+                %select{:name => "staff",:class => 'input-small'}
+                  %option{:value => "1"}Member 1
+              .col.col-lg-1.control-label.left
+                = link_to "View", "", class: "label-control"
+            .row
+              %label.col.col-lg-3.control-label
+                Service
+              .col.col-lg-7
+                %select{:name => "service",:class => 'input-small'}
+                  %option{:value => "1"}Ross A.
+              .col.col-lg-1.control-label.left
+                = link_to "View", "", class: "label-control"
+            .row
+              %label.col.col-lg-3.control-label
+                Cost
+              .col.col-lg-1
+                = text_field_tag :cost, nil, class: 'input-small' 
+              %label.control-label
+                ¥
+            .row
+              %label.col.col-lg-3.control-label
+                Date and Time
+              .col.col-lg-2
+                = text_field_tag :date_customer, Date.current.strftime('%a ' + t('time.short_format')), :class => 'input-small', readonly: "readonly"
+              .col.col-lg-2
+                %select{:name => "time",:class => 'input-small'}
+                  %option{:value => "1"}09:00 am
+            .row
+              %label.col.col-lg-3.control-label
+                Duration
+              .col.col-lg-1
+                %select{:name => "hours",:class => 'input-small'}
+                  %option{:value => "1"}1
+              .col.col-lg-1
+                %select{:name => "minute",:class => 'input-small'}
+                  %option{:value => "1"}30
+              .col.col-lg-2.control-label.left
+                hrs / mins
+          %fieldset
+            .row
+              %label.col.col-lg-3.control-label
+                Last Name
+              .col.col-lg-7
+                = text_field_tag :last_name, nil, class: 'input-small'
+            .row
+              %label.col.col-lg-3.control-label
+                First Name
+              .col.col-lg-7
+                = text_field_tag :first_name, nil, class: 'input-small'
+            .row
+              %label.col.col-lg-3.control-label
+                Email Address
+              .col.col-lg-7
+                = text_field_tag :email_address, nil, class: 'input-small'
+            .row
+              %label.col.col-lg-3.control-label
+                Address
+              .col.col-lg-7
+                = text_field_tag :address, nil, class: 'input-small'
+            .row
+              %label.col.col-lg-3.control-label
+                City
+              .col.col-lg-7
+                = text_field_tag :city, nil, class: 'input-small'
+            .row
+              %label.col.col-lg-3.control-label
+                State
+              .col.col-lg-7
+                = text_field_tag :state, nil, class: 'input-small'
+            .row
+              %label.col.col-lg-3.control-label
+                Postal Code
+              .col.col-lg-7
+                = text_field_tag :postal_code, nil, class: 'input-small'
+            .row
+              %label.col.col-lg-3.control-label
+                Gender
+              .col.col-lg-7
+                %select{:name => "gender",:class => 'input-small'}
+                  %option{:value => "1"}Female
+            .row
+              %label.col.col-lg-3.control-label
+                Country
+              .col.col-lg-7
+                %select{:name => "country",:class => 'input-small'}
+                  %option{:value => "1"}USA
+            .row
+              %label.col.col-lg-3.control-label
+                Phone
+              .col.col-lg-2
+                = text_field_tag :first_phone_number, nil, class: 'input-small'
+              .col.col-lg-5
+                = text_field_tag :last_phone_number, nil, class: 'input-small'
+
+          .row
+            %label.col.col-lg-3.control-label
+              Note
+            .col.col-lg-7
+              = text_area_tag :note
+      #recurring-tab.tab-pane
+        %form.form-horizontal
+          %fieldset
+            .row
+              .col.col-lg-3.control-label
+                Repeat
+              .col.col-lg-7
+                %select{:name => "repeat_options",:class => 'input-small'}
+                  %option{:value => "0"}None
+                  %option{:value => "1"}Daily
+                  %option{:value => "2"}Weekly
+                  %option{:value => "3"}Monthly
+                  %option{:value => "4"}Specific Days
+            #specific_day
+              .row
+                %label.col.col-lg-1.control-label
+                  Recurrences
+                .col.col-lg-1.col-offset-2.control-label
+                  Date
+                .col.col-lg-2
+                  = text_field_tag :date_recurring, Date.current.strftime('%a ' + t('time.short_format')), :class => 'input-small', readonly: "readonly"
+                .col.col-lg-1.col-offset-5
+                  %input.btn-default.btn{ :type => "button", value: "Add", onclick: "add_recurrence(this)" }
+              .table
+                %table.table.table-bordered
+                  %tbody
+                    %tr.table-head
+                      %td.left Date
+                      %td.left Time
+                      %td.center Action
+                    %tr
+                      %td.left Sat 08/03/2013
+                      %td.left 9:00AM
+                      %td.center
+                    %tr
+                      %td.left Web 08/21/2013
+                      %td.left 9:00AM
+                      %td.center 
+                        = link_to "Delete", "", class: "label-control"
+                    %tr
+                      %td.left Tue 09/03/2013
+                      %td.left 9:00AM
+                      %td.center 
+                        = link_to "Delete", "", class: "label-control"
+            #daily
+              .row
+                .col.col-lg-3.control-label
+                  Repeat Every
+                .col.col-lg-1
+                  %select{name: "repeat_every", :class => "input-small"}
+                    - (1..5).each do |day|
+                      %option{value: "#{day - 1}"}#{day} day#{"s" unless day == 1}
+              .row
+                .col.col-lg-1.col-offset-3.special_col
+                  .radio
+                    %label.radio-default
+                      %input{type: "radio", name: "daily"}Times
+                .col.col-lg-1.control-label
+                  %select{name: "times", :class => "input-small"}
+                    %option{value: "0"}Twice
+                    - (1..8).each do |time|
+                      %option{value: "#{time}"}#{time + 2} times
+              .row
+                .col.col-lg-1.col-offset-3.special_col
+                  .radio
+                    %label.radi-default
+                      %input{type: "radio", name: "daily"}End Date
+                .col.col-lg-2.control-label
+                  = text_field_tag :end_date, Date.current.strftime('%a ' + t('time.short_format')), :class => "input-small", readonly: "readonly"
+            #weekly
+              .row
+                .col.col-lg-3.control-label
+                  Repeat Every
+                .col.col-lg-1
+                  %select{name: "repeat_every", :class => "input-small"}
+                    - (1..8).each do |week|
+                      %option{value: "#{week - 1}"}#{week} week#{"s" unless week == 1}
+              .row
+                .col.col-lg-3.control-label
+                  Repeat on
+                .col.col-lg-1
+                  .checkbox
+                    %label
+                      %input{type: "checkbox", name: "date_repeat_on"}Mon
+                .col.col-lg-1
+                  .checkbox
+                    %label
+                      %input{type: "checkbox", name: "date_repeat_on"}Tue
+                .col.col-lg-1
+                  .checkbox
+                    %label
+                      %input{type: "checkbox", name: "date_repeat_on"}Wed
+              .row
+                .col.col-lg-1.col-offset-3
+                  .checkbox
+                    %label
+                      %input{type: "checkbox", name: "date_repeat_on"}Thu
+                .col.col-lg-1
+                  .checkbox
+                    %label
+                      %input{type: "checkbox", name: "date_repeat_on"}Fri
+                .col.col-lg-1
+                  .checkbox
+                    %label
+                      %input{type: "checkbox", name: "date_repeat_on"}Sat
+                .col.col-lg-1
+                  .checkbox
+                    %label
+                      %input{type: "checkbox", name: "date_repeat_on"}Sun
+              .row
+                .col.col-lg-1.col-offset-3.special_col
+                  .radio
+                    %label.radio-default
+                      %input{type: "radio", name: "weekly"}Times
+                .col.col-lg-1.control-label
+                  %select{name: "times", :class => "input-small"}
+                    %option{value: "0"}Twice
+                    - (1..8).each do |time|
+                      %option{value: "#{time}"}#{time + 2} times
+              .row
+                .col.col-lg-1.col-offset-3.special_col
+                  .radio
+                    %label.radi-default
+                      %input{type: "radio", name: "weekly"}End Date
+                .col.col-lg-2.control-label
+                  = text_field_tag :end_date, Date.current.strftime('%a ' + t('time.short_format')), :class => "input-small", readonly: "readonly"
+            #monthly
+              .row
+                .col.col-lg-3.control-label
+                  Repeat Every
+                .col.col-lg-1
+                  %select{name: "repeat_every", :class => "input-small"}
+                    - (1..4).each do |month|
+                      %option{value: "#{month - 1}"}#{month} Month#{"s" unless month == 1}
+              .row
+                .col.col-lg-1.col-offset-3.special_col
+                  .radio
+                    %label.radio-default
+                      %input{type: "radio", name: "monthly"}Times
+                .col.col-lg-1.control-label
+                  %select{name: "times", :class => "input-small"}
+                    %option{value: "0"}Twice
+                    - (1..8).each do |time|
+                      %option{value: "#{time}"}#{time + 2} times
+              .row
+                .col.col-lg-1.col-offset-3.special_col
+                  .radio
+                    %label.radi-default
+                      %input{type: "radio", name: "monthly"}End Date
+                .col.col-lg-2.control-label
+                  = text_field_tag :end_date, Date.current.strftime('%a ' + t('time.short_format')), :class => "input-small", readonly: "readonly"
+
+            #replace_confirmation.center
+              .replace_confirmation_style
+                Replace Confirmation
+              .replace_text_style
+                There are some timeslots are booked by other appointments, would you like to replace the existing ones?
+              .table
+                %table.table.table-bordered
+                  %tbody
+                    %tr.table-head
+                      %td.left Date
+                      %td.left Time
+                      %td.left Duration
+                      %td.left Customer
+                      %td.left Service
+                      %td.center Action
+                    %tr
+                      %td.left Aug 08 2013
+                      %td.left 09:00AM-10:30AM
+                      %td.left 1: 30 hours
+                      %td.left Cindy Pham
+                      %td.left Massage
+                      %td.center
+                        = link_to "Omit", "", :class => "label-control"
+                    %tr
+                      %td.left Aug 09 2013
+                      %td.left 2:00PM-3:30PM
+                      %td.left 1: 30 hours
+                      %td.left Cindy Pham
+                      %td.left Massage
+                      %td.center
+                        = link_to "Omit", "", :class => "label-control"
+              %input.btn-primary.btn{type: "button", value: "Yes", onclick: "yes_replace_confirmation(this)"}
+              %input.btn-warining.btn{type: "button", value: "No", onclick: "no_replace_confirmation(this)"}
+
+  .row.center
+    %input.btn-primary.btn{ :type => "button", value: "Save", onclick: "save_new_appointment(this)" }
+    %input.btn-warning.btn{ :type => "button", value: "Cancel", onclick: "cancel_new_appointment(this)" }
+    %br

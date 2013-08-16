@@ -1,0 +1,9 @@
+ $(document).ready(function(){
+    $('#image_help').popover({
+        placement: "right",
+        content: I18n.t("password_description"),
+        trigger: 'hover',
+        html: true
+    });
+    $('.password-container').pschecker();
+  });

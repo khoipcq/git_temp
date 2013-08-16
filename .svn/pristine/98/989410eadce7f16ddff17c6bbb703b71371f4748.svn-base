@@ -1,0 +1,141 @@
+#appointment
+  %h3 List of Appointments
+  .btn-group{"data-toggle" => "buttons-radio"}
+    %label.btn.btn-small.btn-white.active
+      %input#opt-Day{:name => "options", :type => "radio", onclick: "chooseList(this)"}
+      = t("button.btn-day")
+    %label.btn.btn-small.btn-white
+      %input#opt-Week{:name => "options", :type => "radio", onclick: "chooseList(this)"}
+      = t("button.btn-week")
+  #list_day
+    .row#filter
+      .col.col-lg-4
+        %label
+          Date
+        = text_field_tag :on_date, Date.current.strftime(t('time.short_format')), :class => 'input-small', readonly: "readonly"
+      .col.col-lg-1.col-offset-7
+        = link_to "View Report", "",class: "label-control"
+    .table-scoll
+      .outer
+        .inner
+          %table.table.table-bordered
+            %tbody
+              %tr.table-head
+                %th.fixed-col
+                %td Susan Botton
+                %td Magdalena Rogers
+                %td Ryan Gheris
+              %tr
+                %th.fixed-col  9:00 AM
+                %td Cindy Pham
+                %td Cindy Pham
+                %td
+              %tr
+                %th.fixed-col  9:30 AM
+                %td
+                  %input.btn-status.status-booked{:type=>"button", onclick: "changeStatus(this);"}
+                  .custom_name
+                    = link_to "Cindy Pham", "#", class: "hover_name"
+                %td
+                %td
+              %tr
+                %th.fixed-col  10:00 AM
+                %td
+                %td
+                %td
+              %tr
+                %th.fixed-col  10:30 AM
+                %td
+                %td
+                %td
+              %tr
+                %th.fixed-col  11:00 AM
+                %td
+                %td
+                %td
+  #list_week.hidden
+    .row#filter
+      .col.col-lg-6
+        %label
+          Date
+        %span
+          From
+        = text_field_tag :from_date, Date.current.strftime(t('time.short_format')), :class => 'input-small', readonly: "readonly"
+        %span
+          To
+        = text_field_tag :to_date, Date.current.strftime(t('time.short_format')), :class => 'input-small', readonly: "readonly"
+      .col.col-lg-1.col-offset-5
+        = link_to "View Report", "",class: "label-control"
+    .table-scoll
+      .outer
+        .inner
+          %table.table.table-bordered
+            %tbody
+              %tr.table-head
+                %th.fixed-col
+                %th.th-week.center{:colspan => "7"} Susan Botton
+                %th.th-week.center{:colspan => "7"} Magdalena Rogers
+                %th.th-week.center{:colspan => "7"} Ryan Gheris
+              %tr.table-head
+                %th.fixed-col
+                - 3.times do
+                  %td.center Mon July 20
+                  %td.center Tus July 21
+                  %td.center Wed July 22
+                  %td.center Thur July 23
+                  %td.center Fri July 24
+                  %td.center Sat July 25
+                  %td.center Sun July 26
+              %tr
+                %th.fixed-col  9:00 AM
+                - 21.times do
+                  %td
+              %tr
+                %th.fixed-col  9:30 AM
+                %td
+                  %input.btn-status.status-booked{:type=>"button", onclick: "changeStatus(this);"}
+                  .custom_name
+                    = link_to "Cindy Pham", "#", class: "hover_name"
+                - 20.times do
+                  %td
+              %tr
+                %th.fixed-col  10:00 AM
+                - 21.times do
+                  %td
+              %tr
+                %th.fixed-col  10:30 AM
+                - 21.times do
+                  %td
+              %tr
+                %th.fixed-col  11:00 AM
+                - 21.times do
+                  %td
+
+
+
+
+  .explanation
+    .row
+      / .col.col-lg-2.col-offset-2
+      /   .text-border.status-open
+      /     White
+      /   .explan-text
+      /     Open
+      .col.col-lg-2.col-offset-4
+        .text-border.status-booked
+          Green
+        .explan-text
+          Booked
+      .col.col-lg-2
+        .text-border.status-complete
+          Yellow
+        .explan-text
+          Complete
+      / .col.col-lg-2
+      /   .text-border.status-closed
+      /     Gray
+      /   .explan-text
+      /     Closed
+
+= javascript_include_tag "appointments"
+= javascript_include_tag "jquery.ui.datepicker"

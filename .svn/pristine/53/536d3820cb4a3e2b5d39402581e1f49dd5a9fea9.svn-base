@@ -1,0 +1,23 @@
+%center
+  %h2.small_format 
+    = t('devise.forgot_password.change_your_password')
+  .new_form.small_format
+    = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+      = devise_error_messages!
+      = f.hidden_field :reset_password_token
+      %br
+      %div
+        %span
+          = f.label :password,t('devise.forgot_password.new_password')
+        = f.password_field :password, :autofocus => true 
+      %div
+        %span
+          = f.label :password_confirmation, t('devise.forgot_password.confirm_password')
+        = f.password_field :password_confirmation 
+      .space
+      = f.submit t('button.change_password'),:class=>"btn_add_doc"
+    .space
+    / = render "devise/shared/links"
+= javascript_include_tag "user"
+
+

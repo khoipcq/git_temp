@@ -1,0 +1,40 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+
+$(document).ready(function(){        
+	$('#collapseOne').on('show.bs.collapse', function() {
+	  $('#id1').removeClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-e');
+	  $('#id1').addClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-s');
+	});  
+	$('#collapseOne').on('hide.bs.collapse', function() {
+	  $('#id1').removeClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-s');
+	  $('#id1').addClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-e');
+	}); 
+
+	$('#collapseTwo').on('show.bs.collapse', function() {
+	  $('#id2').removeClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-e');
+	  $('#id2').addClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-s');
+	});  
+	$('#collapseTwo').on('hide.bs.collapse', function() {
+	  $('#id2').removeClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-s');
+	  $('#id2').addClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-e');
+	}); 
+
+	$('#collapseThree').on('show.bs.collapse', function() {
+	  $('#id3').removeClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-e');
+	  $('#id3').addClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-s');
+	});  
+	$('#collapseThree').on('hide.bs.collapse', function() {
+	  $('#id3').removeClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-s');
+	  $('#id3').addClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-e');
+	}); 
+
+	$('#collapseFour').on('show.bs.collapse', function() {
+	  $('#id4').removeClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-e');
+	  $('#id4').addClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-s');
+	});  
+	$('#collapseFour').on('hide.bs.collapse', function() {
+	  $('#id4').removeClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-s');
+	  $('#id4').addClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-e');
+	});  
+});

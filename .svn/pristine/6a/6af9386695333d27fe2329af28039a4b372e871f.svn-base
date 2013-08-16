@@ -1,0 +1,50 @@
+#edit_feature.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title
+          = t('.edit')
+      .modal-body
+        %form.form-horizontal{"data-validate" => "parsley", :method => "get"}
+          .row
+            %label.col.col-lg-4.control-label
+              = t('.name')
+              %span.required *
+            .col.col-lg-8
+              %input.parsley-validated{"data-required" => "true", "data-type" => "text", :name => "name", :type => "text",:autofocus => true,tabindex:"1" }
+          .row
+            %label.col.col-lg-4.control-label
+              = t('.description')
+            .col.col-lg-8
+              %textarea.parsley-validated{"data-rangelength" => "[20,200]", "data-trigger" => "keyup", :rows => "3", tabindex: "2"}
+          .row
+            %label.col.col-lg-4.control-label
+              = t('.order')
+              %span.required *
+            .col.col-lg-8
+              #MySpinner.spinner.input-group
+                %input.input-big.spinner-input{:maxlength => "5", :name => "order", :type => "text",:value => "1", tabindex: "3"}
+                .btn-group.btn-group-vertical.input-group-btn
+                  %button.btn.btn-white.spinner-up{:type => "button", tabindex: "4"}
+                    %i.icon-chevron-up
+                  %button.btn.btn-white.spinner-down{:type => "button", tabindex: "5"}
+                    %i.icon-chevron-down
+          .row
+            %label.col.col-lg-4.control-label
+              = t('.status.name')
+              %span.required *
+            .col.col-lg-8
+              %select{:name => "status", tabindex: "6"}
+                %option{:value => "1"}
+                  = t('.status.active')
+                %option{:value => "0"}
+                  = t('.status.inactive')
+        %br/
+        .row.center
+          %button.btn.btn-success{:type => "submit", tabindex: "7"}
+            = t('button.save')
+          %buton.btn.btn-warning{"data-dismiss" => "modal", :type => "button", tabindex: "8"}
+            = t('button.cancel')
+
+      .modal-footer

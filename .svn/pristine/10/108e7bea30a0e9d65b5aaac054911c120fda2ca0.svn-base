@@ -1,0 +1,74 @@
+#dashboard
+  %h1.left_align_format
+    = t('.title')
+  %br/
+  %h4.left_align_format
+    = t('.appointment_info')
+  %br/
+  .row
+    .col.col-lg-6
+      %section.panel.text-center
+        .row#info
+          .col.col-lg-3#current_month
+            %b Aug, 2013
+          .col.col-lg-6#number
+            %b 100
+          .col.col-lg-3#appointments
+            Appointment(s)
+    .col.col-lg-6
+      %section.panel.text-center
+        .row#info
+          .col.col-lg-3#current_day
+            %b Today
+            .current
+              Aug 07, 2013
+          .col.col-lg-6#number
+            %b 02
+          .col.col-lg-3#appointments
+            Appointment(s)
+  %br
+  %br/
+  %br/
+  %h4.left_align_format
+    = t('.appointment_booked')
+  %br
+  .row.custom_datatable
+    .panel#list-panel
+      .panel-heading
+        .custom_filter.text-right
+          .filter-label
+            = t("button.btn-filter")
+          .btn-group{"data-toggle" => "buttons-radio"}
+            %label.btn.btn-small.btn-white
+              %input#option2{:name => "options", :type => "radio","data-toggle" => "modal", "data-target" => "#filter-dialog"}
+              = t("button.btn-on")
+            %label.btn.btn-small.btn-white.active
+              %input#option2{:name => "options", :type => "radio"}
+              = t("button.btn-off")
+      %table#appointments_booked.table.table-striped.dataTable
+        %thead
+          %tr
+            %th Appointment Date
+            %th Appointment Time
+            %th Staff Member
+            %th Customer
+            %th Service
+        %tbody
+          - 3.times do |i|
+            %tr
+              %td May 18, 2013
+              %td 2:00 PM
+              %td Member 1
+              %td Ross A
+              %td Hair Cut
+= render "filter"
+
+:javascript
+  $(document).ready(function(){
+    $("#appointments_booked").dataTable({
+      sPaginationType: "full_numbers",
+      sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+       aoColumnDefs:
+        [{"bSortable": false, "aTargets": [1,2,3,4]}]
+    });
+  });

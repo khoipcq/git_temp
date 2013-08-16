@@ -1,0 +1,235 @@
+.row.custom_datatable.store-owners
+  .panel#list-panel
+    .panel-heading
+      = t('.title')
+      / %button.btn.btn-default.btn-primary.pull-right{ data: { toggle: 'modal',target: '#add' } }= t('.add')
+    %table#list.table.table-striped.dataTable
+      
+  .store-owners
+    / Add store owner modal
+    #add.modal.fade
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+            %h4.modal-title= t('.new_store_owner')
+          .modal-body
+            %form.form-horizontal
+              .form-group
+                %label.col-lg-4.control-label
+                  = t('.business_name')
+                  %span.required (*)
+                .col-lg-7.col-offset-5
+                  .col-lg-3
+                    %select.form-control
+                      %option{:value => "1"} Mr
+                      %option{:value => "1"} Mrs
+                      %option{:value => "1"} Ms
+                  .col-lg-9
+                    %input.form-control{ type: "text", autofocus: true }/
+                .clearfix
+              %br/
+              .form-group
+                %label.col-lg-4.control-label
+                  = t('.business_type')
+                  %span.required (*)
+                .col-lg-7.col-offset-5
+                  %input.form-control{type: "text"}/
+                .clearfix
+              %br/
+              .form-group
+                %label.col-lg-4.control-label
+                  = t('.email_address')
+                  %span.required (*)
+                .col-lg-7.col-offset-5
+                  %input.form-control{type: "text"}/
+                .clearfix
+              %br/
+              .form-group
+                %label.col-lg-4.control-label= t('.address')
+                .col-lg-7.col-offset-5
+                  %input.form-control{type: "text"}/
+                .clearfix
+              %br/
+              .form-group
+                %label.col-lg-4.control-label= t('.country')
+                .col-lg-7.col-offset-5
+                  %select.form-control
+                    %option{:value => ""} Vietnam
+                    %option{:value => ""} America
+                    %option{:value => ""} France
+                .clearfix
+              %br/
+              .form-group
+                %label.col-lg-4.control-label= t('.phone')
+                .col-lg-7.col-offset-5
+                  .input-group
+                    %span.input-group-addon (+84)
+                    %input.form-control{type: "text"}/
+                .clearfix
+              %br/
+              .form-group.text-center
+                %button.btn.btn-default.btn-success{:type => "submit"}= t('.save')
+                %button.btn.btn-default.btn-warning{:type => "submit"}= t('.cancel')
+        / /.modal-content
+      / /.modal-dialog
+    / /.modal
+
+    #edit.modal.fade
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+            %h4.modal-title= t('.edit_store_owner')
+          .modal-body
+            %form.form-horizontal
+              .form-group
+                %label.col-lg-4.control-label
+                  = t('.business_name')
+                  %span.required (*)
+                .col-lg-7.col-offset-5
+                  .col-lg-3
+                    %select.form-control
+                      %option{:value => "1"} Mr
+                      %option{:value => "1"} Mrs
+                      %option{:value => "1"} Ms
+                  .col-lg-9
+                    %input.form-control{ type: "text", autofocus: true }/
+                .clearfix
+              %br/
+              .form-group
+                %label.col-lg-4.control-label
+                  = t('.business_type')
+                  %span.required (*)
+                .col-lg-7.col-offset-5
+                  %input.form-control{type: "text"}/
+                .clearfix
+              %br/
+              .form-group
+                %label.col-lg-4.control-label
+                  = t('.email_address')
+                  %span.required (*)
+                .col-lg-7.col-offset-5
+                  %input.form-control{type: "text"}/
+                .clearfix
+              %br/
+              .form-group
+                %label.col-lg-4.control-label= t('.address')
+                .col-lg-7.col-offset-5
+                  %input.form-control{type: "text"}/
+                .clearfix
+              %br/
+              .form-group
+                %label.col-lg-4.control-label= t('.country')
+                .col-lg-7.col-offset-5
+                  %select.form-control
+                    %option{:value => ""} Vietnam
+                    %option{:value => ""} America
+                    %option{:value => ""} France
+                .clearfix
+              %br/
+              .form-group
+                %label.col-lg-4.control-label= t('.phone')
+                .col-lg-7.col-offset-5
+                  .input-group
+                    %span.input-group-addon (+84)
+                    %input.form-control{type: "text"}/
+                .clearfix
+              %br/
+              .form-group.text-center
+                %button.btn.btn-default.btn-success{:type => "submit"}= t('.save')
+                %button.btn.btn-default.btn-warning{:type => "submit"}= t('.cancel')
+        / /.modal-content
+      / /.modal-dialog
+    / /.modal
+    #view.modal.fade
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+            %h4.modal-title= t('.view_store_owner_info')
+          .modal-body
+            %fieldset
+              %legend= t('.personal_info')
+              %dl.dl-horizontal
+                %dt
+                  = t('.business_name')
+                  \:
+                %dd 
+                  %label.normal_label#lbl_business_name
+
+                %dt
+                  = t('.email_address')
+                  \:
+                %dd
+                  %label.normal_label#lbl_email
+                %dt
+                  = t('.state_province')
+                  \:
+                %dd
+                  %label.normal_label#lbl_state
+                %dt
+                  = t('.city')
+                  \:
+                %dd
+                  %label.normal_label#lbl_city
+                %dt
+                  = t('.address')
+                  \:
+                %dd
+                  %label.normal_label#lbl_address
+                
+
+                
+
+                %dt
+                  = t('.country')
+                  \:
+                %dd
+                  %label.normal_label#lbl_country
+                %dt
+                  = t('.phone')
+                  \:
+                %dd
+                  %label.normal_label#lbl_phone
+            %fieldset
+              %legend= t('.credit_card_info')
+              %dl.dl-horizontal
+                %dt
+                  = t('.card_number')
+                  \:
+                %dd
+                  %label.normal_label#lbl_card_number
+
+                %dt
+                  = t('.expiration_date')
+                  \:
+                %dd
+                  %label.normal_label#lbl_card_expired_date
+            .text-center
+              %button.btn.btn-info{'data-dismiss' => 'modal'}= t('.close')
+          .modal-footer
+        / /.modal-content
+      / /.modal-dialog
+    / /.modal
+    / delete Modal
+    #delModal.modal.fade
+      = render "shared/warning_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body'),:btn_save_id => "btn_delete_store"
+
+    / stop access modal
+    #saModal.modal.fade
+      = render "shared/warning_notice", :message_header => t('.stop_access_confirm_header'), :message_body => t('.stop_access_confirm_body'),:btn_save_id => "btn_stop_access_store"
+    #warningModal.modal.fade
+      = render "shared/warning", :message_header => t('.warning'), :message_body => t('.warning_delete')
+= javascript_include_tag "list_store_owner"
+:javascript
+  var g_url_list_store_owner = "#{store_owners_path}";
+  var g_per_page = "#{@per_page}";
+  $(document).ready(function(){
+    $("nav#nav li").removeClass("active");
+    $("nav#nav li#store-owners").addClass("active");
+  });
+  var g_current_obj;
+  var g_url_delete_store = "#{delete_store_owners_path}";
+  var g_url_stop_access_store = "#{stop_access_store_owners_path}";
+  var g_authenticityToken = "#{form_authenticity_token}";

@@ -1,0 +1,34 @@
+- p "=============="
+- p permissions
+- if permissions.blank?
+  %label
+    %i
+      = t('permission.no_exist')
+-else
+  .group
+    - permissions.each do |key, value|
+      %label
+        = key
+        %label
+          - value.each do |p|
+            %input{:type=>"checkbox",:name=>"permissions[]",:value=>"#{p.id}",:checked => selected_permission_ids.include?(p.id) ? "true":nil}
+              = p.name
+              %br
+/ - if permissions.blank?
+/   %label
+/     %i
+/       = t('permission.no_exist')
+/ -else
+/   .group
+/     - permissions.each do |key, value|
+/       - flag = false
+/       - value.each do |p|
+/         - if selected_permission_ids.include?(p.id)
+/           - if !flag
+/             %label
+/               = key
+/             - flag = true
+/           %label
+/             %input{:type=>"checkbox",:name=>"permissions[]",:value=>"#{p.id}"}
+/               = p.name
+/               %br

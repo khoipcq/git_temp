@@ -1,0 +1,54 @@
+.row.custom_datatable.store-owners
+  .panel
+    .panel-heading
+      = t('.title') 
+    #accordion2.accordion
+      .accordion-group.no_border
+        .accordion-heading.custom_datatable         
+          .accordion-toggle#padding{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseOne"}  
+            %i#id1.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-s       
+            %a.action-link
+              = t('.account_info')
+        #collapseOne.accordion-body.collapse.in
+          .accordion-inner.no_border#padding_inner
+            = render 'form_account_info'
+      .accordion-group.no_border
+        .accordion-heading.custom_datatable
+          .accordion-toggle#padding{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseTwo"}
+            %i#id2.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-e
+            %a.action-link
+              = t('.credit_card_info')
+        #collapseTwo.accordion-body.collapse
+          .accordion-inner.no_border#padding_inner
+            = render 'form_credit_card_info'  
+            .form-group.text-center
+              .btn.btn-success#button_update_admin{:type => "submit"}
+                = t('button.save')
+
+              .btn.btn-warning#button_update_admin{'data-dismiss' => 'modal'}
+                = t('button.cancel')          
+      .accordion-group.no_border
+        .accordion-heading.custom_datatable
+          .accordion-toggle#padding{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseThree"}
+            %i#id3.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-e
+            %a.action-link
+              = t('.account_status')
+        #collapseThree.accordion-body.collapse
+          .accordion-inner.no_border#padding_inner
+            = render 'account_status'
+            
+      .accordion-group.no_border
+        .accordion-heading.custom_datatable
+          .accordion-toggle#padding{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseFour"}
+            %i#id4.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-e
+            %a.action-link
+              = t('.payment_plan')
+        #collapseFour.accordion-body.collapse
+          .accordion-inner.no_border#padding_inner
+            = render 'payment_plan'
+
+= javascript_include_tag "edit_store_owner"
+  
+
+
+

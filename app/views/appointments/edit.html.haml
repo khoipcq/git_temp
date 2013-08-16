@@ -1,0 +1,8 @@
+#edit_appointment
+  .modal-header
+    %h4.modal-title
+      Edit Appointment
+  = render "form_appointment", :action => "edit"
+
+= javascript_include_tag "appointments"
+= javascript_include_tag "jquery.ui.datepicker"

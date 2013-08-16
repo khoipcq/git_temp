@@ -1,0 +1,21 @@
+// Place all the styles related to the staffs controller here.
+// They will automatically be included in application.css.
+// You can use Sass here: http://sass-lang.com/
+#staffs
+  .center
+    text-align: center
+  .col-custom
+    margin-left: 20px
+  .table
+    td
+      width: 100px !important
+      min-width: 0 !important
+      height: 100% !important
+  .col-lg-3_custom
+    width: 19%
+    padding-right: 0
+    padding-left: 20px
+  .padding_checkbox_custom
+    padding-left: 26px
+  .padding_p_custom
+    padding-left: 42px

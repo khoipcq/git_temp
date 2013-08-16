@@ -1,0 +1,16 @@
+
+#tabs.locations.font_normal
+  %ul
+    %li
+      %a{:href => "#operating"}
+        = t('.operating_hour')
+    %li
+      %a{:href => "#closed"}
+        = t('.closed_date')  
+  #operating
+    = render "form_schedule_operating"    
+  #closed
+    = render "form_schedule_closed"  
+%br/   
+= javascript_include_tag "show_schedule"
+= javascript_include_tag "jquery.ui.tabs"

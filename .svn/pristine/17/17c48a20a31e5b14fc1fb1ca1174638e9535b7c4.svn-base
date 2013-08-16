@@ -1,0 +1,16 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+$(document).ready(function(){
+  $("#service_table1").dataTable({
+    sPaginationType: "full_numbers",
+    sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+     aoColumnDefs:
+      [{"bSortable": false, "aTargets": [0,1,2,3,4,5]}]
+    });
+  $("#service_table2").dataTable({
+    sPaginationType: "full_numbers",
+    sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+     aoColumnDefs:
+      [{"bSortable": false, "aTargets": [0,1,2,3,4,5]}]
+    });
+});

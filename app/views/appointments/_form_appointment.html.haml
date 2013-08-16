@@ -1,0 +1,23 @@
+%section.panel
+  %header.panel-heading.text-right
+    %ul.nav.nav-tabs.pull-left
+      %li.active
+        %a{"data-toggle" => "tab", :href => "#customer-tab"} Customer
+      %li
+        %a{"data-toggle" => "tab", :href => "#recurring-tab"} Recurring
+
+  .tab-content
+    #customer-tab.tab-pane.active
+      = render "customer"
+    #recurring-tab.tab-pane
+      = render "recurring"
+  .button_action.row
+    -if action == "edit"
+      %a.text-link
+        Cancel this appointment
+    .text-center
+      %a.btn-primary.btn
+        Save
+      %a.btn-warning.btn{:href => "#{ organization_appointments_path}" }
+        Cancel
+    %br

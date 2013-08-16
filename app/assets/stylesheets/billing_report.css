@@ -1,0 +1,75 @@
+#billing_report #tcell_foot{  
+  height:50px;
+  text-align:left;
+}
+
+#billing_report #tcell_foot_amount{  
+  text-align: right;
+  height:50px;
+}
+
+#billing_report #col_date{
+  width:40%;  
+  text-align:left;
+}
+
+#billing_report #col_amount{
+  width:30%;
+  text-align: right;  
+}
+
+#billing_report #col_note{
+  width:30%;
+  text-align:left;
+}
+
+#billing_report #tcell_amount{
+  text-align:right;
+}
+
+#billing_report #tcell{
+  text-align:left;
+}
+
+
+#billing_report_table #col_bill {
+  width:15%;
+  text-align:center;
+}
+
+
+#billing_report_table #col_name {
+  width:45%;
+  text-align:left;
+}
+
+#billing_report_table #col_paid {
+  width:25%;
+  text-align:right;
+}
+
+#billing_report_table #col_action {
+  width:15%;
+  text-align:center;
+}
+
+#billing_div {
+  width:100%;
+}
+
+#billing_report, #billing_report_table {
+  font-family: Arial;
+}
+
+#billing_report_table_length, #billing_report_length {
+  margin-top: 3px;
+}
+#billing_div form {
+  width: 100%;
+}
+#tcell_foot {
+  padding-left: 6px;
+}
+.store-owners {
+  font-family: Arial;
+}

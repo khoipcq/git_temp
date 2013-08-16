@@ -1,0 +1,63 @@
+div.datepicker {
+    z-index: 2050;
+}
+#dashboard {
+  padding: 0 20px;
+}
+#dashboard .left_align_format{
+  padding: 0 15px;
+}
+#dashboard .custom_datatable{
+  padding: 0 15px;
+}
+#dashboard .custom_datatable .panel{
+  margin-left: 0px ;
+}
+#dashboard section.panel{
+  height: 198px;
+  width: 100%;
+  display: table;
+}
+#dashboard .custom_datatable .filter-label{
+  display: inline;
+  font-size: 14px;
+}
+
+#dashboard section #info{
+  vertical-align: middle;
+  display: table-cell;
+}
+#dashboard section #info .col{
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+#dashboard section #info #current_month{
+  font-size: 1.8em;
+  padding-top: 40px;
+  text-align: left;
+}
+#dashboard section #info #current_day{
+  font-size: 1.8em;
+  padding-top: 35px;
+  text-align: left;
+}
+#dashboard section #info .current{
+  font-size: 18px;
+}
+#dashboard section #info #number{
+  font-size: 6em;
+}
+#dashboard section #info #appointments{
+  font-size: 1.1em;
+  height: 100%;
+  padding-top: 65px;
+}
+#filter-dialog .modal-dialog {
+  top: 250px;
+  width: 440px;
+  left: 55%;
+}
+#filter-dialog .modal-dialog .modal-body select{
+  padding: 5px !important;
+}

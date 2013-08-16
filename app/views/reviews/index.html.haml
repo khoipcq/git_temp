@@ -1,0 +1,15 @@
+.custom_datatable#reviews
+  %br/
+  .panel
+    .button_add
+      %input.btn.btn-primary{:type=>"button",:value=>t('button.btn-publish')}
+      %input.btn.btn-primary{:type=>"button",:value=>t('button.btn-unpublish')}
+    .panel-heading
+      = t('.list')
+    %table#reviews_table.table.table-striped.dataTable
+      %div
+    = render "show_review"
+    #delete_notice.modal.fade
+      = render "shared/warning_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body')
+
+= javascript_include_tag "review"

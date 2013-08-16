@@ -1,0 +1,206 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+// Author: ThuyLC
+// Description: This JavaScript code capture onload event
+// Created Date: Aug 15, 2013
+$(document).ready(function(){
+  var tbs = $("#list").dataTable({
+        sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+        "bFilter": true,
+        "bLengthChange": false,
+        "bInfo": false,
+        "bProcessing": false,
+        "bServerSide": true,
+        "oLanguage": {
+          "sEmptyTable": I18n.t('datatable.no_record'),
+          "sZeroRecords": I18n.t('datatable.no_record')
+        },
+        "sPaginationType": "full_numbers",
+        "iDisplayLength": g_per_page,
+        "aaSorting": [[ 0, "asc" ]],
+        "aoColumns": [
+          { "sTitle": I18n.t('store_owner.col_business_name'),
+            'bSortable': true,
+            "sClass": "left",
+            "sWidth": "25%",
+            "mData": "name"
+          },
+          { "sTitle": I18n.t('store_owner.col_account_expiry'),
+            "sWidth": "20%",
+            "mData": "expired_date",
+            "sClass": "left",
+            "mRender": render_date
+          },
+          { "sTitle": I18n.t('store_owner.col_already_paid'),
+            'bSortable': true,
+            "sClass": "left",
+            "sWidth": "20%",
+            "mData": "is_monthly_paid",
+            "mRender": render_yes_no
+           },
+          { "sTitle": I18n.t('store_owner.col_action'),
+            'bSortable': false,
+            "sClass": "left",
+            "sWidth": "33%",
+            "mData": "is_stopped",
+            "fnRender": render_action
+          }
+        ],
+        "sAjaxSource": g_url_list_store_owner,
+        "fnInitComplete": function () {
+          $('div.dataTables_filter input[type="text"]').focus();
+          $("div.dataTables_filter input[type=\"text\"]").unbind();
+          $(".dataTables_filter input[type=\"text\"]").bind('keydown',function (e) {
+            if (e.keyCode == 13) {
+              tbs.fnFilter(this.value );
+              $(".dataTables_filter input[type=\"text\"]").focus();
+            }
+          });
+        }
+      });
+
+//Handle event
+  // $('#view').on('show.bs.modal', function() {
+  //     alert("dasdasd");
+  //   })
+  $("#btn_delete_store").on('click',function(){
+    delete_store_request();
+  });
+  $("#btn_stop_access_store").on('click',function(){
+    stop_store_access_request();
+  });
+
+});
+
+// Author: ThuyLC
+// Description: This JavaScript code customize render action column
+// Created Date: July 26, 2013
+function render_action(obj)
+{
+  btn_view = '<a href="#" class="action-link" data-target="#view" onclick="view_store_owner_modal(this)" data-toggle="modal">'+I18n.t('store_owner.act_view')+'</a>';
+  btn_delete = ' <a class="action-link" data-toggle="modal" href="#delModal" onclick="view_delete_confirm(this)">'+I18n.t('store_owner.act_delete')+'</a>';
+  btn_view_billing = ' <a class="action-link" href="/billing_reports/'+obj.aData.id+'">'+I18n.t('store_owner.act_view_billing_info')+'</a>';
+  if (Number(obj.aData.is_stopped) == 1){
+    btn_stop_access = ' <a class="action-link" data-toggle="modal" href="#saModal" onclick="view_stop_access_confirm(this)">'+I18n.t('store_owner.act_stop_access')+'</a>';
+  }else{
+    btn_stop_access = ' <a class="action-link" data-toggle="modal" href="#saModal" onclick="view_stop_access_confirm(this)">'+I18n.t('store_owner.act_start_access')+'</a>';
+  }
+  
+  return btn_view + btn_delete + btn_view_billing + btn_stop_access;
+
+}
+// Author: ThuyLC
+// Description: This JavaScript code customize render already paid or not column
+// Created Date: July 26, 2013
+function render_yes_no(obj)
+{
+  if(obj == true){
+    return I18n.t('status.paid')
+  }else{
+    return I18n.t('status.not_paid')
+  }
+}
+// Author: ThuyLC
+// Description: This JavaScript code handle event when user click view on grid
+//              
+// Created Date: July 26, 2013
+function view_store_owner_modal(obj)
+{
+  aPos = $('#list').dataTable().fnGetPosition(obj.parentNode);
+  aData = $('#list').dataTable().fnGetData(aPos[0]);
+  get_store_owner_info(aData);
+}
+// Author: ThuyLC
+// Description: This JavaScript code set info to label
+//              
+// Created Date: July 26, 2013
+function get_store_owner_info(data)
+{
+  $("#lbl_business_name").html(data.name);
+  $("#lbl_email").html(data.email);
+}
+
+// Author: ThuyLC
+// Description: This JavaScript code handle event when user click delete on grid
+//              
+// Created Date: July 26, 2013
+function view_delete_confirm(obj)
+{
+  aPos = $('#list').dataTable().fnGetPosition(obj.parentNode);
+  aData = $('#list').dataTable().fnGetData(aPos[0]);
+  g_current_obj = aData;
+}
+// Author: ThuyLC
+// Description: This JavaScript code handle event when user ok to delete and store owner
+//              
+// Created Date: July 26, 2013
+function delete_store_request()
+{
+  var request = $.ajax({
+    url: g_url_delete_store,
+    type: "POST",
+    data: {
+      authenticity_token: g_authenticityToken,
+      id:g_current_obj.id},
+    dataType: "JSON" 
+  });
+
+    //when done ajax
+    request.done(function(msg) {
+      if(msg["status"]=="deleted"){
+        $("#delModal").modal("hide");
+        $('#list').dataTable().fnReloadAjax();
+      }else{
+        $("#delModal").modal("hide");
+        $("#warningModal").modal("show");
+      }
+    });
+
+    //When failed
+    request.fail(function(jqXHR, textStatus) {
+      alert( "Request failed: " + textStatus );
+    });
+}
+// Author: ThuyLC
+// Description: This JavaScript code handle event when user ok to delete and store owner
+//              
+// Created Date: July 26, 2013
+function view_stop_access_confirm(obj)
+{
+  aPos = $('#list').dataTable().fnGetPosition(obj.parentNode);
+  aData = $('#list').dataTable().fnGetData(aPos[0]);
+  g_current_obj = aData;
+}
+
+// Author: ThuyLC
+// Description: This JavaScript code handle event when user ok to delete and store owner
+//              
+// Created Date: July 26, 2013
+function stop_store_access_request()
+{
+  var request = $.ajax({
+    url: g_url_stop_access_store,
+    type: "POST",
+    data: {
+      authenticity_token: g_authenticityToken,
+      id:g_current_obj.id},
+    dataType: "JSON" 
+  });
+
+    //when done ajax
+    request.done(function(msg) {
+      if(msg["status"]=="success"){
+        $("#saModal").modal("hide");
+        $('#list').dataTable().fnReloadAjax();
+      }else{
+        $("#saModal").modal("hide");
+        $('#list').dataTable().fnReloadAjax();
+        // $("#warningModal").modal("show");
+      }
+    });
+
+    //When failed
+    request.fail(function(jqXHR, textStatus) {
+      alert( "Request failed: " + textStatus );
+    });
+}

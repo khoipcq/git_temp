@@ -1,0 +1,40 @@
+#filter-dialog.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-body
+        %form.form-horizontal{"data-validate" => "parsley", :method => "get"}
+          .row
+            %label.col.col-lg-3.control-label
+              From
+            .col.col-lg-4
+              = text_field_tag :from_date, (Date.current - 30.days).strftime(t('time.short_format')), :class => 'input-small'
+            .col.col-lg-1
+              %label.control-label
+                To
+            .col.col-lg-4
+              = text_field_tag :to_date, Date.current.strftime(t('time.short_format')), :class => 'input-small'
+          .row
+            %label.col.col-lg-3.control-label
+              Staff
+            .col.col-lg-9
+              %select{:name => "staff",:class => 'input-small'}
+                %option{:value => "1"}Member 1
+          .row
+            %label.col.col-lg-3.control-label
+              Customer
+            .col.col-lg-9
+              %select{:name => "customer",:class => 'input-small'}
+                %option{:value => "1"}Ross A.
+          .row
+            %label.col.col-lg-3.control-label
+              Service
+            .col.col-lg-9
+              %select{:name => "service",:class => 'input-small'}
+                %option{:value => "1"}Hair Cut
+
+      .text-center
+        %a.btn.btn-primary{'data-dismiss' => 'modal'}
+          Apply
+      %br/
+= javascript_include_tag "show_org"
+= javascript_include_tag "jquery.ui.all"

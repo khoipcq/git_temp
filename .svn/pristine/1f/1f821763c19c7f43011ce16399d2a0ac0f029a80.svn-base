@@ -1,0 +1,106 @@
+%form.form-horizontal
+  %fieldset
+    .row
+      %label.col.col-lg-4.control-label
+        Staff
+      .col.col-lg-5
+        %select{:name => "staff", autofocus: true}
+          %option{:value => "1"}Member 1
+      .col.col-lg-1.control-label.left
+        = link_to "View", "", class: "text-link"
+    .row
+      %label.col.col-lg-4.control-label
+        Service
+      .col.col-lg-5
+        %select{:name => "service"}
+          %option{:value => "1"}Ross A.
+      .col.col-lg-1.control-label.left
+        = link_to "View", "", class: "text-link"
+    .row
+      %label.col.col-lg-4.control-label
+        Cost
+      .col.col-lg-2
+        = text_field_tag :cost, nil
+      %label.control-label
+        ¥
+    .row
+      %label.col.col-lg-4.control-label
+        Date and Time
+      .col.col-lg-4
+        = text_field_tag :date_customer, Date.current.strftime('%a ' + t('time.short_format')), readonly: "readonly",class: "pick_date"
+      .col.col-lg-3
+        %select{:name => "time"}
+          %option{:value => "1"}09:00 am
+    .row
+      %label.col.col-lg-4.control-label
+        Duration
+      .col.col-lg-2
+        %select{:name => "hours"}
+          %option{:value => "1"}1
+      .col.col-lg-2
+        %select{:name => "minute"}
+          %option{:value => "1"}30
+      .col.col-lg-2.control-label.left
+        hrs / mins
+  %fieldset
+    .row
+      %label.col.col-lg-4.control-label
+        Last Name
+      .col.col-lg-7
+        = text_field_tag :last_name
+    .row
+      %label.col.col-lg-4.control-label
+        First Name
+      .col.col-lg-7
+        = text_field_tag :first_name
+    .row
+      %label.col.col-lg-4.control-label
+        Gender
+      .col.col-lg-7
+        %select{:name => "gender"}
+          %option{:value => "0"}Female
+          %option{:value => "1"}Male
+    .row
+      %label.col.col-lg-4.control-label
+        Email Address
+      .col.col-lg-7
+        = text_field_tag :email_address
+    .row
+      %label.col.col-lg-4.control-label
+        Address
+      .col.col-lg-7
+        = text_field_tag :address
+    .row
+      %label.col.col-lg-4.control-label
+        City
+      .col.col-lg-7
+        = text_field_tag :city
+    .row
+      %label.col.col-lg-4.control-label
+        State
+      .col.col-lg-7
+        = text_field_tag :state
+    .row
+      %label.col.col-lg-4.control-label
+        Postal Code
+      .col.col-lg-7
+        = text_field_tag :postal_code
+    .row
+      %label.col.col-lg-4.control-label
+        Country
+      .col.col-lg-7
+        %select{:name => "country"}
+          %option{:value => "1"}USA
+    .row
+      %label.col.col-lg-4.control-label
+        Phone
+      .col.col-lg-2
+        = text_field_tag :first_phone_number
+      .col.col-lg-5
+        = text_field_tag :last_phone_number
+
+  .row
+    %label.col.col-lg-4.control-label
+      Note
+    .col.col-lg-7
+      = text_area_tag :note

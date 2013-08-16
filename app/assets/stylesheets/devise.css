@@ -1,0 +1,41 @@
+#new_user .col-lg-4, #new_user .col-lg-8 {
+  float: left;
+}
+
+#devise-password-new, #devise-session-new {
+  margin-top: 10%;
+}
+#devise-register-new form, #devise-password-new form, #devise-session-new form {
+  width: 100%;
+}
+#devise-register-new {
+  margin-top: 3%;
+}
+#devise-register-new .form {
+  width: 55%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#devise-session-new .link {
+	text-decoration: underline;
+}
+
+#devise-session-new #link_sign_up {
+	color: #F4C414;
+}
+
+#devise-session-new{
+	overflow: hidden;
+	margin-top: 5% !important;
+}
+
+#abc{
+	overflow: hidden;
+}
+#devise-register-new form .popover-content{
+  width: 250px;
+}
+#devise-register-new form .popover-content ul{
+  list-style-type: disc
+}

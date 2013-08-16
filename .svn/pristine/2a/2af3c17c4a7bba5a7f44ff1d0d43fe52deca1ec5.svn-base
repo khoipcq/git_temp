@@ -1,0 +1,62 @@
+#staffs
+  %form.form-horizontal{"data-validate" => "parsley", :method => "get"}
+    .row
+      %label.col.col-lg-3.control-label
+        Last Name
+        %span.required *
+      .col.col-lg-8
+        %input.parsley-validated{"data-required" => "true", "data-type" => "text", :name => "name", :type => "text",:autofocus => true,tabindex:"1" }
+    .row
+      %label.col.col-lg-3.control-label
+        Frist Name
+        %span.required *
+      .col.col-lg-8
+        %input.parsley-validated{"data-required" => "true", "data-type" => "text", :name => "name", :type => "text",:autofocus => true,tabindex:"2" }
+    .row
+      %label.col.col-lg-3.control-label
+        Calendar Group
+      .col.col-lg-8
+        %select{:name => "users_staff",tabindex:"3"}
+          %option{:value => "1"} Group 1
+          %option{:value => "2"} Group 2
+    .row
+      %label.col.col-lg-3.control-label
+        Email Address
+      .col.col-lg-8
+        %input.parsley-validated{"data-required" => "true", "data-type" => "text", :name => "name", :type => "text",:autofocus => true,tabindex:"4" }
+    .row
+      %label.col.col-lg-3.control-label
+        Status
+        %span.required *
+      .col.col-lg-8
+        %select{:name => "status", tabindex:"5"}
+          %option{:value => "1"}
+            = t('.status.active')
+          %option{:value => "0"}
+            = t('.status.inactive')
+    .row
+      %label.col.col-lg-3.control-label
+        Email Address
+      .col.col-lg-2
+        %input.parsley-validated{"data-required" => "true", "data-type" => "text", :name => "name", :type => "text",:autofocus => true,tabindex:"6" }
+      .col.col-lg-6
+        %input.parsley-validated{"data-required" => "true", "data-type" => "text", :name => "name", :type => "text",:autofocus => true,tabindex:"7" }
+    .row
+      .col.col-lg-3
+      .col.col-lg-8
+        .checkbox
+          %label.checkbox-custom
+            %input{:name => "display_phone", :type => "checkbox"}
+              %i.icon-unchecked Display your phone number to customers scheduling appointments online  
+    .row
+      .col.col-lg-3
+      .col.col-lg-8
+        .checkbox
+          %label.checkbox-custom
+            %input{:name => "email_notice", :type => "checkbox"}
+              %i.icon-unchecked Email notifications
+    .row.center
+      %button.btn.btn-success{:type => "submit",tabindex:"11"}
+        = t('button.save')
+      %buton.btn.btn-warning{"data-dismiss" => "modal", :type => "button", tabindex:"12"}
+        = t('button.cancel')

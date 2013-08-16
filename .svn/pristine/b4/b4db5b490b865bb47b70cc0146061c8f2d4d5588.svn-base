@@ -1,0 +1,21 @@
+$(document).ready(function(){
+    $("nav#nav li").removeClass("active");
+    $("nav#nav li#store-owners").addClass("active");
+
+    $("#locations_table").dataTable({
+      sPaginationType: "full_numbers",
+      sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+       aoColumnDefs:
+        [{"bSortable": false, "aTargets": [0,1,2,3,4]}]
+    });
+    
+
+    $("#staff_table").dataTable({
+      sPaginationType: "full_numbers",
+      sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+       aoColumnDefs:
+        [{"bSortable": false, "aTargets": [0,1,2,3]}]
+    });
+
+
+  });

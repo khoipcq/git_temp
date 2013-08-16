@@ -1,0 +1,349 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  mailer:
+    from: "The Apotori Team <thuylc@elarion.com>"
+  project_name: "Apotori "
+  welcome: "Welcome!!!"
+  greeting:
+    hello: Hello
+    logout: Logout
+    login: Login
+  menu:
+    user_management: Users
+    user_group_management: User Groups
+    log: Log
+    organization: Org
+    my_organization: My Org
+    pricing_plan: Pricing Plans
+    feature: Features
+    store_owner: Store Owners
+    billing_report: Billing Reports
+    appointments: Appointments
+    customers: Customers
+    reviews: Reviews
+    staff: Staff
+    locations: Locations
+    services: Services
+    email_campaigns: Email Campaigns
+    settings: Settings
+  search: Search
+  link:
+    back: "<<Back"
+  button:
+    save: Save
+    btn-yes: "Yes"
+    btn-no: "No"
+    btn-on: "On"
+    btn-off: "Off"
+    btn-filter: Filter
+    btn-publish: Publish
+    btn-unpublish: Unpublish
+    btn-close: Close
+    btn-day: Day
+    btn-week: Week
+    update: Update
+    change_password: "Change password"
+    cancel: Cancel
+    add: Add
+    add_user: Add User
+    add_user_group: Add Group
+    add_org: Add Org
+    sign_in: Sign in
+    send: Send
+    search: Search
+    resend: Resend
+    deactivate: Deactivate
+    reactivate: Reactivate
+    choose_plan: Choose Plan
+  users:
+    name: List of Users
+    no_col: No.
+    full_name: Full Name
+    user_name: User Name
+    email: Email
+    status: Status
+    delete: Delete
+    enabled: Enabled
+    disabled: Disabled
+    title: "Title"
+    current_password: Current password
+    login:
+      user_name: "User Name:"
+      password: "Password:"
+    password_strength:
+      weak: Weak
+      fair: Fair
+      strong: Strong
+    new:
+      user_name: User Name
+      name: New User
+      first_name: First Name
+      last_name: Last Name
+      email: Email
+      password: Password
+      password_confirmation: Password confirmation
+      groups: Groups
+      exist: Someone already has that user name. Try another?
+      email_exist: Email has already been taken. Try another?
+    destroy:
+      success: Delete user successful.
+    edit:
+      title: Your Account
+      first_name: First Name
+      last_name: Last Name
+      account_info: Account Info
+      credit_card_info: Credit Card Info
+      account_status: Account Status
+      payment_plan: "Payment & Plan"
+    form_account_info:
+      business_name: Business Name
+      last_name: Last Name
+      first_name: First Name
+      email: Email Address
+      password: New Password
+      password_confirm: Confirm Password
+    form_credit_card_info:
+      billing_contact_info: Billing Contact Information
+      address: Address
+      city: City
+      state: State
+      postal_code: Postal Code
+      country: Country
+      country_promt: Select country
+      phone_number: Phone Number
+      phone_head: (+84)
+      credit_card_information: Credit Card Information
+      card_type: Card Type
+      card_promt: Select
+      card_number: Card Number
+      expiration_date: Expiration Date
+      month_promt: MM
+      slash: /
+      year_promt: YYYY
+      cvv: CVV
+      cardholder_name: Cardholder Name
+    edit_admin:
+      first_name: First Name
+      last_name: Last Name
+      email: Email
+      language: Language
+      time_zone: Time Zone
+      password: Password
+      password_confirm: Confirmation Password
+      title: "Update Account Info"
+    account_status:
+      auto_renewal: Auto renewal
+      active: Active
+      renew_message: "The account will be auto renewed each month. To cancel the auto-renewal, click the \"<strong>Deactivate</strong>\" button below. After being deactivated, your account will be expired at the end of the paid period."
+    payment_plan:
+      pro_plan: Professional Plan
+      basic_plan: Basic Plan
+      per_month: per month
+      find_more: Find more about
+      apotori_feature: Apotori features
+      note: Note
+      note_content: "The feature Individual Staff Logins and Phone Support are not avaiable on Basic Plan"
+    reorder:
+      title: Your Order
+      subscribe: Subscribe
+      description: Description
+  user_profile:
+    name: Edit User Profile
+    user_name: User Name
+    first_name: First Name
+    last_name: Last Name
+    email: Email Address
+    password: Password
+    password_confirm:
+    update_success: User Profile has updated.
+    exist: Someone already has that user name. Try another?
+    change_password:
+        name: Change Password
+        password: New Password
+        retype: Password Confirmation
+  user_group:
+    list_name: List of Groups
+    new: New User Group
+    edit: Edit User Group
+    name: Group Name
+    description: Description
+    status: Status
+    status_enable: Enabled
+    status_disable: Disabled
+    exist: "Group Name has already existed . Try another?"
+    no_exist: "No group is existed"
+    dialog:
+      title: "Update users in group"
+      table_1: "Availabled Users"
+      table_2: "Selected Users"
+      add_items: " > "
+      remove_items: " < "
+      add_all_items: " >> "
+      remove_all_items: " << "
+  permission:
+    title: Permissions
+    no_exist: "No permission is existed"
+  logs:
+    list: "Action Logs"
+    date_from: "From:"
+    date_to: "To:"
+  time:
+    full_format: "%m/%d/%Y %H:%M:%S"
+    short_format: "%m/%d/%Y"
+  organizations:
+    my_organization: My Organization
+    index:
+      list: List of organizations
+    new:
+      title: New Organization
+    edit:
+      title: Edit Organization
+    show:
+      title: Dashboard
+      appointment_info: Number of Appointments
+      appointment_booked: Appointments Booked
+    description: Description
+    name: Organization Name
+    exist: "Organization Name has already existed . Try another?"
+    create_admin_org: Create an admin for organization
+  store_owners:
+    index:
+      title: List of Store Owners
+      delete: Delete
+      delete_confirm_header: Delete Confirmation
+      delete_confirm_body: Are you sure you want to delete the selected Store Owner?
+      save: Save
+      cancel: Cancel
+      stop_access: Stop Access
+      stop_access_confirm_header: Stop Access Confirmation
+      stop_access_confirm_body: Are you sure you want to stop the selected Store Owner's access?
+      add: Add
+      address: Address
+      new_store_owner: New Store Owner
+      edit_store_owner: Edit Store Owner
+      view: View
+      view_billing_info: View Billing Info
+      view_store_owner_info: View Store Owner Info
+      personal_info: Personal Info
+      business_name: Business Name
+      business_type: Business Type
+      email_address: Email Address
+      city: City
+      state_province: State/Province
+      country: Country
+      phone: Phone
+      credit_card_info: Credit Card Info
+      card_number: Card Number
+      expiration_date: Expiration Date
+      close: Close
+      already_paid: Already Paid
+      action: Action
+      account_expiry: Account Expiry
+    edit:
+      title: Your Account
+      account_info: Account Info
+      credit_card_info: Credit Card Info
+      account_status: Account Status
+      payment_plan: "Payment & Plan"
+    form_account_info:
+      business_name: Business Name
+      last_name: Last Name
+      first_name: First Name
+      email: Email Address
+      password: New Password
+      password_confirm: Confirm Password
+    form_credit_card_info:
+      billing_contact_info: Billing Contact Information
+      address: Address
+      city: City
+      state: State
+      postal_code: Postal Code
+      country: Country
+      country_promt: Select country
+      phone_number: Phone Number
+      phone_head: (+84)
+      credit_card_information: Credit Card Information
+      card_type: Card Type
+      card_promt: Select
+      card_number: Card Number
+      expiration_date: Expiration Date
+      month_promt: MM
+      slash: /
+      year_promt: YYYY
+      cvv: CVV
+      cardholder_name: Cardholder Name
+    account_status:
+      auto_renewal: Auto renewal
+      active: Active
+      renew_message: "The account will be auto renewed each month. To cancel the auto-renewal, click the \"<strong>Deactivate</strong>\" button below. After being deactivated, your account will be expired at the end of the paid period."
+  billing_report:
+    title: List of Billing Reports
+    total_paid: Total Paid (JPY)
+    action: Action
+    view: View
+    billing_report: Billing Report
+    subcription_from: Supcription from
+    account_expiry: Account Expiry
+    expiration_date: Expiration Date
+    subcription_plan: Supcription Plan
+    card_holder_name: Cardholder Name
+    billing_date: Billing Date
+    transaction_amount: Transaction Amount (JPY)
+    note: Note
+    total: Total
+    export: Export
+  pricing_plans:
+    index:
+      list: List of Pricing Plans
+      delete_confirm_header: Delete Confirmation
+      delete_confirm_body: Are you sure you want to delete the selected Pricing Plan?
+    edit_pricing_plan:
+      edit: Edit Pricing Plan
+    new_pricing_plan:
+      new: New Pricing Plan
+    form:
+      name: Plan Name
+      description: Description
+      price_per_month: Price per Month
+      number_of_stores: Number of Stores
+      users_staff: Users - Staff
+      status:
+        name: Status
+        active: Active
+        inactive: Inactive
+      features_included: Features Included
+  features:
+    index:
+      list: List of Features
+      delete_confirm_header: Delete Confirmation
+      delete_confirm_body: Are you sure you want to delete the selected Feature?
+    edit_feature:
+      edit: Edit Feature
+      name: Feature Name
+      description: Description
+      order: Order
+      status:
+        name: Status
+        active: Active
+        inactive: Inactive
+      support: Supported
+    option:
+      on: On
+      off: Off
+  reviews:
+    index:
+      list: List of Customer Reviews
+      delete_confirm_header: Delete Confirmation
+      delete_confirm_body: Are you sure you want to delete the selected Review?
+    show_review:
+      title: Customer Review
+      service_rate: Service Rating
+      customer_name: Customer Name
+      review_title: Title
+      content: Content
+  shared:
+    total: Total
+    subtotal: Subtotal
+    jpy: JPY

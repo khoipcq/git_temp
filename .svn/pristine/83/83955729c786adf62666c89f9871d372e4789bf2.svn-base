@@ -1,0 +1,106 @@
+  function deleteFeature(url, id){
+    var message = I18n.t('confirm_delete_feature');
+    var confirm = showConfirm(message, "");
+    if(confirm){
+      $.ajax({
+        url: url + "/" + id,
+        type: 'DELETE',
+        data: {
+          id: id,
+          authenticity_token: g_token
+        }
+
+      }).done(function(){
+        //
+        window.location = g_usersPath;
+      });
+    }
+
+  }
+
+  function showConfirm(message,user_name){
+    if(confirm(message + user_name + "?", I18n.t('confirm'))){
+      return true;
+    }
+    return false;
+  }
+
+
+  function renderActive(obj){
+    if(obj.aData[2]){
+      return "Yes";
+    }
+    else {
+      return "No";
+    }
+  }
+  function renderAction(obj){
+    if(g_bDeleteFeature && g_bEditFeature){
+      var editString = '<a data-toggle="modal" href="#edit_feature.modal" class="action-link">Edit</a>';
+      var deleteString = '<a data-toggle="modal" href="#delete_notice.modal"class="action-link">Delete</a>';
+      return editString+" "+deleteString;
+     }
+    else{
+      return "";
+     }
+  }
+  function editUser(obj){
+    if(g_bEditFeature){
+      return "<a href="+g_editFeaturePath.replace("%5Bid%5D",obj.aData[5])+">"+obj.aData[1]+"</a>";
+    }
+    else{
+      return obj.aData[1];
+    }
+   }
+
+  //Set style table
+  $(document).ready(function(){
+    var tb = $("#feature_table").dataTable({
+      sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+      "bFilter": true,
+      "bLengthChange": true,
+      "bInfo": true,
+      "bProcessing": true,
+      "bServerSide": false,
+      "sPaginationType": "full_numbers",
+      "iDisplayLength": g_displayLength,
+      "aaSorting": [[ 1, "asc" ]],
+      "aoColumns": [
+        { "sTitle": I18n.t('feature.j_name'),
+          "sClass": "left",
+          "sWidth": "30%"
+        },
+        { "sTitle": I18n.t('feature.j_description'),
+          "sClass": "left",
+          "sWidth": "30%"
+        },
+        { "sTitle": I18n.t('feature.j_order'),
+          'bSortable': false,
+          "sClass": "center",
+          "sWidth": "10%"
+         },
+        { "sTitle": I18n.t('feature.j_active'),
+          'bSortable': false,
+          "fnRender": renderActive,
+          "sClass": "center",
+          "sWidth": "10%"
+         },
+        { "sTitle": I18n.t('feature.j_action'),
+          'bSortable': false,
+          "fnRender": renderAction,
+          "sClass": "center",
+          "sWidth": "20%"
+        },
+        {  "bVisible": false }
+      ],
+      "sAjaxSource": "#{features_path}",
+      "fnInitComplete": function () {
+        $('div.dataTables_filter input').focus();
+      }
+    });
+
+    $('#edit_feature.modal').modal({
+      keyboard: false,
+      show: false
+    });
+  });

@@ -1,0 +1,99 @@
+%h4
+  = t('.billing_contact_info')
+%form
+  .form-group
+    %label.col.col-lg-3.control-label.text-right
+      = "#{t('.address')} *"
+    .col.col-lg-7.form-control
+      = text_field_tag 'address', '', autofocus: true
+    .clearfix
+  %br
+
+  .form-group
+    %label.col.col-lg-3.control-label.text-right
+      = "#{t('.city')} *"
+    .col.col-lg-7.form-control
+      = text_field_tag 'city'
+    .clearfix
+  %br
+
+  .form-group
+    %label.col.col-lg-3.control-label.text-right
+      = "#{t('.state')}"
+    .col.col-lg-7.form-control
+      = text_field_tag 'state'
+    .clearfix
+  %br
+
+  .form-group
+    %label.col.col-lg-3.control-label.text-right
+      = "#{t('.postal_code')} *"
+    .col.col-lg-7
+      = text_field_tag 'postal_code'
+    .clearfix
+  %br 
+
+  .form-group
+    %label.col.col-lg-3.control-label.text-right
+      = "#{t('.country')} *"
+    .col.col-lg-7
+      = select_tag "country", options_for_select(['Japan', 'Singapore','Vietnam','US']), {:prompt => "#{t('.country_promt')}"}
+    .clearfix
+  %br       
+
+  .form-group
+    %label.col.col-lg-3.control-label.text-right
+      = "#{t('.phone_number')} *"
+    .col.col-lg-1.text-center
+      = t('.phone_head')
+    .col.col-lg-6
+      = text_field_tag 'phone_number'
+    .clearfix
+  %br          
+
+%h4
+  = t('.credit_card_information')
+
+%form
+  .form-group
+    %label.col.col-lg-3.control-label.text-right
+      = "#{t('.card_type')} *"
+    .col.col-lg-7.form-control
+      = select_tag "card_type", options_for_select(['Standard','Premium','Charge','Business']), {:prompt => "#{t('.card_promt')}"}
+    .clearfix
+  %br
+
+  .form-group
+    %label.col.col-lg-3.control-label.text-right
+      = "#{t('.card_number')} *"
+    .col.col-lg-7.form-control
+      = text_field_tag 'card_number'
+    .clearfix
+  %br
+
+  .form-group
+    %label.col.col-lg-3.control-label.text-right
+      = "#{t('.expiration_date')} *"
+    .col.col-lg-3.form-control
+      = select_tag "month", options_for_select([1,2,3,4,5,6,7,8,9,10,11,12]), {:prompt => "#{t('.month_promt')}", :default => nil}          
+    .col.col-lg-4
+      = select_tag "year", options_for_select([2008,2009,2010,2012,2013,2014,2015, 2016, 2017]), {:prompt => "#{t('.year_promt')}"}
+    .clearfix
+  %br
+
+  .form-group
+    %label.col.col-lg-3.control-label.text-right
+      = "#{t('.cvv')} *"
+    .col.col-lg-7
+      = text_field_tag 'cvv'
+    .clearfix
+  %br 
+
+  .form-group
+    %label.col.col-lg-3.control-label.text-right
+      = "#{t('.cardholder_name')} *"
+    .col.col-lg-7
+      = text_field_tag 'cardholder_name'
+    .clearfix
+  %br 
+  

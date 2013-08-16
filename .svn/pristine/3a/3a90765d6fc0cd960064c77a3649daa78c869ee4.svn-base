@@ -1,0 +1,142 @@
+// Place all the styles related to the appointments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.text-link
+  text-decoration: underline
+  &:hover
+    color: blue
+    text-decoration: none
+.hidden
+  display: none
+#appointment
+  font-family: Arial
+  padding: 5px
+  .btn-group
+    .btn
+      width: 55px
+    .active
+      border-color: #c3c6c9
+      color: #fff
+      background-color: rgb(19, 40, 196)
+  #filter
+    margin: 10px 0px
+    .col
+      padding-left: 0px
+      input
+        display: inline
+        width: 100px
+  .table-scoll
+    table
+      table-layout: fixed
+      margin-bottom: 0px
+      background-color: white
+    td
+      width: 34.5%
+      min-width: 200px
+      height: 40px
+    table > tbody > tr:first-child > th:first-child
+      border-top: none
+      border-left: none
+    table > tbody > tr:last-child > td:frist-child
+      border-bottom: 1px solid #ccc
+    .fixed-col
+      border-top: 1px solid #ccc
+      position: absolute
+      left: 0
+      width: 110px
+      text-align: center
+      height: 40px
+    .outer
+      position: relative
+      border-bottom: 1px solid #ccc
+    .inner
+      border-left: 1px solid #ccc
+      border-right: 1px solid #ccc
+      overflow-x: scroll
+      overflow-y: visible
+      margin-left: 110px
+    .table-head
+      background-color: #ccc
+    .btn-status
+      width: 22px
+      height: 22px
+    .action-hover
+      a
+        margin-right: 10px
+    .center
+      text-align: center
+  .status-open
+    background-color: white
+    color: black
+  .status-booked
+    background-color: green
+    color: white
+  .status-complete
+    background-color: yellow
+    color: black
+  .status-closed
+    background-color: gray
+    color: black
+  .custom_name
+    padding-left: 10px
+    display: inline
+    .popover
+      width: 400px
+      max-width: 400px
+  .explanation
+    margin: 20px auto
+    text-align: center
+    .exp
+      margin: 0 26%
+  .text-border
+    width: 60px
+    float: left
+    padding: 5px
+    text-align: center
+    border: 1px solid #ccc
+  .explan-text
+    margin-top: 7px
+    margin-left: 5px
+    float: left
+  .note
+    text-align: center
+  .title
+    background-color: #ccc
+  span
+    margin: 0px 20px
+#new_appointment, #edit_appointment
+  .button_action
+    margin-top: 50px
+    position: relative
+    .text-link
+      position: absolute
+      top: 10px
+      margin-left: 20%
+  .tab-content
+    width: 60%
+    margin: 0 auto
+  section.panel
+    padding: 20px
+  fieldset
+    padding: 0.35em 0.625em 0.75em
+    margin: 0 2px 15px
+    border: 1px solid #134f5c
+    border-radius: 15px
+  .left
+    text-align: left !important
+  textarea
+    resize: none
+  .btn
+    width: 70px
+  .label-middle
+    .col
+      padding: 6px 0px !important
+#replace_confirm_notice
+  .modal-dialog
+    .text-center a
+      width: 150px
+      border-radius: 25px
+      margin: 0 10px 10px
+  .modal-dialog
+    top: 250px
+    width: 800px

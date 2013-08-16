@@ -1,0 +1,27 @@
+.row.custom_datatable
+  .panel
+    .panel-heading
+      = t('.list')
+    %table#feature_table.table.table-striped.dataTable
+#feature
+  = render "edit_feature"
+  #delete_notice.modal.fade
+    = render "shared/warning_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body')
+
+= javascript_include_tag "features"
+
+:javascript
+  //variable Declaration
+
+  var g_token = '#{form_authenticity_token}';
+  var g_bDeleteFeature = true;
+  var g_bEditFeature = true;
+  var g_newFeaturePath = "#{new_feature_path}";
+  var g_featuresPath = "#{features_path}";
+  var g_editFeaturePath = "#{edit_feature_path( '[id]')}";
+  $(document).ready(function(){
+    $("nav#nav li").removeClass("active");
+    $("nav#nav li#features").addClass("active");
+  });
+
+

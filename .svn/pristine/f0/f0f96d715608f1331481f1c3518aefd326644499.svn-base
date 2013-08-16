@@ -1,0 +1,8 @@
+%p
+	= "#{t('.auto_renewal')}: "
+	%strong
+		= t('.active')
+%p
+	= raw t('.renew_message')
+.text-center
+	= button_tag t('button.deactivate'), :class => 'btn btn-warning '

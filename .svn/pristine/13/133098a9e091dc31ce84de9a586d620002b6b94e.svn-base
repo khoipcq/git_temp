@@ -1,0 +1,29 @@
+.row.store_owners
+  .panel
+    .panel-heading
+      = t('.title') 
+    #accordion2.accordion
+      .accordion-group
+        .accordion-heading
+          %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseOne"}
+            = t('.account_info')
+        #collapseOne.accordion-body.collapse.in
+          .accordion-inner
+            = render 'form_account_info'
+      .accordion-group
+        .accordion-heading
+          %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseTwo"}
+            = t('.credit_card_info')
+        #collapseTwo.accordion-body.collapse
+          .accordion-inner
+            = render 'form_credit_card_info'            
+      .accordion-group
+        .accordion-heading
+          %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseThree"}
+            = t('.account_status')
+        #collapseThree.accordion-body.collapse
+          .accordion-inner
+            = render 'account_status'
+
+= javascript_include_tag 'store_owners'        
+
