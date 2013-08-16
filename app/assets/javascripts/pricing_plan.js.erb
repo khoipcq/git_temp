@@ -1,20 +1,3 @@
-  function deletePricingPlan(url, id){
-    var message = I18n.t('confirm_delete_pricing_plan');
-    var confirm = showConfirm(message, "");
-    
-    
-
-  }
-
-  function showConfirm(message,user_name){
-    console.log("shit");
-    if(confirm(message + user_name + "?", I18n.t('confirm'))){
-      console.log("ac ac");
-      return true;
-    }
-    return false;
-  }
-
   function renderActive(obj){
     if(obj.aData[2]){
       return "Yes";
@@ -33,7 +16,7 @@
       return "";
      }
   }
-
+  
   //Set style table
   $(document).ready(function(){
     var tb = $("#pricing_plan_table").dataTable({
@@ -83,3 +66,15 @@
     });
 
   });
+
+
+// Author: KhoiPCQ
+// Description: This JavaScript code handle event when user click delete on grid
+//              
+// Created Date: July 26, 2013
+function view_delete_pp_confirm(obj)
+{
+  aPos = $('#list').dataTable().fnGetPosition(obj.parentNode);
+  aData = $('#list').dataTable().fnGetData(aPos[0]);
+  g_current_obj = aData;
+}
