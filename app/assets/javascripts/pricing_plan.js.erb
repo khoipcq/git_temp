@@ -9,7 +9,7 @@
   function renderAction(obj){
     if(g_bDeletePricingPlan && g_bEditPricingPlan){
       var editString = '<a data-toggle="modal" href="#edit_pricing_plan.modal" class="action-link">Edit</a>';
-      var deleteString = '<a data-toggle="modal" href="#delete_notice.modal" onclick="onclick="view_delete_pp_confirm(this)"" class="action-link">Delete</a>';
+      var deleteString = '<a data-toggle="modal" href="#delete_notice.modal" onclick="view_delete_pp_confirm(this)" class="action-link">Delete</a>';
       return editString+" "+deleteString;
      }
     else{
@@ -24,7 +24,7 @@
       "bFilter": true,
       "bLengthChange": true,
       "bInfo": true,
-      //"bProcessing": true,
+      "bProcessing": false,
       "bServerSide": true,
       "sPaginationType": "full_numbers",
       "iDisplayLength": g_displayLength,
@@ -64,7 +64,14 @@
         });
       }
     });
+    
 
+    $("#btn_delete_pricing_plan").on('click',function(){
+      delete_pp_request();
+    });
+    $("#bt_new_pricing_plan").on('click',function(){
+      $("#new_pricing_plan.modal").modal();
+    });
   });
 
 
@@ -74,7 +81,41 @@
 // Created Date: July 26, 2013
 function view_delete_pp_confirm(obj)
 {
-  aPos = $('#list').dataTable().fnGetPosition(obj.parentNode);
-  aData = $('#list').dataTable().fnGetData(aPos[0]);
-  g_current_obj = aData;
+  console.log(obj.parentNode);
+  aPos = $('#pricing_plan_table').dataTable().fnGetPosition(obj.parentNode);
+  aData = $('#pricing_plan_table').dataTable().fnGetData(aPos[0]);
+  $("#btn_delete_pricing_plan").val(aData);
 }
+
+// Author: ThuyLC
+// Description: This JavaScript code handle event when user ok to delete and store owner
+//              
+// Created Date: July 26, 2013
+function delete_pp_request()
+{
+  var request = $.ajax({
+    url: g_url_delete_pricing_plan,
+    type: "POST",
+    data: {
+      authenticity_token: g_token,
+      id:$("#btn_delete_pricing_plan").val()},
+    dataType: "JSON" 
+  });
+
+    //when done ajax
+    request.done(function(msg) {
+      if(msg["status"]=="deleted"){
+        $("#delete_notice").modal("hide");
+        $('#pricing_plan_table').dataTable().fnReloadAjax();
+      }else{
+        $("#delete_notice").modal("hide");
+        $("#warningModal").modal("show");
+      }
+    });
+
+    //When failed
+    request.fail(function(jqXHR, textStatus) {
+      alert( "Request failed: " + textStatus );
+    });
+}
+

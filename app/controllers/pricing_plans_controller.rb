@@ -17,9 +17,6 @@ class PricingPlansController < ApplicationController
   #*Author*:: PhuND, KhoiPCQ
   def index
     if request.xhr?
-      p "KKKKKKKKKKKKK"
-      p params
-      #organization_id = params["organization_id"]
       per_page = params[:iDisplayLength] || Settings.per_page
       page = params[:iDisplayStart] ? ((params[:iDisplayStart].to_i/per_page.to_i) + 1) : 1
       params[:iSortCol_0] = 1 if params[:iSortCol_0].blank?
@@ -28,5 +25,29 @@ class PricingPlansController < ApplicationController
       render :json => @pricing_plan
       return
     end
+  end
+
+  ##
+  #Delete pricing plan
+  #Parameters::
+  # * (Integer) *id*: pricing plan id
+  #Return::
+  # * (json) status
+  #*Author*:: KhoiPCQ
+  def delete
+    #begin
+      existed_pp = PricingPlan.find_by_id(params[:id])
+      p "KKKKKKKKKKKK"
+      p existed_pp
+      if existed_pp #and don't have user use it
+        p "YYYYYYYYYYYYYYYY"
+        existed_pp.destroy
+        render :json =>{"status" => "deleted"}
+      else
+        render :json => {"status" => "not_deleted" }
+      end
+    #rescue => ex
+    #  render :json =>{"status" => ex.message}
+    #end
   end
 end

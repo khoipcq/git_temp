@@ -23,7 +23,7 @@ HelloWorld::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  resources :pricing_plans
+  #resources :pricing_plans
   resources :features
   resources :billing_reports
   
@@ -54,7 +54,9 @@ HelloWorld::Application.routes.draw do
   constraints(Subdomain) do
     match '/' => 'organizations#show'
   end
-
+  resources :pricing_plans do
+    post "delete",:on =>:collection
+  end
   resources :store_owners do
     post "delete",:on =>:collection
     post "stop_access",:on =>:collection

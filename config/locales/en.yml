@@ -418,6 +418,8 @@ en:
       list: List of Pricing Plans
       delete_confirm_header: Delete Confirmation
       delete_confirm_body: Are you sure you want to delete the selected Pricing Plan?
+      warning_delete: "You cannot delete the Pricing Plan as it is currently used by at least one store owner."
+      warning: "Warning"
     edit_pricing_plan:
       edit: Edit Pricing Plan
     new_pricing_plan:

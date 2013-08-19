@@ -1,7 +1,7 @@
 .row.custom_datatable
   .panel
     .button_add
-      %input.btn.btn-primary{:type=>"button",:value=>t('button.add'), :href => "#"}
+      %input.btn.btn-primary{:id => "bt_new_pricing_plan", :type=>"button", :value=>t('button.add'), :href => "#"}
     .panel-heading
       = t('.list')
     %table#pricing_plan_table.table.table-striped.dataTable
@@ -11,7 +11,8 @@
     = render "new_pricing_plan"
     #delete_notice.modal.fade
       = render "shared/warning_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body'),:btn_save_id => "btn_delete_pricing_plan"
-
+    #warningModal.modal.fade
+      = render "shared/warning", :message_header => t('.warning'), :message_body => t('.warning_delete')
 
 = javascript_include_tag "pricing_plan"
 
@@ -22,6 +23,7 @@
   var g_bDeletePricingPlan = true;
   var g_bEditPricingPlan = true;
   var g_newPricingPlanPath = "#{new_pricing_plan_path}";
+  var g_url_delete_pricing_plan = "#{delete_pricing_plans_path}";
   var g_pricingPlanPath = "#{pricing_plans_path}";
   var g_editPricingPlanPath = "#{edit_pricing_plan_path( '[id]')}";
 
