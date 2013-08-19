@@ -8,9 +8,9 @@
     .text-right
       = link_to t('link.rename'), '#', :class => "text-link"
       |
-      = link_to t('link.delete'), '#'
+      = link_to t('link.delete'), '#', :class => "text-link"
       |
-      = link_to t('link.add_new_staff'), '#'
+      = link_to t('link.add_new_staff'), '#', :class => "text-link"
 
   %table#staff_table.table.table-striped.dataTable.table_staff
     %thead
@@ -20,7 +20,7 @@
         %th.text-center
           = t('.email')
         %th.text-center
-          = t('.phone')      
+          = t('.phone')
         %th.text-center
           = t('.action')
     %tbody

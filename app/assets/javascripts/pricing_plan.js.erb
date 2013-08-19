@@ -1,3 +1,4 @@
+  <% url = HelloWorld::Application.routes.url_helpers %>
   function renderActive(obj){
     if(obj.aData[2]){
       return "Yes";
@@ -17,8 +18,28 @@
      }
   }
   
+
+
   //Set style table
   $(document).ready(function(){
+    
+    $("#pricing_plan_form").validate({
+      rules:{
+        "name": {
+          required: true
+        }
+      },
+      messages:{
+        "name": {
+          required: I18n.t('required_field')
+        }
+      },
+      errorPlacement:function(error, element){
+        error.appendTo(element.parent());
+      }
+    });
+
+
     var tb = $("#pricing_plan_table").dataTable({
       sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
       "bFilter": true,
@@ -65,6 +86,7 @@
       }
     });
     
+
 
     $("#btn_delete_pricing_plan").on('click',function(){
       delete_pp_request();

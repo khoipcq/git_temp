@@ -1,0 +1,15 @@
+#warning-dialog
+  .modal-dialog
+    .modal-content
+      .modal-header.text-center
+        %h4.modal-title
+          = message_header
+      .modal-body
+        %center
+          = message_body
+      .text-center
+        %a.btn.btn-primary{:href => "#"}
+          = t('button.btn-yes')
+        %a.btn{"data-dismiss" => "modal", :type => "submit"}
+          = t('button.btn-no')
+      %br/

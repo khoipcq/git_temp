@@ -53,7 +53,7 @@ class StaffsController < ApplicationController
       ]
     ]
     list_user3 = []
-    @return_hash = ["Group 1", "Group 2", "Group 3"]
+    @return_hash = ["Group 1", "Group 2"]
     if request.xhr?
       organization_id = params["organization_id"]
       staff_group_id = params["staff_group_id"]

@@ -1,0 +1,13 @@
+#warning-dialog
+  .modal-dialog
+    .modal-content
+      .modal-header.text-center
+        %h4.modal-title
+          = message_header
+      .modal-body
+        %center
+          = message_body
+      .square-btn.text-center
+        %a.btn.btn-primary{:href => "#",'data-dismiss' => 'modal'}
+          = t('button.btn-ok')
+      %br/

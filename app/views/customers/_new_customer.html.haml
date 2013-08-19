@@ -1,0 +1,15 @@
+#new_customer.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h4.modal-title
+          New Customer
+      .modal-body
+        = render "form_personal_info"
+        %br/
+      .row.center
+        %button.btn.btn-primary{"data-dismiss" => "modal", :type => "submit"}
+          = t('button.save')
+        %button.btn.btn-warning{"data-dismiss" => "modal", :type => "submit"}
+          = t('button.cancel')
+      .modal-footer

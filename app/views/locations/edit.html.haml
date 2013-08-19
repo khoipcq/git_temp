@@ -1,9 +1,7 @@
 .row.custom_datatable.store-owners.locations
-  .panel      
+  .panel
     .panel-heading
-      = t('.title')    
-      
-
+      = t('.title')
     .row.custom_datatable.locations
       %section.panel
         %header.panel-heading
@@ -31,9 +29,9 @@
           #schedule.tab-pane
             = render 'form_schedule'
       .row.text-center
-        = link_to t('button.save'),'#', :class => 'btn btn-success button_min' 
-        = link_to t('button.cancel'), organization_locations_path(current_user.organization_id), :class => 'btn btn-warning button_min'        
-      %br/        
-  
+        = link_to t('button.save'),'#', :class => 'btn btn-success button_min'
+        = link_to t('button.cancel'), organization_locations_path(current_user.organization_id), :class => 'btn btn-warning button_min'
+      %br/
+
 
 = javascript_include_tag "locations"

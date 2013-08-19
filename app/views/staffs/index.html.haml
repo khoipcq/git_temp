@@ -1,32 +1,50 @@
-#list_staff
-  %h3
-    List of Staff Members
-  .row.align-right
-    %input.btn.btn-primary{:type=>"button",:value=>'Add New Group', "data-toggle" => "modal", "data-target" => "#add_staff_group"}
-  .custom_datatable#staffs
+.row.custom_datatable#list_staff
+  .panel
+    .panel-heading
+      List of Staff Members
     %br/
+    .row.align-right
+      %input.btn.btn-primary{:type=>"button",:value=>'Add New Group', "data-toggle" => "modal", "data-target" => "#add_staff_group"}
     - i = 0
     - @return_hash.each do |key, value|
       - i = i+1
+      .custom_datatable#staffs
+        %br/
+        .panel
+          .button_add
+            = link_to "Rename","","data-toggle" => "modal", "data-target" => "#edit_staff_group", class: "text-link"
+            |
+            = link_to "Delete", "","data-toggle" => "modal", "data-target" => "#warn_del_staff_group_notice", class: "text-link"
+            |
+            = link_to "Add New Staff", "#{new_organization_staff_path}", class: "text-link"
+          .panel-heading
+            = key
+          %table.group-staff-dataTable.table.table-striped.dataTable{:id => i}
+    / Gia xu bang so 3 la bang ko co du lieu => hien thong bao can xoa cac truong trong do
+    .custom_datatable#staffs
+      %br/
       .panel
         .button_add
           = link_to "Rename","","data-toggle" => "modal", "data-target" => "#edit_staff_group", class: "text-link"
           |
-          = link_to "Delete", "","data-toggle" => "modal", "data-target" => "#delete_staff_group_notice"
+          = link_to "Delete", "","data-toggle" => "modal", "data-target" => "#delete_staff_group_notice", class: "text-link"
           |
-          = link_to "Add New Staff", "", "data-toggle" => "modal", "data-target" => "#new_staff"
+          = link_to "Add New Staff", "#{new_organization_staff_path}", class: "text-link"
         .panel-heading
-          = key
-        %table.group-staff-dataTable.table.table-striped.dataTable{:id => i}
-  #add_staff_group.modal.fade
-    = render "staff_group_name", :message_title => "Calendar Group Name", :first_button => "Create Group", :second_button => "Cancel"
-  #edit_staff_group.modal.fade
-    = render "staff_group_name", :message_title => "Rename Group", :first_button => "Save", :second_button => "Cancel"
-  = render "new_staff"
-  #delete_staff_group_notice.modal.fade
-    = render "shared/warning_notice", :message_header => t('.delete_staff_group_confirm_header'), :message_body => t('.delete_staff_group_confirm_body')
-  #delete_staff_notice.modal.fade
-    = render "shared/warning_notice", :message_header => t('.delete_staff_confirm_header'), :message_body => t('.delete_staff_confirm_body')
+          Group 3
+        %table.group-staff-dataTable.table.table-striped.dataTable{:id => 3}
 
+    #add_staff_group.modal.fade
+      = render "staff_group_name", :message_title => "Calendar Group Name", :first_button => "Create Group", :second_button => "Cancel"
+    #edit_staff_group.modal.fade
+      = render "staff_group_name", :message_title => "Rename Group", :first_button => "Save", :second_button => "Cancel"
+    = render "new_staff"
+    #delete_staff_group_notice.modal.fade
+      = render "shared/confirm_notice", :message_header => t('.delete_staff_group_confirm_header'), :message_body => t('.delete_staff_group_confirm_body')
+    #delete_staff_notice.modal.fade
+      = render "shared/confirm_notice", :message_header => t('.delete_staff_confirm_header'), :message_body => t('.delete_staff_confirm_body')
+    #warn_del_staff_group_notice.modal.fade
+      = render "shared/warn_notice", :message_header => t('.delete_staff_group_warn_header'), :message_body => t('.delete_staff_group_warn_body')
   = javascript_include_tag "staff"
+
 

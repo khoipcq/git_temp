@@ -11,7 +11,7 @@
     = csrf_meta_tag
     / include js file
     = javascript_include_tag "application"
-    
+
 
     / Fav and touch icons
     = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
@@ -28,7 +28,7 @@
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               %span.hidden-sm-only#user_login_welcome
-                =current_user.first_name + " " + current_user.last_name 
+                =current_user.first_name + " " + current_user.last_name
               %span.thumb-small.avatar.inline
                 %img.img-circle{:alt => "Mika Sokeil", :src => "/assets/avatar.jpg"}/
               %b.caret.hidden-sm-only
@@ -79,7 +79,7 @@
         var g_newUserGroupPath = "#{new_organization_user_group_path}";
         var g_userGroupsPath = "#{organization_user_groups_path}";
         var g_editUserGroupPath = "#{edit_organization_user_group_path(params[:organization_id],'[id]')}";
-
+        var g_editStaffPath = "#{edit_organization_staff_path(params[:organization_id], '[id]')}";
     :javascript
       var g_displayLength = #{Settings.per_page};
 

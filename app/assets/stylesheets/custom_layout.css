@@ -1,5 +1,15 @@
+body{
+  font-family: Arial;
+  font-size: 13px;
+}
 .affix{
   position: absolute;
+}
+input[disabled='disabled']{
+  cursor: text;
+}
+input[readonly='readonly']{
+  cursor: pointer;
 }
 a {
 	cursor: pointer;

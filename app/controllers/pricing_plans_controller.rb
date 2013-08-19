@@ -50,4 +50,17 @@ class PricingPlansController < ApplicationController
     #  render :json =>{"status" => ex.message}
     #end
   end
+
+  def create
+    @pricing_plan = PricingPlan.new_pricing_plan(params)
+    @is_saved = false
+    if request.xhr?
+      respond_to do |format|
+        if @pricing_plan.save
+          @is_saved = true
+          format.js
+        end
+      end
+    end
+  end
 end

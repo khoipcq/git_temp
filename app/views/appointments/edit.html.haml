@@ -1,8 +1,14 @@
-#edit_appointment
-  .modal-header
-    %h4.modal-title
+.row.custom_datatable#new_appointment
+  .panel
+    .panel-heading
       Edit Appointment
-  = render "form_appointment", :action => "edit"
-
+    = render "form_appointment", :action => "edit"
+    .button_action.row
+      %a.text-link
+        Cancel this appointment
+      .text-center
+        = link_to t('button.save'),'#', :class => 'btn btn-success'
+        = link_to t('button.cancel'), organization_appointments_path(current_user.organization_id), :class => 'btn btn-warning'
+      %br
 = javascript_include_tag "appointments"
 = javascript_include_tag "jquery.ui.datepicker"

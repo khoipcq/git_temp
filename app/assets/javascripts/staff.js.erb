@@ -1,8 +1,11 @@
 function renderStaffAction(obj){
-    var editString = '<a data-toggle="modal" href="#edit_staff.modal" class="action-link">Edit</a>';
+    // thay id cua staff vao day => demo voi id = 1
+    var edit_link = g_editStaffPath.replace("%5Bid%5D",1);
+    var editString = '<a data-toggle="modal" href="'+edit_link+'" class="action-link">Edit</a>';
     var deleteString = '<a data-toggle="modal" href="#delete_staff_notice.modal" class="action-link">Delete</a>';
     return editString+" "+deleteString;
   }
+var cell;
  $(document).ready(function(){
   $('.group-staff-dataTable').each(function() {
       var table = $(this).dataTable({
@@ -50,10 +53,28 @@ function renderStaffAction(obj){
       });
     });
 
-    $("#staff_hour td").live('click', function(){
+    $("#staff_hours-tab td").click(function(e) {
+       cell = $(this);
+      console.log("cell");
+      console.log(cell);
       $("#change_status").modal('show');
+
     });
 
+    $('#btn-closed').click(function() {
+      console.log("Online"+cell);
+      cell.text("Closed");
+      cell.addClass("offline");
+      cell.removeClass("online");
+      $('#change_status').modal('hide');
+    });
+    $('#btn-online').click(function() {
+      console.log("Online"+cell);
+      cell.text("Online");
+      cell.addClass("online");
+      cell.removeClass("offline");
+      $('#change_status').modal('hide');
+    });
     $('#calendar').fullCalendar({
       header:
       {

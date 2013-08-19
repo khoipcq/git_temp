@@ -1,4 +1,27 @@
-.modal-body#form_staff
+#form_staff
+  %section.panel
+    %header.panel-heading.text-right
+      %ul.nav.nav-tabs.pull-left
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#profile_info-tab"} Profile Information
+        %li
+          %a{"data-toggle" => "tab", :href => "#staff_hours-tab"} Staff Hours
+        %li
+          %a{"data-toggle" => "tab", :href => "#services_offered-tab"} Services Offered
+        %li
+          %a{"data-toggle" => "tab", :href => "#days_off-tab"} Days off
+        %li
+          %a{"data-toggle" => "tab", :href => "#access_rights-tab"} Access rights
 
+    .tab-content
+      #profile_info-tab.tab-pane.active
+        = render "profile_info"
+      #staff_hours-tab.tab-pane
+        = render "staff_hours"
+      #services_offered-tab.tab-pane
+        = render "services_offered"
+      #days_off-tab.tab-pane
+        = render "days_off"
+      #access_rights-tab.tab-pane
+        = render "access_rights"
 
-.modal-footer

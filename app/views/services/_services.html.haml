@@ -8,9 +8,9 @@
     .text-right
       = link_to t('link.rename'), '#', :class => "text-link", "data-toggle" => "modal", :href => "#rename"
       |
-      = link_to t('link.delete'), '#',  "data-toggle" => "modal", :href => "#deleteCategory"
+      = link_to t('link.delete'), '#',  "data-toggle" => "modal", :href => "#deleteCategory",:class => "text-link"
       |
-      = link_to t('link.add_new_service'), new_organization_service_path
+      = link_to t('link.add_new_service'), new_organization_service_path, :class => "text-link"
   %table#service_table1.table.table-striped.dataTable.table_service
     %thead
       %tr
@@ -38,9 +38,9 @@
           %td
             .col.col-lg-2
             .col.col-lg-3
-              = text_field_tag 'order','', :class => 'text_sort text-center', :value => '1' 
-            .clearfix           
-          %td.text_left
+              = text_field_tag 'order','', :class => 'text_sort text-center', :value => '1'
+            .clearfix
+          %td.text-center
             = "Active"
           %td.text-center
             = link_to t('link.edit'), edit_organization_service_path(current_user.organization_id,1), :class => 'action-link'
@@ -88,8 +88,8 @@
           %td
             .col.col-lg-2
             .col.col-lg-3
-              = text_field_tag 'order','', :class => 'text_sort text-center', :value => '1' 
-            .clearfix             
+              = text_field_tag 'order','', :class => 'text_sort text-center', :value => '1'
+            .clearfix
           %td.text_left
             = "Active"
           %td.text-center

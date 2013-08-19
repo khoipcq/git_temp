@@ -1,6 +1,6 @@
 #report
-  %h3 Appointment Report
-
+  %h3
+    Appointment Report
   .row#filter
     - if params["type_report"] == "day"
       .col.col-lg-2
@@ -14,9 +14,9 @@
         July 20, 2013 - July 26, 2013
 
   .row#filter
-    .col.col-lg-1.col-offset-10
+    .col.col-lg-1.col-offset-9
       = link_to "<< Back", "#{organization_appointments_path}",class: "text-link"
-    .col.col-lg-1
+    .col.col-lg-2
       = link_to "Export XLS", "",class: "text-link"
 
   .table

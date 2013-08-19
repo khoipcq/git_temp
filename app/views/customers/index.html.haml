@@ -1,2 +1,22 @@
-%h1 Customers#index
-%p Find me in app/views/customers/index.html.haml
+#customers.custom_datatable
+  %br/
+  .panel
+    .button_add
+      %input.btn.btn-primary{"data-toggle" => "modal", :href => "#show_add.modal", :type => "button", :value => "Add New Customer"}
+      %input.btn.btn-primary{"data-toggle" => "modal", :href => "#show_export.modal", :type => "button", :value => "Export"}
+    .panel-heading
+      List of Customers
+    %table#customers_table.table.table-striped.dataTable
+      %div
+
+  = render "new_customer"
+  = render "edit_customer"
+  = render "view_history"
+  / = render "export"
+  = render "edit_note"
+
+
+  #delete_notice.modal.fade
+    = render "shared/confirm_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body')
+
+= javascript_include_tag "customers"

@@ -3,6 +3,9 @@
 // Author: ThuyLC
 // Description: This JavaScript code capture onload event
 // Created Date: Aug 15, 2013
+$.validator.addMethod("regex", function(value, element, regexp) {
+        return this.optional(element) || regexp.test(value);
+    }, "");
 $(document).ready(function(){
   var tbs = $("#list").dataTable({
         sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',

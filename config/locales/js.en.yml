@@ -10,6 +10,7 @@ en:
   firstname: "First Name"
   lastname: "Last Name"
   password: "Password"
+
   captcha: "Captcha"
   password_required: Enter Password
   password_minlength: Password requires at least 6 characters.
@@ -28,6 +29,7 @@ en:
   maximum_digits: "The maximum length is 10 characters."
   required_check_term: "Please check accept the Term of Service"
   required_msg: "The %{field} can't be blank."
+  required_field: "Required field cannot be left blank"
   regex_username: "Your %{field} is not valid. Only letters, numbers, or dots are  acceptable."
   regex_textfield: "Your %{field} is not valid. Only the characters: a-z, A-Z, 0-9, and common punctuation are allowed."
   maxlength_msg: "%{field} cannot exceed %{length} characters"
@@ -102,4 +104,10 @@ en:
   status:
     paid: "Yes"
     not_paid: "No"
+  customer:
+    j_full_name: Full Name
+    j_email: Email
+    j_phone: Phone Number
+    j_city: City
+    j_action: Action
 

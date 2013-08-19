@@ -35,7 +35,7 @@ table.dataTable .center{
   text-align: center;
 }
 table.dataTable .left{
-  text-align: left !important;
+  text-align: left;
   padding: 6px 15px;
 }
 .grid table {
@@ -134,3 +134,6 @@ table.display thead th div.DataTables_sort_wrapper {
 div.dataTables_wrapper .ui-widget-header {
   font-weight: normal;
 }*/
+.dataTable thead th{
+  text-align: center !important;
+}

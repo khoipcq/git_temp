@@ -1,0 +1,170 @@
+#form_personal_info
+  %form.form-horizontal
+    .row
+      %label.col.col-lg-4.control-label
+        Last Name
+        %span *
+      .col.col-lg-8
+        %input.parsley-validated{"data-required" => "true", :name => "lastname",  :type => "text"}
+    .row
+      %label.col.col-lg-4.control-label
+        First Name
+        %span *
+      .col.col-lg-8
+        %input.parsley-validated{"data-required" => "true", :name => "firstname", :type => "text"}
+    .row
+      %label.col.col-lg-4.control-label
+        Date of Birth
+        %span *
+      %div
+        %input{"data-format" => "DD-MM-YYYY", "data-template" => "D  MMM  YYYY", :name => "dateofbirth", :style => "display: none;", :type => "text", :value => "21-12-2012"}/
+        %span.col.col-lg-2
+          %select.day
+            %option{:value => ""}
+            %option{:value => "1"} 1
+            %option{:value => "2"} 2
+            %option{:value => "3"} 3
+            %option{:value => "4"} 4
+            %option{:value => "5"} 5
+            %option{:value => "6"} 6
+            %option{:value => "7"} 7
+            %option{:value => "8"} 8
+            %option{:value => "9"} 9
+            %option{:value => "10"} 10
+            %option{:value => "11"} 11
+            %option{:value => "12"} 12
+            %option{:value => "13"} 13
+            %option{:value => "14"} 14
+            %option{:value => "15"} 15
+            %option{:value => "16"} 16
+            %option{:value => "17"} 17
+            %option{:value => "18"} 18
+            %option{:value => "19"} 19
+            %option{:value => "20"} 20
+            %option{:value => "21"} 21
+            %option{:value => "22"} 22
+            %option{:value => "23"} 23
+            %option{:value => "24"} 24
+            %option{:value => "25"} 25
+            %option{:value => "26"} 26
+            %option{:value => "27"} 27
+            %option{:value => "28"} 28
+            %option{:value => "29"} 29
+            %option{:value => "30"} 30
+            %option{:value => "31"} 31
+        %span.col.col-lg-2
+          %select.month
+            %option{:value => ""}
+            %option{:value => "1"} 1
+            %option{:value => "2"} 2
+            %option{:value => "3"} 3
+            %option{:value => "4"} 4
+            %option{:value => "5"} 5
+            %option{:value => "6"} 6
+            %option{:value => "7"} 7
+            %option{:value => "8"} 8
+            %option{:value => "9"} 9
+            %option{:value => "10"} 10
+            %option{:value => "11"} 11
+            %option{:value => "12"} 12
+        %span.col.col-lg-4
+          %select.year
+            %option{:value => ""}
+            %option{:value => "2015"} 2015
+            %option{:value => "2014"} 2014
+            %option{:value => "2013"} 2013
+            %option{:value => "2012"} 2012
+            %option{:value => "2011"} 2011
+            %option{:value => "2010"} 2010
+            %option{:value => "2009"} 2009
+            %option{:value => "2008"} 2008
+            %option{:value => "2007"} 2007
+            %option{:value => "2006"} 2006
+            %option{:value => "2005"} 2005
+            %option{:value => "2004"} 2004
+            %option{:value => "2003"} 2003
+            %option{:value => "2002"} 2002
+            %option{:value => "2001"} 2001
+            %option{:value => "2000"} 2000
+            %option{:value => "1999"} 1999
+            %option{:value => "1998"} 1998
+            %option{:value => "1997"} 1997
+            %option{:value => "1996"} 1996
+            %option{:value => "1995"} 1995
+            %option{:value => "1994"} 1994
+            %option{:value => "1993"} 1993
+            %option{:value => "1992"} 1992
+            %option{:value => "1991"} 1991
+            %option{:value => "1990"} 1990
+            %option{:value => "1989"} 1989
+            %option{:value => "1988"} 1988
+            %option{:value => "1987"} 1987
+            %option{:value => "1986"} 1986
+            %option{:value => "1985"} 1985
+            %option{:value => "1984"} 1984
+            %option{:value => "1983"} 1983
+            %option{:value => "1982"} 1982
+            %option{:value => "1981"} 1981
+            %option{:value => "1980"} 1980
+            %option{:value => "1979"} 1979
+            %option{:value => "1978"} 1978
+            %option{:value => "1977"} 1977
+            %option{:value => "1976"} 1976
+            %option{:value => "1975"} 1975
+            %option{:value => "1974"} 1974
+            %option{:value => "1973"} 1973
+            %option{:value => "1972"} 1972
+            %option{:value => "1971"} 1971
+            %option{:value => "1970"} 1970
+    .row
+      %label.col.col-lg-4.control-label
+        Gender
+        %span *
+      .col.col-lg-8
+        %select{:name => "gender"}
+          %option{:value => "1"} Male
+          %option{:value => "0"} Female
+    .row
+      %label.col.col-lg-4.control-label
+        Email Address
+        %span *
+      .col.col-lg-8
+        %input.parsley-validated{"data-required" => "true", :name => "email",  :type => "email"}
+    .row
+      %label.col.col-lg-4.control-label
+        State
+        %span *
+      .col.col-lg-8
+        %input.parsley-validated{"data-required" => "true", :name => "state", :type => "text"}
+    .row
+      %label.col.col-lg-4.control-label
+        City
+        %span *
+      .col.col-lg-8
+        %input.parsley-validated{"data-required" => "true", :name => "city",:type => "text"}
+    .row
+      %label.col.col-lg-4.control-label
+        Address
+        %span *
+      .col.col-lg-8
+        %input.parsley-validated{"data-required" => "true", :name => "address", :type => "text"}/
+    .row
+      %label.col.col-lg-4.control-label
+        Postal Code
+        %span *
+      .col.col-lg-8
+        %input.parsley-validated{"data-required" => "true", :name => "postalcode",  :type => "text"}/
+    .row
+      %label.col.col-lg-4.control-label
+        Country
+        %span *
+      .col.col-lg-8
+        %select{:name => "status"}
+          %option{:value => "1"} USA
+          %option{:value => "0"} Vietnam
+    .row
+      %label.col.col-lg-4.control-label
+        Phone
+        %span *
+      .col.col-lg-8
+        %input.parsley-validated{"data-required" => "true", :name => "phone",  :type => "text"}/

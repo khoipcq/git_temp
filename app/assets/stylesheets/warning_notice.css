@@ -6,3 +6,7 @@
 #warning-dialog .modal-dialog {
   top: 250px;
 }
+#warning-dialog .square-btn.text-center a {
+  width: 70px;
+  border-radius: 0px;
+}

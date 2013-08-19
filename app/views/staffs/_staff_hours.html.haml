@@ -1,58 +1,61 @@
-#staffs
-  .row
-    = link_to "Daytime (8am-6pm)"
-    |
-    = link_to "Evening (6pm-12am)"
-    |
-    = link_to "Early Morning (12am-8am)"
-    |
-    = link_to "Show All"
-  %br/
-  %table.table.table-bordered.center
-    %tbody
+.row
+  = link_to "Daytime (8am-6pm)","", class: "text-link"
+  |
+  = link_to "Evening (6pm-12am)", "", class: "text-link"
+  |
+  = link_to "Early Morning (12am-8am)", "", class: "text-link"
+  |
+  = link_to "Show All", "", class: "text-link"
+%br/
+%table.table.table-bordered.center
+  %tbody
+    %tr
+      %th
+      %th Monday
+      %th Tuesday
+      %th Wednesday
+      %th Thursday
+      %th Friday
+      %th Saturday
+      %th Sunday
+    - h = 8
+    - 5.times do |i|
       %tr
-        %th
-        %th Monday
-        %th Tueday
-        %th Wednesday
-        %th Thursday
-        %th Friday
-        %th Saturday
-        %th Sunday
-      - h = 8
-      - 5.times do |i|
-        %tr
-          %th{:rowspan =>"2"}
-            = "#{h+i}" + "am"
-          - 6.times do |i|
-            %td.online Online
-          %td.offline Closed
-        %tr
-          - 6.times do |i|
-            %td.online Online
-          %td.offline Closed
-      - h = 1
-      - 5.times do |i|
-        %tr
-          %th{:rowspan =>"2"}
-            = "#{h+i}" + "pm"
-          - 6.times do |i|
-            %td.online Online
-          %td.offline Closed
-        %tr
-          - 6.times do |i|
-            %td.online Online
-          %td.offline Closed
-  #change_status.modal.fade
-    .modal-dialog
-      .modal-content
-        .modal-header
-          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-          %h4.modal-title.center
-            Status
-        .modal-body
-          .row.center
-            %button.btn.btn-white{:type => "button"}
-              Online
-            %buton.btn.btn-warning{:type => "button"}
-              Closed
+        %th{:rowspan =>"2"}
+          = "#{h+i}" + "am"
+        - 5.times do |i|
+          %td.online Online
+        %td.offline Closed
+        %td.offline Closed
+      %tr
+        - 5.times do |i|
+          %td.online Online
+        %td.offline Closed
+        %td.offline Closed
+    - h = 1
+    - 5.times do |i|
+      %tr
+        %th{:rowspan =>"2"}
+          = "#{h+i}" + "pm"
+        - 5.times do |i|
+          %td.online Online
+        %td.offline Closed
+        %td.offline Closed
+      %tr
+        - 5.times do |i|
+          %td.online Online
+        %td.offline Closed
+        %td.offline Closed
+#change_status.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title.center
+          Status
+      .modal-body
+        .row.center
+          %button#btn-online.btn.btn-success
+            Online
+          %buton#btn-closed.btn.btn-warning
+            Closed

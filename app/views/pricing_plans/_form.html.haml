@@ -1,37 +1,36 @@
 .modal-body
-  %form.form-horizontal{"data-validate" => "parsley", :method => "get"}
+  
+  %form.form-horizontal{:method => "post", :id => "pricing_plan_form", :remote => true}
     .row
       %label.col.col-lg-4.control-label
         = t('.name')
         %span.required *
       .col.col-lg-8
-        %input.parsley-validated{"data-required" => "true", "data-type" => "text", :name => "name", :type => "text",:autofocus => true,tabindex:"1" }
+        %input{:name => "name", :type => "text",:autofocus => true,tabindex:"1" }
     .row
       %label.col.col-lg-4.control-label
         = t('.description')
       .col.col-lg-8
-        %textarea.parsley-validated{"data-rangelength" => "[20,200]", :rows => "3",tabindex:"2"}
+        %textarea{:rows => "3",tabindex:"2", id: "description", name: "description"}
     .row
       %label.col.col-lg-4.control-label
         = t('.price_per_month')
         %span.required *
       .col.col-lg-4
-        %input.parsley-validated{"data-required" => "true", "data-type" => "text", :name => "price_per_month", :type => "text", tabindex:"3"}
+        %input{"data-type" => "text", :name => "price_per_month", :type => "text", tabindex:"3", :id => "price_per_month"}
       .col.col-lg-4
         .right_align
           .btn-group{"data-toggle" => "buttons-radio", tabindex:"4"}
             %label.btn.btn-big.btn-white.active
               %input#option1{:name => "price_per_month", :type => "radio"}
               JPY
-            %label.btn.btn-big.btn-white
-              %input#option2{:name => "price_per_month", :type => "radio"}
-              USD
+            
     .row
       %label.col.col-lg-4.control-label
         = t('.number_of_stores')
         %span.required *
       .col.col-lg-8
-        %input.parsley-validated{"data-required" => "true", "data-type" => "number", :name => "number_of_stores", :type => "text", tabindex:"5"}
+        %input{"data-type" => "number", :name => "number_of_stores", :type => "text", tabindex:"5"}
     .row
       %label.col.col-lg-4.control-label
         = t('.users_staff')
@@ -148,7 +147,7 @@
       %br/
       .row.center
 
-        %button.btn.btn-success{:type => "submit",tabindex:"11"}
+        %button.btn.btn-success{:type => "submit",tabindex:"11", :id => "button_save"}
           = t('button.save')
         %buton.btn.btn-warning{"data-dismiss" => "modal", :type => "button", tabindex:"12"}
           = t('button.cancel')

@@ -1,17 +1,17 @@
 .row.custom_datatable.store-owners.locations
-  .panel      
+  .panel
     .panel-heading
-      = t('.title')    
-      %a.btn.btn-primary.button_right.margin_bottom.no_margin_right{"data-toggle" => "modal", :href => "#new_shop"} 
+      = t('.title')
+      %a.btn.btn-primary.button_right.margin_bottom.no_margin_right{"data-toggle" => "modal", :href => "#new_shop"}
         = t('.add_new_location')
       .clearfix
     .row.custom_datatable.store-owners.locations
-      %div 
+      %div
         .row
           .col.col-lg-7
             %h4
               = t('.location')
-            %br/  
+            %br/
             %form.form-horizontal
               .row
                 %label.col.col-lg-4.control-label.text-right
@@ -19,19 +19,19 @@
                 .col.col-lg-5.form-control
                   = text_field_tag 'company_name'
                 .clearfix
-                %br/  
+                %br/
               .row
                 %label.col.col-lg-4.control-label.text-right
                   = "#{t('.location_name')} *"
                 .col.col-lg-5.form-control
                   = text_field_tag 'location_name'
                 .clearfix
-              %br/ 
+              %br/
               .row
                 %label.col.col-lg-4.control-label.text-right
-                  = "#{t('.address')} *"
+                  = "#{t('.state')} *"
                 .col.col-lg-5.form-control
-                  = text_field_tag 'address'
+                  = text_field_tag 'state'
                 .clearfix
               %br/
               .row
@@ -43,9 +43,9 @@
               %br/
               .row
                 %label.col.col-lg-4.control-label.text-right
-                  = "#{t('.state')}"
+                  = "#{t('.address')} *"
                 .col.col-lg-5.form-control
-                  = text_field_tag 'state'
+                  = text_field_tag 'address'
                 .clearfix
               %br/
               .row
@@ -69,7 +69,7 @@
                   = text_field_tag 'web_address'
                 %label.col.col-lg-2.control-label
                   = ".apotori.com"
-                .clearfix          
+                .clearfix
               %br/
 
               .row
@@ -88,8 +88,8 @@
                       = t('.no')
                   .col.col-lg-4.margin_radio
                     %a.icon-question-sign.icon-large.vertical_align_middle
-                    
-                .clearfix        
+
+                .clearfix
               %br/
 
               .row
@@ -97,7 +97,7 @@
                   = "#{t('.direction')}"
                 .col.col-lg-5
                   %textarea.parsley-validated{"data-rangelength" => "[20,200]", "data-trigger" => "keyup", :rows => "5"}
-                .clearfix          
+                .clearfix
               %br/
 
               .row
@@ -128,43 +128,39 @@
                 %label.col.col-lg-4.control-label.text-right
                   = "#{t('.last_name')} *"
                 .col.col-lg-7.form-control
-                  = text_field_tag 'last_name'            
+                  = text_field_tag 'last_name'
                 .clearfix
-              %br/   
+              %br/
               .row
                 %label.col.col-lg-4.control-label.text-right
                   = "#{t('.first_name')} *"
                 .col.col-lg-7.form-control
-                  = text_field_tag 'first_name'            
+                  = text_field_tag 'first_name'
                 .clearfix
-              %br/ 
+              %br/
               .row
                 %label.col.col-lg-4.control-label.text-right
                   = "#{t('.phone')} *"
                 .col.col-lg-7.form-control
-                  = text_field_tag 'phone'            
+                  = text_field_tag 'phone'
                 .clearfix
-              %br/ 
+              %br/
               .row
                 %label.col.col-lg-4.control-label.text-right
                   = "#{t('.fax')}"
                 .col.col-lg-7.form-control
-                  = text_field_tag 'fax'            
+                  = text_field_tag 'fax'
                 .clearfix
-              %br/ 
+              %br/
               .row
                 %label.col.col-lg-4.control-label.text-right
                   = "#{t('.email_address')} *"
                 .col.col-lg-7.form-control
-                  = text_field_tag 'email_address'            
+                  = text_field_tag 'email_address'
                 .clearfix
-              %br/  
+              %br/
         .text-center
-          .btn.btn-success#button_update_admin{:type => "submit"}
-            = t('button.save')
+          = link_to t('button.save'),'#', :class => 'btn btn-success button_min'
+          = link_to t('button.cancel'), organization_locations_path(current_user.organization_id), :class => 'btn btn-warning button_min'
+        %br/
 
-          .btn.btn-warning#button_update_admin{'data-dismiss' => 'modal'}
-            = t('button.cancel')  
-        %br/        
-  
-      

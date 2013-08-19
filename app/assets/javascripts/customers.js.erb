@@ -1,0 +1,92 @@
+  function deleteReview(url, id){
+    var message = I18n.t('confirm_delete_pricing_plan');
+    var confirm = showConfirm(message, "");
+    if(confirm){
+      $.ajax({
+        url: url + "/" + id,
+        type: 'DELETE',
+        data: {
+          id: id,
+          authenticity_token: g_token
+        }
+
+      }).done(function(){
+        //
+        window.location = g_usersPath;
+      });
+    }
+
+  }
+
+  function showConfirm(message,user_name){
+    if(confirm(message + user_name + "?", I18n.t('confirm'))){
+      return true;
+    }
+    return false;
+  }
+
+  function renderCheckBox(obj){
+    return '<input type="checkbox" name="selected[] value="'+obj.aData[6]+'">';
+  }
+
+  function renderAction(obj){
+    var viewString = '<a data-toggle="modal" href="#show_history.modal" class="action-link">View History</a>';
+    var editString = '<a data-toggle="modal" href="#edit_customer.modal" class="action-link">Edit</a>';
+    var deleteString = '<a data-toggle="modal" href="#delete_notice.modal" class="action-link">Delete</a>';
+    return viewString+" "+editString+" "+deleteString;
+  }
+
+  //Set style table
+  $(document).ready(function(){
+    var tb = $("#customers_table").dataTable({
+      sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+      "bFilter": true,
+      "bLengthChange": true,
+      "bInfo": true,
+      "bProcessing": true,
+      "bServerSide": false,
+      "sPaginationType": "full_numbers",
+      "iDisplayLength": g_displayLength,
+      "aaSorting": [[ 1, "asc" ]],
+      "aoColumns": [
+        { "sTitle": '<input type="checkbox" name = "selected">',
+          'bSortable': false,
+          "sClass": "center",
+          "fnRender": renderCheckBox,
+          "sWidth": "5%"
+        },
+        { "sTitle": I18n.t('customer.j_full_name'),
+          "sClass": "left",
+          "sWidth": "20%"
+        },
+        { "sTitle": I18n.t('customer.j_email'),
+          'bSortable': false,
+          "sClass": "left",
+          "sWidth": "15%"
+        },
+        {
+          "sTitle": I18n.t('customer.j_phone'),
+          'bSortable': false,
+          "sClass": "left",
+          "sWidth": "25%"
+        },
+        { "sTitle": I18n.t('customer.j_city'),
+          'bSortable': false,
+          "sClass": "center",
+          "sWidth": "10%"
+         },
+        { "sTitle": I18n.t('customer.j_action'),
+          'bSortable': false,
+          "fnRender": renderAction,
+          "sClass": "center",
+          "sWidth": "25%"
+        },
+        {  "bVisible": false }
+      ],
+      "sAjaxSource": "#{organization_customers_path}",
+      "fnInitComplete": function () {
+        $('div.dataTables_filter input').focus();
+      }
+    });
+
+  });

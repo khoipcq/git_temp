@@ -1,0 +1,24 @@
+#show_export.modal.fade.in
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h4.modal-title
+          Export Data
+      .modal-body
+        %form.form-horizontal
+          .col.col-lg-12
+            .radio
+              %label.radio-custom{:for => "xls"}
+                %input#xls{:checked => "checked", :name => "export", :type => "radio", :value => "xls"}/
+                %i.icon-circle-blank.checked
+                Export to XLS
+            .radio
+              %label.radio-custom{:for => "csv"}
+                %input#csv{:name => "export", :type => "radio", :value => "csv"}/
+                %i.icon-circle-blank
+                Export to CSV
+        %br/
+        .row.center
+          %button.btn.btn-primary{"data-dismiss" => "modal", :type => "submit"} Save
+          %button.btn.btn-warning{"data-dismiss" => "modal", :type => "submit"} Cancel
+      .modal-footer

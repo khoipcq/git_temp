@@ -10,6 +10,6 @@
       %div
     = render "show_review"
     #delete_notice.modal.fade
-      = render "shared/warning_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body')
+      = render "shared/confirm_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body')
 
 = javascript_include_tag "review"

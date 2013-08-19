@@ -1,14 +1,10 @@
-/ #new_staff
-/   .modal-header
-/     %h4.modal-title
-/       New Staff
-/   = render "form_staff"
-.row.custom_datatable#new_staff
+.row.custom_datatable#edit_staff
   .panel
     .panel-heading
-      New Staff
+      Ken Nguyen
     = render "form_staff"
     .row.center.button_action
       = link_to t('button.save'),'#', :class => 'btn btn-success'
       = link_to t('button.cancel'), organization_staffs_path(current_user.organization_id), :class => 'btn btn-warning'
+
   = javascript_include_tag "staff"

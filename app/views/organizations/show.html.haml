@@ -40,10 +40,10 @@
             = t("button.btn-filter")
           .btn-group{"data-toggle" => "buttons-radio"}
             %label.btn.btn-small.btn-white
-              %input#option2{:name => "options", :type => "radio","data-toggle" => "modal", "data-target" => "#filter-dialog"}
+              %input#option-on{:name => "options", :type => "radio","data-toggle" => "modal", "data-target" => "#filter-dialog"}
               = t("button.btn-on")
             %label.btn.btn-small.btn-white.active
-              %input#option2{:name => "options", :type => "radio"}
+              %input#option-off{:name => "options", :type => "radio"}
               = t("button.btn-off")
       %table#appointments_booked.table.table-striped.dataTable
         %thead

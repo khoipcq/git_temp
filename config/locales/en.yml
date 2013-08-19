@@ -31,11 +31,11 @@ en:
   search: Search
   link:
     back: "<<Back"
-    rename: Rename 
+    rename: Rename
     delete: Delete
-    edit: Edit 
-    add_new_service: Add New Service 
-    add_new_staff: Add New Staff 
+    edit: Edit
+    add_new_service: Add New Service
+    add_new_staff: Add New Staff
   button:
     save: Save
     btn-yes: "Yes"
@@ -48,6 +48,7 @@ en:
     btn-close: Close
     btn-day: Day
     btn-week: Week
+    btn-ok: OK
     update: Update
     change_password: "Change password"
     cancel: Cancel
@@ -62,13 +63,12 @@ en:
     deactivate: Deactivate
     reactivate: Reactivate
     choose_plan: Choose Plan
-    add_new_category: Add New Category 
-    save_sort_order: Save Sort Order 
-    add_new_group: Add New Group     
-    add_new_group: Add New Group 
-    create_category: Create Category    
-    ok: Ok 
-
+    add_new_category: Add New Category
+    save_sort_order: Save Sort Order
+    add_new_group: Add New Group
+    add_new_group: Add New Group
+    create_category: Create Category
+    ok: Ok
   users:
     name: List of Users
     no_col: No.
@@ -132,7 +132,7 @@ en:
       card_number: Card Number
       expiration_date: Expiration Date
       month_promt: MM
-      slash: /
+      slash: "asd"
       year_promt: YYYY
       cvv: CVV
       cardholder_name: Cardholder Name
@@ -144,6 +144,8 @@ en:
       time_zone: Time Zone
       password: Password
       password_confirm: Confirmation Password
+      lang_en_us: "English(US)"
+      lang_js_japan: "Japanese (JPN)"
       title: "Update Account Info"
     account_status:
       auto_renewal: Auto renewal
@@ -172,9 +174,9 @@ en:
     update_success: User Profile has updated.
     exist: Someone already has that user name. Try another?
     change_password:
-        name: Change Password
-        password: New Password
-        retype: Password Confirmation
+      name: Change Password
+      password: New Password
+      retype: Password Confirmation
   user_group:
     list_name: List of Groups
     new: New User Group
@@ -224,107 +226,103 @@ en:
   locations:
     index:
       title: List of Locations
-      name: Location Name 
+      name: Location Name
       address: Address
-      website: Website 
+      website: Website
       phone: Phone
       action: Action
-      add_new_location: Add New Location 
+      add_new_location: Add New Location
       delete_confirm_header: Delete Confirmation
       delete_confirm_body: Are you sure you want to delete the selected Location?
     new:
       title: New Location
       location: Location
       company_name: Company Name
-      location_name: Location Name 
+      location_name: Location Name
       address: Address
       city: City
       state: State
       postal_code: Postal Code
       country: Country
-      web_address: Web Address 
+      web_address: Web Address
       use_headquater_value: Use Headquater Values
       yes: Yes
-      no: No       
+      no: No
       direction: Direction
       time_zone: Time Zone
-      status: Status 
-      active: Active 
-      inactive: Inactive 
-      contact_person: Contact Person 
-      last_name: Last Name 
+      status: Status
+      active: Active
+      inactive: Inactive
+      contact_person: Contact Person
+      last_name: Last Name
       first_name: First Name
       phone: Phone
-      fax: Fax 
+      fax: Fax
       email_address: Email Address
     edit:
       title: Edit Location
-      information: Information 
-      service: Service 
-      staff: Staff 
+      information: Information
+      service: Service
+      staff: Staff
       schedule: Schedule
-    
     form_staff:
       staff_name: Staff Name
-      email: Email 
+      email: Email
       phone: Phone
-      action: Action 
+      action: Action
       delete_confirm_header: "Delete Confirmation"
       delete_confirm_body:  "Are you sure you want to delete the selected Staff?"
     form_schedule:
       operating_hour: Operating Hours
       closed_date: Closed Dates
-
     form_schedule_operating:
       title_opening: Store Opening Hours
       monday: Mon
       tuesday: Tue
-      wedsday: Wed 
+      wedsday: Wed
       thursday: Thu
       friday: Fri
       saturday: Sat
       sunday: Sun
-      from: From 
-      to: To 
-      title_break: Store Breaktime   
+      from: From
+      to: To
+      title_break: Store Breaktime
     form_schedule_closed:
       title: Store Closed Dates
-      closed_date: Closed dates 
+      closed_date: Closed dates
       total_day: Total days
       description: Description
       action: Action
       delete_confirm_header: "Delete Confirmation"
-      delete_confirm_body:  "Are you sure you want to delete the selected Closed Date?"
-
+      delete_confirm_body: "Are you sure you want to delete the selected Closed Date?"
   services:
     form_service_info:
       title: Service Information
-      name: Name 
+      name: Name
       description: Description
       category: Category
       status: Status
       duration: Duration
-      cost: Cost 
-      publish_cost: Publish Cost 
+      cost: Cost
+      publish_cost: Publish Cost
     form:
       service_info: Service Information
       assign_staff: Assign Staff
     index:
-      title: List of Services  
-    services:      
-      service_name: Service Name 
-      duration: Duration 
-      cost: Cost 
-      sort_order: Sort Order 
-      status: Status 
-      action: Action 
+      title: List of Services
+    services:
+      service_name: Service Name
+      duration: Duration
+      cost: Cost
+      sort_order: Sort Order
+      status: Status
+      action: Action
       delete_confirm_header: "Delete Confirmation"
       delete_confirm_body: "Are you sure you want to delete the selected Service?"
       add_category_header: Category Name
       rename_category_header: Rename Category
       delete_category_header: Warning
       delete_category_body: Please remove all the Services in the Category before removing the Category
-
   store_owners:
     index:
       title: List of Store Owners
@@ -358,8 +356,6 @@ en:
       already_paid: Already Paid
       action: Action
       account_expiry: Account Expiry
-      warning: "Warning"
-      warning_delete: "You cannot delete the Store Owner as this account has not expired."
     edit:
       title: Your Account
       account_info: Account Info
@@ -389,7 +385,7 @@ en:
       card_number: Card Number
       expiration_date: Expiration Date
       month_promt: MM
-      slash: /
+      slash: "asdd"
       year_promt: YYYY
       cvv: CVV
       cardholder_name: Cardholder Name
@@ -468,4 +464,31 @@ en:
     total: Total
     subtotal: Subtotal
     jpy: JPY
-
+  staffs:
+    index:
+      delete_staff_group_confirm_header: Delete Confirmation
+      delete_staff_group_confirm_body: Are you sure you want to delete this Calendar Group?
+      delete_staff_confirm_header: Delete Confirmation
+      delete_staff_confirm_body: Are you sure you want to delete the selected Staff Member?
+      delete_staff_group_warn_header: Warning
+      delete_staff_group_warn_body: Please remove all the Staff Members in the Group before removing the Group
+  customers:
+    index:
+      delete_confirm_header: Delete Confirmation
+      delete_confirm_body: Are you sure you want to delete the selected Customer?
+    edit_customer:
+      delete_confirm_header: Delete Confirmation
+      delete_confirm_body: Are you sure you want to delete the selected Note?
+  appointments:
+    index:
+      list: "List of Appointments"
+      view_report: "View Report"
+    form_appointment:
+      customer_tab: "Customer"
+      recurring_tab: "Recurring"
+    recurring:
+      repeat_label: Repeat
+      repeat_none: None
+      repeat_day: Daily
+      repeat_week: Weekly
+      repeat_month: Monthly

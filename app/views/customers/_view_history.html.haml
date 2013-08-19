@@ -1,0 +1,43 @@
+#show_history.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h4.modal-title
+          Marco Botton
+      .modal-body
+        %fieldset
+          %legend
+            Recent Appointment
+          %table.table.table-striped.dataTable
+            %thead
+              %tr{:role => "row"}
+                %th Date
+                %th Staff
+                %th Service
+                %th Heard From
+            %tbody{"aria-live" => "polite", "aria-relevant" => "all", :role => "alert"}
+              %tr.odd
+                %td Sep 1, 2013
+                %td Hana
+                %td Massage
+                %td Newspaper
+              %tr.even
+                %td Sep 1, 2013
+                %td Hana
+                %td Massage
+                %td Newspaper
+              %tr.odd
+                %td Sep 1, 2013
+                %td Hana
+                %td Massage
+                %td Newspaper
+              %tr.even
+                %td Sep 1, 2013
+                %td Hana
+                %td Massage
+                %td Newspaper
+          %br/
+        .row.center
+          %buton.btn.btn-warning{"data-dismiss" => "modal", :type => "button"}
+            Close
+      .modal-footer

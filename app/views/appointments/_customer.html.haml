@@ -67,9 +67,9 @@
         = text_field_tag :email_address
     .row
       %label.col.col-lg-4.control-label
-        Address
+        State
       .col.col-lg-7
-        = text_field_tag :address
+        = text_field_tag :state
     .row
       %label.col.col-lg-4.control-label
         City
@@ -77,9 +77,9 @@
         = text_field_tag :city
     .row
       %label.col.col-lg-4.control-label
-        State
+        Address
       .col.col-lg-7
-        = text_field_tag :state
+        = text_field_tag :address
     .row
       %label.col.col-lg-4.control-label
         Postal Code
@@ -94,11 +94,8 @@
     .row
       %label.col.col-lg-4.control-label
         Phone
-      .col.col-lg-2
-        = text_field_tag :first_phone_number
-      .col.col-lg-5
-        = text_field_tag :last_phone_number
-
+      .col.col-lg-7
+        = text_field_tag :phone_number
   .row
     %label.col.col-lg-4.control-label
       Note

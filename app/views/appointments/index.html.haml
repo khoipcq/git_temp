@@ -1,5 +1,6 @@
 #appointment
-  %h3 List of Appointments
+  %h3
+    = t(".list")
   .btn-group{"data-toggle" => "buttons-radio"}
     %label.btn.btn-small.btn-white.active
       %input#opt-Day{:name => "options", :type => "radio", onclick: "chooseList(this)"}
@@ -13,8 +14,8 @@
         %label
           Date
         = text_field_tag :on_date, Date.current.strftime(t('time.short_format')), :class => 'input-small', readonly: "readonly"
-      .col.col-lg-1.col-offset-7
-        = link_to "View Report", "#{report_organization_appointments_path(type_report: "day")}",class: "text-link"
+      .col.col-lg-2.col-offset-6
+        = link_to t(".view_report"), "#{report_organization_appointments_path(type_report: "day")}",class: "text-link"
     .table-scoll
       .outer
         .inner
@@ -53,6 +54,61 @@
                 %td
                 %td
                 %td
+              %tr
+                %th.fixed-col  11:30 AM
+                %td
+                %td
+                %td
+              %tr
+                %th.fixed-col  12:00 AM
+                %td
+                %td
+                %td
+              %tr
+                %th.fixed-col  12:30 AM
+                %td
+                %td
+                %td
+              %tr
+                %th.fixed-col  1:00 PM
+                %td
+                %td
+                %td
+              %tr
+                %th.fixed-col  1:30 PM
+                %td
+                %td
+                %td
+              %tr
+                %th.fixed-col  2:00 PM
+                %td
+                %td
+                %td
+              %tr
+                %th.fixed-col  2:30 PM
+                %td
+                %td
+                %td
+              %tr
+                %th.fixed-col  3:00 PM
+                %td
+                %td
+                %td
+              %tr
+                %th.fixed-col  3:30 PM
+                %td
+                %td
+                %td
+              %tr
+                %th.fixed-col  4:00 PM
+                %td
+                %td
+                %td
+              %tr
+                %th.fixed-col  4:30 PM
+                %td
+                %td
+                %td
   #list_week.hidden
     .row#filter
       .col.col-lg-6
@@ -64,8 +120,8 @@
         %span
           To
         = text_field_tag :to_date, Date.current.strftime(t('time.short_format')), :class => 'input-small', readonly: "readonly"
-      .col.col-lg-1.col-offset-5
-        = link_to "View Report", "#{report_organization_appointments_path(type_report: "week")}",class: "text-link"
+      .col.col-lg-2.col-offset-4
+        = link_to t(".view_report"), "#{report_organization_appointments_path(type_report: "week")}",class: "text-link"
     .table-scoll
       .outer
         .inner
@@ -108,6 +164,50 @@
                   %td
               %tr
                 %th.fixed-col  11:00 AM
+                - 21.times do
+                  %td
+              %tr
+                %th.fixed-col  11:30 AM
+                - 21.times do
+                  %td
+              %tr
+                %th.fixed-col  12:00 AM
+                - 21.times do
+                  %td
+              %tr
+                %th.fixed-col  12:30 AM
+                - 21.times do
+                  %td
+              %tr
+                %th.fixed-col  1:00 PM
+                - 21.times do
+                  %td
+              %tr
+                %th.fixed-col  1:30 PM
+                - 21.times do
+                  %td
+              %tr
+                %th.fixed-col  2:00 PM
+                - 21.times do
+                  %td
+              %tr
+                %th.fixed-col  2:30 PM
+                - 21.times do
+                  %td
+              %tr
+                %th.fixed-col  3:00 PM
+                - 21.times do
+                  %td
+              %tr
+                %th.fixed-col  3:30 PM
+                - 21.times do
+                  %td
+              %tr
+                %th.fixed-col  4:00 PM
+                - 21.times do
+                  %td
+              %tr
+                %th.fixed-col  4:30 PM
                 - 21.times do
                   %td
 
