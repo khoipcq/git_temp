@@ -4,7 +4,20 @@ class Feature < ActiveRecord::Base
 
   scope :is_active, where(:status => true)
   def self.get_all_feature
-    all_feature = self.is_active.order('"order"')
+    
+    all_features = self.is_active.order('"order"')
+    return_data = {
+      "aaData" => [],
+      "iTotalDisplayRecords" => all_features.size
+    }
+    all_features.each do |feature|
+      return_data["aaData"] << [
+        feature.name,
+        "",
+        feature.id
+      ]
+    end
+    return_data
   end  	
   def self.generate_static_data
     f1 = Feature.create(:name =>I18n.t("features.feature1"),:description =>"",:order =>0,:status =>true)

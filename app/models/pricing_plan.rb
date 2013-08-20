@@ -41,18 +41,18 @@ class PricingPlan < ActiveRecord::Base
   # * (json) status
   #*Author*:: KhoiPCQ
   def self.new_pricing_plan(params)
-
+    features = JSON.parse(params["feature_data"])
+    feature_data = []
+    features.each do |feature|
+      feature_data << {feature_id:feature}
+    end
     pricing_plan = self.new(
       name: params["name"],
       description: params["description"],
       status: params["status"],
       price_per_month: params["price_per_month"],
       number_of_stores: params["number_of_stores"],
-      :features_pricing_plans_attributes => [
-        {
-          feature_id: 1
-        }
-      ]
+      :features_pricing_plans_attributes => feature_data
     )
    
   end

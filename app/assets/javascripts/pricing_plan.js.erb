@@ -8,7 +8,9 @@
     }
   }
   function renderSupport(obj){
-    return '<div class="radio_button"><div class="btn-group" data-toggle="buttons-radio"><label class="btn btn-small btn-white active"><input type="radio" name="options" id="option1">On</label><label class="btn btn-small btn-white"><input type="radio" name="options" id="option2">Off</label></div></div>';
+    var feature_id = obj.aData[2];
+    g_feature_ids.push(String(feature_id));
+    return '<div class="radio_button"><div class="btn-group" data-toggle="buttons-radio"><label class="btn btn-small btn-white" feature_id="' + feature_id  +  '" store="1" ><input type="radio" name="options" id="option1">On</label><label class="btn btn-small btn-white active" feature_id="' + feature_id  +  '" store="0"><input type="radio" name="options" id="option2">Off</label></div></div>';
   }
   function renderAction(obj){
     if(g_bDeletePricingPlan && g_bEditPricingPlan){
@@ -96,7 +98,7 @@
         },
         {  "bVisible": false }
       ],
-      "sAjaxSource": "#{pricing_plans_path}",
+      //"sAjaxSource": "#{pricing_plans_path}",
       "fnInitComplete": function () {
         $('div.dataTables_filter input').focus();
         $('div.dataTables_filter input').unbind();
@@ -109,16 +111,16 @@
       }
     });
 
-    var tb = $("#feature_include_table").dataTable({
+    var tf = $("#feature_include_table").dataTable({
       sDom: '<rt>',
       "bFilter": true,
       "bLengthChange": true,
       "bInfo": true,
-      "bProcessing": false,
+      "bProcessing": true,
       'sScrollY':'200px',
       "bServerSide": true,
       "sPaginationType": "full_numbers",
-      "iDisplayLength": g_displayLength,
+      "iDisplayLength": 1000,
       "aaSorting": [[ 1, "asc" ]],
       "aoColumns": [
         { "sTitle": "Feature Name",
@@ -134,21 +136,26 @@
         },
         {  "bVisible": false }
       ],
-      "sAjaxSource": "#{pricing_plans_path}"
+      "sAjaxSource": "/features/get_all_data"
     });
-
-
+    
+    
 
     $("#btn_delete_pricing_plan").on('click',function(){
       delete_pp_request();
     });
     $("#bt_new_pricing_plan").on('click',function(){
+      g_feature_ids = [];
       $("#new_pricing_plan.modal").modal("show");
+      $('#feature_include_table').dataTable().fnReloadAjax();
+
     });
     
     $("#pricing_plan_form").submit(function(e){
 
-      result = get_feature();
+      var result = JSON.stringify(get_feature());
+      var input = $("<input>").attr("type", "hidden").attr("name", "feature_data").val(result);
+      $('#pricing_plan_form').append($(input));
       return true;
     });
 
@@ -156,7 +163,14 @@
   });
 
 function get_feature(){
-  console.log("ac ac");
+  return_value = [];
+  for(var i =0; i < g_feature_ids.length; i++){
+    var f_id = g_feature_ids[i];
+    if($("label.active[feature_id="+ f_id +"]").attr("store") == "1"){
+      return_value.push(f_id);
+    }
+  }
+  return return_value;
 }
 // Author: KhoiPCQ
 // Description: This JavaScript code handle event when user click delete on grid

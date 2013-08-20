@@ -49,4 +49,11 @@ class FeaturesController < ApplicationController
       return render :js =>"success_delete(false)"
     end
   end
+
+  def get_all_data
+    if request.xhr?
+      @features = Feature.get_all_feature
+      render :json => @features
+    end
+  end
 end
