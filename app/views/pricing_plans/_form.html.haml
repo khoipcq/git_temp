@@ -1,6 +1,7 @@
 .modal-body
   
-  %form.form-horizontal{:method => "post", :id => "pricing_plan_form", :remote => true}
+  = form_tag pricing_plans_path,:remote => true,:class =>"form-horizontal", :id=>"pricing_plan_form"  do
+    
     .row
       %label.col.col-lg-4.control-label
         = t('.name')
@@ -16,9 +17,9 @@
       %label.col.col-lg-4.control-label
         = t('.price_per_month')
         %span.required *
-      .col.col-lg-4
-        %input{"data-type" => "text", :name => "price_per_month", :type => "text", tabindex:"3", :id => "price_per_month"}
-      .col.col-lg-4
+      .col.col-lg-6
+        %input{:name => "price_per_month", :type => "text", tabindex:"3", :id => "price_per_month"}
+      .col.col-lg-2
         .right_align
           .btn-group{"data-toggle" => "buttons-radio", tabindex:"4"}
             %label.btn.btn-big.btn-white.active
@@ -30,7 +31,11 @@
         = t('.number_of_stores')
         %span.required *
       .col.col-lg-8
-        %input{"data-type" => "number", :name => "number_of_stores", :type => "text", tabindex:"5"}
+        %select{:name => "number_of_stores",tabindex:"5"}
+          %option{:value => "1"} 1
+          %option{:value => "100"} 100
+          %option{:value => "1000"} 1,000
+          %option{:value => "-2"} Unlimited
     .row
       %label.col.col-lg-4.control-label
         = t('.users_staff')
@@ -39,15 +44,17 @@
         %select{:name => "users_staff",tabindex:"6"}
           %option{:value => "1"} 1
           %option{:value => "100"} 100
+          %option{:value => "1000"} 1,000
+          %option{:value => "-2"} Unlimited
     .row
       %label.col.col-lg-4.control-label
         = t('.status.name')
         %span.required *
       .col.col-lg-8
         %select{:name => "status", tabindex:"7"}
-          %option{:value => "1"}
+          %option{:value => "true"}
             = t('.status.active')
-          %option{:value => "0"}
+          %option{:value => "false"}
             = t('.status.inactive')
     %br/
     .feature_table_include
@@ -72,11 +79,11 @@
                 %center
                   .radio_button
                     .btn-group{"data-toggle" => "buttons-radio", tabindex:"8"}
-                      %label.btn.btn-small.btn-white
-                        %input#option1{:name => "option_store", :type => "radio"}
+                      %label.btn.btn-small.btn-white{:store=>"1",:name =>"stores"}
+                        %input#option1{:name => "option_store",:value=>1, :type => "radio"}
                         = t('feature.option.on')
-                      %label.btn.btn-small.btn-white.active
-                        %input#option2{:name => "option_store", :type => "radio"}
+                      %label.btn.btn-small.btn-white.active{:store=>"0",:name =>"stores"}
+                        %input#option2{:name => "option_store",:value =>2, :type => "radio"}
                         = t('feature.option.off')
             %tr
               %td
@@ -146,7 +153,7 @@
                         = t('feature.option.off')
       %br/
       .row.center
-
+        
         %button.btn.btn-success{:type => "submit",tabindex:"11", :id => "button_save"}
           = t('button.save')
         %buton.btn.btn-warning{"data-dismiss" => "modal", :type => "button", tabindex:"12"}

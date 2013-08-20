@@ -22,6 +22,7 @@ class PricingPlansController < ApplicationController
       params[:iSortCol_0] = 1 if params[:iSortCol_0].blank?
       sort_field = SORT_MAP[params[:iSortCol_0].to_i]
       @pricing_plan = PricingPlan.get_all_pricing_plan(current_user, page, per_page, params[:sSearch].to_s, sort_field.to_s + " " + params[:sSortDir_0].to_s)
+      @feature = Feature.get_all_feature()
       render :json => @pricing_plan
       return
     end
@@ -37,10 +38,7 @@ class PricingPlansController < ApplicationController
   def delete
     #begin
       existed_pp = PricingPlan.find_by_id(params[:id])
-      p "KKKKKKKKKKKK"
-      p existed_pp
       if existed_pp #and don't have user use it
-        p "YYYYYYYYYYYYYYYY"
         existed_pp.destroy
         render :json =>{"status" => "deleted"}
       else
@@ -54,13 +52,13 @@ class PricingPlansController < ApplicationController
   def create
     @pricing_plan = PricingPlan.new_pricing_plan(params)
     @is_saved = false
+    
     if request.xhr?
-      respond_to do |format|
         if @pricing_plan.save
           @is_saved = true
-          format.js
         end
-      end
+        render :js => "create_success(#{@is_saved})"
     end
+    
   end
 end

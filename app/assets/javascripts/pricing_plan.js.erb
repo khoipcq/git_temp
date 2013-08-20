@@ -1,4 +1,4 @@
-  <% url = HelloWorld::Application.routes.url_helpers %>
+
   function renderActive(obj){
     if(obj.aData[2]){
       return "Yes";
@@ -23,15 +23,34 @@
   //Set style table
   $(document).ready(function(){
     
+    
+
     $("#pricing_plan_form").validate({
       rules:{
         "name": {
-          required: true
+          required: true,
+          maxlength: 256
+        },
+        "description": {
+          maxlength: 1024
+        },
+        "price_per_month" : {
+          required: true,
+          range: [0, 1000000]
         }
+        
       },
       messages:{
         "name": {
-          required: I18n.t('required_field')
+          required: I18n.t('required_field'),
+          maxlength: I18n.t('plan_name_length')
+        },
+        "description": {
+          maxlength: I18n.t('description_length')
+        },
+        "price_per_month": {
+          required: I18n.t('required_field'),
+          range: I18n.t('price_per_month_range')
         }
       },
       errorPlacement:function(error, element){
@@ -92,11 +111,21 @@
       delete_pp_request();
     });
     $("#bt_new_pricing_plan").on('click',function(){
-      $("#new_pricing_plan.modal").modal();
+      $("#new_pricing_plan.modal").modal("show");
     });
+    
+    $("#pricing_plan_form").submit(function(e){
+
+      result = get_feature();
+      return true;
+    });
+
+
   });
 
-
+function get_feature(){
+  console.log("ac ac");
+}
 // Author: KhoiPCQ
 // Description: This JavaScript code handle event when user click delete on grid
 //              
@@ -109,6 +138,12 @@ function view_delete_pp_confirm(obj)
   $("#btn_delete_pricing_plan").val(aData);
 }
 
+function create_success(success){
+  if(success){
+    $("#new_pricing_plan.modal").modal("hide");
+    $('#pricing_plan_table').dataTable().fnReloadAjax();
+  }
+}
 // Author: ThuyLC
 // Description: This JavaScript code handle event when user ok to delete and store owner
 //              

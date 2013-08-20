@@ -5,4 +5,4 @@
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
         %h4.modal-title
           = t('.new')
-      = render "form", value_is_off: true
+      = render :partial => "form", :locals => {url: new_pricing_plan_path(:format=>:js), :is_new => true, value_is_off: true}

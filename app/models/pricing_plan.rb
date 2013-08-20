@@ -4,6 +4,12 @@ class PricingPlan < ActiveRecord::Base
   has_many :features_pricing_plans, :dependent => :destroy
   scope :search_by_name, lambda { |search| where("lower(name) like ?", "%" + search + "%") }
   
+  ##
+  #Get all pricing plan
+  #Parameters::
+  #Return::
+  # * (json) pricing plan data
+  #*Author*:: KhoiPCQ
   def self.get_all_pricing_plan(current_user, page, per_page, search, sort = nil)
     sort ||= "full_name"
     search ||= ""
@@ -23,5 +29,24 @@ class PricingPlan < ActiveRecord::Base
       ]
     end
     return_data
+  end
+
+  ##
+  #Delete pricing plan
+  #Parameters::
+  # * (Integer) *id*: pricing plan id
+  #Return::
+  # * (json) status
+  #*Author*:: KhoiPCQ
+  def self.new_pricing_plan(params)
+
+    pricing_plan = self.new(
+      name: params["name"],
+      description: params["description"],
+      status: params["status"],
+      price_per_month: params["price_per_month"],
+      number_of_stores: params["number_of_stores"]
+    )
+   
   end
 end
