@@ -1,19 +1,19 @@
 #form_personal_info
   %form.form-horizontal
     .row
-      %label.col.col-lg-4.control-label
+      %label.col.col-lg-3.control-label
         Last Name
         %span *
-      .col.col-lg-8
+      .col.col-lg-6
         %input.parsley-validated{"data-required" => "true", :name => "lastname",  :type => "text"}
     .row
-      %label.col.col-lg-4.control-label
+      %label.col.col-lg-3.control-label
         First Name
         %span *
-      .col.col-lg-8
+      .col.col-lg-6
         %input.parsley-validated{"data-required" => "true", :name => "firstname", :type => "text"}
     .row
-      %label.col.col-lg-4.control-label
+      %label.col.col-lg-3.control-label
         Date of Birth
         %span *
       %div
@@ -67,7 +67,7 @@
             %option{:value => "10"} 10
             %option{:value => "11"} 11
             %option{:value => "12"} 12
-        %span.col.col-lg-4
+        %span.col.col-lg-2
           %select.year
             %option{:value => ""}
             %option{:value => "2015"} 2015
@@ -117,54 +117,54 @@
             %option{:value => "1971"} 1971
             %option{:value => "1970"} 1970
     .row
-      %label.col.col-lg-4.control-label
+      %label.col.col-lg-3.control-label
         Gender
         %span *
-      .col.col-lg-8
+      .col.col-lg-6
         %select{:name => "gender"}
           %option{:value => "1"} Male
           %option{:value => "0"} Female
     .row
-      %label.col.col-lg-4.control-label
+      %label.col.col-lg-3.control-label
         Email Address
         %span *
-      .col.col-lg-8
+      .col.col-lg-6
         %input.parsley-validated{"data-required" => "true", :name => "email",  :type => "email"}
     .row
-      %label.col.col-lg-4.control-label
+      %label.col.col-lg-3.control-label
         State
         %span *
-      .col.col-lg-8
+      .col.col-lg-6
         %input.parsley-validated{"data-required" => "true", :name => "state", :type => "text"}
     .row
-      %label.col.col-lg-4.control-label
+      %label.col.col-lg-3.control-label
         City
         %span *
-      .col.col-lg-8
+      .col.col-lg-6
         %input.parsley-validated{"data-required" => "true", :name => "city",:type => "text"}
     .row
-      %label.col.col-lg-4.control-label
+      %label.col.col-lg-3.control-label
         Address
         %span *
-      .col.col-lg-8
+      .col.col-lg-6
         %input.parsley-validated{"data-required" => "true", :name => "address", :type => "text"}/
     .row
-      %label.col.col-lg-4.control-label
+      %label.col.col-lg-3.control-label
         Postal Code
         %span *
-      .col.col-lg-8
+      .col.col-lg-6
         %input.parsley-validated{"data-required" => "true", :name => "postalcode",  :type => "text"}/
     .row
-      %label.col.col-lg-4.control-label
+      %label.col.col-lg-3.control-label
         Country
         %span *
-      .col.col-lg-8
+      .col.col-lg-6
         %select{:name => "status"}
           %option{:value => "1"} USA
           %option{:value => "0"} Vietnam
     .row
-      %label.col.col-lg-4.control-label
+      %label.col.col-lg-3.control-label
         Phone
         %span *
-      .col.col-lg-8
-        %input.parsley-validated{"data-required" => "true", :name => "phone",  :type => "text"}/
+      .col.col-lg-6
+        %input{:type => "text"}/

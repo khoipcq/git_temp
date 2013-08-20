@@ -24,9 +24,12 @@ HelloWorld::Application.routes.draw do
   # first created -> highest priority.
 
   #resources :pricing_plans
-  resources :features
+  resources :features do
+    post "update_feature",:on =>:collection
+    post "delete",:on =>:collection
+  end
   resources :billing_reports
-  
+
 
 
   resources :organizations do

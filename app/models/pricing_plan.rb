@@ -1,7 +1,9 @@
 class PricingPlan < ActiveRecord::Base
   
-  attr_accessible :name, :description, :status, :price_per_month, :number_of_stores, :user_staff
+  attr_accessible :name, :description, :status, :price_per_month, :number_of_stores, :user_staff, :features_pricing_plans_attributes
+  has_many :features, :through => :features_pricing_plans
   has_many :features_pricing_plans, :dependent => :destroy
+  accepts_nested_attributes_for :features_pricing_plans
   scope :search_by_name, lambda { |search| where("lower(name) like ?", "%" + search + "%") }
   
   ##
@@ -45,7 +47,12 @@ class PricingPlan < ActiveRecord::Base
       description: params["description"],
       status: params["status"],
       price_per_month: params["price_per_month"],
-      number_of_stores: params["number_of_stores"]
+      number_of_stores: params["number_of_stores"],
+      :features_pricing_plans_attributes => [
+        {
+          feature_id: 1
+        }
+      ]
     )
    
   end

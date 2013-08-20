@@ -14,22 +14,22 @@
         July 20, 2013 - July 26, 2013
 
   .row#filter
-    .col.col-lg-1.col-offset-9
+    .col.col-lg-1.col-offset-9.text-right
       = link_to "<< Back", "#{organization_appointments_path}",class: "text-link"
-    .col.col-lg-2
+    .col.col-lg-2.text-right
       = link_to "Export XLS", "",class: "text-link"
 
   .table
     %table.table.table-bordered
       %tbody
         %tr.table-head
-          %td.left Appointment Date
-          %td.center Confirmation ID
-          %td.left Customer
-          %td.left Staff
-          %td.left Service
-          %td.left Received Date
-          %td.center Status
+          %th.center Appointment Date
+          %th.center Confirmation ID
+          %th.center Customer
+          %th.center Staff
+          %th.center Service
+          %th.center Received Date
+          %th.center Status
         %tr
           %td.left July 29 2013 9:00AM
           %td.center EC123FF12

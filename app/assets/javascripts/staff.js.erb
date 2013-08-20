@@ -7,7 +7,9 @@ function renderStaffAction(obj){
   }
 var cell;
  $(document).ready(function(){
-  $('.group-staff-dataTable').each(function() {
+  jQuery.fn.reverse = [].reverse;
+  $('.group-staff-dataTable').reverse().each(function() {
+      console.log(this);
       var table = $(this).dataTable({
         sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
         "bFilter": true,
@@ -48,28 +50,25 @@ var cell;
           aoData.push( { "name": "staff_group_id", "value": $(this).attr('id')});
         },
         "fnInitComplete": function () {
-          $('div.dataTables_filter input').focus();
+          $('div.dataTables_filter#1_filter input').focus();
+
         }
       });
     });
 
     $("#staff_hours-tab td").click(function(e) {
        cell = $(this);
-      console.log("cell");
-      console.log(cell);
       $("#change_status").modal('show');
 
     });
 
     $('#btn-closed').click(function() {
-      console.log("Online"+cell);
       cell.text("Closed");
       cell.addClass("offline");
       cell.removeClass("online");
       $('#change_status').modal('hide');
     });
     $('#btn-online').click(function() {
-      console.log("Online"+cell);
       cell.text("Online");
       cell.addClass("online");
       cell.removeClass("offline");

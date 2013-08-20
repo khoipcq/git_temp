@@ -1,105 +1,103 @@
 %br/
 .row.text-right.margin_fit_table
   = link_to t('button.add_new_category'), new_organization_location_path,:class => "btn btn-primary ", "data-toggle" => "modal", :href => "#addCategory"
-
-.panel#list-panel
-  .panel-heading.font_normal
-    = "MAKE UP"
-    .text-right
+%br
+.custom_datatable
+  .panel
+    .button_add
       = link_to t('link.rename'), '#', :class => "text-link", "data-toggle" => "modal", :href => "#rename"
       |
       = link_to t('link.delete'), '#',  "data-toggle" => "modal", :href => "#deleteCategory",:class => "text-link"
       |
       = link_to t('link.add_new_service'), new_organization_service_path, :class => "text-link"
-  %table#service_table1.table.table-striped.dataTable.table_service
-    %thead
-      %tr
-        %th.text-center
-          = t('.service_name')
-        %th.text-center
-          = t('.duration')
-        %th.text-center
-          = t('.cost')
-        %th.text-center
-          = t('.sort_order')
-        %th.text-center
-          = t('.status')
-        %th.text-center
-          = t('.action')
-    %tbody
-      - 5.times do
+    .panel-heading
+      = "Makeup"
+    %table#service_table1.table.table-striped.dataTable.table_service
+      %thead
         %tr
-          %td
-            = "Face"
-          %td
-            = "30 mins"
-          %td.text_right
-            = "$30"
-          %td
-            .col.col-lg-2
-            .col.col-lg-3
-              = text_field_tag 'order','', :class => 'text_sort text-center', :value => '1'
-            .clearfix
-          %td.text-center
-            = "Active"
-          %td.text-center
-            = link_to t('link.edit'), edit_organization_service_path(current_user.organization_id,1), :class => 'action-link'
-            = link_to t('link.delete'), '#', :class => 'action-link', "data-toggle" => "modal", :href => "#delModal"
+          %th.text-center
+            = t('.service_name')
+          %th.text-center
+            = t('.duration')
+          %th.text-center
+            = t('.cost')
+          %th.text-center
+            = t('.sort_order')
+          %th.text-center
+            = t('.status')
+          %th.text-center
+            = t('.action')
+      %tbody
+        - 5.times do
+          %tr
+            %td
+              = "Face"
+            %td
+              = "30 mins"
+            %td.text_right
+              = "30 JPY"
+            %td.text-center
+              = text_field_tag 'order','', :class => 'text_sort text-center input-small', :value => '1'
+            %td.text-center
+              = "Active"
+            %td.text-center
+              = link_to t('link.edit'), edit_organization_service_path(current_user.organization_id,1), :class => 'action-link'
+              = link_to t('link.delete'), '#', :class => 'action-link', "data-toggle" => "modal", :href => "#delModal"
 
-.row.text_center
-  %a.btn.btn-success{:href => "#"}
-    = t('button.save_sort_order')
-%br/
+  .row.text_center
+    %a.btn.btn-success{:href => "#"}
+      = t('button.save_sort_order')
+  %br/
 
-
-.panel#list-panel
-  .panel-heading.font_normal
-    = "NAIL"
-    .text-right
-      = link_to t('link.rename'), '#', :class => 'text-link', "data-toggle" => "modal", :href => "#rename"
+.custom_datatable
+  .panel
+    .button_add
+      = link_to t('link.rename'), '#', :class => "text-link", "data-toggle" => "modal", :href => "#rename"
       |
-      = link_to t('link.delete'), '#',  "data-toggle" => "modal", :href => "#deleteCategory"
+      = link_to t('link.delete'), '#',  "data-toggle" => "modal", :href => "#deleteCategory",:class => "text-link"
       |
-      = link_to t('link.add_new_service'), new_organization_service_path
-  %table#service_table2.table.table-striped.dataTable.table_service
-    %thead
-      %tr
-        %th.text-center
-          = t('.service_name')
-        %th.text-center
-          = t('.duration')
-        %th.text-center
-          = t('.cost')
-        %th.text-center
-          = t('.sort_order')
-        %th.text-center
-          = t('.status')
-        %th.text-center
-          = t('.action')
-    %tbody
-      - 5.times do
+      = link_to t('link.add_new_service'), new_organization_service_path, :class => "text-link"
+    .panel-heading
+      = "Nail"
+    %table#service_table2.table.table-striped.dataTable.table_service
+      %thead
         %tr
-          %td
-            = "Base Coat"
-          %td
-            = "15 minutes"
-          %td.text_right
-            = "$15"
-          %td
-            .col.col-lg-2
-            .col.col-lg-3
-              = text_field_tag 'order','', :class => 'text_sort text-center', :value => '1'
-            .clearfix
-          %td.text_left
-            = "Active"
-          %td.text-center
-            = link_to t('link.edit'), edit_organization_service_path(current_user.organization_id,1), :class => 'action-link'
-            = link_to t('link.delete'), '#', :class => 'action-link', "data-toggle" => "modal", :href => "#delModal"
+          %th.text-center
+            = t('.service_name')
+          %th.text-center
+            = t('.duration')
+          %th.text-center
+            = t('.cost')
+          %th.text-center
+            = t('.sort_order')
+          %th.text-center
+            = t('.status')
+          %th.text-center
+            = t('.action')
+      %tbody
+        - 5.times do
+          %tr
+            %td
+              = "Base Coat"
+            %td
+              = "15 minutes"
+            %td.text_right
+              = "15 JPY"
+            %td
+              .col.col-lg-2
+              .col.col-lg-3
+                = text_field_tag 'order','', :class => 'text_sort text-center', :value => '1'
+              .clearfix
+            %td.text_left
+              = "Active"
+            %td.text-center
+              = link_to t('link.edit'), edit_organization_service_path(current_user.organization_id,1), :class => 'action-link'
+              = link_to t('link.delete'), '#', :class => 'action-link', "data-toggle" => "modal", :href => "#delModal"
 
-.row.text_center
-  %a.btn.btn-success{:href => "#"}
-    = t('button.save_sort_order')
-%br/
+  .row.text_center
+    %a.btn.btn-success{:href => "#"}
+      = t('button.save_sort_order')
+  %br/
 
 #delModal.modal.fade
   = render "shared/warning_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body')
@@ -108,6 +106,6 @@
 #rename.modal.fade
   = render "services/service_change", :message_header => t('.rename_category_header'), :button_main => t('button.save')
 #deleteCategory.modal.fade
-  = render "shared/warning", :message_header => t('.delete_category_header'), :message_body => t('.delete_category_body')
+  = render "shared/warn_notice", :message_header => t('.delete_category_header'), :message_body => t('.delete_category_body')
 
 = javascript_include_tag "services"

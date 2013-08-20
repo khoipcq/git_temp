@@ -85,8 +85,6 @@ class User < ActiveRecord::Base
   # * (String) check if user is active or not
   #*Author*:: NamTV
   def active_for_authentication?
-    puts "===================checj"
-    puts self.organization.is_stopped
    super && !self.organization.is_stopped
   end
 

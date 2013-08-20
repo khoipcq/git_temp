@@ -31,7 +31,7 @@
 
   function renderAction(obj){
     var viewString = '<a data-toggle="modal" href="#show_history.modal" class="action-link">View History</a>';
-    var editString = '<a data-toggle="modal" href="#edit_customer.modal" class="action-link">Edit</a>';
+    var editString = '<a data-toggle="modal" href="'+g_editCustomerPath+'" class="action-link">Edit</a>';
     var deleteString = '<a data-toggle="modal" href="#delete_notice.modal" class="action-link">Delete</a>';
     return viewString+" "+editString+" "+deleteString;
   }

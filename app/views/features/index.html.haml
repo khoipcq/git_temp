@@ -6,10 +6,12 @@
 #feature
   = render "edit_feature"
   #delete_notice.modal.fade
-    = render "shared/confirm_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body')
+    = render "shared/confirm_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body'),:btn_save_id => "btn_delete_feature"
+  #warning_notice.modal.fade
+    = render "warning_save_order", :message_header => t('.confirm_save_order_header'), :message_body => t('.confirm_save_order_body'),:btn_save_id => "btn_save_order",:btn_cancel_id =>"btn_cancel"
 
 = javascript_include_tag "features"
-
+= stylesheet_link_tag "feature"
 :javascript
   //variable Declaration
 
@@ -19,6 +21,11 @@
   var g_newFeaturePath = "#{new_feature_path}";
   var g_featuresPath = "#{features_path}";
   var g_editFeaturePath = "#{edit_feature_path( '[id]')}";
+  var g_per_page = "#{@per_page}";
+  var g_current_obj;
+  //var tmp;
+  var g_url_delete_feature_path = "#{delete_features_path}";
+  var g_all_page_feature;
   $(document).ready(function(){
     $("nav#nav li").removeClass("active");
     $("nav#nav li#features").addClass("active");

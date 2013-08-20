@@ -16,13 +16,14 @@ class PricingPlansController < ApplicationController
   # * (json) Matched user list with paging and number all rows are finded
   #*Author*:: PhuND, KhoiPCQ
   def index
+
     if request.xhr?
       per_page = params[:iDisplayLength] || Settings.per_page
       page = params[:iDisplayStart] ? ((params[:iDisplayStart].to_i/per_page.to_i) + 1) : 1
       params[:iSortCol_0] = 1 if params[:iSortCol_0].blank?
       sort_field = SORT_MAP[params[:iSortCol_0].to_i]
       @pricing_plan = PricingPlan.get_all_pricing_plan(current_user, page, per_page, params[:sSearch].to_s, sort_field.to_s + " " + params[:sSortDir_0].to_s)
-      @feature = Feature.get_all_feature()
+      
       render :json => @pricing_plan
       return
     end

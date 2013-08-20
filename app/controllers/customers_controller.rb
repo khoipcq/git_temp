@@ -1,5 +1,4 @@
 class CustomersController < ApplicationController
-  skip_authorize_resource
   SORT_MAP = {
     1 => "name"
   }
@@ -23,7 +22,7 @@ class CustomersController < ApplicationController
 
       customers = ["Marco Botton", "Mariah Macah", "Valerir Liberty"]
       emails = ["marco@gmail.com", "mariad@gmail.com", "valerie@gamil.com"]
-      phones = ["(800) 478-2145", "(800) 478-2145", "(800) 478-2145"]
+      phones = ["(800) 3233-882", "(800) 4748-214", "(800) 4738-214"]
       cities = ["New York", "New York", "New York"]
       return_data = {
       "aaData" => [],
@@ -45,4 +44,5 @@ class CustomersController < ApplicationController
       return
     end
   end
+
 end

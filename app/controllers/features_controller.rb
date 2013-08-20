@@ -14,43 +14,39 @@ class FeaturesController < ApplicationController
   # * (json) Matched user list with paging and number all rows are finded
   #*Author*:: PhuND
   def index
+    @per_page = Settings.per_page
     if request.xhr?
       organization_id = params["organization_id"]
-      per_page = params[:iDisplayLength] || Settings.per_page
+      per_page = params[:iDisplayLength] ||  Settings.per_page
       page = params[:iDisplayStart] ? ((params[:iDisplayStart].to_i/per_page.to_i) + 1) : 1
-      params[:iSortCol_0] = 1 if params[:iSortCol_0].blank?
-      sort_field = SORT_MAP[params[:iSortCol_0].to_i]
-      return_data = {
-      "aaData" => [],
-      "iTotalDisplayRecords" => 3
-      }
-      return_data["aaData"] << [
-          "Store",
-          "How many store supported",
-          1,
-          true,
-          "",
-          1
-        ]
-      return_data["aaData"] << [
-          "Users-staff",
-          "Number of user (staff)",
-          2,
-          true,
-          "",
-          2
-        ]
-      return_data["aaData"] << [
-          "24/7 Appoinment Scheduling",
-          "24/7 Appoinment Scheduling",
-          3,
-          true,
-          "",
-          3
-        ]
+      cols = ["name","","","status"]
+      sort_field =  cols[(params[:iSortCol_0].to_i)]+" " + params[:sSortDir_0]
+      search_text = params["sSearch"] || ""
+      arel_feature = Feature.arel_table
+      @features = Feature.order(sort_field).where(arel_feature[:name].matches("%#{search_text}%")).paginate(:page => page, :per_page => per_page)
+      render :json => {"aaData" => @features,"iTotalRecords"=>@features.total_entries,"iTotalDisplayRecords"=>@features.total_entries}
+    end
+  end
 
-      render :json => return_data
-      return
+  def update_feature
+    if request.xhr?
+      existed_feature = Feature.find_by_id(params["hidden_feature_id"])
+      return render :json =>{"success" =>false} if existed_feature.blank?
+      updated = existed_feature.update_attributes(:description => params["description"], :status =>params["status"])
+      return render :js =>"success_update(true)" if updated ==true
+      return render :js =>"success_update(false)"
+    else
+      return render :js =>"success_update(false)"
+    end
+  end
+
+  def delete
+     if request.xhr?
+      existed_feature = Feature.find_by_id(params["id"])
+      existed_feature.destroy
+      return render :js =>"success_delete(true)"
+    else
+      return render :js =>"success_delete(false)"
     end
   end
 end

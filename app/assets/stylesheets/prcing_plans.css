@@ -33,3 +33,24 @@
 #pricing_plan .feature_table_include {
   width: 100%;
 }
+/*#pricing_plan .feature_table_include .body_container{
+  height: 138px !important;
+  width: 100%;
+  border-bottom: 1px solid #dddddd;
+}
+#pricing_plan .feature_table_include .header_container{
+  overlow-x: hidden;
+}
+#pricing_plan .feature_table_include .header_container th:nth-child(2){
+  width: 120% ;
+  overlow-x: hidden;
+}
+#pricing_plan .feature_table_include .scrollable{
+   overflow-y: scroll;
+}*/
+#pricing_plan .feature_table_include th:nth-child(1), #pricing_plan .feature_table_include td:nth-child(1){
+    width: 65% !important;
+}
+#pricing_plan .feature_table_include th:nth-child(2), #pricing_plan .feature_table_include td:nth-child(2){
+    width: 35% !important;
+}

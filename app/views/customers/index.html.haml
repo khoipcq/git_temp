@@ -2,21 +2,27 @@
   %br/
   .panel
     .button_add
-      %input.btn.btn-primary{"data-toggle" => "modal", :href => "#show_add.modal", :type => "button", :value => "Add New Customer"}
+      = link_to "Add New Customer", "#{new_organization_customer_path(current_user.organization_id)}" ,:class => "btn btn-primary "
       %input.btn.btn-primary{"data-toggle" => "modal", :href => "#show_export.modal", :type => "button", :value => "Export"}
     .panel-heading
       List of Customers
     %table#customers_table.table.table-striped.dataTable
       %div
 
-  = render "new_customer"
-  = render "edit_customer"
-  = render "view_history"
+
   / = render "export"
-  = render "edit_note"
+  / = render "edit_note"
+  = render "view_history"
 
 
   #delete_notice.modal.fade
     = render "shared/confirm_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body')
 
 = javascript_include_tag "customers"
+:javascript
+  var g_editCustomerPath = "#{edit_organization_customer_path(current_user.organization_id,1)}"
+  var g_newCustomerPath = "#{new_organization_customer_path(current_user.organization_id)}"
+  $(document).ready(function(){
+    $("nav#nav li").removeClass("active");
+    $("nav#nav li#menu_customers").addClass("active");
+  });

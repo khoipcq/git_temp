@@ -35,7 +35,7 @@
         %table.group-staff-dataTable.table.table-striped.dataTable{:id => 3}
 
     #add_staff_group.modal.fade
-      = render "staff_group_name", :message_title => "Calendar Group Name", :first_button => "Create Group", :second_button => "Cancel"
+      = render "staff_group_name", :message_title => "Group Name", :first_button => "Create Group", :second_button => "Cancel"
     #edit_staff_group.modal.fade
       = render "staff_group_name", :message_title => "Rename Group", :first_button => "Save", :second_button => "Cancel"
     = render "new_staff"
@@ -46,5 +46,10 @@
     #warn_del_staff_group_notice.modal.fade
       = render "shared/warn_notice", :message_header => t('.delete_staff_group_warn_header'), :message_body => t('.delete_staff_group_warn_body')
   = javascript_include_tag "staff"
+  :javascript
+  $(document).ready(function(){
+    $("nav#nav li").removeClass("active");
+    $("nav#nav li#menu_staffs").addClass("active");
+  });
 
 

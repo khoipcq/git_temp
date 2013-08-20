@@ -3,10 +3,9 @@
     .panel-heading
       New Appointment
     = render "form_appointment", :action => "new"
-    .button_action.row
-      .text-center
-        = link_to t('button.save'),'#', :class => 'btn btn-success'
-        = link_to t('button.cancel'), organization_appointments_path(current_user.organization_id), :class => 'btn btn-warning'
+    .row.center.button_action
+      = link_to t('button.save'),'#', :class => 'btn btn-primary'
+      = link_to t('button.cancel'), organization_appointments_path(current_user.organization_id), :class => 'btn btn-warning'
     %br
 
 = javascript_include_tag "appointments"

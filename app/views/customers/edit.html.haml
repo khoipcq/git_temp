@@ -1,0 +1,58 @@
+.row.custom_datatable#edit_customer
+  .panel
+    .panel-heading
+      Marco Button
+    %section.panel
+      %header.panel-heading
+        %ul.nav.nav-tabs.pull-left
+          %li.active
+            %a{"data-toggle" => "tab", :href => "#personal_information"} Personal Information
+          %li
+            %a{"data-toggle" => "tab", :href => "#customer_notes"} Customer Notes
+      .tab-content
+        #personal_information.tab-pane.active
+          %h5.modal-title
+          %br/
+          %br/
+          = render "form_personal_info"
+          %br/
+          %br/
+        #customer_notes.tab-pane
+          %br/
+          %br/
+          %h5.modal-title Add New Note
+          %textarea.parsley-validated{"data-rangelength" => "[20,200]", "data-trigger" => "keyup", :name => "note", :rows => "5"}
+          %br/
+          %button.btn.btn-primary{:type => "submit"} Add Note
+          %br/
+          %br/
+          %h5.modal-title Notes
+          %br/
+          %table.table.table-striped.dataTable
+            %tr.even
+              %td.sorting_1
+                She wants to delay appointment
+                %br/
+                %span.action
+                  %a.action-link{"data-toggle" => "modal", :href => "#show_edit_note.modal"} Edit
+                  %a.action-link{"data-toggle" => "modal", :href => "#delete_note.modal"} Delete
+              %td On July 25, 2013
+            %tr.odd
+              %td.sorting_1
+                She is a loyal customer
+                %br/
+                %span.action
+                  %a.action-link{"data-toggle" => "modal", :href => "#show_edit_note.modal"} Edit
+                  %a.action-link{"data-toggle" => "modal", :href => "#delete_note.modal"} Delete
+              %td On June 5, 2013
+          %br/
+          %br/
+    %br/
+    = render "edit_note"
+    #delete_note.modal.fade
+      = render "shared/confirm_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body')
+
+    .row.center
+      %button.btn.btn-primary{"data-dismiss" => "modal", :type => "submit"} Save
+      = link_to t('button.cancel'), organization_customers_path(current_user.organization_id), :class => 'btn btn-warning'
+    %br

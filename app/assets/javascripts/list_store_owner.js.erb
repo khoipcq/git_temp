@@ -153,6 +153,7 @@ function delete_store_request()
       if(msg["status"]=="deleted"){
         $("#delModal").modal("hide");
         $('#list').dataTable().fnReloadAjax();
+         showAlert('myAlert','alert-success', I18n.t("msg.msg_delete_store_success"));
       }else{
         $("#delModal").modal("hide");
         $("#warningModal").modal("show");
@@ -192,13 +193,14 @@ function stop_store_access_request()
 
     //when done ajax
     request.done(function(msg) {
+      $("#saModal").modal("hide");
+      $('#list').dataTable().fnReloadAjax();
       if(msg["status"]=="success"){
-        $("#saModal").modal("hide");
-        $('#list').dataTable().fnReloadAjax();
+        showAlert('myAlert','alert-success', msg["message"]);
       }else{
-        $("#saModal").modal("hide");
-        $('#list').dataTable().fnReloadAjax();
+        
         // $("#warningModal").modal("show");
+        showAlert('myAlert','alert-error', msg["message"]);
       }
     });
 

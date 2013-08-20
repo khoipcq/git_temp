@@ -7,6 +7,9 @@
       return "No";
     }
   }
+  function renderSupport(obj){
+    return '<div class="radio_button"><div class="btn-group" data-toggle="buttons-radio"><label class="btn btn-small btn-white active"><input type="radio" name="options" id="option1">On</label><label class="btn btn-small btn-white"><input type="radio" name="options" id="option2">Off</label></div></div>';
+  }
   function renderAction(obj){
     if(g_bDeletePricingPlan && g_bEditPricingPlan){
       var editString = '<a data-toggle="modal" href="#edit_pricing_plan.modal" class="action-link">Edit</a>';
@@ -17,7 +20,7 @@
       return "";
      }
   }
-  
+
 
 
   //Set style table
@@ -57,6 +60,7 @@
         error.appendTo(element.parent());
       }
     });
+
 
 
     var tb = $("#pricing_plan_table").dataTable({
@@ -104,7 +108,35 @@
         });
       }
     });
-    
+
+    var tb = $("#feature_include_table").dataTable({
+      sDom: '<rt>',
+      "bFilter": true,
+      "bLengthChange": true,
+      "bInfo": true,
+      "bProcessing": false,
+      'sScrollY':'200px',
+      "bServerSide": true,
+      "sPaginationType": "full_numbers",
+      "iDisplayLength": g_displayLength,
+      "aaSorting": [[ 1, "asc" ]],
+      "aoColumns": [
+        { "sTitle": "Feature Name",
+          'bSortable': false,
+          "sClass": "left",
+          "sWidth": "80%"
+        },
+        { "sTitle": "Supported",
+          'bSortable': false,
+          "fnRender": renderSupport,
+          "sClass": "center",
+          "sWidth": "20%"
+        },
+        {  "bVisible": false }
+      ],
+      "sAjaxSource": "#{pricing_plans_path}"
+    });
+
 
 
     $("#btn_delete_pricing_plan").on('click',function(){
@@ -128,11 +160,10 @@ function get_feature(){
 }
 // Author: KhoiPCQ
 // Description: This JavaScript code handle event when user click delete on grid
-//              
+//
 // Created Date: July 26, 2013
 function view_delete_pp_confirm(obj)
 {
-  console.log(obj.parentNode);
   aPos = $('#pricing_plan_table').dataTable().fnGetPosition(obj.parentNode);
   aData = $('#pricing_plan_table').dataTable().fnGetData(aPos[0]);
   $("#btn_delete_pricing_plan").val(aData);
@@ -144,9 +175,9 @@ function create_success(success){
     $('#pricing_plan_table').dataTable().fnReloadAjax();
   }
 }
-// Author: ThuyLC
+// Author: KhoiPCQ
 // Description: This JavaScript code handle event when user ok to delete and store owner
-//              
+//
 // Created Date: July 26, 2013
 function delete_pp_request()
 {
@@ -156,7 +187,7 @@ function delete_pp_request()
     data: {
       authenticity_token: g_token,
       id:$("#btn_delete_pricing_plan").val()},
-    dataType: "JSON" 
+    dataType: "JSON"
   });
 
     //when done ajax

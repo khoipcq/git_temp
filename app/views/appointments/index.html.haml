@@ -1,5 +1,5 @@
 #appointment
-  %h3
+  %h4
     = t(".list")
   .btn-group{"data-toggle" => "buttons-radio"}
     %label.btn.btn-small.btn-white.active
@@ -14,7 +14,7 @@
         %label
           Date
         = text_field_tag :on_date, Date.current.strftime(t('time.short_format')), :class => 'input-small', readonly: "readonly"
-      .col.col-lg-2.col-offset-6
+      .col.col-lg-2.col-offset-6.text-right
         = link_to t(".view_report"), "#{report_organization_appointments_path(type_report: "day")}",class: "text-link"
     .table-scoll
       .outer
@@ -28,8 +28,8 @@
                 %td Ryan Gheris
               %tr
                 %th.fixed-col  9:00 AM
-                %td Cindy Pham
-                %td Cindy Pham
+                %td
+                %td
                 %td
               %tr
                 %th.fixed-col  9:30 AM
@@ -120,7 +120,7 @@
         %span
           To
         = text_field_tag :to_date, Date.current.strftime(t('time.short_format')), :class => 'input-small', readonly: "readonly"
-      .col.col-lg-2.col-offset-4
+      .col.col-lg-2.col-offset-4.text-right
         = link_to t(".view_report"), "#{report_organization_appointments_path(type_report: "week")}",class: "text-link"
     .table-scoll
       .outer
@@ -151,7 +151,7 @@
                 %td
                   %input.btn-status.status-booked{:type=>"button", onclick: "changeStatus(this);"}
                   .custom_name
-                    = link_to "Cindy Pham", "#", class: "hover_name"
+                    = link_to "Cindy Pham", "#{edit_organization_appointment_path(current_user.organization_id,1)}", class: "hover_name"
                 - 20.times do
                   %td
               %tr
@@ -227,4 +227,8 @@
 = javascript_include_tag "appointments"
 = javascript_include_tag "jquery.ui.datepicker"
 :javascript
+  $(document).ready(function(){
+    $("nav#nav li").removeClass("active");
+    $("nav#nav li#menu_appointments").addClass("active");
+  });
   var newAppoinmentPath = "#{new_organization_appointment_path}";

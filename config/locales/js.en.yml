@@ -7,6 +7,7 @@ en:
   business_name: "Business Name"
   username: "User Name"
   email: "Email"
+  feature_name: "Feature Name"
   firstname: "First Name"
   lastname: "Last Name"
   password: "Password"
@@ -113,4 +114,37 @@ en:
     j_phone: Phone Number
     j_city: City
     j_action: Action
-
+  features:
+    feature1: "Stores"
+    feature2: "Users - Staff"
+    feature3: "24/7 Appointment Scheduling"
+    feature4: "Facebook/Google Sign in"
+    feature5: "Daily backups"
+    feature6: "Secure HTTPS access"
+    feature7: "Export data to CSV"
+    feature8: "Instant Appointment Confirmations"
+    feature9: "Email Notifications"
+    feature10: "Appointment Scheduling Web Page"
+    feature11: "Offer Unlimited Services"
+    feature12: "12 Month Appointment Calendar"
+    feature13: "Automatic Appointment Reminders"
+    feature14: "Mobile/Tablet Web App"
+    feature15: "Collect & Promote Reviews"
+    feature16: "Customer Database & Analytics"
+    feature17: "Customer Support"
+    feature18: "Individual Staff Logins"
+    feature19: "Phone Support"
+    save_sort_order: "Save Sort Order"
+  helpers:
+    "lbl_yes": "Yes"
+    "lbl_no": "No"
+    "lbl_edit": "Edit"
+    "lbl_delete": "Delete"
+  msg:
+    msg_update_user_success: "Your Account Information has been updated successfully."
+    msg_update_user_failed: "Your Account Information has not been updated. "
+    msg_update_feature_success: "User updates A Feature information successfully."
+    msg_update_feature_failed: "User updates A Feature information failed."
+    msg_delete_feature_success: "User deletes A Feature Owner successfully."
+    msg_delete_feature_failed: "User deletes A Feature Owner unsuccessfully."
+    msg_delete_store_success: "User deletes A Store Owner successfully."

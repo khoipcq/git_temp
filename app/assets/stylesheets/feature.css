@@ -1,0 +1,10 @@
+.btn-autowidth
+{
+  width: auto !important;
+  float:left;
+  margin-right:10px;
+}
+#feature_table_filter
+{
+  width:400px;
+}

@@ -13,8 +13,6 @@ class Ability
   # * (json) Matched user list with paging and number all rows are finded
   #*Author*:: NamTV
   def initialize(user,org_id)
-    puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-    puts org_id
     user ||= User.new # guest user (not logged in)
     # permission view org for any user
     #can :show, Organization, :id => user.organization_id
@@ -30,10 +28,9 @@ class Ability
       return
     end
     # Allow user == admin of group manage User,Group,Log
-    p ">>>>>>>>>>>"
-    p user.organization_id
     if user.admin? && user.organization_id == org_id
       can :manage, User
+      can :manage, Customer
       can :manage, UserGroup
       can :manage, Review
       can :index, Activity

@@ -19,3 +19,10 @@ function render_date(obj)
     return "";
   }
 }
+// Author: ThuyLC
+// Description: This JavaScript code generate show alert text box
+// Created Date: July 26, 2013
+function showAlert(id,type, message) {
+  $("#"+id).append($("<div class='alert " + type + " fade in alert-msg-align'><a class='close' data-dismiss='alert'>×</a><p> " + message + " </p></div>"));
+  $(".alert").delay(2000).fadeOut("slow", function () { $(this).remove();});
+}

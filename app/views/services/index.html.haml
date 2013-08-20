@@ -5,3 +5,8 @@
     = render 'services'
 
 = javascript_include_tag "locations"
+:javascript
+  $(document).ready(function(){
+    $("nav#nav li").removeClass("active");
+    $("nav#nav li#menu_services").addClass("active");
+  });

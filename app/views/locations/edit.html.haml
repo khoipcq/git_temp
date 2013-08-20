@@ -28,7 +28,7 @@
             = render 'form_staff'
           #schedule.tab-pane
             = render 'form_schedule'
-      .row.text-center
+      .row.center
         = link_to t('button.save'),'#', :class => 'btn btn-success button_min'
         = link_to t('button.cancel'), organization_locations_path(current_user.organization_id), :class => 'btn btn-warning button_min'
       %br/

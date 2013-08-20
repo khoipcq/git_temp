@@ -41,17 +41,17 @@
       border-bottom: 1px solid #ccc
     .fixed-col
       border-top: 1px solid #ccc
+      border-left: none
       position: absolute
       left: 0
       width: 110px
       text-align: center
-      height: 40px
+      min-height: 40px
     .outer
       position: relative
-      border-bottom: 1px solid #ccc
+      border: 1px solid #ccc
     .inner
       border-left: 1px solid #ccc
-      border-right: 1px solid #ccc
       overflow-x: scroll
       overflow-y: visible
       margin-left: 110px
@@ -62,7 +62,7 @@
       height: 22px
     .action-hover
       a
-        margin-right: 10px
+        margin-right: 5px
     .center
       text-align: center
   .status-open
@@ -105,19 +105,20 @@
   span
     margin: 0px 20px
 #new_appointment, #edit_appointment
+  font-family: Arial
   .button_action
     margin-top: 50px
     margin-bottom: 20px
     position: relative
     .btn
       width: 70px
-      border-radius: 0px
+      border-radius: 5px
     .text-link
       position: absolute
       top: 10px
       margin-left: 22%
   .tab-content
-    width: 60%
+    width: 70%
     margin: 0 auto
   fieldset
     padding: 0.35em 0.625em 0.75em
@@ -131,6 +132,10 @@
   .label-middle
     .col
       padding: 6px 0px !important
+  #recurring-tab
+    .radio
+      padding-top: 6px
+      font-size: 14px
 #replace_confirm_notice
   .modal-dialog
     .text-center a

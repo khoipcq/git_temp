@@ -1,0 +1,11 @@
+.row.custom_datatable#new_customer
+  .panel
+    .panel-heading
+      New Customer
+    = render "form_personal_info"
+    %br/
+    .row.center
+      %button.btn.btn-primary{"data-dismiss" => "modal", :type => "submit"}
+        = t('button.save')
+      = link_to t('button.cancel'), organization_customers_path(current_user.organization_id), :class => 'btn btn-warning'
+    %br

@@ -2,9 +2,6 @@
   .panel
     .panel-heading
       = t('.title')
-      %a.btn.btn-primary.button_right.margin_bottom.no_margin_right{"data-toggle" => "modal", :href => "#new_shop"}
-        = t('.add_new_location')
-      .clearfix
     .row.custom_datatable.store-owners.locations
       %div
         .row
@@ -159,7 +156,7 @@
                   = text_field_tag 'email_address'
                 .clearfix
               %br/
-        .text-center
+        .center
           = link_to t('button.save'),'#', :class => 'btn btn-success button_min'
           = link_to t('button.cancel'), organization_locations_path(current_user.organization_id), :class => 'btn btn-warning button_min'
         %br/

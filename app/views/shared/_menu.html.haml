@@ -2,35 +2,35 @@
   %nav#nav.nav-primary.visible-lg.nav-vertical
     %ul.nav{"data-offset-top" => "50", "data-spy" => "affix"}
       - if !current_user.organization.is_super_org
-        %li
+        %li#menu_appointments
           %a{:href => "#{organization_appointments_path(current_user.organization_id)}"}
             %i.icon-th.icon-xlarge>
             = t('menu.appointments')
-        %li
+        %li#menu_customers
           %a{:href => "#{organization_customers_path(current_user.organization_id)}"}
             %i.icon-th.icon-xlarge>
             = t('menu.customers')
-        %li
+        %li#menu_reviews
           %a{:href => "#{organization_reviews_path(current_user.organization_id)}"}
             %i.icon-th.icon-xlarge>
             = t('menu.reviews')
-        %li
+        %li#menu_staffs
           %a{:href => "#{organization_staffs_path(current_user.organization_id)}"}
             %i.icon-th.icon-xlarge>
             = t('menu.staff')
-        %li
+        %li#menu_locations
           %a{:href => "#{organization_locations_path(current_user.organization_id)}"}
             %i.icon-th.icon-xlarge>
             = t('menu.locations')
-        %li
+        %li#menu_services
           %a{:href => "#{organization_services_path(current_user.organization_id)}"}
             %i.icon-th.icon-xlarge>
             = t('menu.services')
-        %li
+        %li#menu_email_campaigns
           %a{:href => "/"}
             %i.icon-th.icon-xlarge>
             = t('menu.email_campaigns')
-        %li
+        %li#menu_settings
           %a{:href => "/"}
             %i.icon-th.icon-xlarge>
             = t('menu.settings')

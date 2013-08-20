@@ -1,4 +1,5 @@
 - btn_save_id = '' if btn_save_id.blank?
+- btn_cancel_id = '' if btn_cancel_id.blank?
 #warning-dialog
   .modal-dialog
     .modal-content
@@ -11,6 +12,8 @@
       .text-center
         %a.btn.btn-primary{:href => "#",:id=>"#{btn_save_id}"}
           = t('button.btn-yes')
-        %a.btn{"data-dismiss" => "modal", :type => "submit"}
+        %a.btn{"data-dismiss" => "modal", :type => "button"}
           = t('button.btn-no')
+        %a.btn{"data-dismiss" => "modal", :type => "button",:id=>"#{btn_cancel_id}"}
+          = t('button.cancel')
       %br/

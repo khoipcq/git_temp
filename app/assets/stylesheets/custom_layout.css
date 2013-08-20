@@ -1,6 +1,9 @@
-body{
-  font-family: Arial;
+body #content{
+  font-family: Arial !important;
   font-size: 13px;
+}
+.panel-heading .nav , .panel-heading .nav-tabs{
+  font-size: 13px !important;
 }
 .affix{
   position: absolute;
@@ -251,4 +254,8 @@ table.recaptcha_theme_clean {
 {
 	font-weight: bold;
 	margin-left: -20px;
+}
+.alert p
+{
+	font-size: 13px;
 }

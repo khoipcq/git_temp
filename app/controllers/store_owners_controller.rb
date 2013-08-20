@@ -24,26 +24,37 @@ class StoreOwnersController < ApplicationController
       existed_org = Organization.find_by_id(params[:id])
       if !existed_org.expired_date.blank? && existed_org.expired_date < Date.today
         existed_org.destroy
-        render :json =>{"status" => "deleted"}
+        render :json =>{"status" => "deleted","message" =>I18n.t("features.message.msg_delete_success")}
       else
-        render :json => {"status" => "not_deleted" }
+        render :json => {"status" => "not_deleted" ,"message" =>I18n.t("features.message.msg_delete_failed")}
       end
     rescue => ex
-      render :json =>{"status" => ex.message}
+      render :json =>{"status" => "error","message" =>ex.message}
     end
   end
 
   def stop_access
     begin
       existed_org = Organization.find_by_id(params[:id])
+      message = ""
       if !existed_org.blank?
+        if existed_org.is_stopped ==false
+          message = I18n.t("features.message.msg_stop_success")
+        else
+          message = I18n.t("features.message.msg_start_success")
+        end
         existed_org.update_attributes(:is_stopped => !existed_org.is_stopped)
-        render :json =>{"status" => "success"}
+        render :json =>{"status" => "success","message" =>message}
       else
-        render :json => {"status" => "not_stop" }
+        if existed_org.is_stopped ==false
+          message = I18n.t("features.message.msg_stop_failed")
+        else
+          message = I18n.t("features.message.msg_start_failed")
+        end
+        render :json => {"status" => "not_stop","message" => message }
       end
     rescue => ex
-      render :json =>{"status" => ex.message}
+      render :json =>{"status" => "error","message" =>ex.message}
     end
   end
 

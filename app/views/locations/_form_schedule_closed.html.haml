@@ -1,8 +1,8 @@
-%h4 
+%h4
   = t('.title')
 .row.text-right.margin_bottom
-  = link_to t('button.add'),'#',:class => "btn btn-primary button_normal"
-.custom-datatable  
+  = link_to t('button.add'),'#',:class => "btn btn-primary"
+.custom-datatable
   %table#store_closed_table.table_store_closed.table.table-striped.dataTable
     %thead
       %tr
@@ -13,7 +13,7 @@
         %th.text-center
           = t('.description')
         %th.text-center
-          = t('.action')      
+          = t('.action')
     %tbody
       - 50.times do
         %tr
@@ -23,7 +23,7 @@
             = 3
           %td.text_left
             = "Vacation"
-          %td.text-center.action_link        
+          %td.text-center.action_link
             = link_to t('link.delete'), '#', "data-toggle" => "modal", :href => "#delModalClosed"
 
 

@@ -13,3 +13,8 @@
       = render "shared/confirm_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body')
 
 = javascript_include_tag "review"
+:javascript
+  $(document).ready(function(){
+    $("nav#nav li").removeClass("active");
+    $("nav#nav li#menu_reviews").addClass("active");
+  });

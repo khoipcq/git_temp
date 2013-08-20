@@ -15,7 +15,6 @@
     #warningModal.modal.fade
       = render "shared/warning", :message_header => t('.warning'), :message_body => t('.warning_delete')
 
-
 = javascript_include_tag "pricing_plan"
 
 :javascript
@@ -27,6 +26,7 @@
   var g_newPricingPlanPath = "#{new_pricing_plan_path}";
   var g_url_delete_pricing_plan = "#{delete_pricing_plans_path}";
   var g_pricingPlanPath = "#{pricing_plans_path}";
+  var g_features = '#{@feature}';
   var g_editPricingPlanPath = "#{edit_pricing_plan_path( '[id]')}";
 
   

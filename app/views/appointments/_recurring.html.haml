@@ -54,12 +54,12 @@
     .row
       %label.col.col-lg-3.control-label
         Repeat Every
-      .col.col-lg-2
-        %select{name: "repeat_every", :class => "input-small"}
+      .col.col-lg-3
+        %select{name: "repeat_every"}
           - (1..5).each do |day|
             %option{value: "#{day - 1}"}#{day} day#{"s" unless day == 1}
     .row
-      .col.col-lg-3.col-offset-3.special_col
+      .col.col-lg-3.col-offset-3
         .radio
           %label.radio-custom
             %input{type: "radio", name: "daily"}
@@ -71,7 +71,7 @@
           - (1..8).each do |time|
             %option{value: "#{time}"}#{time + 2} times
     .row
-      .col.col-lg-3.col-offset-3.special_col
+      .col.col-lg-3.col-offset-3
         .radio
           %label.radio-custom
             %input{type: "radio", name: "daily"}
@@ -85,7 +85,7 @@
       %label.col.col-lg-3.control-label
         Repeat Every
       .col.col-lg-3
-        %select{name: "repeat_every", :class => "input-small"}
+        %select{name: "repeat_every"}
           - (1..8).each do |week|
             %option{value: "#{week - 1}"}#{week} week#{"s" unless week == 1}
     .row
@@ -142,7 +142,7 @@
               %i.icon-circle-blank.checked
             Times
       .col.col-lg-3.control-label
-        %select{name: "times", :class => "input-small"}
+        %select{name: "times"}
           %option{value: "0"}Twice
           - (1..8).each do |time|
             %option{value: "#{time}"}#{time + 2} times
@@ -161,7 +161,7 @@
       %label.col.col-lg-3.control-label
         Repeat Every
       .col.col-lg-3
-        %select{name: "repeat_every", :class => "input-small"}
+        %select{name: "repeat_every"}
           - (1..4).each do |month|
             %option{value: "#{month - 1}"}#{month} Month#{"s" unless month == 1}
       .col.col-lg-1
@@ -175,7 +175,7 @@
               %i.icon-circle-blank.checked
             Times
       .col.col-lg-3.control-label
-        %select{name: "times", :class => "input-small"}
+        %select{name: "times"}
           %option{value: "0"}Twice
           - (1..8).each do |time|
             %option{value: "#{time}"}#{time + 2} times

@@ -201,7 +201,6 @@ class UsersController < ApplicationController
     user_info["password"] = params["password"]
 
     @existed_user = User.find_by_id(params["hidden_user_id"])
-    
     if @existed_user.id == current_user.id
       @existed_user.organization.update_attributes(:language => params["language"],:time_zone => params["time_zone"])
       @status_update = @existed_user.update_attributes(user_info)
