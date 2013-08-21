@@ -8,7 +8,7 @@
     %table#pricing_plan_table.table.table-striped.dataTable
       %div
   #pricing_plan
-    //= render "edit_pricing_plan"
+    = render "edit_pricing_plan"
     = render "new_pricing_plan"
     #delete_notice.modal.fade
       = render "shared/warning_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body'),:btn_save_id => "btn_delete_pricing_plan"

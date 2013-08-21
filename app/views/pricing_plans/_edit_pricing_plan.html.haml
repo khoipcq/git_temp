@@ -5,4 +5,4 @@
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
         %h4.modal-title
           = t('.edit')
-      = render "form", value_is_off: false
+      = render :partial => "form", :locals => {:is_new => false, value_is_off: false}

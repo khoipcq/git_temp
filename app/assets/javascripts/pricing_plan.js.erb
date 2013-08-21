@@ -14,7 +14,7 @@
   }
   function renderAction(obj){
     if(g_bDeletePricingPlan && g_bEditPricingPlan){
-      var editString = '<a data-toggle="modal" href="#edit_pricing_plan.modal" class="action-link">Edit</a>';
+      var editString = '<a data-toggle="modal" href="#" onclick="view_edit_dialog(this)" class="action-link">Edit</a>';
       var deleteString = '<a data-toggle="modal" href="#delete_notice.modal" onclick="view_delete_pp_confirm(this)" class="action-link">Delete</a>';
       return editString+" "+deleteString;
      }
@@ -111,7 +111,7 @@
       }
     });
 
-    var tf = $("#feature_include_table").dataTable({
+    var tfc = $("#feature_include_table").dataTable({
       sDom: '<rt>',
       "bFilter": true,
       "bLengthChange": true,
@@ -139,6 +139,33 @@
       "sAjaxSource": "/features/get_all_data"
     });
     
+    var tfe = $("#feature_include_table_edit").dataTable({
+      sDom: '<rt>',
+      "bFilter": true,
+      "bLengthChange": true,
+      "bInfo": true,
+      "bProcessing": false,
+      'sScrollY':'200px',
+      "bServerSide": true,
+      "sPaginationType": "full_numbers",
+      "iDisplayLength": 1000,
+      "aaSorting": [[ 1, "asc" ]],
+      "aoColumns": [
+        { "sTitle": "Feature Name",
+          'bSortable': false,
+          "sClass": "left",
+          "sWidth": "80%"
+        },
+        { "sTitle": "Supported",
+          'bSortable': false,
+          "fnRender": renderSupport,
+          "sClass": "center",
+          "sWidth": "20%"
+        },
+        {  "bVisible": false }
+      ],
+      "sAjaxSource": "/features/get_all_data"
+    });
     
 
     $("#btn_delete_pricing_plan").on('click',function(){
@@ -146,6 +173,7 @@
     });
     $("#bt_new_pricing_plan").on('click',function(){
       g_feature_ids = [];
+      init_form();
       $("#new_pricing_plan.modal").modal("show");
       $('#feature_include_table').dataTable().fnReloadAjax();
 
@@ -161,6 +189,34 @@
 
 
   });
+
+function view_edit_dialog(obj){
+  aPos = $('#pricing_plan_table').dataTable().fnGetPosition(obj.parentNode);
+  aData = $('#pricing_plan_table').dataTable().fnGetData(aPos[0]);
+
+  init_form();
+  get_pricing_plan_info(aData[4], function(ppInfo){
+    $("#edit_pricing_plan input[name=name]").val(ppInfo.name);
+    $("#edit_pricing_plan textarea[name=description]").val(ppInfo.description);
+    $('#edit_pricing_plan input[name=price_per_month]').val(ppInfo.price_per_month);
+    $('#edit_pricing_plan select[name=number_of_stores]').val(ppInfo.number_of_stores);
+    $('#edit_pricing_plan select[name=users_staff]').val(ppInfo.user_staff);
+    $('#edit_pricing_plan select[name=status]').val(ppInfo.status);
+  });
+  $("#edit_pricing_plan.modal").modal("show");
+}
+
+function get_pricing_plan_info(id, callback){
+ 
+  $.ajax({
+    url: g_pricingPlanPath + "/" + id + "/edit",
+    type: 'GET',
+    dataType:'json'
+  }).done(function(data){
+    callback(data);
+  });
+
+}
 
 function get_feature(){
   return_value = [];
@@ -187,7 +243,17 @@ function create_success(success){
   if(success){
     $("#new_pricing_plan.modal").modal("hide");
     $('#pricing_plan_table').dataTable().fnReloadAjax();
+    
   }
+}
+
+function init_form(){
+  $("input[name=name]").val("");
+  $("textarea[name=description]").val("");
+  $('input[name=price_per_month]').val("");
+  $('select[name=number_of_stores]').val(1);
+  $('select[name=users_staff]').val(1);
+  $('select[name=status]').val("true");
 }
 // Author: KhoiPCQ
 // Description: This JavaScript code handle event when user ok to delete and store owner

@@ -62,4 +62,18 @@ class PricingPlansController < ApplicationController
     end
     
   end
+  def edit
+    pricing_plan = PricingPlan.find_by_id(params[:id])
+    if request.xhr?
+      pricing_plan = {
+        name: pricing_plan.name,
+        description: pricing_plan.description,
+        price_per_month: pricing_plan.price_per_month,
+        number_of_stores: pricing_plan.number_of_stores,
+        user_staff: pricing_plan.user_staff,
+        status: pricing_plan.status.to_s
+      }
+      render :json => pricing_plan
+    end
+  end
 end
