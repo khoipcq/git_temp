@@ -52,6 +52,7 @@ class PricingPlan < ActiveRecord::Base
       status: params["status"],
       price_per_month: params["price_per_month"],
       number_of_stores: params["number_of_stores"],
+      user_staff: params["users_staff"],
       :features_pricing_plans_attributes => feature_data
     )
    

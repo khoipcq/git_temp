@@ -28,6 +28,7 @@ HelloWorld::Application.routes.draw do
     post "update_feature",:on =>:collection
     post "delete",:on =>:collection
     get "get_all_data", :on => :collection
+    get "get_all_data_by_pricing_plan_id", :on => :collection
   end
   resources :billing_reports
 

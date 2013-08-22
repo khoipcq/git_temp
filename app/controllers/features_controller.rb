@@ -56,4 +56,11 @@ class FeaturesController < ApplicationController
       render :json => @features
     end
   end
+
+  def get_all_data_by_pricing_plan_id
+    if request.xhr?
+      @features = Feature.get_all_data_by_pricing_plan_id(params[:id])
+      render :json => @features
+    end
+  end
 end

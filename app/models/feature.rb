@@ -18,7 +18,31 @@ class Feature < ActiveRecord::Base
       ]
     end
     return_data
-  end  	
+  end 
+
+  def self.get_all_data_by_pricing_plan_id(id)
+    return_data = get_all_feature()
+    features_ids = []
+    features_pricing_plans = FeaturesPricingPlan.find_all_by_pricing_plan_id(id)
+    
+    if features_pricing_plans
+      
+      features_pricing_plans.each do |feature|
+       features_ids << feature.feature_id
+      end
+      
+      (0..return_data["aaData"].size - 1).each do |i|
+        p "KKKKKKKKKKKKKKKK"
+        p return_data["aaData"]
+        p return_data["aaData"][i][2]
+        if features_ids.find_index(return_data["aaData"][i][2])
+          return_data["aaData"][i][1] = "1"
+        end
+      end 
+    end
+    return_data
+  end 
+
   def self.generate_static_data
     f1 = Feature.create(:name =>I18n.t("features.feature1"),:description =>"",:order =>0,:status =>true)
     f2 = Feature.create(:name =>I18n.t("features.feature2"),:description =>"",:order =>0,:status =>true)
