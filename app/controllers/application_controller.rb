@@ -37,8 +37,11 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     organization = resource.organization
     session[:org_id] = resource.organization_id
-
-     organization_path(organization)
+    if resource.admin? && organization.super_org?
+      store_owners_path
+    else
+      organization_path(organization)
+    end
     # (resource.admin? && organization.super_org?) ? store_owners_path : root_path
     # (resource.admin? && organization.super_org?) ? organizations_path : organization_path(organization)
   end

@@ -41,8 +41,8 @@ img {
 .meter
 {
   background-color:white;
-    border-collapse:collapse;
-    border:1px solid #999999;
+  border-collapse:collapse;
+  border:1px solid #999999;
 
 }
 .progress-bar{

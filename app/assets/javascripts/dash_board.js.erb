@@ -1,0 +1,72 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+// Author: ThuyLC
+// Description: This JavaScript for dash board page
+// Created Date: Agu 26, 2013
+$(document).ready(function(){
+  var tbs = $("#appointments_booked").dataTable({
+    sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+    "bFilter": true,
+    "bLengthChange": true,
+    "bInfo": false,
+    "bProcessing": false,
+    "bServerSide": true,
+    "oLanguage": {
+      "sEmptyTable": I18n.t('datatable.no_record'),
+      "sZeroRecords": I18n.t('datatable.no_record')
+    },
+    "sPaginationType": "full_numbers",
+    "iDisplayLength": g_per_page,
+    "aaSorting": [[ 0, "asc" ]],
+    "aoColumns": [
+      { "sTitle": I18n.t('dash_board.col_appointment_date'),
+        'bSortable': true,
+        "sClass": "left",
+        "sWidth": "20%",
+        "mData": "created_at",
+        "mRender": render_date
+      },
+      { "sTitle": I18n.t('dash_board.col_staff_member'),
+        'bSortable': true,
+        "sClass": "left",
+        "sWidth": "20%",
+        "mData": "full_staff_name",
+       },
+      { "sTitle": I18n.t('dash_board.col_customer'),
+        'bSortable': true,
+        "sClass": "left",
+        "sWidth": "20%",
+        "mData": "full_cus_name",
+      },
+      { "sTitle": I18n.t('dash_board.col_service'),
+        'bSortable': true,
+        "sClass": "left",
+        "sWidth": "20%",
+        "mData": "service_name",
+      }
+    ],
+    "sAjaxSource": g_url_list_appointments,
+    "fnInitComplete": function () {
+      $('div.dataTables_filter input[type="text"]').focus();
+      $("div.dataTables_filter input[type=\"text\"]").unbind();
+      $(".dataTables_filter input[type=\"text\"]").bind('keydown',function (e) {
+        if (e.keyCode == 13) {
+          tbs.fnFilter(this.value );
+          $(".dataTables_filter input[type=\"text\"]").focus();
+        }
+      });
+    },
+    "fnServerParams":function(oData){
+      oData.push({name : "from_date",value:$("#from_date").val()});
+      oData.push({name : "to_date",value:$("#to_date").val()});
+      oData.push({name : "staff_id",value:$("#select_staff").val()});
+      oData.push({name : "customer_id",value:$("#select_customer").val()});
+      oData.push({name : "service_id",value:$("#select_service").val()});
+    }
+  });
+
+
+
+
+
+});

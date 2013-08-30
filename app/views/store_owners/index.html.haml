@@ -18,14 +18,17 @@
             %form.form-horizontal
               .form-group
                 %label.col-lg-4.control-label
-                  = t('.business_name')
+                  = t('users.business_name')
                   %span.required (*)
                 .col-lg-7.col-offset-5
                   .col-lg-3
                     %select.form-control
-                      %option{:value => "1"} Mr
-                      %option{:value => "1"} Mrs
-                      %option{:value => "1"} Ms
+                      %option{:value => "1"}
+                        = t('.mr')
+                      %option{:value => "1"}
+                        = t('.mrs')
+                      %option{:value => "1"}
+                        = t('.ms')
                   .col-lg-9
                     %input.form-control{ type: "text", autofocus: true }/
                 .clearfix
@@ -40,20 +43,20 @@
               %br/
               .form-group
                 %label.col-lg-4.control-label
-                  = t('.email_address')
+                  = t('users.email_address')
                   %span.required (*)
                 .col-lg-7.col-offset-5
                   %input.form-control{type: "text"}/
                 .clearfix
               %br/
               .form-group
-                %label.col-lg-4.control-label= t('.address')
+                %label.col-lg-4.control-label= t('users.address')
                 .col-lg-7.col-offset-5
                   %input.form-control{type: "text"}/
                 .clearfix
               %br/
               .form-group
-                %label.col-lg-4.control-label= t('.country')
+                %label.col-lg-4.control-label= t('users.country')
                 .col-lg-7.col-offset-5
                   %select.form-control
                     %option{:value => ""} Vietnam
@@ -62,7 +65,7 @@
                 .clearfix
               %br/
               .form-group
-                %label.col-lg-4.control-label= t('.phone')
+                %label.col-lg-4.control-label= t('users.phone')
                 .col-lg-7.col-offset-5
                   .input-group
                     %span.input-group-addon (+84)
@@ -70,8 +73,8 @@
                 .clearfix
               %br/
               .form-group.text-center
-                %button.btn.btn-default.btn-success{:type => "submit"}= t('.save')
-                %button.btn.btn-default.btn-warning{:type => "submit"}= t('.cancel')
+                %button.btn.btn-default.btn-success{:type => "submit"}= t('button.save')
+                %button.btn.btn-default.btn-warning{:type => "submit"}= t('button.cancel')
         / /.modal-content
       / /.modal-dialog
     / /.modal
@@ -86,14 +89,17 @@
             %form.form-horizontal
               .form-group
                 %label.col-lg-4.control-label
-                  = t('.business_name')
+                  = t('users.business_name')
                   %span.required (*)
                 .col-lg-7.col-offset-5
                   .col-lg-3
                     %select.form-control
-                      %option{:value => "1"} Mr
-                      %option{:value => "1"} Mrs
-                      %option{:value => "1"} Ms
+                      %option{:value => "1"} 
+                        = t('.mr')
+                      %option{:value => "1"}
+                        = t('.mrs')
+                      %option{:value => "1"}
+                        = t('.ms')
                   .col-lg-9
                     %input.form-control{ type: "text", autofocus: true }/
                 .clearfix
@@ -108,20 +114,20 @@
               %br/
               .form-group
                 %label.col-lg-4.control-label
-                  = t('.email_address')
+                  = t('users.email_address')
                   %span.required (*)
                 .col-lg-7.col-offset-5
                   %input.form-control{type: "text"}/
                 .clearfix
               %br/
               .form-group
-                %label.col-lg-4.control-label= t('.address')
+                %label.col-lg-4.control-label= t('users.address')
                 .col-lg-7.col-offset-5
                   %input.form-control{type: "text"}/
                 .clearfix
               %br/
               .form-group
-                %label.col-lg-4.control-label= t('.country')
+                %label.col-lg-4.control-label= t('users.country')
                 .col-lg-7.col-offset-5
                   %select.form-control
                     %option{:value => ""} Vietnam
@@ -130,7 +136,7 @@
                 .clearfix
               %br/
               .form-group
-                %label.col-lg-4.control-label= t('.phone')
+                %label.col-lg-4.control-label= t('users.phone')
                 .col-lg-7.col-offset-5
                   .input-group
                     %span.input-group-addon (+84)
@@ -138,8 +144,8 @@
                 .clearfix
               %br/
               .form-group.text-center
-                %button.btn.btn-default.btn-success{:type => "submit"}= t('.save')
-                %button.btn.btn-default.btn-warning{:type => "submit"}= t('.cancel')
+                %button.btn.btn-default.btn-success{:type => "submit"}= t('button.save')
+                %button.btn.btn-default.btn-warning{:type => "submit"}= t('button.cancel')
         / /.modal-content
       / /.modal-dialog
     / /.modal
@@ -151,31 +157,31 @@
             %h4.modal-title= t('.view_store_owner_info')
           .modal-body
             %fieldset
-              %legend= t('.personal_info')
+              %legend= t('users.personal_info')
               %dl.dl-horizontal
                 %dt
-                  = t('.business_name')
+                  = t('users.business_name')
                   \:
                 %dd
                   %label.normal_label#lbl_business_name
 
                 %dt
-                  = t('.email_address')
+                  = t('users.email_address')
                   \:
                 %dd
                   %label.normal_label#lbl_email
                 %dt
-                  = t('.state_province')
+                  = t('users.state')
                   \:
                 %dd
                   %label.normal_label#lbl_state
                 %dt
-                  = t('.city')
+                  = t('users.city')
                   \:
                 %dd
                   %label.normal_label#lbl_city
                 %dt
-                  = t('.address')
+                  = t('users.address')
                   \:
                 %dd
                   %label.normal_label#lbl_address
@@ -184,44 +190,44 @@
 
 
                 %dt
-                  = t('.country')
+                  = t('users.country')
                   \:
                 %dd
                   %label.normal_label#lbl_country
                 %dt
-                  = t('.phone')
+                  = t('users.phone')
                   \:
                 %dd
                   %label.normal_label#lbl_phone
             %fieldset
-              %legend= t('.credit_card_info')
+              %legend= t('users.credit_card.credit_card_info')
               %dl.dl-horizontal
                 %dt
-                  = t('.card_number')
+                  = t('users.credit_card.card_number')
                   \:
                 %dd
                   %label.normal_label#lbl_card_number
 
                 %dt
-                  = t('.expiration_date')
+                  = t('users.credit_card.expiration_date')
                   \:
                 %dd
                   %label.normal_label#lbl_card_expired_date
             .text-center
-              %button.btn.btn-info{'data-dismiss' => 'modal'}= t('.close')
+              %button.btn.btn-info{'data-dismiss' => 'modal'}= t('button.close')
           .modal-footer
         / /.modal-content
       / /.modal-dialog
     / /.modal
     / delete Modal
     #delModal.modal.fade
-      = render "shared/warning_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body'),:btn_save_id => "btn_delete_store"
+      = render "shared/warning_notice", :message_header => t('common.delete_confirm_header'), :message_body => t('.delete_confirm_body'),:btn_save_id => "btn_delete_store"
 
     / stop access modal
     #saModal.modal.fade
       = render "shared/warning_notice", :message_header => t('.stop_access_confirm_header'), :message_body => t('.stop_access_confirm_body'),:btn_save_id => "btn_stop_access_store"
     #warningModal.modal.fade
-      = render "shared/warning", :message_header => t('.warning'), :message_body => t('.warning_delete')
+      = render "shared/warning", :message_header => t('common.warning'), :message_body => t('.warning_delete')
 = javascript_include_tag "list_store_owner"
 :javascript
   var g_url_list_store_owner = "#{store_owners_path}";

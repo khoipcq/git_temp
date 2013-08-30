@@ -17,20 +17,15 @@ en:
       title: "Forgot your password?"
       info: "To reset your password, enter your email address."
       require_info: "An email has been sent to your email address. Please check the email to"
-      new_password: "New password"
       confirm_password: "Confirm new password"
+      thank_you: "Thank you for your request. An email has been sent to you with a link to a page where you can change your password. Click %{link} to go back to the Log In page."
+      changed_successfully: "Your password has been changed successfully. Click %{link} to go back to the Log in page."
     confirm:
       resend_title: "Resend confirmation instructions"
     confirmations:
       new:
         title: Password Reset
         welcome: "Welcome User, please update you password"
-        new_password: New Password
-        weak: Weak
-        fair: Fair
-        strong: Strong
-        password_confirm: Password Confirmation
-        submit: Submit
         password_description: "<p>The security of your password is evaluated by 4 terms:</p><ul><li>Uppercase Letters</li><li>Lowercase Letters</li><li>Numbers</li><li>Symbols</li></ul><div class='justify'><b>Weak:</b> Password possesses 1/4 terms or 2/4 terms.<br/><b>Fair:</b> Password possesses 3/4 terms.<br/><b>Strong:</b> Password possesses 4/4 terms.</div>"
       confirmed: "Your account was successfully confirmed. You are now signed in."
       send_instructions: "You will receive an email with instructions about how to confirm your account in a few minutes."
@@ -38,10 +33,10 @@ en:
     failure:
       already_authenticated: "You are already signed in."
       inactive: "Your account has been disabled. Please contact your system administrator."
-      invalid: "Invalid username or password."
+      invalid: "The Email Address or password you entered is incorrect"
       invalid_token: "Invalid authentication token."
       locked: "Your account is locked."
-      not_found_in_database: "The User Name or Password you entered is incorrect."
+      not_found_in_database: " The Email Address or password you entered is incorrect."
       timeout: "Your session expired, please sign in again to continue."
       unauthenticated: "You need to sign in before continuing."
       unconfirmed: "You have to confirm your account before continuing."
@@ -71,9 +66,7 @@ en:
       new:
         title: Password Reset
         forgot: Forgotten Password
-        description: "Enter your registerd email address and we will email you instruction on how to reset your password"
-        email: Email
-        submit: Submit
+        description: "Enter your registered email address and we will email you instruction on how to reset your password"
         log_in: Return to Log In
 
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
@@ -84,15 +77,6 @@ en:
     registrations:
       new:
         title: Sign Up Now
-        business_name: Business Name
-        last_name: Last Name
-        first_name: First Name
-        weak: Weak
-        fair: Fair
-        strong: Strong
-        email: Email Address
-        password: Password
-        password_confirm: Password Confirmation
         sign_up: Sign Up
         accept: I accept the
         term_service: Terms of Service
@@ -105,11 +89,25 @@ en:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize confirming your new email address."
       updated: "You updated your account successfully."
     sessions:
+      current_password: Current password
+      user_name: "User Name"
+      password: Password
+      password_confirm: Password Confirmation
+      confirm_password: Confirm Password
+      confirmation_password: Confirmation Password
+      change_password: Change Password
+      new_password: New Password
+      password_change_info: "(leave blank if you don't want to change it)"
+      current_password_info: "(we need your current password to confirm your changes)"
+      password_promt: password over 6 characters or more
+      confirm_pass_promt: repeat password for confirmation
+      password_strength:
+        weak: Weak
+        fair: Fair
+        strong: Strong
       new:
         title: Log In to Apotori
         welcome: Welcome
-        email: Email        
-        password: Password
         remember: Remember me on this computer
         log_in: Log In
         log_in_with_facebook: Log In with Facebook
@@ -128,16 +126,17 @@ en:
         name: Organization Name
       user:
         name: 'Organization Name'
+        email: "Email Address"
     errors:
       messages:
-        taken: "has already been taken. Try another?"
+        taken: "you entered is already in-use. Please input another one."
   errors:
     messages:
       wrong_captcha: There was an error with the recaptcha code below. Please re-enter the code.
       already_confirmed: "was already confirmed, please try signing in"
       confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
       expired: "has expired, please request a new one"
-      not_found: "cannot be found in the system."
+      not_found: "you entered is incorrect."
       not_locked: "was not locked"
       taken: "has already been taken. Try another?"
       not_saved:

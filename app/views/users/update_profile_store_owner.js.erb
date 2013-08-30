@@ -1,0 +1,12 @@
+var is_saved = "<%= @status_update%>";
+var full_name = "<%= @full_name%>";
+var email_fail = "<%=@existed_user.errors.messages.has_key?(:email)%>";
+ if(is_saved=="true"){
+   showAlert('myAlert','alert-success', I18n.t("msg.msg_update_personal_info_success"));
+   init_form();
+   $('#user_login_welcome').html(full_name);
+ }else if(is_saved=="false" && email_fail == "true"){
+   showAlert('myAlert','alert-error', I18n.t("msg.email_in_use"));
+ }else{
+   showAlert('myAlert','alert-error', I18n.t("msg.msg_update_user_failed"));
+}

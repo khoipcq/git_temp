@@ -7,9 +7,9 @@
         - if flash[:alert]
           %p(style="color: red")= flash[:alert]
         .block
-          = f.email_field :email, placeholder: t('.email'), autofocus: true
+          = f.email_field :email, placeholder: t('users.email'), autofocus: true
         .block
-          = f.password_field :password, placeholder: t('.password')
+          = f.password_field :password, placeholder: t('devise.sessions.password')
         - if devise_mapping.rememberable?
           .checkbox
             %label.control-label.checkbox-custom
@@ -29,6 +29,6 @@
         .text-center    
           %label
             = t('.ask_account')             
-            = link_to t('sign_up_here') , new_user_registration_path, :id=> 'link_sign_up'
+            = link_to t('.sign_up_here') , new_user_registration_path, :id=> 'link_sign_up'
 = javascript_include_tag "user"
 

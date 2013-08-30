@@ -1,0 +1,69 @@
+#edit_email_campaign
+  .row.custom_datatable
+    .panel
+      .panel-heading
+        = t(".title")
+      #form_email_campaign
+        %form.form-horizontal
+          .row
+            %label.col.col-lg-3.control-label
+              = t('.template_name')
+              %span.required *
+            .col.col-lg-8
+              %input.parsley-validated{"data-required" => "true", "data-type" => "text", :name => "name", :type => "text",:autofocus => true,tabindex:"1" }
+          .row
+            %label.col.col-lg-3.control-label
+              = t('common.description')
+            .col.col-lg-8
+              %textarea{"data-rangelength" => "[20,200]", :rows => "3", tabindex: "2"}
+          .row
+            %label.col.col-lg-3.control-label
+              = t('common.status')
+            .col.col-lg-8
+              %select{:name => "status", tabindex:"5"}
+                %option{:value => "1"}
+                  = t('common.active')
+                %option{:value => "0"}
+                  = t('common.inactive')
+          .row
+            %label.col.col-lg-3.control-label
+              = t('.email_content')
+              %span.required *
+          .row
+            .col.col-lg-10.col-offset-1
+              .edit_template
+                .row
+                  [Customer Name] comes here,
+                .row
+                  .editable_header
+                    .col.col-lg-12.control-label
+                      %textarea{:class => "ckeditor", :name => "editable_header"}
+                %hr
+                  .none_editable_field
+                    %fieldset
+                      .appointment_summary
+                        %label Appointment Summary
+                      %br
+                      %label Date: August 12 2013
+                      %br
+                      %label Time: 14:15 PM
+                      %br
+                      %label Company Name: Yuji Detal Service
+                      %br
+                      %label Service: Dental Service
+                      %br
+                      %label Address: Tokyo-to Shinijuku-ku Nishi Shinijuku 13-7 #3202
+                      %br
+                      %label Special Request:
+                %hr
+                .row
+                  .editable_footer
+                    .col.col-lg-12.control-label
+                      %textarea{:class => "ckeditor", :name => "editable_footer"}
+                .row
+                  = t('.footer_description')
+        .row.center.group-button-small
+          = link_to t('button.save'),'#', :class => 'btn btn-success'
+          = link_to t('button.cancel'), organization_email_campaigns_path(current_user.organization_id), :class => 'btn btn-warning'
+= javascript_include_tag "email_campaigns"
+

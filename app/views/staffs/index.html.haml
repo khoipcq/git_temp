@@ -1,10 +1,10 @@
 .row.custom_datatable#list_staff
   .panel
     .panel-heading
-      List of Staff Members
+      = t('.title')
     %br/
     .row.align-right
-      %input.btn.btn-primary{:type=>"button",:value=>'Add New Group', "data-toggle" => "modal", "data-target" => "#add_staff_group"}
+      %input.btn.btn-primary{:type=>"button",:value=> t('button.add_new_group'), "data-toggle" => "modal", "data-target" => "#add_staff_group"}
     - i = 0
     - @return_hash.each do |key, value|
       - i = i+1
@@ -12,11 +12,11 @@
         %br/
         .panel
           .button_add
-            = link_to "Rename","","data-toggle" => "modal", "data-target" => "#edit_staff_group", class: "text-link"
+            = link_to t('link.rename'),"","data-toggle" => "modal", "data-target" => "#edit_staff_group", class: "text-link"
             |
-            = link_to "Delete", "","data-toggle" => "modal", "data-target" => "#warn_del_staff_group_notice", class: "text-link"
+            = link_to t('link.delete'), "","data-toggle" => "modal", "data-target" => "#warn_del_staff_group_notice", class: "text-link"
             |
-            = link_to "Add New Staff", "#{new_organization_staff_path}", class: "text-link"
+            = link_to t('link.add_new_staff'), "#{new_organization_staff_path}", class: "text-link"
           .panel-heading
             = key
           %table.group-staff-dataTable.table.table-striped.dataTable{:id => i}
@@ -25,26 +25,26 @@
       %br/
       .panel
         .button_add
-          = link_to "Rename","","data-toggle" => "modal", "data-target" => "#edit_staff_group", class: "text-link"
+          = link_to t('link.rename'),"","data-toggle" => "modal", "data-target" => "#edit_staff_group", class: "text-link"
           |
-          = link_to "Delete", "","data-toggle" => "modal", "data-target" => "#delete_staff_group_notice", class: "text-link"
+          = link_to t('link.delete'), "","data-toggle" => "modal", "data-target" => "#delete_staff_group_notice", class: "text-link"
           |
-          = link_to "Add New Staff", "#{new_organization_staff_path}", class: "text-link"
+          = link_to t('link.add_new_staff'), "#{new_organization_staff_path}", class: "text-link"
         .panel-heading
           Group 3
         %table.group-staff-dataTable.table.table-striped.dataTable{:id => 3}
 
     #add_staff_group.modal.fade
-      = render "staff_group_name", :message_title => "Group Name", :first_button => "Create Group", :second_button => "Cancel"
+      = render "staff_group_name", :message_title => t('.group_name'), :first_button => t('button.create_group'), :second_button => t('button.cancel')
     #edit_staff_group.modal.fade
-      = render "staff_group_name", :message_title => "Rename Group", :first_button => "Save", :second_button => "Cancel"
+      = render "staff_group_name", :message_title => t('.rename_group'), :first_button => t('button.save'), :second_button => t('button.cancel')
     = render "new_staff"
     #delete_staff_group_notice.modal.fade
-      = render "shared/confirm_notice", :message_header => t('.delete_staff_group_confirm_header'), :message_body => t('.delete_staff_group_confirm_body')
+      = render "shared/confirm_notice", :message_header => t('common.delete_confirm_header'), :message_body => t('.delete_staff_group_confirm_body')
     #delete_staff_notice.modal.fade
-      = render "shared/confirm_notice", :message_header => t('.delete_staff_confirm_header'), :message_body => t('.delete_staff_confirm_body')
+      = render "shared/confirm_notice", :message_header => t('common.delete_confirm_header'), :message_body => t('.delete_staff_confirm_body')
     #warn_del_staff_group_notice.modal.fade
-      = render "shared/warn_notice", :message_header => t('.delete_staff_group_warn_header'), :message_body => t('.delete_staff_group_warn_body')
+      = render "shared/warn_notice", :message_header => t('common.warning'), :message_body => t('.delete_staff_group_warn_body')
   = javascript_include_tag "staff"
   :javascript
   $(document).ready(function(){

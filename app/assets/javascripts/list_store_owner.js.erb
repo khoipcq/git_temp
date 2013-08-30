@@ -10,7 +10,7 @@ $(document).ready(function(){
   var tbs = $("#list").dataTable({
         sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
         "bFilter": true,
-        "bLengthChange": false,
+        "bLengthChange": true,
         "bInfo": false,
         "bProcessing": false,
         "bServerSide": true,
@@ -83,10 +83,10 @@ function render_action(obj)
   btn_view = '<a href="#" class="action-link" data-target="#view" onclick="view_store_owner_modal(this)" data-toggle="modal">'+I18n.t('store_owner.act_view')+'</a>';
   btn_delete = ' <a class="action-link" data-toggle="modal" href="#delModal" onclick="view_delete_confirm(this)">'+I18n.t('store_owner.act_delete')+'</a>';
   btn_view_billing = ' <a class="action-link" href="/billing_reports/'+obj.aData.id+'">'+I18n.t('store_owner.act_view_billing_info')+'</a>';
-  if (Number(obj.aData.is_stopped) == 1){
-    btn_stop_access = ' <a class="action-link" data-toggle="modal" href="#saModal" onclick="view_stop_access_confirm(this)">'+I18n.t('store_owner.act_stop_access')+'</a>';
+  if (Number(obj.aData.is_stopped) == 0){
+    btn_stop_access = ' <a class="action-link" data-toggle="modal" href="#saModal" onclick="view_stop_access_confirm(this,false)">'+I18n.t('store_owner.act_stop_access')+'</a>';
   }else{
-    btn_stop_access = ' <a class="action-link" data-toggle="modal" href="#saModal" onclick="view_stop_access_confirm(this)">'+I18n.t('store_owner.act_start_access')+'</a>';
+    btn_stop_access = ' <a class="action-link" data-toggle="modal" href="#saModal" onclick="view_stop_access_confirm(this,true)">'+I18n.t('store_owner.act_start_access')+'</a>';
   }
   
   return btn_view + btn_delete + btn_view_billing + btn_stop_access;
@@ -119,8 +119,14 @@ function view_store_owner_modal(obj)
 // Created Date: July 26, 2013
 function get_store_owner_info(data)
 {
+  
   $("#lbl_business_name").html(data.name);
   $("#lbl_email").html(data.email);
+  $("#lbl_state").html(data.state);
+  $("#lbl_city").html(data.city);
+  $("#lbl_address").html(data.address);
+  $("#lbl_country").html(data.country);
+  $("#lbl_phone").html(data.phone);
 }
 
 // Author: ThuyLC
@@ -169,11 +175,19 @@ function delete_store_request()
 // Description: This JavaScript code handle event when user ok to delete and store owner
 //              
 // Created Date: July 26, 2013
-function view_stop_access_confirm(obj)
+function view_stop_access_confirm(obj,is_stopped)
 {
   aPos = $('#list').dataTable().fnGetPosition(obj.parentNode);
   aData = $('#list').dataTable().fnGetData(aPos[0]);
   g_current_obj = aData;
+  if(is_stopped ==true){
+    $("#saModal center").html(I18n.t("msg.msg_start_access"));
+    $("#saModal .modal-title").html(I18n.t("msg.msg_start_access_header"));
+    
+  }else{
+    $("#saModal center").html(I18n.t("msg.msg_stop_access"));
+    $("#saModal .modal-title").html(I18n.t("msg.msg_stop_access_header"));
+  }
 }
 
 // Author: ThuyLC

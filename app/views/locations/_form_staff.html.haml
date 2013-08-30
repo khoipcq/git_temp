@@ -1,41 +1,25 @@
-%br/
-.row.text-right.margin_fit_table
-  = link_to t('button.add_new_group'), '#',:class => "btn btn-primary "
+#form_staff_loc  
+  %br/
+  .row.text-right.margin-fit-table
+    = link_to t('button.add_new_group'), '#',:class => "btn btn-primary "
 
-.panel#list-panel
-  .panel-heading.font_normal
-    = "Group 1"
-    .text-right
-      = link_to t('link.rename'), '#', :class => "text-link"
-      |
-      = link_to t('link.delete'), '#', :class => "text-link"
-      |
-      = link_to t('link.add_new_staff'), '#', :class => "text-link"
-
-  %table#staff_table.table.table-striped.dataTable.table_staff
-    %thead
-      %tr
-        %th.text-center
-          = t('.staff_name')
-        %th.text-center
-          = t('.email')
-        %th.text-center
-          = t('.phone')
-        %th.text-center
-          = t('.action')
-    %tbody
-      - 50.times do
-        %tr
-          %td
-            = "Ken Nguyen"
-          %td
-            = "kenng@gmail.com"
-          %td.text_left
-            = "(555) 435 1245"
-          %td.text_center
-            = link_to t('link.edit'), '#', :class => 'action-link'
-            = link_to t('link.delete'), '#', :class => 'action-link', "data-toggle" => "modal", :href => "#delModalStaff"
-%br/
+  - i = 0
+  - @return_hash_staff.each do |key, value|
+    - i = i+1
+    .custom_datatable#services
+      %br/
+      .panel
+        .button_add
+          = link_to t('link.rename'),'#', class: "text-link"
+          |
+          = link_to t('link.delete'), '#', class: "text-link"
+          |
+          = link_to t('link.add_new_service'), '#', class: "text-link"
+        .panel-heading
+          = key
+        %table.group-staff-dataTable.table.table-striped.dataTable{:id => i}      
+      %br/
+  
 
 #delModalStaff.modal.fade
-  = render "shared/warning_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body')
+  = render "shared/warning_notice", :message_header => t('common.delete_confirm_header'), :message_body => t('.delete_confirm_body')

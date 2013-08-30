@@ -3,15 +3,22 @@
     %header.panel-heading.text-right
       %ul.nav.nav-tabs.pull-left
         %li.active
-          %a{"data-toggle" => "tab", :href => "#profile_info-tab"} Profile Information
+          %a{"data-toggle" => "tab", :href => "#profile_info-tab"}
+            = t('users.profile_infomation') 
         %li
-          %a{"data-toggle" => "tab", :href => "#staff_hours-tab"} Staff Hours
+          %a{"data-toggle" => "tab", :href => "#staff_hours-tab"} 
+            = t('staffs.hours')
         %li
-          %a{"data-toggle" => "tab", :href => "#services_offered-tab"} Services Offered
+          %a{"data-toggle" => "tab", :href => "#services_offered-tab"} 
+            = t('staffs.service_offered')
         %li
-          %a{"data-toggle" => "tab", :href => "#days_off-tab"} Days off
+          %a{"data-toggle" => "tab", :href => "#days_off-tab"}
+            = t('staffs.days_off')
         %li
-          %a{"data-toggle" => "tab", :href => "#access_rights-tab"} Access rights
+          %a{"data-toggle" => "tab", :href => "#access_rights-tab"}
+            = t('staffs.access_right')        
+            
+   
 
     .tab-content
       #profile_info-tab.tab-pane.active

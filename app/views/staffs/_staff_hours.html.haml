@@ -1,61 +1,80 @@
 .row
-  = link_to "Daytime (8am-6pm)","", class: "text-link"
+  = link_to t('link.day_time'),"", class: "text-link"
   |
-  = link_to "Evening (6pm-12am)", "", class: "text-link"
+  = link_to t('link.evening_time'), "", class: "text-link"
   |
-  = link_to "Early Morning (12am-8am)", "", class: "text-link"
+  = link_to t('link.morning_time'), "", class: "text-link"
   |
-  = link_to "Show All", "", class: "text-link"
+  = link_to t('link.show_all'), "", class: "text-link"
 %br/
 %table.table.table-bordered.center
   %tbody
     %tr
       %th
-      %th Monday
-      %th Tuesday
-      %th Wednesday
-      %th Thursday
-      %th Friday
-      %th Saturday
-      %th Sunday
+      %th
+        = t('time.monday_f')
+      %th
+        = t('time.tuesday_f')
+      %th
+        = t('time.wedsday_f')
+      %th
+        = t('time.thursday_f')
+      %th
+        = t('time.friday_f')
+      %th
+        = t('time.saturday_f')
+      %th
+        = t('time.sunday_f')
     - h = 8
     - 5.times do |i|
       %tr
         %th{:rowspan =>"2"}
           = "#{h+i}" + "am"
         - 5.times do |i|
-          %td.online Online
-        %td.offline Closed
-        %td.offline Closed
+          %td.online
+            = t('common.online')
+        %td.offline
+          = t('common.closed')
+        %td.offline
+          = t('common.closed')
       %tr
         - 5.times do |i|
-          %td.online Online
-        %td.offline Closed
-        %td.offline Closed
+          %td.online
+            = t('common.online')
+        %td.offline
+          = t('common.closed')
+        %td.offline
+          = t('common.closed')
     - h = 1
     - 5.times do |i|
       %tr
         %th{:rowspan =>"2"}
           = "#{h+i}" + "pm"
         - 5.times do |i|
-          %td.online Online
-        %td.offline Closed
-        %td.offline Closed
+          %td.online
+            = t('common.online')
+        %td.offline
+          = t('common.closed')
+        %td.offline
+          = t('common.closed')
       %tr
         - 5.times do |i|
-          %td.online Online
-        %td.offline Closed
-        %td.offline Closed
+          %td.online
+            = t('common.online')
+        %td.offline
+          = t('common.closed')
+        %td.offline
+          = t('common.closed')
 #change_status.modal.fade
   .modal-dialog
     .modal-content
       .modal-header
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
         %h4.modal-title.center
-          Status
+          = t('common.status')
       .modal-body
         .row.center
           %button#btn-online.btn.btn-success
-            Online
+            = t('common.online')
           %buton#btn-closed.btn.btn-warning
-            Closed
+            = t('common.closed')

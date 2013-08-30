@@ -1,0 +1,20 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      %h4.modal-title.center
+        Rename URL
+    .modal-body
+      %form.form-horizontal
+        .row
+          Provide this short web address to your customers so they can quickly find your Scheduling Webpage
+        .row
+          Your URL can only contain letters, numbers and dash '-' symbol.
+        .row
+          %span https://
+          %span
+            %input{:name => "url", :placeholder => "URL", :type => "text"}
+          %span .apotori.com
+        .row.center
+          = link_to t("button.save"), "", class: "btn-success btn"
+          %button.btn.btn-warning{"data-dismiss" => "modal", :type => "submit"} Cancel
+    .modal-footer

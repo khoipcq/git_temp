@@ -1,7 +1,8 @@
-#warning-dialog .text-center a {
+#warning-dialog, #cancellation_customer .text-center a {
   width: 150px;
   border-radius: 25px;
-  margin: 0 10px 10px;
+  /*margin: 0 10px 10px;*/
+  margin: auto;
 }
 #warning-dialog .modal-dialog {
   top: 250px;
@@ -9,4 +10,23 @@
 #warning-dialog .square-btn.text-center a {
   width: 70px;
   border-radius: 5px;
+}
+#myAlert{
+  position:absolute;
+  z-index: 99999;
+  width: 40%;
+  margin-top: 12px;
+  margin-left: 34%;
+}
+#myAlert>div{
+  height: auto;
+}
+#myAlert p{
+  height: 0px;
+}
+#warning-dialog .modal-dialog .text-center a
+{
+  width: 150px;
+  border-radius: 25px;
+  margin: 0 10px 10px;
 }

@@ -6,10 +6,10 @@
           %form
             %h3
               = message_header
-            = text_field_tag "name"
-      .text-center
-        %a.btn.btn-success.button_normal{:href => "#"}
+            = text_field_tag "name", '', :autofocus => true
+      .center
+        %a.btn.btn-success{:href => "#"}
           = button_main
-        %a.btn.btn-warning.button_normal{'data-dismiss' => 'modal'}
+        %a.btn.btn-warning{'data-dismiss' => 'modal'}
           = t('button.cancel')
       %br/

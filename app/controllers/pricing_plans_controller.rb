@@ -1,9 +1,9 @@
 class PricingPlansController < ApplicationController
 
   SORT_MAP = {
-    1 => "name",
-    2 => "description",
-    3 => "status"
+    0 => "name",
+    1 => "description",
+    2 => "status"
   }
   ##
   #Get user_group list except an user_group of Administrator
@@ -39,9 +39,13 @@ class PricingPlansController < ApplicationController
   def delete
     #begin
       existed_pp = PricingPlan.find_by_id(params[:id])
-      if existed_pp #and don't have user use it
+      is_used = BillingReport.exists?(pricing_plan_id:params[:id])
+      #is_used = true
+      if existed_pp && !is_used
         existed_pp.destroy
         render :json =>{"status" => "deleted"}
+      elsif is_used
+        render :json =>{"status" => "is_used"}
       else
         render :json => {"status" => "not_deleted" }
       end
@@ -63,19 +67,27 @@ class PricingPlansController < ApplicationController
     
   end
   def edit
-    pricing_plan = PricingPlan.find_by_id(params[:id])
+    @pricing_plan = PricingPlan.find_by_id(params[:id])
     if request.xhr?
-      if pricing_plan
+      if @pricing_plan
         pricing_plan = {
-          name: pricing_plan.name,
-          description: pricing_plan.description,
-          price_per_month: pricing_plan.price_per_month,
-          number_of_stores: pricing_plan.number_of_stores,
-          user_staff: pricing_plan.user_staff,
-          status: pricing_plan.status.to_s
+          name: @pricing_plan.name,
+          description: @pricing_plan.description,
+          price_per_month: @pricing_plan.price_per_month,
+          number_of_stores: @pricing_plan.number_of_stores,
+          user_staff: @pricing_plan.user_staff,
+          status: @pricing_plan.status.to_s
         }
       end
       render :json => pricing_plan
+    end
+  end
+  def update_pricing_plan
+    is_saved = PricingPlan.update_pricing_plan(params)
+    
+    if request.xhr?
+        result = "update_success(#{is_saved})"
+        render :js => result
     end
   end
 end

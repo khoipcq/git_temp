@@ -4796,7 +4796,15 @@
 			$(n)
 				.bind( 'click.DT', oData, function (e) {
 						n.blur(); // Remove focus outline for mouse users
-						fn(e);
+						if(typeof g_is_change !="undefined"){
+							if(g_is_change ==false){
+								fn(e);
+							}
+						}
+						else
+						{
+							fn(e);
+						}
 					} )
 				.bind( 'keypress.DT', oData, function (e){
 					if ( e.which === 13 ) {
@@ -7310,21 +7318,25 @@
 		 *        nPaging.appendChild( nLast );
 		 *        
 		 *        $(nFirst).click( function () {
+		 *          console.log("vao f");
 		 *          oSettings.oApi._fnPageChange( oSettings, "first" );
 		 *          fnCallbackDraw( oSettings );
 		 *        } );
 		 *        
 		 *        $(nPrevious).click( function() {
+		 *          console.log("vao f2");
 		 *          oSettings.oApi._fnPageChange( oSettings, "previous" );
 		 *          fnCallbackDraw( oSettings );
 		 *        } );
 		 *        
 		 *        $(nNext).click( function() {
+		 *          console.log("vao f3");
 		 *          oSettings.oApi._fnPageChange( oSettings, "next" );
 		 *          fnCallbackDraw( oSettings );
 		 *        } );
 		 *        
 		 *        $(nLast).click( function() {
+		 *          console.log("vao f4");
 		 *          oSettings.oApi._fnPageChange( oSettings, "last" );
 		 *          fnCallbackDraw( oSettings );
 		 *        } );
@@ -11659,6 +11671,7 @@
 				var oLang = oSettings.oLanguage.oPaginate;
 				var oClasses = oSettings.oClasses;
 				var fnClickHandler = function ( e ) {
+					console.log(e.data.action);
 					if ( oSettings.oApi._fnPageChange( oSettings, e.data.action ) )
 					{
 						fnCallbackDraw( oSettings );

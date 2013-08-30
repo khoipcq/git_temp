@@ -1,16 +1,83 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
-$(document).ready(function(){
-  $("#service_table1").dataTable({
-    sPaginationType: "full_numbers",
-    sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
-     aoColumnDefs:
-      [{"bSortable": false, "aTargets": [0,1,2,3,4,5]}]
-    });
-  $("#service_table2").dataTable({
-    sPaginationType: "full_numbers",
-    sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
-     aoColumnDefs:
-      [{"bSortable": false, "aTargets": [0,1,2,3,4,5]}]
+function renderServiceAction(obj){
+    // thay id cua service vao day => demo voi id = 1
+    var edit_link = g_editServicePath.replace("%5Bid%5D",1);
+    var editString = '<a data-toggle="modal" href="'+edit_link+'" class="action-link">Edit</a>';
+    var deleteString = '<a data-toggle="modal" href="#delModal.modal" class="action-link">Delete</a>';
+    return editString+" "+deleteString;
+  }
+function renderSort(obj){
+  var input = '<input name="order" class="text_sort text-center input-small" value="'+ obj.aData[3]+'"></input>';
+  return input;
+}
+function renderActive(obj){
+    if(obj.aData[4]){
+      return I18n.t('common.active');
+    }
+    else {
+      return I18n.t('common.inactive');
+    }
+  }
+
+ $(document).ready(function(){
+  jQuery.fn.reverse = [].reverse;
+  $('.group-service-dataTable').reverse().each(function() {
+      console.log(this);
+      var table = $(this).dataTable({
+        sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+        "bFilter": true,
+        "bLengthChange": true,
+        "bInfo": true,
+        "bProcessing": true,
+        "bServerSide": false,
+        "sPaginationType": "full_numbers",
+        "iDisplayLength": g_displayLength,
+        "aaSorting": [[ 1, "asc" ]],
+        "aoColumns": [
+          { "sTitle": I18n.t('services.name'),
+            "sClass": "vertical-middle",
+            'bSortable': false,
+            "sWidth": "20%"
+          },
+          { "sTitle": I18n.t('services.duration'),
+            "sClass": "text-right vertical-middle",
+            'bSortable': false,
+            "sWidth": "15%"
+          },
+          { "sTitle": I18n.t('services.cost'),
+            'bSortable': false,
+            "sClass": "text-right vertical-middle",
+            "sWidth": "15%"
+           },
+          { "sTitle": I18n.t('services.sort_order'),
+            'bSortable': false,
+            "fnRender": renderSort,
+            "sClass": "center",
+            "sWidth": "15%"
+          },
+          { "sTitle": I18n.t('services.status'),
+            'bSortable': false,
+            "fnRender": renderActive,
+            "sClass": "center vertical-middle",
+            "sWidth": "15%"
+          },
+          { "sTitle": I18n.t('services.action'),
+            'bSortable': false,
+            "fnRender": renderServiceAction,
+            "sClass": "center vertical-middle",
+            "sWidth": "20%"
+          },
+          {  "bVisible": false }
+        ],
+        "sAjaxSource": "#{organization_services_path}",
+        "fnServerParams": function ( aoData ) {
+          aoData.push( { "name": "service_group_id", "value": $(this).attr('id')});
+        },
+        "fnInitComplete": function () {
+          $('div.dataTables_filter#1_filter input').focus();
+
+        }
+      });
     });
 });

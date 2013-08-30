@@ -1,0 +1,40 @@
+#preview_email_campaign.modal.fade.in{:style =>"z-index: 9999; opacity: 1;"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h4.modal-title
+          = t('.title')
+      .modal-body
+        %form.form-horizontal
+          .custormer_name
+            %label Customer Name
+          %br
+            Thank you very much for booking an appointment with us!
+          %br
+          Just a fiendly reminder of your appointment as below.
+          %hr
+          %fieldset
+            .appointment_summary
+              %label Appointment Summary
+            %br
+            %label Date: August 12 2013
+            %br
+            %label Time: 14:15 PM
+            %br
+            %label Company Name: Yuji Detal Service
+            %br
+            %label Service: Dental Service
+            %br
+            %label Address: Tokyo-to Shinijuku-ku Nishi Shinijuku 13-7 #3202
+            %br
+            %label Special Request:
+          %hr
+          .row
+            Thank you again for your appointment.
+            %br
+            Looking forward to seeing you soon.
+          .row.center
+            %buton.btn.btn-info{"data-dismiss" => "modal", :type => "button", }
+              = t('button.close')
+
+      .modal-footer

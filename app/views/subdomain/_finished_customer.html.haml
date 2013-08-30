@@ -1,0 +1,77 @@
+.panel  
+  - unless flash[:booking_sucess].nil?
+    %div#success_message
+      %p.row.text-center 
+        %i.icon-ok-circle.icon-large     
+        = flash[:booking_sucess]
+      %p.row.text-center 
+        = flash[:confirmation]
+  %br/
+  .row#print_confirmation
+    .pull-left
+      %h4
+        = t('.summary')
+    .pull-right
+      %i.icon-print
+      = link_to t('link.print_confirm'), '#', :class => 'text-link'
+  %br/
+  %table#finished_table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th
+          = t('subdomain.view_appoitment_detail_customer.appointment_detail')
+    %tbody
+      %tr
+        %td
+          .row
+            .col.col-lg-3
+              = t('subdomain.view_appoitment_detail_customer.title')
+            .col.col-lg-3
+              = "#{t('services.service')}: "
+            .col.col-lg-6
+              Top Coat          
+          .row
+            .col.col-lg-3
+              
+            .col.col-lg-3
+              = "#{t('menu.staff')}: " 
+            .col.col-lg-6
+              Lee Dung
+          .row
+            .col.col-lg-3
+              
+            .col.col-lg-3
+              = "#{t('time.date')}: "
+            .col.col-lg-6
+              Wednesday, August 13, 2013
+          .row
+            .col.col-lg-3
+              
+            .col.col-lg-3
+              = "#{t('time.time')}: "
+            .col.col-lg-6
+              03:00PM
+          .row            
+            .col.col-lg-3
+              = t('subdomain.view_appoitment_detail_customer.special_request')
+            .col.col-lg-8
+              Please offer me a special service
+      %tr
+        %td
+          .row
+            .col.col-lg-3
+              = t('domain.confirm_customer.your_details')
+            .col.col-lg-9
+              Tom Jee
+          .row
+            .col.col-lg-3              
+            .col.col-lg-9
+              (090) 12345678
+          .row
+            .col.col-lg-3              
+            .col.col-lg-9
+              tomjee@gmail.com
+
+      
+  .text-center
+    = link_to t('link.book_another_appointment'), '#', :class => 'btn btn-info'

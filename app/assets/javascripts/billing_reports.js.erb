@@ -1,0 +1,145 @@
+$.fn.dataTableExt.oApi.fnPagingInfo = function ( oSettings )
+{
+  return {
+    "iStart":         oSettings._iDisplayStart,
+    "iEnd":           oSettings.fnDisplayEnd(),
+    "iLength":        oSettings._iDisplayLength,
+    "iTotal":         oSettings.fnRecordsTotal(),
+    "iFilteredTotal": oSettings.fnRecordsDisplay(),
+    "iPage":          oSettings._iDisplayLength === -1 ?
+        0 : Math.ceil( oSettings._iDisplayStart / oSettings._iDisplayLength ),
+    "iTotalPages":    oSettings._iDisplayLength === -1 ?
+        0 : Math.ceil( oSettings.fnRecordsDisplay() / oSettings._iDisplayLength )
+  };
+};
+
+
+$(document).ready(function(){
+  var tbs = $("#billing_report_table").dataTable({
+        sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+        "bFilter": true,
+        "bLengthChange": true,
+        "bInfo": false,
+        "bProcessing": false,
+        "bServerSide": true,
+        "oLanguage": {
+          "sEmptyTable": I18n.t('datatable.no_record'),
+          "sZeroRecords": I18n.t('datatable.no_record')
+        },
+        "sPaginationType": "full_numbers",
+        "iDisplayLength":g_per_page,
+        "aaSorting": [[ 0, "asc" ]],
+        "aoColumns": [
+          { "sTitle": I18n.t('billing_report.col_billing_id'),
+            'bSortable': true,
+            "sClass": "center",
+            "sWidth": "25%",
+            "mData": "org_id"
+          },
+          { "sTitle": I18n.t('billing_report.col_business_name'),
+            "sWidth": "40%",
+            "mData": "name",
+            "sClass": "left",
+            // "mRender": render_date
+          },
+          { "sTitle": I18n.t('billing_report.col_to_tal_paid'),
+            'bSortable': true,
+            "sClass": "right",
+            "sWidth": "20%",
+            "mData": "org_total",
+            "mRender": render_total_paid
+           },
+          { "sTitle": I18n.t('store_owner.col_action'),
+            'bSortable': false,
+            "sClass": "left",
+            "sWidth": "10%",
+            "mData": "org_id",
+            "mRender": render_action
+          }
+        ],
+        "sAjaxSource": g_url_list_billing_report,
+        "fnInitComplete": function () {
+          $('div.dataTables_filter input[type="text"]').focus();
+          $("div.dataTables_filter input[type=\"text\"]").unbind();
+          $(".dataTables_filter input[type=\"text\"]").bind('keydown',function (e) {
+            if (e.keyCode == 13) {
+              tbs.fnFilter(this.value );
+              $(".dataTables_filter input[type=\"text\"]").focus();
+            }
+          });
+        },
+        "fnDrawCallback": function (oSettings) {
+          page_obj = this.fnPagingInfo();
+
+          sum = 0;
+          if(oSettings.aoData && page_obj.iPage == page_obj.iTotalPages-1)
+          {
+            sum = oSettings.aoData[0]._aData.sum_paid;
+            tr = document.createElement("tr");
+            td1= document.createElement("td");
+            td2= document.createElement("td");
+            td_text_total = document.createElement("td");
+            td_text_total.innerHTML = I18n.t("billing_report.col_sum_paid");
+            td_text_total.setAttribute("class","left");
+            td_sum = document.createElement("td");
+            td_sum.setAttribute("class","right_bold");
+            td_sum.innerHTML = accounting.formatNumber(sum);
+            tr.appendChild(td1);
+            tr.appendChild(td_text_total);
+            tr.appendChild(td_sum);
+            tr.appendChild(td2);
+            $("#billing_report_table tbody").append(tr);
+          }
+          
+
+          
+        },
+         "fnFooterCallback": function ( nRow, aaData, iStart, iEnd, aiDisplay ) {
+            console.log(aaData);
+            console.log(nRow);
+             var iTotalMarket = 0;
+             
+             
+            // var iPageMarket = 0;
+            // for ( var i=iStart ; i<iEnd ; i++ )
+            // {
+            //     iPageMarket += aaData[ aiDisplay[i] ][4]*1;
+            // }
+            console.log("vao footer");
+             tr = document.createElement("tr");
+             td_text_total = document.createElement("td");
+             td_text_total.setAttribute("colspan",2);
+             td_text_total.innerHTML ="123";
+             tr.appendChild(td_text_total);
+             $("#billing_report_table tbody").append(tr);
+            // var nCells = nRow.getElementsByTagName('th');
+            // console.log(nCells);
+            // nCells[1].innerHTML = parseInt(iPageMarket * 100)/100 +
+            //     '% ('+ parseInt(iTotalMarket * 100)/100 +'% total)';
+        }
+      });
+
+//Handle event
+  // $('#view').on('show.bs.modal', function() {
+  //     alert("dasdasd");
+  //   })
+  
+  
+});
+
+// Author: ThuyLC
+// Description: This JavaScript code customize render action column
+// Created Date: July 26, 2013
+function render_action(obj)
+{
+  btn_view = '<a class="action-link" data-target="#view" href="/billing_reports/'+obj+'" >'+I18n.t('store_owner.act_view')+'</a>';
+  return btn_view ;
+
+}
+// Author: ThuyLC
+// Description: This JavaScript code customize render action column
+// Created Date: July 26, 2013
+function render_total_paid(obj)
+{
+  return accounting.formatNumber(obj);
+}

@@ -1,0 +1,39 @@
+#my_page.row
+  .panel
+    .panel-heading
+      .col.col-lg-10
+      .col.col-lg-2.text-center
+        %label Apotori
+        %p
+          = t('subdomain.index.customer_center')
+    .row.text-right
+      = link_to 'Log Out', '/auth/sign_out', :class => 'text-link margin-link-right'
+    %h4.margin-title
+      = t('.my_page')
+
+    .vertical-tab#view_store_info
+      .tabbable.tabs-left.full-height
+        %ul.nav.nav-tabs.full-height
+          %li.active
+            %a{"data-toggle" => "tab", :href => "#account_info"}
+              = t('.my_account_info')
+          %li
+            %a{"data-toggle" => "tab", :href => "#appointment"}
+              = t('.my_appointment')
+          %li
+            %a{:href => "#", :id => 'customer_booking'}
+              = t('subdomain.index.booking')
+          %li
+            %a{"data-toggle" => "tab",:href => '#about_apotori'}
+              = t('subdomain.index.about_apotori')
+        .tab-content
+          #account_info.tab-pane.active
+            = render "account_info_customer"
+          #appointment.tab-pane
+            = render "appointment_customer"
+          #about_apotori.tab-pane
+            = render "about_apotori"
+      %br/
+= javascript_tag nil, id: "passed_data", data: {redirect_url: '/booking'}
+= javascript_include_tag "my_page_customer"
+= javascript_include_tag "view_store_info"

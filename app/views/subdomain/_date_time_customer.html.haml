@@ -1,0 +1,92 @@
+.panel
+  %div#success_message
+    .row
+      %p.col.col-lg-10
+        = "#{t('services.service')}: "
+        %span#span_service Nail > Top Coat
+      %p.col.col-lg-2.text-right
+        = link_to t('link.change'), '#', :class => 'text-link'
+    .row
+      .col.col-lg-10
+        = "#{t('menu.staff')}: "
+        %span#span_staff Lee Dung
+      .col.col-lg-2.text-right
+        = link_to t('link.change'), '#', :class => 'text-link'
+  %br
+  .row#row_form
+    .col.col-lg-5
+      .row
+        .col.col-lg-2
+        .col.col-lg-8
+          %h4
+            = t('.select_date_time')
+
+        .clearfix
+      %br
+      .row
+        .col.col-lg-2
+        .col.col-lg-8
+          #datepicker
+        .clearfix
+
+
+    .col.col-lg-5
+      %br
+      %br
+      %br
+      .row.text-center
+        %a#select_date{"data-date-format" => "yyyy-mm-dd"}
+          = Date.current.strftime("%A, %B %d")
+      %br
+      .row#hour_appointment
+        .col.col-lg-5
+          .row.text-center.margin_time
+            = t('time.morning')
+          %br
+          %ul
+            %li
+              = link_to '9:00am', '#', {data: {:target => '#form-wizard', :wizard => 'next'}}
+
+            %li
+              = link_to '9:30am', '#', {data: {:target => '#form-wizard', :wizard => 'next'}}
+            %li
+              = link_to '10:00am', '#', {data: {:target => '#form-wizard', :wizard => 'next'}}
+            %li
+              = link_to '10:30am', '#', {data: {:target => '#form-wizard', :wizard => 'next'}}
+            %li
+              = link_to '11:00am', '#', {data: {:target => '#form-wizard', :wizard => 'next'}}
+            %li
+              = link_to '11:30am', '#', {data: {:target => '#form-wizard', :wizard => 'next'}}
+
+
+        .col.col-lg-5
+          .row.text-center.margin_time
+            = t('time.afternoon')
+          %br
+          %ul
+            %li
+              = link_to '1:00pm', '#', {data: {:target => '#form-wizard', :wizard => 'next'}}
+            %li
+              = link_to '1:30pm', '#', {data: {:target => '#form-wizard', :wizard => 'next'}}
+            %li
+              = link_to '2:00pm', '#', {data: {:target => '#form-wizard', :wizard => 'next'}}
+            %li
+              = link_to '2:30pm', '#', {data: {:target => '#form-wizard', :wizard => 'next'}}
+            %li
+              = link_to '3:00pm', '#', {data: {:target => '#form-wizard', :wizard => 'next'}}
+            %li
+              = link_to '3:30am', '#', {data: {:target => '#form-wizard', :wizard => 'next'}}
+            %li
+              = link_to '4:00pm', '#', {data: {:target => '#form-wizard', :wizard => 'next'}}
+            %li
+              = link_to '4:30am', '#', {data: {:target => '#form-wizard', :wizard => 'next'}}
+        .clearfix
+    .clearfix
+  .actions.m-t
+    = link_to t('button.back'), '#', :class => 'btn btn-info margin_back_confirm', data: {:target => '#form-wizard', :wizard => 'previous'}
+= javascript_include_tag 'customer_booking'
+= javascript_include_tag "jquery.ui.datepicker"
+/ = javascript_include_tag "bootstrap-datepicker"
+
+
+

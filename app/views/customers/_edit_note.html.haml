@@ -3,14 +3,14 @@
     .modal-content
       .modal-header
         %h4.modal-title
-          Edit Note
+          = t('.title')
       .modal-body
         %form.form-horizontal
           %div
             %textarea{"data-rangelength" => "[20,200]", :rows => "3", :tabindex => "2"} She wants to delay appointment
         %br/
         .row.center
-          %button.btn.btn-primary{"data-dismiss" => "modal", :type => "submit"}
+          %button.btn.btn-success{"data-dismiss" => "modal", :type => "submit"}
             = t('button.save')
           %button.btn.btn-warning{"data-dismiss" => "modal", :type => "submit"}
             = t('button.cancel')

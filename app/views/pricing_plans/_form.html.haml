@@ -1,4 +1,5 @@
 .modal-body
+
   - if is_new
     = form_tag pricing_plans_path,:remote => true,:class =>"form-horizontal", :id=>"pricing_plan_form"  do
       .row
@@ -18,13 +19,10 @@
           %span.required *
         .col.col-lg-6
           %input{:name => "price_per_month", :type => "text", tabindex:"3"}
-        .col.col-lg-2
-          .right_align
-            .btn-group{"data-toggle" => "buttons-radio", tabindex:"4"}
-              %label.btn.btn-big.btn-white.active
-                %input#option1{:name => "price_per_month", :type => "radio"}
-                JPY
-              
+        .col.col-lg-1
+          %label.control-label.text-left
+            JPY
+
       .row
         %label.col.col-lg-4.control-label
           = t('.number_of_stores')
@@ -32,52 +30,53 @@
         .col.col-lg-8
           %select{:name => "number_of_stores",tabindex:"5"}
             %option{:value => "1"} 1
+            %option{:value => "5"} 5
+            %option{:value => "10"} 10
             %option{:value => "100"} 100
-            %option{:value => "1000"} 1,000
             %option{:value => "-2"} Unlimited
       .row
         %label.col.col-lg-4.control-label
           = t('.users_staff')
           %span.required *
         .col.col-lg-8
-          %select{:name => "users_staff",tabindex:"6"}
+          %select{:name => "user_staff",tabindex:"6"}
             %option{:value => "1"} 1
+            %option{:value => "5"} 5
+            %option{:value => "10"} 10
             %option{:value => "100"} 100
-            %option{:value => "1000"} 1,000
             %option{:value => "-2"} Unlimited
       .row
         %label.col.col-lg-4.control-label
-          = t('.status.name')
+          = t('common.status')
           %span.required *
         .col.col-lg-8
           %select{:name => "status", tabindex:"7"}
             %option{:value => "true"}
-              = t('.status.active')
+              = t('common.active')
             %option{:value => "false"}
-              = t('.status.inactive')
+              = t('common.inactive')
+
       %br/
       .feature_table_include
         %b
           = t('.features_included')
         %br/
         %br/
-
-        .row.custom_datatable#feature_include
-          .panel
-            %table#feature_include_table.table.table-striped.dataTable
+        .custom_datatable#feature_include
+          %table#feature_include_table.table.dataTable
 
         %br/
         .row.center
 
-          
+
           %button.btn.btn-success{:type => "submit",tabindex:"11", :id => "button_save"}
 
             = t('button.save')
           %buton.btn.btn-warning{"data-dismiss" => "modal", :type => "button", tabindex:"12"}
             = t('button.cancel')
   - else
-    = form_tag pricing_plans_path,:remote => true,:class =>"form-horizontal", :id=>"pricing_plan_form_edit"  do
-
+    = form_tag update_pricing_plan_pricing_plans_path,:remote => true,:class =>"form-horizontal", :id=>"pricing_plan_form_edit", :method => "POST"  do
+      %input{:id => "pp_id",:name => "pp_id", :type => "hidden"}
       .row
         %label.col.col-lg-4.control-label
           = t('.name')
@@ -95,13 +94,10 @@
           %span.required *
         .col.col-lg-6
           %input{:name => "price_per_month", :type => "text", tabindex:"3"}
-        .col.col-lg-2
-          .right_align
-            .btn-group{"data-toggle" => "buttons-radio", tabindex:"4"}
-              %label.btn.btn-big.btn-white.active
-                %input#option1{:name => "price_per_month", :type => "radio"}
-                JPY
-              
+        .col.col-lg-1
+          %label.control-label.text-left
+            JPY
+
       .row
         %label.col.col-lg-4.control-label
           = t('.number_of_stores')
@@ -109,29 +105,31 @@
         .col.col-lg-8
           %select{:name => "number_of_stores",tabindex:"5"}
             %option{:value => "1"} 1
+            %option{:value => "5"} 5
+            %option{:value => "10"} 10
             %option{:value => "100"} 100
-            %option{:value => "1000"} 1,000
             %option{:value => "-2"} Unlimited
       .row
         %label.col.col-lg-4.control-label
           = t('.users_staff')
           %span.required *
         .col.col-lg-8
-          %select{:name => "users_staff",tabindex:"6"}
+          %select{:name => "user_staff",tabindex:"6"}
             %option{:value => "1"} 1
+            %option{:value => "5"} 5
+            %option{:value => "10"} 10
             %option{:value => "100"} 100
-            %option{:value => "1000"} 1,000
             %option{:value => "-2"} Unlimited
       .row
         %label.col.col-lg-4.control-label
-          = t('.status.name')
+          = t('common.status')
           %span.required *
         .col.col-lg-8
           %select{:name => "status", tabindex:"7"}
             %option{:value => "true"}
-              = t('.status.active')
+              = t('common.active')
             %option{:value => "false"}
-              = t('.status.inactive')
+              = t('common.inactive')
       %br/
       .feature_table_include
         %b
@@ -139,116 +137,13 @@
         %br/
         %br/
 
-        .row.custom_datatable#feature_include
-          .panel
-            %table#feature_include_table_edit.table.table-striped.dataTable
-
-        / .header_container
-        /   %table.table.table-striped
-        /     %thead
-        /       %tr
-        /         %th
-        /           = t('features.edit_feature.name')
-        /         %th
-        /           %center
-        /             = t('features.edit_feature.support')
-        / .body_container.scrollable
-        /   %table.table.table-bordered
-        /     / %thead
-        /     /   %tr
-        /     /     %th
-        /     /       = t('features.edit_feature.name')
-        /     /     %th
-        /     /       %center
-        /     /         = t('features.edit_feature.support')
-
-        /     %tbody.bodycontainer.scrollable
-        /       - if value_is_off
-        /         %tr
-        /           %td
-        /             Store
-        /           %td
-        /             %center
-        /               .radio_button
-        /                 .btn-group{"data-toggle" => "buttons-radio", tabindex:"8"}
-        /                   %label.btn.btn-small.btn-white
-        /                     %input#option1{:name => "option_store", :type => "radio"}
-        /                     = t('feature.option.on')
-        /                   %label.btn.btn-small.btn-white.active
-        /                     %input#option2{:name => "option_store", :type => "radio"}
-        /                     = t('feature.option.off')
-        /         %tr
-        /           %td
-        /             User-staff
-        /           %td
-        /             %center
-        /               .radio_button
-        /                 .btn-group{"data-toggle" => "buttons-radio", tabindex:"9"}
-        /                   %label.btn.btn-small.btn-white
-        /                     %input#option1{:name => "option_user_staff", :type => "radio"}
-        /                     = t('feature.option.on')
-        /                   %label.btn.btn-small.btn-white.active
-        /                     %input#option2{:name => "option_user_staff", :type => "radio"}
-        /                     = t('feature.option.off')
-        /         %tr
-        /           %td
-        /             24/7 Appoinment Scheduling
-        /           %td
-        /             %center
-        /               .radio_button
-        /                 .btn-group{"data-toggle" => "buttons-radio", tabindex:"10"}
-        /                   %label.btn.btn-small.btn-white
-        /                     %input#option1{:name => "option_appoinment", :type => "radio"}
-        /                     = t('feature.option.on')
-        /                   %label.btn.btn-small.btn-white.active
-        /                     %input#option2{:name => "option_appoinment", :type => "radio"}
-        /                     = t('feature.option.off')
-        /       - if !value_is_off
-        /         %tr
-        /           %td
-        /             Store
-        /           %td
-        /             %center
-        /               .radio_button
-        /                 .btn-group{"data-toggle" => "buttons-radio", tabindex:"8"}
-        /                   %label.btn.btn-small.btn-white.active
-        /                     %input#option1{:name => "option_store", :type => "radio"}
-        /                     = t('feature.option.on')
-        /                   %label.btn.btn-small.btn-white
-        /                     %input#option2{:name => "option_store", :type => "radio"}
-        /                     = t('feature.option.off')
-        /         %tr
-        /           %td
-        /             User-staff
-        /           %td
-        /             %center
-        /               .radio_button
-        /                 .btn-group{"data-toggle" => "buttons-radio", tabindex:"9"}
-        /                   %label.btn.btn-small.btn-white.active
-        /                     %input#option1{:name => "option_user_staff", :type => "radio"}
-        /                     = t('feature.option.on')
-        /                   %label.btn.btn-small.btn-white
-        /                     %input#option2{:name => "option_user_staff", :type => "radio"}
-        /                     = t('feature.option.off')
-        /         %tr
-        /           %td
-        /             24/7 Appoinment Scheduling
-        /           %td
-        /             %center
-        /               .radio_button
-        /                 .btn-group{"data-toggle" => "buttons-radio", tabindex:"10"}
-        /                   %label.btn.btn-small.btn-white.active
-        /                     %input#option1{:name => "option_appoinment", :type => "radio"}
-        /                     = t('feature.option.on')
-        /                   %label.btn.btn-small.btn-white
-        /                     %input#option2{:name => "option_appoinment", :type => "radio"}
-        /                     = t('feature.option.off')
-
+        .custom_datatable#feature_include
+          %table#feature_include_table_edit.table.dataTable
 
         %br/
         .row.center
 
-          
+
           %button.btn.btn-success{:type => "submit",tabindex:"11", :id => "button_save_edit"}
 
             = t('button.save')

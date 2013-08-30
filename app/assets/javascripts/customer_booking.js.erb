@@ -1,0 +1,102 @@
+var prev_staff;
+var prev_label_staff;
+var prev_link_staff;
+var prev_service;
+var prev_label;
+var prev_link;
+var prev; //hold previous list
+
+var label_service;
+
+var service;//hold the selected service
+var service_group; //group of service
+var staff;//hold the selected staff
+var select_date; // hold the select date
+var select_time; // hold the select time
+
+$(document).ready(function() {
+  //select service event
+  $('#select_service ul').on('click', 'li', function(){
+    var list2 = $(this);
+    label_service = list2.find('label');
+    service = label_service.text();
+    service_group = label_service.parent().parent().parent().parent().parent().find('strong').text();
+    console.log(service);
+    var link = list2.find('a');
+
+
+    if (prev_service) {
+      prev_service.removeClass('select_li');
+      prev_label.removeClass('color-white');
+      prev_link.removeClass('color-blue');
+    };
+    label_service.addClass('color-white');
+    list2.addClass('select_li');
+    link.addClass('color-blue')
+    prev_service = list2;
+    prev_label = label_service;
+    prev_link = link;
+    //set text for service
+    var span_service = $('#span_service');
+    span_service.text(service_group + ">" + service);
+    console.log(span_service);
+
+  });
+
+  //select staff event
+  $('#select_staff ul').on('click', 'li', function(){
+    var list1 = $(this);
+    var label = list1.find('label');
+    var link = list1.find('a');
+    staff = link.text();
+    console.log(staff);
+    //set text for service
+    var span_staff = $('#span_staff');
+    span_staff.text(staff);
+    console.log(span_staff);
+
+    if (prev_staff) {
+      prev_staff.removeClass('select_li');
+      prev_label_staff.removeClass('color-white');
+      prev_link_staff.removeClass('color-blue');
+    };
+    label.addClass('color-white');
+    list1.addClass('select_li');
+    link.addClass('color-blue')
+    prev_staff = list1;
+    prev_label_staff = label;
+    prev_link_staff = link;
+
+  });
+
+  //select hour event
+  $('#hour_appointment').on('click', 'li', function(){
+    time = $(this);
+    select_time = time.text();
+    if (prev) {
+      prev.removeClass('select_li');
+    };
+    time.addClass('select_li');
+    prev = time;
+  });
+  // $('#datepicker').datepicker('show');
+  // $('#datepicker').on('changeDate', function(ev){
+  //     var tmp = Date.parse(ev.date);
+  //     $('#select_date').text(tmp.toString("dddd, MMMM dd"));
+  //     var date_show = tmp.toString("dddd, MMMM dd, yyyy");
+  //     $('#span_date_time').text(date_show + " at " + select_time);
+
+  //   });
+  // $('#datepicker').datepicker('setDaysOfWeekDisabled', [0,6]);
+  // $('.datepicker-inline').addClass('margin_div_auto width_datetime');
+  $('#datepicker').datepicker({
+    beforeShowDay: $.datepicker.noWeekends,
+    onSelect: function( selectedDate ) {
+      date = $.datepicker.formatDate('DD, MM dd', new Date(selectedDate));
+      $('#select_date').text(date);
+        //alert(dateFormat);
+      var date_show = selectedDate.toString("dddd, MMMM dd, yyyy");
+      $('#span_date_time').text(date_show + " at " + select_time);
+    }
+  })
+});

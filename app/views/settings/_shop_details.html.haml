@@ -1,0 +1,21 @@
+.vertical-tab#shop_detail_content
+  .tabbable.tabs-left.full-height
+    %ul.nav.nav-tabs.full-height
+      %li.active
+        %a{"data-toggle" => "tab", :href => "#store_description"}
+          = t(".store_description")
+      %li
+        %a{"data-toggle" => "tab", :href => "#operating_hours"}
+          Operating Hours
+      %li
+        %a{"data-toggle" => "tab", :href => "#closed_dates"}
+          Closed Dates
+    .tab-content
+      #store_description.tab-pane.active
+        = render "store_description"
+      #operating_hours.tab-pane
+        = render "operating_hours"
+      #closed_dates.tab-pane
+        = render "closed_dates"
+
+

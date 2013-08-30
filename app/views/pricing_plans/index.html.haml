@@ -11,10 +11,11 @@
     = render "edit_pricing_plan"
     = render "new_pricing_plan"
     #delete_notice.modal.fade
-      = render "shared/warning_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body'),:btn_save_id => "btn_delete_pricing_plan"
+      = render "shared/warning_notice", :message_header => t('common.delete_confirm_header'), :message_body => t('.delete_confirm_body'),:btn_save_id => "btn_delete_pricing_plan"
     #warningModal.modal.fade
-      = render "shared/warning", :message_header => t('.warning'), :message_body => t('.warning_delete')
-
+      = render "shared/warning", :message_header => t('common.warning'), :message_body => t('.warning_delete')
+    #warningModalNotDelete.modal.fade
+      = render "shared/warning", :message_header => t('common.warning'), :message_body => t('.warning_delete')
 = javascript_include_tag "pricing_plan"
 
 :javascript
@@ -28,8 +29,12 @@
   var g_pricingPlanPath = "#{pricing_plans_path}";
   var g_features = '#{@feature}';
   var g_editPricingPlanPath = "#{edit_pricing_plan_path( '[id]')}";
+  $(document).ready(function(){
+    $("nav#nav li").removeClass("active");
+    $("nav#nav li#menu_pricing").addClass("active");
+  });
 
-  
+
 
 
 

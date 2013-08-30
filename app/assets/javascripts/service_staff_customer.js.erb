@@ -1,0 +1,46 @@
+var prev_staff;
+var prev_label_staff;
+var prev_link_staff;
+var prev_service;
+var prev_label;
+var prev_link;
+
+$(document).ready(function(){    
+  $('#select_service ul').on('click', 'li', function(){        
+    var list2 = $(this);  
+    var label = list2.find('label'); 
+    var link = list2.find('a');    
+    
+    if (prev_service) {
+      prev_service.removeClass('select_li');
+      prev_label.removeClass('color-white'); 
+      prev_link.removeClass('color-blue'); 
+    };   
+    label.addClass('color-white');
+    list2.addClass('select_li');
+    link.addClass('color-blue')
+    prev_service = list2;
+    prev_label = label;
+    prev_link = link;
+
+  }); 
+
+  $('#select_staff ul').on('click', 'li', function(){        
+    var list1 = $(this);  
+    var label = list1.find('label'); 
+    var link = list1.find('a');    
+    
+    if (prev_staff) {
+      prev_staff.removeClass('select_li');
+      prev_label_staff.removeClass('color-white'); 
+      prev_link_staff.removeClass('color-blue'); 
+    };   
+    label.addClass('color-white');
+    list1.addClass('select_li');
+    link.addClass('color-blue')
+    prev_staff = list1;
+    prev_label_staff = label;
+    prev_link_staff = link;
+
+  }); 
+});

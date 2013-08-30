@@ -1,0 +1,45 @@
+#appointment *{
+  box-sizing: content-box !important;
+  -webkit-box-sizing: content-box;
+}
+#appointment span{
+  margin-left: 0px
+}
+#appointment .wc-header table{
+  table-layout: auto;
+
+}
+
+#appointment .wc-user-header{
+  min-width: 50px;
+  width: 50px;
+}
+#appointment .wc-day-column{
+  min-width: 50px !important;
+  width: 50px;
+  max-width: 50px;
+}
+#appointment .wc-time-slots{
+  table-layout: auto;
+  overflow:visible;
+
+}
+#appointment .wc-time-column-header{
+  width: 60px ;
+  display: block;
+}
+#appointment .wc-header table td{
+  border: 1px solid black;
+}
+#appointment .wc-container{
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+#appointment .wc-scrollable-grid{
+  table-layout: auto;
+  overflow: visible !important;
+}
+#appointment .wc-scrollable-grid table{
+  overflow-y: scroll !important;
+
+}

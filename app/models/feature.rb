@@ -32,9 +32,6 @@ class Feature < ActiveRecord::Base
       end
       
       (0..return_data["aaData"].size - 1).each do |i|
-        p "KKKKKKKKKKKKKKKK"
-        p return_data["aaData"]
-        p return_data["aaData"][i][2]
         if features_ids.find_index(return_data["aaData"][i][2])
           return_data["aaData"][i][1] = "1"
         end

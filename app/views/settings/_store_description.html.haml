@@ -1,0 +1,80 @@
+.tab_content_tab
+  %form.form-horizontal
+    .row
+      %label.control-label.col.col-lg-3
+        = t("users.business_name")
+        %span.required *
+      .col.col-lg-6
+        %input{type: "text"}
+    .row
+      %label.control-label.col.col-lg-3
+        = t("users.phone")
+        %span.required *
+      .col.col-lg-6
+        %input{type: "text", :class => "phone"}
+    .row
+      %label.control-label.col.col-lg-3
+        = t("users.email_address")
+        %span.required *
+      .col.col-lg-6
+        %input{type: "text", :class => "email_address"}
+    .row
+      %label.control-label.col.col-lg-3
+        = t("users.postal_code")
+        %span.required *
+      .col.col-lg-6
+        %input{type: "text", :class => "postal_code"}
+    .row
+      %label.control-label.col.col-lg-3
+        = t("users.state")
+        %span.required *
+      .col.col-lg-6
+        %input{type: "text", :class => "state"}
+    .row
+      %label.control-label.col.col-lg-3
+        = t("users.city")
+        %span.required *
+      .col.col-lg-6
+        %input{type: "text", :class => "city"}
+    .row
+      %label.control-label.col.col-lg-3
+        = t("users.address")
+        %span.required *
+      .col.col-lg-6
+        %input{type: "text", :class => "address"}
+    .row
+      %label.control-label.col.col-lg-3
+        = t(".home_page")
+      .col.col-lg-6
+        %input{type: "text", :class => "home_page"}
+  .row
+    .col.col-lg-11.no-padding
+      %hr
+  .about
+    .row
+      .title
+        = t(".about_us")
+    .row
+      = t(".about_us_description")
+    .row
+      .col.col-lg-11.no-padding
+        %textarea{:class => "ckeditor", :name => "about_us"}
+    .row
+      .col.col-lg-11.no-padding
+        %hr
+    .row
+      .title
+        = t(".business_logo")
+    .row
+      = t(".business_logo_description")
+    .row
+      %label
+        = t(".upload")
+        %input{type: "file", :class => "business_logo"}
+    .checkbox
+      %label.checkbox-custom
+        %input{:name => "hide_logo", :type => "checkbox"}
+          %i.icon-unchecked
+        = t(".hide_your_logo")
+    .row.center
+      %input.btn-success.btn{type: "button", value: "#{t("button.save")}"}

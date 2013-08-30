@@ -1,0 +1,110 @@
+#form_email_campaign
+  %form.form-horizontal
+    .row
+      %label.col.col-lg-3.control-label
+        Template Name
+        %span.required *
+      .col.col-lg-8
+        %input.parsley-validated{"data-required" => "true", "data-type" => "text", :name => "name", :type => "text",:autofocus => true,tabindex:"1" }
+    .row
+      %label.col.col-lg-3.control-label
+        = t('common.description')
+      .col.col-lg-8
+        %textarea{"data-rangelength" => "[20,200]", :rows => "3", tabindex: "2"}
+    .row
+      %label.col.col-lg-3.control-label
+        = t('common.status')
+      .col.col-lg-8
+        %select{:name => "status", tabindex:"5"}
+          %option{:value => "1"}
+            = t('common.active')
+          %option{:value => "0"}
+            = t('common.inactive')
+    .row
+      %label.col.col-lg-3.control-label
+        Email Content
+        %span.required *
+    .row
+      .col.col-lg-10.col-offset-1.control-label
+        %textarea{:class => "ckeditor", :name => "email_content"}
+    .row
+      %label.col.col-lg-3.control-label
+        Email Schedule
+    .email_schedule
+      .row
+        Automatic emails can be sent to customers BEFORE an appointment date as a "reminder" or AFTER an appointment date to say "come again" to promote more appointments!
+      .row
+        .col.col-lg-2.right
+          .radio
+            %label.radio-custom
+              %input{type: "radio", name: "email_schedule"}
+                %i.icon-circle-blank
+              Before
+        .col.col-lg-2
+          %select{name: "option1_before"}
+            - (1..30).each do |time|
+              %option{value: "#{time}"}#{time}
+        .col.col-lg-2
+          %select{name: "option2_before"}
+            %option{value: "0"}hour(s)
+            %option{value: "1"}day(s)
+            %option{value: "2"}week(s)
+        .col.col-lg-3.control-label.left
+          of Appointment Date
+      .row
+        .col.col-lg-2.right.radio_after_custom
+          .radio
+            %label.radio-custom
+              %input{type: "radio", name: "email_schedule"}
+                %i.icon-circle-blank
+              After
+        .col.col-lg-2
+          %select{name: "option1_after"}
+            - (1..30).each do |time|
+              %option{value: "#{time}"}#{time}
+        .col.col-lg-2
+          %select{name: "option2_after"}
+            %option{value: "0"}hour(s)
+            %option{value: "1"}day(s)
+            %option{value: "2"}week(s)
+        .col.col-lg-4
+          %select{name: "option3_after"}
+            %option{value: "0"}Completing appointment
+            %option{value: "1"}Cancelling appointment
+            %option{value: "2"}Setting appointment
+    .edit_template
+      .row
+        [Customer Name] comes here,
+      .row
+        .editable_header
+          .col.col-lg-12.control-label
+            %textarea{:class => "ckeditor", :name => "editable_header"}
+      %hr
+        .none_editable_field
+          %fieldset
+            .appointment_summary
+              %label Appointment Summary
+            %br
+            %label Date: August 12 2013
+            %br
+            %label Time: 14:15 PM
+            %br
+            %label Company Name: Yuji Detal Service
+            %br
+            %label Service: Dental Service
+            %br
+            %label Address: Tokyo-to Shinijuku-ku Nishi Shinijuku 13-7 #3202
+            %br
+            %label Special Request:
+      %hr
+      .row
+        .editable_footer
+          .col.col-lg-12.control-label
+            %textarea{:class => "ckeditor", :name => "editable_footer"}
+      .row.center
+        * You can use this field as a footer to include your company info
+    .row.center
+      %input.btn-primary.btn{ :type => "button", value: "Save"}
+      %input.btn-warning.btn{ :type => "button", value: "Cancel"}
+= javascript_include_tag "email_campaigns"
+

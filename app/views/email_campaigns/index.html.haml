@@ -1,0 +1,22 @@
+#email_campaigns
+  .custom_datatable
+    .panel
+      .button_add
+        = link_to t('.add'), "#{new_organization_email_campaign_path(current_user.organization_id)}" ,:class => "btn btn-primary "
+      .panel-heading
+        = t('.list')
+      %table#email_campaign_table.table.table-striped.dataTable
+        %div
+  = render "preview"
+
+#delete_notice.modal.fade
+  = render "shared/confirm_notice", :message_header => t('common.delete_confirm_header'), :message_body => t('.delete_confirm_body')
+
+= javascript_include_tag "email_campaigns"
+:javascript
+  var g_emailCampaignPath = "#{organization_email_campaigns_path}";
+  var g_editEmailCampaignPath = "#{edit_organization_email_campaign_path(params[:organization_id], '[id]')}";
+  $(document).ready(function(){
+    $("nav#nav li").removeClass("active");
+    $("nav#nav li#menu_email_campaigns").addClass("active");
+  });

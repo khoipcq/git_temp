@@ -1,0 +1,87 @@
+.panel
+  .row
+    .col.col-lg-1
+    #select_service.col.col-lg-5
+      .row
+        %h3.margin_select_service 
+          = t('.select_service')
+      %div#list_service
+        %div              
+          %label
+            %strong
+              Nail      
+          %ul
+            %li
+              .row
+                .col.col-lg-1
+                  %i.icon-cut
+                .col.col-lg-8                  
+                  %label                  
+                    Buffers
+                .col.col-lg-3
+                  = link_to t('link.view'), '#', :class => 'text-link', data: {:toggle => 'modal', :target => '#view_service_detail'}
+            %li
+              .row
+                .col.col-lg-1
+                  %i.icon-smile
+                .col.col-lg-8      
+                  %label                      
+                    Base Coat
+                .col.col-lg-3
+                  = link_to t('link.view'), '#', :class => 'text-link', data: {:toggle => 'modal', :target => '#view_service_detail'} 
+            %li
+              .row
+                .col.col-lg-1                
+                .col.col-lg-8           
+                  %label                   
+                    Cuticle
+                .col.col-lg-3
+                  = link_to t('link.view'), '#', :class => 'text-link', data: {:toggle => 'modal', :target => '#view_service_detail'}                
+            %li
+              .row
+                .col.col-lg-1
+                .col.col-lg-8           
+                  %label                   
+                    Remover
+                .col.col-lg-3
+                  = link_to t('link.view'), '#', :class => 'text-link', data: {:toggle => 'modal', :target => '#view_service_detail'}  
+            %li
+              .row
+                .col.col-lg-1
+                  %i.icon-hand-up
+                .col.col-lg-8           
+                  %label                   
+                    Top Coat
+                .col.col-lg-3
+                  = link_to t('link.view'), '#', :class => 'text-link', data: {:toggle => 'modal', :target => '#view_service_detail'}  
+        %div
+          %h5
+            %strong
+              Hair                  
+    #select_staff.col.col-lg-5
+      %h3.row
+        = t('.select_staff')
+      %label#temp_label
+
+      %ul
+        %li
+          %a{data: {:target => '#form-wizard', :wizard => 'next'}}
+            Tinn Thomas
+        %li
+          %a{data: {:target => '#form-wizard', :wizard => 'next'}}
+            Winne Tran
+        %li
+          %a{data: {:target => '#form-wizard', :wizard => 'next'}}
+            Lee Dung
+        %li
+          %a{data: {:target => '#form-wizard', :wizard => 'next'}}            
+            Michael Phan
+        %li
+          %a{data: {:target => '#form-wizard', :wizard => 'next'}}
+            Matta
+    .clearfix
+#view_service_detail.modal.fade
+  = render 'view_service_detail_customer', :message_header => t('.service_detail'), :message_name => t('.remover'), :message_description => t('.message_description'), :message_cost => "300 (#{t('common.jpy')})"       
+
+= javascript_include_tag 'customer_booking'  
+        

@@ -10,9 +10,10 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery-1.10.2.min
+//= require jquery
 //= require jquery_ujs
 //= require bootstrap
+
 //= require app
 //= require app.plugin
 //= require app.data
@@ -24,13 +25,15 @@
 //= require charts/easypiechart/jquery.easy-pie-chart
 //= require datepicker/bootstrap-datepicker
 //= require fuelux/fuelux
-//= require parsley/parsley.min
 //= require jquery.dataTables
 //= require pschecker
 //= require custom_layout
 //= require fullcalendar/fullcalendar.min
 //= require date
 //= require common_function
+//= require accounting.min
+//= require ckeditor-jquery
+//= require ckeditor/config
 
 
 $.fn.dataTableExt.oApi.fnReloadAjax = function(oSettings, sNewSource, fnCallback, bStandingRedraw) {

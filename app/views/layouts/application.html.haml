@@ -4,14 +4,18 @@
     %meta{:charset => "utf-8"}
     %title= t(:project_name)
     %meta{:content => "mobile first, app, web app, responsive, admin dashboard, flat, flat ui", :name => "description"}
-    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}    
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}
     = analytics_init
     / include style css
     = stylesheet_link_tag "application"
     = csrf_meta_tag
     / include js file
     = javascript_include_tag "application"
-
+    /[if lt IE 9]
+      / <link rel="stylesheet" href="css/ie.css">
+      / <script src="js/ie/respond.min.js"></script>
+      / <script src="js/ie/html5.js"></script>
+      / <script src="js/ie/excanvas.js"></script>
 
     / Fav and touch icons
     = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
@@ -35,19 +39,22 @@
             %ul.dropdown-menu
               %li
                 - if !current_user.organization.is_super_org
-                  = link_to 'Profile', edit_organization_user_path(current_user.organization_id, current_user.id)
+                  = link_to t('.profile'), edit_organization_user_path(current_user.organization_id, current_user.id)
                 - else
-                  = link_to 'Profile', '#', :class => 'action-link', data: {toggle: 'modal', target: '#update_admin_infor'}
+                  = link_to t('.profile'), '#',:id =>"link_profile", :class => 'action-link', data: {toggle: 'modal', target: '#update_admin_infor'}
 
 
               %li.divider
               %li
-                = link_to 'Dashboard',organization_path(current_user.organization)
+                = link_to t('.dashboard'),organization_path(current_user.organization)
               %li.divider
               %li
                 = link_to t('greeting.logout'), destroy_user_session_path, :method =>'delete'
       %a.navbar-brand{:href => "#"}
         = t(:project_name)
+      - if current_user
+        %button.btn.btn-link.pull-left.nav-toggle.hidden-lg{"data-target" => "body", "data-toggle" => "class:slide-nav slide-nav-left", :type => "button"}
+          %i.icon-reorder.icon-xlarge.text-default
     / / header
     / nav
     = render :partial => 'shared/menu'
@@ -72,6 +79,7 @@
     %a.hide.slide-nav-block{"data-target" => "body", "data-toggle" => "class:slide-nav slide-nav-left", :href => "#"}
     / update admin account
     = render 'users/edit_admin',:locals => {:user => current_user || nil}
+
     - if params[:organization_id]
       :javascript
         var g_newUserPath = "#{new_organization_user_path}";
@@ -81,6 +89,9 @@
         var g_userGroupsPath = "#{organization_user_groups_path}";
         var g_editUserGroupPath = "#{edit_organization_user_group_path(params[:organization_id],'[id]')}";
         var g_editStaffPath = "#{edit_organization_staff_path(params[:organization_id], '[id]')}";
+        var g_editServicePath = "#{edit_organization_service_path(params[:organization_id], '[id]')}";
+        var g_editLocationPath = "#{edit_organization_location_path(params[:organization_id], '[id]')}";
+        var g_editStaffPath = "#{edit_organization_staff_path(params[:organization_id], '[id]')}";
     :javascript
       var g_displayLength = #{Settings.per_page};
-
+      //$("select[name='list_length']").width($("select[name='list_length']").width+10);

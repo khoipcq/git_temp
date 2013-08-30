@@ -7,4 +7,14 @@
 #feature_table_filter
 {
   width:400px;
+  float: right;
+  margin-right: -25px;
+}
+.input_column{
+  width: 90% !important;
+}
+.dataTable td input
+{
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
 }

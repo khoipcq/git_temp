@@ -15,53 +15,53 @@
       .column_left
         .text_input
           %div
-            = t('users.edit.user_name')
+            = t('users.user_name')
             %span.require (*)
           %div
             = f.text_field :username, :autofocus => true
         .text_input
           %div
-            = t('users.edit.email')
+            = t('users.email')
             %span.require (*)
           %div
             = f.text_field :email
         .text_input
           %div
-            = t('users.edit.first_name')
+            = t('users.first_name')
             %span.require (*)
           %div
             = f.text_field :first_name
         .text_input
           %div
-            = t('users.edit.last_name')
+            = t('users.last_name')
             %span.require (*)
           %div
             = f.text_field :last_name
         .text_input
           %div
-            = t('users.new.password')
+            = t('devise.sessions.password')
             %i
-              = t('users.edit.password_change_info')
+              = t('devise.sessions.password_change_info')
           = f.password_field :password
         .text_input
           %div
-            = t('users.new.password_confirmation')
+            = t('devise.sessions.password_confirmation')
           = f.password_field :password_confirmation
       .column_right
         %div
           %div
-            = t('users.edit.groups')
+            = t('users.new.groups')
             %br
             = render "user_groups", :groups => @user_groups, :selected_groups => @user.user_groups
         %br
         %div
-          = t('users.edit.status')
+          = t('common.status')
           %label
             = f.radio_button :is_deleted, false
-            = t('users.edit.enable')
+            = t('common.enable')
           %label
             = f.radio_button :is_deleted, true
-            = t('users.edit.disable')
+            = t('common.disable')
       .space
       %div
         = f.submit t('button.update'),:class=>"btn_submit"

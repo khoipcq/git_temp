@@ -1,40 +1,39 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 //Set style table
-function renderDetailAppointment(){
-  var strDetail = '<div class="row title"><div class="col col-lg-4">Time</div><div class="col col-lg-4">Duration</div><div class="col col-lg-4">Service</div></div><div class="row"><div class="col col-lg-4">9:00AM-10:30</div><div class="col col-lg-4">1:30 hours</div><div class="col col-lg-4">Massage</div></div><div class="row"><center class="title">Note</center>    <div class="note">She want to aport massage</div></div>';
-  return strDetail;
-}
-function changeStatus(obj){
-  console.log(obj);
-  var className = $(obj).attr("class");
-  console.log($(obj).hasClass('status-booked'));
-  if($(obj).hasClass('status-booked')){
-    $(obj).removeClass('status-booked');
-    $(obj).addClass('status-complete');
-  }
-  else
-    if($(obj).hasClass('status-complete')){
-      $(obj).removeClass('status-complete');
-      $(obj).addClass('status-booked');
-    }
-}
-function blockAppointment(obj){
-  console.log(obj.parentNode.parentNode);
-  var td = obj.parentNode.parentNode;
-  $(td).css('background-color',"#ccc");
-  $(td).css('text-align',"center");
-  $(td).html('<div id="text-info">Away</div>');
-}
-function removeBlock(obj){
-  console.log(obj.parentNode.parentNode);
-  var td = obj.parentNode.parentNode;
-  $(td).css('background-color',"white");
-  $(td).css('text-align',"left");
-  $(td).text("");
-}
+// function renderDetailAppointment(){
+//   var strDetail = '<div class="row title"><div class="col col-lg-4">Time</div><div class="col col-lg-4">Duration</div><div class="col col-lg-4">Service</div></div><div class="row"><div class="col col-lg-4">9:00AM-10:30</div><div class="col col-lg-4">1:30 hours</div><div class="col col-lg-4">Massage</div></div><div class="row"><center class="title">Note</center>    <div class="note">She want to aport massage</div></div>';
+//   return strDetail;
+// }
+// function changeStatus(obj){
+//   console.log(obj);
+//   var className = $(obj).attr("class");
+//   console.log($(obj).hasClass('status-booked'));
+//   if($(obj).hasClass('status-booked')){
+//     $(obj).removeClass('status-booked');
+//     $(obj).addClass('status-complete');
+//   }
+//   else
+//     if($(obj).hasClass('status-complete')){
+//       $(obj).removeClass('status-complete');
+//       $(obj).addClass('status-booked');
+//     }
+// }
+// function blockAppointment(obj){
+//   console.log(obj.parentNode.parentNode);
+//   var td = obj.parentNode.parentNode;
+//   $(td).css('background-color',"#ccc");
+//   $(td).css('text-align',"center");
+//   $(td).html('<div id="text-info">Away</div>');
+// }
+// function removeBlock(obj){
+//   console.log(obj.parentNode.parentNode);
+//   var td = obj.parentNode.parentNode;
+//   $(td).css('background-color',"white");
+//   $(td).css('text-align',"left");
+//   $(td).text("");
+// }
 function chooseList(obj){
-  console.log($(obj).attr("id"));
   if($(obj).attr("id") == "opt-Day"){
     $("#list_day").removeClass("hidden");
     $("#list_week").addClass("hidden");
@@ -46,12 +45,12 @@ function chooseList(obj){
 }
 
 $(document).ready(function(){
-  var width = $(".outer").width() - 110;
-  $('.inner').css("width", width);
-  $('.th-week').css("width", width);
-  $('.td').css("min-width", 200);
+  // var width = $(".outer").width() - 110;
+  // $('.inner').css("width", width);
+  // $('.th-week').css("width", width);
+  // $('.td').css("min-width", 200);
 
-  $(".pick_date").datepicker();
+  // $(".pick_date").datepicker();
   $( "#on_date").datepicker();
   var dates = $( "#from_date, #to_date" ).datepicker({
         defaultDate: "+1w",
@@ -68,39 +67,187 @@ $(document).ready(function(){
             dates.not( this ).datepicker( "option", option, date );
         }
     });
-  $('.hover_name').popover({
-      placement: "bottom",
-      content: renderDetailAppointment(),
-      trigger: 'hover',
-      html: true
-  });
-  $("td").hover(
-    function () {
-      if($(this).text() == ""){
-        $(this).append($('<div class="action-hover"><a class="btn btn-white btn-mini" onclick="blockAppointment(this);">Away</a><a class="btn btn-primary btn-mini" href= "'+newAppoinmentPath+'">Book</a></div>'));
-      }
-      else if($(this).text() == "Away"){
-          $(this).children("#text-info").addClass("hidden");
-          $(this).append($('<div class="action-hover"  id = "btn-remove"><a class="btn btn-white btn-mini" onclick="removeBlock(this);">Remove Away</a>'));
-      }
-    },
-    function () {
-      $(this).find(".action-hover:last").remove();
-      $(this).children("#text-info").removeClass("hidden");
-    }
-  );
+  // $('.hover_name').popover({
+  //     placement: "bottom",
+  //     content: renderDetailAppointment(),
+  //     trigger: 'hover',
+  //     html: true
+  // });
+  // $("td").hover(
+  //   function () {
+  //     if($(this).text() == ""){
+  //       $(this).append($('<div class="action-hover"><a class="btn btn-white btn-mini" onclick="blockAppointment(this);">Away</a><a class="btn btn-primary btn-mini" href= "'+newAppoinmentPath+'">Book</a></div>'));
+  //     }
+  //     else if($(this).text() == "Away"){
+  //         $(this).children("#text-info").addClass("hidden");
+  //         $(this).append($('<div class="action-hover"  id = "btn-remove"><a class="btn btn-white btn-mini" onclick="removeBlock(this);">Remove Away</a>'));
+  //     }
+  //   },
+  //   function () {
+  //     $(this).find(".action-hover:last").remove();
+  //     $(this).children("#text-info").removeClass("hidden");
+  //   }
+  // );
 
-  $('.recurring_filter').addClass("hidden");
-  $( "#repeat_options" ).change(function() {
-    $( "#repeat_options option:selected" ).each(function() {
-      $('.recurring_filter').addClass("hidden");
-      $('#'+$(this).val()).removeClass("hidden");
-    });
-  });
-  $('#repeat_help').popover({
-        placement: "right",
-        content: "The day that is same booking day will be repeated on",
-        trigger: 'hover',
-        html: true
-    });
+  // $('.recurring_filter').addClass("hidden");
+  // $( "#repeat_options" ).change(function() {
+  //   $( "#repeat_options option:selected" ).each(function() {
+  //     $('.recurring_filter').addClass("hidden");
+  //     $('#'+$(this).val()).removeClass("hidden");
+  //   });
+  // });
+  // $('#repeat_help').popover({
+  //       placement: "right",
+  //       content: "The day that is same booking day will be repeated on",
+  //       trigger: 'hover',
+  //       html: true
+  //   });
 });
+
+(function($) {
+
+    var d = new Date();
+    d.setDate(d.getDate() - d.getDay());
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var day = d.getDate();
+
+    // var eventData1 = {
+    //   options: {
+    //     timeslotsPerHour: 4,
+    //     timeslotHeight: 20,
+    //     defaultFreeBusy: {free: true}
+    //   },
+    //   events : [
+    //     {'id':1, 'start': new Date(year, month, day, 12), 'end': new Date(year, month, day, 13, 30), 'title': 'Lunch with Mike', userId: 0},
+    //     {'id':2, 'start': new Date(year, month, day, 14), 'end': new Date(year, month, day, 14, 45), 'title': 'Dev Meeting', userId: 1},
+    //     {'id':3, 'start': new Date(year, month, day+1, 18), 'end': new Date(year, month, day+1, 18, 45), 'title': 'Hair cut', userId: 1},
+    //     {'id':4, 'start': new Date(year, month, day+2, 8), 'end': new Date(year, month, day+2, 9, 30), 'title': 'Team breakfast', userId: 0},
+    //     {'id':5, 'start': new Date(year, month, day+1, 14), 'end': new Date(year, month, day+1, 15), 'title': 'Product showcase', userId: 1}
+    //   ],
+    //   freebusys: [
+    //     {'start': new Date(year, month, day), 'end': new Date(year, month, day+3), 'free': false, userId: [0,1,2,3]},
+    //     {'start': new Date(year, month, day, 8), 'end': new Date(year, month, day, 12), 'free': true, userId: [0,1,2,3]},
+    //     {'start': new Date(year, month, day+1, 8), 'end': new Date(year, month, day+1, 12), 'free': true, userId: [0,1,2,3]},
+    //     {'start': new Date(year, month, day+2, 8), 'end': new Date(year, month, day+2, 12), 'free': true, userId: [0,1,2,3]},
+    //     {'start': new Date(year, month, day+1, 14), 'end': new Date(year, month, day+1, 18), 'free': true, userId: [0,1,2,3]},
+    //     {'start': new Date(year, month, day+2, 8), 'end': new Date(year, month, day+2, 12), 'free': true, userId: [0,3]},
+    //     {'start': new Date(year, month, day+2, 14), 'end': new Date(year, month, day+2, 18), 'free': true, userId: 1}
+    //   ]
+    // };
+
+    // d = new Date();
+    // d.setDate(d.getDate() -(d.getDay() - 3));
+    // year = d.getFullYear();
+    // month = d.getMonth();
+    // day = d.getDate();
+
+    // var eventData2 = {
+    //   options: {
+    //     timeslotsPerHour: 3,
+    //     timeslotHeight: 30,
+    //     defaultFreeBusy: {free: false}
+    //   },
+    //   events : [
+    //     {'id':1, 'start': new Date(year, month, day, 12), 'end': new Date(year, month, day, 13, 00), 'title': 'Lunch with Sarah', userId: [1, 2]},
+    //     {'id':2, 'start': new Date(year, month, day, 14), 'end': new Date(year, month, day, 14, 40), 'title': 'Team Meeting', userId: 0},
+    //     {'id':3, 'start': new Date(year, month, day+1, 18), 'end': new Date(year, month, day+1, 18, 40), 'title': 'Meet with Joe', userId: 1},
+    //     {'id':4, 'start': new Date(year, month, day-1, 8), 'end': new Date(year, month, day-1, 9, 20), 'title': 'Coffee with Alison', userId: 1},
+    //     {'id':5, 'start': new Date(year, month, day+1, 14), 'end': new Date(year, month, day+1, 15, 00), 'title': 'Product showcase', userId: 0}
+    //   ],
+    //   freebusys: [
+    //     {'start': new Date(year, month, day-1, 8), 'end': new Date(year, month, day-1, 18), 'free': true, userId: [0,1,2,3]},
+    //     {'start': new Date(year, month, day, 8), 'end': new Date(year, month, day+0, 18), 'free': true, userId: [0,1,2,3]},
+    //     {'start': new Date(year, month, day+1, 8), 'end': new Date(year, month, day+1, 18), 'free': true, userId: [0,3]},
+    //     {'start': new Date(year, month, day+2, 14), 'end': new Date(year, month, day+2, 18), 'free': true, userId: 1}
+    //   ]
+    // };
+
+    function updateMessage() {
+      var dataSource = $('#data_source').val();
+
+      $('#message').fadeOut(function() {
+        if (dataSource === '1') {
+          $('#message').text('Displaying event data set 1 with timeslots per hour of 4 and timeslot height of 20px. Moreover, the calendar is free by default.');
+        } else if(dataSource === '2') {
+          $('#message').text('Displaying event data set 2 with timeslots per hour of 3 and timeslot height of 30px. Moreover, the calendar is busy by default.');
+        } else {
+          $('#message').text('Displaying no events.');
+          }
+
+        $(this).fadeIn();
+      });
+    }
+
+    $(document).ready(function() {
+      list = parseUser(g_list_user);
+      console.log(list)
+      var $calendar = $('#calendar').weekCalendar({
+        timeslotsPerHour: 4,
+        scrollToHourMillis : 0,
+        height: function($calendar){
+          return $(window).height() - $('h1').outerHeight(true);
+        },
+        eventRender : function(calEvent, $event) {
+          if (calEvent.end.getTime() < new Date().getTime()) {
+            $event.css('backgroundColor', '#aaa');
+            $event.find('.wc-time').css({
+              backgroundColor: '#999',
+              border:'1px solid #888'
+            });
+          }
+        },
+        eventNew : function(calEvent, $event, FreeBusyManager, calendar) {
+          window.location = newAppoinmentPath;
+        },
+        data: function(start, end, callback) {
+          var dataSource = $('#data_source').val();
+          if (dataSource === '1') {
+            callback(eventData1);
+          } else if(dataSource === '2') {
+            callback(eventData2);
+          } else {
+            callback({
+              options: {
+                defaultFreeBusy: {
+                  free:true
+                }
+              },
+              events: []
+            });
+          }
+        },
+        users: list,
+        showAsSeparateUser: true,
+        displayOddEven: true,
+        displayFreeBusys: true,
+        daysToShow: 7,
+        switchDisplay: {'1 day': 1, '3 next days': 3, 'work week': 5, 'full week': 7},
+        headerSeparator: ' ',
+        useShortDayNames: true,
+        // I18N
+        
+      });
+
+      $('#data_source').change(function() {
+        $calendar.weekCalendar('refresh');
+        updateMessage();
+      });
+
+      updateMessage();
+    });
+   
+    wc-scrollable-grid
+  
+  })(jQuery);
+
+function parseUser(list)
+{
+  result =[]
+  for (var i=0;i<list.length;i++)
+  { 
+    
+    result.push(list[i].first_name +' '+list[i].last_name);
+  }
+  return result;
+}

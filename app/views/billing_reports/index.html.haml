@@ -1,35 +1,32 @@
 .row.custom_datatable
   .panel
     .panel-heading
-      = t('billing_report.title')
+      = t('.title')
       / %button.btn.btn-default.btn-primary.pull-right{ data: { toggle: 'modal',target: '#add' } }= t('.add')
     %table#billing_report_table.table.table-striped.dataTable
-      %thead
-        %tr#trhead
-          %th#col_bill
-            = t('billing_report.billing_report')
-            %span #
-          %th#col_name= t('store_owner.index.business_name')
-          %th#col_paid= t('billing_report.total_paid')
-          %th#col_action= t('billing_report.action')
-      %tbody
-        - 50.times do
-          %tr
-            %td#col_bill 00001
-            %td#col_name Marco Botton
-            %td#col_paid 1995
-            %td#col_action
-              = link_to t('billing_report.view'), billing_report_path(id: 1),class: "action-link"
+      / %thead
+      /   %tr#trhead
+      /     %th#col_bill
+      /       = t('billing_report.billing_report')
+      /       %span #
+      /     %th#col_name= t('store_owner.index.business_name')
+      /     %th#col_paid= t('billing_report.total_paid')
+      /     %th#col_action= t('billing_report.action')
+      / %tbody
+      /   - 50.times do
+      /     %tr
+      /       %td#col_bill 00001
+      /       %td#col_name Marco Botton
+      /       %td#col_paid 1995
+      /       %td#col_action
+      /         = link_to t('billing_report.view'), billing_report_path(id: 1),class: "action-link"
 
 
 :javascript
   $(document).ready(function(){
-    $("#billing_report_table").dataTable({
-      sPaginationType: "full_numbers",
-      sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
-      aoColumnDefs: [{"bSortable": false, "aTargets": [1,2,3]}]
-    });
   $("nav#nav li").removeClass("active");
-  $("nav#nav li#billing-reports").addClass("active");
+  $("nav#nav li#menu_billing-reports").addClass("active");
   });
-
+  var g_url_list_billing_report = "#{billing_reports_path}";
+  var g_per_page = "#{@per_page}";
+= javascript_include_tag "billing_reports"

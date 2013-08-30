@@ -1,0 +1,12 @@
+
+$(document).ready(function(){
+  $('#customer_booking').on('click', function(){
+      window.location.href = $('#passed_data').data('redirectUrl');
+  });
+  var mapProp = {
+    center:new google.maps.LatLng(51.508742,-0.120850),
+    zoom:5,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+  var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+})

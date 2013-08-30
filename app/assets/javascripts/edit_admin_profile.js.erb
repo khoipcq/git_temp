@@ -1,4 +1,6 @@
-
+$.validator.addMethod("regex", function(value, element, regexp) {
+        return this.optional(element) || regexp.test(value);
+    }, "");
 $(document).ready(function(){
   $("#update_user_profile").validate({
     rules:{
@@ -17,12 +19,12 @@ $(document).ready(function(){
         email: true
       },
       "pass": {
-        required: true,
+        // required: true,
         minlength: 6,
-        maxlength: 32
+        maxlength: 100
       },
       "confirm_pass": {
-        equalTo: "#user_password"
+        equalTo: "#pass"
       },
       "accept_term": {
         required: true
@@ -31,22 +33,23 @@ $(document).ready(function(){
     messages: {
       
       "first_name":{
-        required: I18n.t('required_msg', {field : I18n.t('firstname')}),
+        required: I18n.t('require_field_msg'),
         maxlength: I18n.t('maxlength_msg', {field : I18n.t('firstname'), length: 256}),
         regex: I18n.t('regex_textfield', {field : I18n.t('firstname')})
       },
       "email":{
-        required: I18n.t('required_msg', {field : I18n.t('email')}),
+        required: I18n.t('require_field_msg'),
+        email: I18n.t('email_valid')
       },
       "last_name":{
-        required: I18n.t('required_msg', {field : I18n.t('lastname')}),
+        required: I18n.t('require_field_msg'),
         maxlength: I18n.t('maxlength_msg', {field : I18n.t('lastname'), length: 256}),
         regex: I18n.t('regex_textfield', {field : I18n.t('lastname')})
       },
       "pass":{
-        required: I18n.t('required_msg', {field : I18n.t('password')}),
-        minlength: I18n.t('minlength_msg', {field : I18n.t('password'), length: 6}),
-        maxlength: I18n.t('maxlength_msg', {field : I18n.t('password'), length: 32})
+        required: I18n.t('require_field_msg'),
+        minlength: I18n.t('password_minlength'),
+        maxlength: I18n.t('password_maxlength')
       },
       "confirm_pass": {
         equalTo: I18n.t('password_not_match')
@@ -57,13 +60,21 @@ $(document).ready(function(){
     }
   });
   get_user_info(user_info);
+  $("#link_profile").bind("click",function(){
+    get_user_info(user_info);
+  });
 
 });
 function get_user_info(obj)
 {
+  if(obj){
   $("#first_name").val(obj.first_name);
   $("#last_name").val(obj.last_name);
   $("#email").val(obj.email);
   $("#hidden_user_id").val(obj.id);
-    
+  $("#pass").val("");
+  $("#confirm_pass").val("");
+  }
+  $("#update_user_profile").valid();
+  $("#update_user_profile input").blur();
 }

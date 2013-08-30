@@ -23,3 +23,9 @@ input.input-small{
   padding: 5px 8px !important;
   height:30px;
 }
+.checkbox .error
+{
+  clear: both;
+  float: left;
+  display: block;
+}

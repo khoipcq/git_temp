@@ -30,7 +30,8 @@ class User < ActiveRecord::Base
 
   has_many :user_groups_users, :dependent => :destroy
   has_many :user_groups, :through => :user_groups_users
-
+  has_one :billing_info
+  has_one :card_info
   # Relationship with organization
   belongs_to :organization
 
@@ -120,19 +121,22 @@ class User < ActiveRecord::Base
   def after_update_user
 
     not_need_log = (self.changed.select {|attr| LOG_ATTRS.include?(attr)}).blank?
+    puts "vao after user"
     controller = PublicActivity.get_controller
     # return if nothing changed or
     return if !controller || self.changed.blank? || not_need_log
+    puts "vao after user2 "
     current_user = PublicActivity.get_controller.current_user
+    puts current_user.inspect
     return if !current_user
 
-    if self.current_sign_in_at_changed?
-      self.create_activity :login, owner: current_user, organization_id: current_user.organization_id , params: {:detail => I18n.t('logs.login')}
-    elsif self.id == current_user.id
-      self.create_activity :update, owner: current_user, organization_id: current_user.organization_id, params: {:detail => I18n.t('logs.update_profile')}
-    else
-      self.create_activity :edit_info, owner: current_user,  organization_id: self.organization_id , params: {:detail => I18n.t('logs.edit_user', user_name: self.username)}
-    end
+    # if self.current_sign_in_at_changed?
+    #   # self.create_activity :login, owner: current_user, organization_id: current_user.organization_id , params: {:detail => I18n.t('logs.login')}
+    # elsif self.id == current_user.id
+    #   # self.create_activity :update, owner: current_user, organization_id: current_user.organization_id, params: {:detail => I18n.t('logs.update_profile')}
+    # else
+    #   # self.create_activity :edit_info, owner: current_user,  organization_id: self.organization_id , params: {:detail => I18n.t('logs.edit_user', user_name: self.username)}
+    # end
   end
 
   ##
@@ -162,6 +166,7 @@ class User < ActiveRecord::Base
   end
 
   def update_deleted_name
+    puts "vao delete"
       logs = Activity.where(:owner_id => self.id)
       logs.update_all(:deleted_name => self.username)
   end

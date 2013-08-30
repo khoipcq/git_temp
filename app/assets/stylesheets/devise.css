@@ -2,10 +2,10 @@
   float: left;
 }
 
-#devise-password-new, #devise-session-new {
+#devise-password-new, #devise-session-new{
   margin-top: 10%;
 }
-#devise-register-new form, #devise-password-new form, #devise-session-new form {
+#devise-register-new form, #devise-password-new form, #devise-session-new form, #devise-session-new-customer form {
   width: 100%;
 }
 #devise-register-new {

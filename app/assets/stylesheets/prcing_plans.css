@@ -30,10 +30,10 @@
 #pricing_plan textarea,  #feature textarea{
    resize: none;
 }
-#pricing_plan .feature_table_include {
+/*#pricing_plan .feature_table_include {
   width: 100%;
 }
-/*#pricing_plan .feature_table_include .body_container{
+#pricing_plan .feature_table_include .body_container{
   height: 138px !important;
   width: 100%;
   border-bottom: 1px solid #dddddd;
@@ -47,10 +47,32 @@
 }
 #pricing_plan .feature_table_include .scrollable{
    overflow-y: scroll;
+
 }*/
-#pricing_plan .feature_table_include th:nth-child(1), #pricing_plan .feature_table_include td:nth-child(1){
+/*#pricing_plan .feature_table_include #feature_include_table th:nth-child(1), #pricing_plan .feature_table_include #feature_include_table td:nth-child(1){
     width: 65% !important;
 }
-#pricing_plan .feature_table_include th:nth-child(2), #pricing_plan .feature_table_include td:nth-child(2){
-    width: 35% !important;
+#pricing_plan .feature_table_include #feature_include_table th:nth-child(2), #pricing_plan .feature_table_include #feature_include_table td:nth-child(2){
+    width: 35%;
+}*/
+
+#pricing_plan .feature_table_include .dataTables_wrapper .table{
+  width: 95%;
+  margin: 0 auto;
+  border-width: 1px;
+}
+#pricing_plan .feature_table_include .dataTables_scrollHeadInner{
+  width: 100% !important;
+}
+#pricing_plan .feature_table_include .dataTables_scrollHeadInner table{
+  width: 100% !important;
+}
+#pricing_plan .feature_table_include .dataTables_scrollHeadInner table th:nth-child(1){
+  width: 65% !important;
+}
+#pricing_plan .feature_table_include .dataTables_scrollBody table td:nth-child(1){
+  width: 65% !important;
+}
+#pricing_plan .feature_table_include .dataTables_scrollBody table tbody > tr > td {
+  border-left: 1px solid #dddddd;
 }

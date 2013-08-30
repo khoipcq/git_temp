@@ -2,14 +2,14 @@
   %li
     %label.h3
       %i.icon-chevron-right
-      Edit access rights
+      = t('.edit_access')
     .checkbox
       %label.checkbox-custom.padding_checkbox_custom
         %input{:name => "allow_login", :type => "checkbox"}
           %i.icon-unchecked
-        Allow this staff member to login, view their calendar and manager their own appointments.
+        = t('.access_staff_content')
     %p
-      Staff member's email address (An email will be sent to this staff member with login details)
+      = t('.staff_member_email')
     .row
       .col.col-lg-7.col-offset-2.padding_p_custom
         = text_field_tag :staff_member_email
@@ -17,19 +17,19 @@
     .row
       %label.h3
         %i.icon-chevron-right
-        Additional access rights
+        = t('.additional_access')
     .access_content
       .row.vertical_align
         .col.col-lg-3.col-lg-3_custom
           %label.h4
             %i.icon-spinner
-            Calendar:
+            = "#{t('home.index.calendar')}: "
         .col.col-lg-8
           .checkbox
             %label.checkbox-custom
               %input{:name => "allow_login", :type => "checkbox"}
                 %i.icon-unchecked
-              Access to other staff member's calendar
+              = t('.access_other_staff')
       .row
         .col.col-lg-3.col-lg-3_custom
         .col.col-lg-8
@@ -37,7 +37,7 @@
             %label.checkbox-custom
               %input{:name => "allow_login", :type => "checkbox"}
                 %i.icon-unchecked
-              View to other staff member's appointment
+              = t('.view_other_appoint')
       .row
         .col.col-lg-3.col-lg-3_custom
         .col.col-lg-8
@@ -45,18 +45,18 @@
             %label.checkbox-custom
               %input{:name => "allow_login", :type => "checkbox"}
                 %i.icon-unchecked
-              View and modify other staff member's appointment
+              = t('view_modify_other_appoint')
       .row.vertical_align
         .col.col-lg-3.col-lg-3_custom
           %label.h4
             %i.icon-spinner
-            Reviews:
+            = "#{t('menu.reviews')}: "
         .col.col-lg-8
           .checkbox
             %label.checkbox-custom
               %input{:name => "allow_login", :type => "checkbox"}
                 %i.icon-unchecked
-              Access to the Reviews tab
+              = t('.access_review')
       .row
         .col.col-lg-3.col-lg-3_custom
         .col.col-lg-8
@@ -64,7 +64,7 @@
             %label.checkbox-custom
               %input{:name => "allow_login", :type => "checkbox"}
                 %i.icon-unchecked
-              View reviews for this business
+              = t('.view_review')
       .row
         .col.col-lg-3.col-lg-3_custom
         .col.col-lg-8
@@ -72,4 +72,4 @@
             %label.checkbox-custom
               %input{:name => "allow_login", :type => "checkbox"}
                 %i.icon-unchecked
-              View and publish reviews for this bussiness
+              = t('.view_publish_review')

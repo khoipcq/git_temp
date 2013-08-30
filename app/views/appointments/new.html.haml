@@ -1,12 +1,12 @@
 .row.custom_datatable#new_appointment
   .panel
     .panel-heading
-      New Appointment
+      = t('.title')
     = render "form_appointment", :action => "new"
     .row.center.button_action
-      = link_to t('button.save'),'#', :class => 'btn btn-primary'
+      = link_to t('button.save'),'#', :class => 'btn btn-success'
       = link_to t('button.cancel'), organization_appointments_path(current_user.organization_id), :class => 'btn btn-warning'
     %br
 
-= javascript_include_tag "appointments"
+= javascript_include_tag "new_appointment"
 = javascript_include_tag "jquery.ui.datepicker"

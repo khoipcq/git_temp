@@ -1,0 +1,30 @@
+#appointment_page.tab-pane.active
+  .row
+    %h3
+      = t(".preview_title")
+  %br
+  .row
+    %span
+      = t(".preview_description")
+  %br
+  .center
+    %button.btn.btn-primary
+      = t("button.preview")
+  %hr
+  .row
+    %h3
+      = t(".url_title")
+  %br
+  .row
+    %span
+      = t(".url_description")
+  %br
+  #page_link.row
+    .col-lg-5
+      %input#link.parsley-validated{"data-required" => "true", :name => "link", :placeholder => "Link", :type => "text"}/
+    %label.col-lg-3.control-label
+      %a.text-link{"data-toggle" => "modal", :href => "#rename_url.modal"}
+        = t(".url_rename")
+
+  #rename_url.modal.fade.in
+    = render "rename_url"

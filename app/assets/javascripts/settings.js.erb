@@ -1,0 +1,92 @@
+function renderAction(obj){
+    var editString = '<a data-toggle="modal" href="#edit_closed_date.modal" class="action-link">Edit</a>';
+    var deleteString = '<a data-toggle="modal" href="#delete_notice.modal" class="action-link">Delete</a>';
+    return editString+" "+deleteString;
+}
+$(document).ready(function(){
+  var list = $("#operating_hours input:checkbox:not(:checked)");
+  jQuery.each(list, function() {
+    var id = $(this).attr('id');
+    var length = id.length;
+    var sub = id.substr(3,length);
+    var idFrom = "#from".concat(sub);
+    var idTo = "#to".concat(sub);
+    $(idFrom).attr('disabled', 'disabled');
+    $(idTo).attr('disabled', 'disabled');
+
+  });
+
+  $('#operating_hours .table_operating').on('click', 'input', function(){
+    var checkbox = $(this);
+    console.log(checkbox);
+    var id = $(this).attr('id');
+    var length = id.length;
+    var sub = id.substr(3,length);
+    var idFrom = "#from".concat(sub);
+    var idTo = "#to".concat(sub);
+    if (checkbox.is(':checked')) {
+      $(idFrom).removeAttr('disabled');
+      $(idTo).removeAttr('disabled');
+    } else {
+      $(idFrom).attr('disabled', 'disabled');
+      $(idTo).attr('disabled', 'disabled');
+    };
+  });
+
+  var dates = $( "#from_date, #to_date" ).datepicker({
+        defaultDate: "+1w",
+        dateFormat: I18n.t('time.datepicker_format'),
+        autoSize: true,
+        numberOfMonths: 1,
+        onSelect: function( selectedDate ) {
+            var option = this.id == "from_date" ? "minDate" : "maxDate",
+                instance = $( this ).data( "datepicker" );
+                   date = $.datepicker.parseDate(
+                    instance.settings.dateFormat ||
+                    $.datepicker._defaults.dateFormat,
+                    selectedDate, instance.settings );
+            dates.not( this ).datepicker( "option", option, date );
+        }
+    });
+
+  var tb = $("#closed_dates_table").dataTable({
+      sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+      "bFilter": true,
+      "bLengthChange": true,
+      "bInfo": true,
+      "bProcessing": false,
+      "bServerSide": true,
+      "sPaginationType": "full_numbers",
+      "oLanguage": {
+          "sEmptyTable": I18n.t('datatable.no_record'),
+          "sZeroRecords": I18n.t('datatable.no_record')
+        },
+      "iDisplayLength": g_displayLength,
+      "aaSorting": [[ 1, "asc" ]],
+      "aoColumns": [
+        { "sTitle": "Closed dates",
+          'bSortable': false,
+          "sClass": "left"
+        },
+        { "sTitle": "Total days",
+          'bSortable': false,
+          "sClass": "left"
+        },
+        { "sTitle": "Description",
+          'bSortable': false,
+          "sClass": "left"
+        },
+        { "sTitle": "Action",
+          'bSortable': false,
+          "fnRender": renderAction,
+          "sClass": "center"
+        },
+        {  "bVisible": false }
+      ],
+      "sAjaxSource": g_settingPath,
+      "fnInitComplete": function () {
+        $('div.dataTables_filter input').focus();
+      }
+    });
+
+});

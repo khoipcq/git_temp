@@ -182,7 +182,7 @@ features = [
 ]
 
 Feature.create(features)
-100.times do |i|
+10.times do |i|
   pricing_plan = PricingPlan.new
   pricing_plan.name = "Plan " + i.to_s
   pricing_plan.description = "Plan description " + i.to_s
@@ -192,7 +192,61 @@ Feature.create(features)
   pricing_plan.user_staff = [1,5,10,100,-2].shuffle.first
   pricing_plan.save
 end
+#create demo data
+existed_org_demo = Organization.find_by_name("Organization demo")
 
+if(existed_org_demo.blank?)
+  pricing_plan_id = PricingPlan.first().id || 0
+  date_now = Date.today
+  demo_org =Organization.create(
+    :name => "Organization demo",
+    :description => "Organization for demo",
+    :expired_date => date_now +1.month,
+    :state =>"LA",
+    :phone =>"",
+    :pricing_plan_id => pricing_plan_id
+  )
+  user_demo = User.new({
+    first_name: 'Site',
+    last_name: "Demo",
+    email: "demo@gmail.com",
+    username: "demo",
+    password: "123456",
+    password_confirmation: "123456",
+    is_admin: true,
+    organization: demo_org
+  })
+  user_demo.skip_confirmation!
+  user_demo.save
+  #create billing report
+  BillingReport.create(:user_id =>user_demo.id,:pricing_plan_id => pricing_plan_id,:total_paid =>1000)
+  BillingReport.create(:user_id =>user_demo.id,:pricing_plan_id => pricing_plan_id,:total_paid =>10000)
+  #Demo2
+  demo_org2 =Organization.create(
+    :name => "Organization demo2",
+    :description => "Organization for demo",
+    :expired_date => date_now +1.month,
+    :state =>"LA",
+    :phone =>"",
+    :pricing_plan_id => pricing_plan_id
+  )
+  user_demo2 = User.new({
+    first_name: 'Site',
+    last_name: "Demo2",
+    email: "demo2@gmail.com",
+    username: "demo2",
+    password: "123456",
+    password_confirmation: "123456",
+    is_admin: true,
+    organization: demo_org2
+  })
+  user_demo2.skip_confirmation!
+  user_demo2.save
+  #create billing report
+  BillingReport.create(:user_id =>user_demo2.id,:pricing_plan_id => pricing_plan_id,:total_paid =>200)
+  BillingReport.create(:user_id =>user_demo2.id,:pricing_plan_id => pricing_plan_id,:total_paid =>20000)
+end
+#end create demo 
 if ENV['RAILS_ENV'] == "test"
   user_mgt_group = UserGroup.create({
     name: "Manage User",

@@ -4,231 +4,47 @@
   .btn-group{"data-toggle" => "buttons-radio"}
     %label.btn.btn-small.btn-white.active
       %input#opt-Day{:name => "options", :type => "radio", onclick: "chooseList(this)"}
-      = t("button.btn-day")
+      = t("button.day")
     %label.btn.btn-small.btn-white
       %input#opt-Week{:name => "options", :type => "radio", onclick: "chooseList(this)"}
-      = t("button.btn-week")
+      = t("button.week")
   #list_day
     .row#filter
       .col.col-lg-4
         %label
-          Date
+          = t('time.date')
         = text_field_tag :on_date, Date.current.strftime(t('time.short_format')), :class => 'input-small', readonly: "readonly"
       .col.col-lg-2.col-offset-6.text-right
-        = link_to t(".view_report"), "#{report_organization_appointments_path(type_report: "day")}",class: "text-link"
-    .table-scoll
-      .outer
-        .inner
-          %table.table.table-bordered
-            %tbody
-              %tr.table-head
-                %th.fixed-col
-                %td Susan Botton
-                %td Magdalena Rogers
-                %td Ryan Gheris
-              %tr
-                %th.fixed-col  9:00 AM
-                %td
-                %td
-                %td
-              %tr
-                %th.fixed-col  9:30 AM
-                %td
-                  %input.btn-status.status-booked{:type=>"button", onclick: "changeStatus(this);"}
-                  .custom_name
-                    = link_to "Cindy Pham", "#{edit_organization_appointment_path(current_user.organization_id,1)}", class: "hover_name"
-                %td
-                %td
-              %tr
-                %th.fixed-col  10:00 AM
-                %td
-                %td
-                %td
-              %tr
-                %th.fixed-col  10:30 AM
-                %td
-                %td
-                %td
-              %tr
-                %th.fixed-col  11:00 AM
-                %td
-                %td
-                %td
-              %tr
-                %th.fixed-col  11:30 AM
-                %td
-                %td
-                %td
-              %tr
-                %th.fixed-col  12:00 AM
-                %td
-                %td
-                %td
-              %tr
-                %th.fixed-col  12:30 AM
-                %td
-                %td
-                %td
-              %tr
-                %th.fixed-col  1:00 PM
-                %td
-                %td
-                %td
-              %tr
-                %th.fixed-col  1:30 PM
-                %td
-                %td
-                %td
-              %tr
-                %th.fixed-col  2:00 PM
-                %td
-                %td
-                %td
-              %tr
-                %th.fixed-col  2:30 PM
-                %td
-                %td
-                %td
-              %tr
-                %th.fixed-col  3:00 PM
-                %td
-                %td
-                %td
-              %tr
-                %th.fixed-col  3:30 PM
-                %td
-                %td
-                %td
-              %tr
-                %th.fixed-col  4:00 PM
-                %td
-                %td
-                %td
-              %tr
-                %th.fixed-col  4:30 PM
-                %td
-                %td
-                %td
+        = link_to t("link.view_report"), "#{report_organization_appointments_path(type_report: "day")}",class: "text-link"
   #list_week.hidden
     .row#filter
       .col.col-lg-6
         %label
-          Date
+          = t('time.date')
         %span
-          From
+          = t('common.from')
         = text_field_tag :from_date, Date.current.strftime(t('time.short_format')), :class => 'input-small', readonly: "readonly"
         %span
-          To
+          = t('common.to')
         = text_field_tag :to_date, Date.current.strftime(t('time.short_format')), :class => 'input-small', readonly: "readonly"
       .col.col-lg-2.col-offset-4.text-right
-        = link_to t(".view_report"), "#{report_organization_appointments_path(type_report: "week")}",class: "text-link"
-    .table-scoll
-      .outer
-        .inner
-          %table.table.table-bordered
-            %tbody
-              %tr.table-head
-                %th.fixed-col
-                %th.th-week.center{:colspan => "7"} Susan Botton
-                %th.th-week.center{:colspan => "7"} Magdalena Rogers
-                %th.th-week.center{:colspan => "7"} Ryan Gheris
-              %tr.table-head
-                %th.fixed-col
-                - 3.times do
-                  %td.center Mon July 20
-                  %td.center Tus July 21
-                  %td.center Wed July 22
-                  %td.center Thur July 23
-                  %td.center Fri July 24
-                  %td.center Sat July 25
-                  %td.center Sun July 26
-              %tr
-                %th.fixed-col  9:00 AM
-                - 21.times do
-                  %td
-              %tr
-                %th.fixed-col  9:30 AM
-                %td
-                  %input.btn-status.status-booked{:type=>"button", onclick: "changeStatus(this);"}
-                  .custom_name
-                    = link_to "Cindy Pham", "#{edit_organization_appointment_path(current_user.organization_id,1)}", class: "hover_name"
-                - 20.times do
-                  %td
-              %tr
-                %th.fixed-col  10:00 AM
-                - 21.times do
-                  %td
-              %tr
-                %th.fixed-col  10:30 AM
-                - 21.times do
-                  %td
-              %tr
-                %th.fixed-col  11:00 AM
-                - 21.times do
-                  %td
-              %tr
-                %th.fixed-col  11:30 AM
-                - 21.times do
-                  %td
-              %tr
-                %th.fixed-col  12:00 AM
-                - 21.times do
-                  %td
-              %tr
-                %th.fixed-col  12:30 AM
-                - 21.times do
-                  %td
-              %tr
-                %th.fixed-col  1:00 PM
-                - 21.times do
-                  %td
-              %tr
-                %th.fixed-col  1:30 PM
-                - 21.times do
-                  %td
-              %tr
-                %th.fixed-col  2:00 PM
-                - 21.times do
-                  %td
-              %tr
-                %th.fixed-col  2:30 PM
-                - 21.times do
-                  %td
-              %tr
-                %th.fixed-col  3:00 PM
-                - 21.times do
-                  %td
-              %tr
-                %th.fixed-col  3:30 PM
-                - 21.times do
-                  %td
-              %tr
-                %th.fixed-col  4:00 PM
-                - 21.times do
-                  %td
-              %tr
-                %th.fixed-col  4:30 PM
-                - 21.times do
-                  %td
-
-  .explanation
-    .row
-      .col.col-lg-2
-        .text-border.status-booked
-          Green
-        .explan-text
-          Booked
-      .col.col-lg-2
-        .text-border.status-complete
-          Yellow
-        .explan-text
-          Complete
-
+        = link_to t("link.view_report"), "#{report_organization_appointments_path(type_report: "week")}",class: "text-link"
+  #calendar
 = javascript_include_tag "appointments"
 = javascript_include_tag "jquery.ui.datepicker"
+= javascript_include_tag "jquerycalendar/jquery-ui-1.10.3.custom"
+= javascript_include_tag "jquerycalendar/jquery-migrate-1.2.1"
+= javascript_include_tag "jquerycalendar/jquery.weekcalendar"
+= stylesheet_link_tag "jquerycalendar/libs/css/smoothness/jquery-ui-1.8.11.custom.css"
+= stylesheet_link_tag "jquerycalendar/jquery.weekcalendar"
+= stylesheet_link_tag "jquerycalendar/skins/default"
+= stylesheet_link_tag "jquerycalendar/skins/gcalendar"
+= stylesheet_link_tag "custom_calendar"
+ 
 :javascript
   $(document).ready(function(){
     $("nav#nav li").removeClass("active");
     $("nav#nav li#menu_appointments").addClass("active");
   });
   var newAppoinmentPath = "#{new_organization_appointment_path}";
+  var g_list_user = #{@list_user.to_json} ;

@@ -1,18 +1,21 @@
-
+// Author: ThuyLC
+// Description: This JavaScript code to manual create number texbox
+//
+// Created Date: Aug 19, 2013
 $.fn.numeric = function (options) {
          return this.each(function () {
              var  $this = $(this);
 
              $this.keypress(options, function (e) {
-                 // allow backspace and delete 
+                 // allow backspace and delete
                  if  (e.which == 8 || e.which == 0)
                      return  true;
 
-                //if the letter is not digit 
+                //if the letter is not digit
                  if  (e.which < 48 || e.which > 57)
                     return  false;
 
-                 // check max range 
+                 // check max range
                  var dest = e.which - 48;
                  var result = this.value + dest.toString();
                  if  (result > e.data.max) {
@@ -27,10 +30,14 @@ $.fn.numeric = function (options) {
               con = $.grep(g_all_page_feature, function(e){ return e.id == $(tmp).attr("index"); });
               index = jQuery.inArray(con[0], g_all_page_feature);
               g_all_page_feature[index].order = $(tmp).val();
+              g_is_change =true;
              });
          });
      };
-
+// Author: ThuyLC
+// Description: This JavaScript code to send delete feature request to server
+//
+// Created Date: Aug 19, 2013
 function delete_feature_request(){
   var message = I18n.t('confirm_delete_feature');
     $.ajax({
@@ -46,34 +53,79 @@ function delete_feature_request(){
       $("#delete_notice").modal("hide");
       $('#feature_table').dataTable().fnReloadAjax();
       if(msg["success"]=="true"){
-        
+
       }else{
         // $("#warningModal").modal("show");
       }
     });
 }
+// Author: ThuyLC
+// Description: This JavaScript code to send save feature order request to server
+//
+// Created Date: Aug 19, 2013
 function save_feature_order_request(){
     $.ajax({
-      url: g_url_delete_feature_path,
+      url: g_url_update_order_path,
       type: 'POST',
       data: {
-        id: g_current_obj.id,
+        "list" : JSON.stringify(g_all_page_feature),
         authenticity_token: g_token
       }
 
     }).done(function(msg){
       //
-      $("#delete_notice").modal("hide");
       $('#feature_table').dataTable().fnReloadAjax();
+      g_is_change = false;
       if(msg["success"]=="true"){
-        
+
       }else{
         // $("#warningModal").modal("show");
       }
     });
 }
+// Author: ThuyLC
+// Description: This JavaScript code to send save feature order request to server
+//
+// Created Date: Aug 19, 2013
+function save_feature_order_request_popup(){
+    $.ajax({
+      url: g_url_update_order_path,
+      type: 'POST',
+      data: {
+        "list" : JSON.stringify(g_all_page_feature),
+        authenticity_token: g_token
+      }
 
+    }).done(function(msg){
+      //
+      $('#feature_table').dataTable().fnReloadAjax();
+      $("#warning_paging.modal").modal("hide");
+      manual_paging();
+      g_is_change =false;
+      if(msg["success"]=="true"){
 
+      }else{
+        // $("#warningModal").modal("show");
+      }
+    });
+}
+function manual_paging()
+{
+  if(g_current_a){
+    page = parseInt(g_current_a);
+    if (isNaN(page) == true){
+      page = g_current_a.toLowerCase();
+    }else
+    {
+      if (page>0){ page = page -1;}
+    }
+    $("#feature_table").dataTable().fnPageChange(page,true);
+  }
+}
+// Author: ThuyLC
+// Description: This JavaScript code to manual render active column
+//
+// Created Date: Aug 19, 2013
   function renderActive(obj){
     if(obj){
       return I18n.t("helpers.lbl_yes");
@@ -82,30 +134,35 @@ function save_feature_order_request(){
       return I18n.t("helpers.lbl_no");
     }
   }
+// Author: ThuyLC
+// Description: This JavaScript code to manual render action column
+//
+// Created Date: Aug 19, 2013
   function renderAction(obj){
     if(g_bDeleteFeature && g_bEditFeature){
       var editString = '<a data-toggle="modal" href="#edit_feature.modal" onclick="edit_feature(this)" class="action-link">'+I18n.t("helpers.lbl_edit")+'</a>';
-      var deleteString = '<a data-toggle="modal" href="#delete_notice.modal" onclick="delete_feature(this)" class="action-link">'+I18n.t("helpers.lbl_delete")+'</a>';
-      return editString+" "+deleteString;
+      // var deleteString = '<a data-toggle="modal" href="#delete_notice.modal" onclick="delete_feature(this)" class="action-link">'+I18n.t("helpers.lbl_delete")+'</a>';
+      return editString;//+" "+deleteString;
      }
     else{
       return "";
      }
   }
-  function editUser(obj){
-    if(g_bEditFeature){
-      // return "<a href="+g_editFeaturePath.replace("%5Bid%5D",obj.aData[5])+">"+obj.aData[1]+"</a>";
-    }
-    else{
-      // return obj.aData[1];
-    }
-   }
+// Author: ThuyLC
+// Description: This JavaScript code to handle when user click delete button
+//
+// Created Date: Aug 19, 2013
+
   function delete_feature(obj)
   {
     aPos = $('#feature_table').dataTable().fnGetPosition(obj.parentNode);
     aData = $('#feature_table').dataTable().fnGetData(aPos[0]);
     g_current_obj = aData;
   }
+// Author: ThuyLC
+// Description: This JavaScript code to handle when user click edit button
+//
+// Created Date: Aug 19, 2013
   function edit_feature(obj)
   {
     aPos = $('#feature_table').dataTable().fnGetPosition(obj.parentNode);
@@ -113,6 +170,10 @@ function save_feature_order_request(){
     g_current_obj = aData;
     get_feature_info(aData);
   }
+// Author: ThuyLC
+// Description: This JavaScript code to get feature info and set into text box
+//
+// Created Date: Aug 19, 2013
   function get_feature_info(data)
   {
     $("#feature_name").val(data.name);
@@ -120,12 +181,15 @@ function save_feature_order_request(){
     $("#feature_status").val(data.status.toString());
     $("#hidden_feature_id").val(data.id);
   }
-  //Set style table
+// Author: ThuyLC
+// Description: This JavaScript code to handle when page load
+//
+// Created Date: Aug 19, 2013
   $(document).ready(function(){
     var tb = $("#feature_table").dataTable({
       sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
       "bFilter": true,
-        "bLengthChange": false,
+        "bLengthChange": true,
         "bInfo": false,
         "bProcessing": false,
         "bServerSide": true,
@@ -135,6 +199,7 @@ function save_feature_order_request(){
         },
         "sPaginationType": "full_numbers",
         "iDisplayLength": g_per_page,
+        // "iDisplayLength": 3,
         "aaSorting": [[ 0, "asc" ]],
       "aoColumns": [
         { "sTitle": I18n.t('feature.j_name'),
@@ -145,7 +210,7 @@ function save_feature_order_request(){
         },
         { "sTitle": I18n.t('feature.j_description'),
           "sClass": "left",
-          'bSortable': false,
+          'bSortable': true,
           "sWidth": "30%",
           "mData" : "description"
         },
@@ -183,13 +248,21 @@ function save_feature_order_request(){
         });
       },
       "fnDrawCallback": function (oSettings) {
+
         $('input[name="number"]').numeric({max: 99});
         g_all_page_feature = $("#feature_table").dataTable().fnGetData();
+        $("#feature_table_paginate a").bind("click",function(e){
+           if(g_is_change ==true){
+              $("#warning_paging.modal").modal("show");
+            }
+            tmp = e;
+          g_current_a = e.target.innerHTML;
+        })
       }
     });
     validate_edit_form();
     render_save_order_button();
-    
+
     $('#edit_feature.modal').modal({
       keyboard: false,
       show: false
@@ -198,17 +271,39 @@ function save_feature_order_request(){
     $("#btn_delete_feature").on('click',function(){
       delete_feature_request();
     });
+    $("#btn_save_order").on('click',function(){
+      save_feature_order_request();
+    });
+    // $("#feature_table").bind('page',function(){
+    //   if(g_is_change ==true){
+    //     $("#warning_paging.modal").modal("show");
+    //   }
+    // });
+    $("#btn_save_order_popup").on('click',function(){
+      save_feature_order_request_popup();
+    });
+    $("#btn_no_order_popup").on('click',function(){
+      g_is_change =false;
+      manual_paging();
+    });
   });
+// Author: ThuyLC
+// Description: This JavaScript code to manual render order column
+//
+// Created Date: Aug 19, 2013
 function render_order(obj,type,row)
 {
   if (obj == null)
   {
     obj =0
   }
-  input_text = '<input type ="text" value="'+obj+'" name="number" index="'+row.id+'" ></input>';
+  input_text = '<input type ="text" value="'+obj+'" name="number" class="input_column" index="'+row.id+'" ></input>';
   return input_text;
 }
-
+// Author: ThuyLC
+// Description: This JavaScript code to manual render save order button
+//
+// Created Date: Aug 19, 2013
 function render_save_order_button()
 {
   btn_save_order = document.createElement("input");
@@ -218,6 +313,10 @@ function render_save_order_button()
   btn_save_order.setAttribute("value",I18n.t("features.save_sort_order"));
   $("#feature_table_filter").prepend(btn_save_order);
 }
+// Author: ThuyLC
+// Description: This JavaScript code to manual validation edit feature modal form
+//
+// Created Date: Aug 19, 2013
 function validate_edit_form()
 {
   $("#update_feature").validate({
@@ -226,14 +325,20 @@ function validate_edit_form()
         required: true,
         maxlength: 256,
         regex: /^[A-Za-z0-9\. ]+$/
+      },
+      "description": {
+        maxlength: 1024
       }
     },
     messages: {
-      
+
       "feature_name":{
         required: I18n.t('required_msg', {field : I18n.t('feature_name')}),
         maxlength: I18n.t('maxlength_msg', {field : I18n.t('feature_name'), length: 256}),
         regex: I18n.t('regex_textfield', {field : I18n.t('feature_name')})
+      },
+      "description": {
+        maxlength: I18n.t('description_length')
       }
     },
     errorPlacement: function(error, element){
@@ -241,7 +346,10 @@ function validate_edit_form()
     }
   });
 }
-
+// Author: ThuyLC
+// Description: This JavaScript code to handle respone from server when update feature
+//
+// Created Date: Aug 19, 2013
 function success_update(obj)
 {
   $('#edit_feature.modal').modal("hide");
@@ -251,8 +359,12 @@ function success_update(obj)
   }else{
     showAlert('myAlert','alert-success', I18n.t("msg.msg_update_feature_failed"));
   }
-  
+
 }
+// Author: ThuyLC
+// Description: This JavaScript code to handle respone from server when delete feature
+//
+// Created Date: Aug 19, 2013
 function success_delete(obj)
 {
   $('#edit_feature.modal').modal("hide");
@@ -262,5 +374,18 @@ function success_delete(obj)
   }else{
      showAlert('myAlert','alert-success', I18n.t("msg.msg_delete_feature_failed"));
   }
-  
+
+}
+// Author: ThuyLC
+// Description: This JavaScript code to handle respone from server when update order feature
+//
+// Created Date: Aug 19, 2013
+function success_order(obj)
+{
+  $('#feature_table').dataTable().fnReloadAjax();
+  if(obj ==true){
+     showAlert('myAlert','alert-success', I18n.t("msg.msg_save_order_success"));
+  }else{
+     showAlert('myAlert','alert-success', I18n.t("msg.msg_save_order_failed"));
+  }
 }

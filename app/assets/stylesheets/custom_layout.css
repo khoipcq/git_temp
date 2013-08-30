@@ -8,8 +8,11 @@ body #content{
 .affix{
   position: absolute;
 }
-input[disabled='disabled']{
+input[disabled='disabled'] {
   cursor: text;
+}
+select[disabled='disabled']{
+  cursor: auto;
 }
 input[readonly='readonly']{
   cursor: pointer;
@@ -32,6 +35,12 @@ ul.viewsCycle-processed li {
 }
 ul {
 	list-style-type: none;
+}
+.group-button-small{
+  padding-bottom: 10px;
+}
+.group-button-small .btn{
+  width: 70px;
 }
 
 /* Custom template */
@@ -258,4 +267,7 @@ table.recaptcha_theme_clean {
 .alert p
 {
 	font-size: 13px;
+}
+#abc label.error{
+	margin-left: 27%;
 }

@@ -1,0 +1,95 @@
+#new_email_campaign
+  .row.custom_datatable
+    .panel
+      .panel-heading
+        = t(".title")
+      #form_email_campaign
+        %form.form-horizontal
+          .row
+            %label.col.col-lg-3.control-label
+              = t(".template_name")
+              %span.required *
+            .col.col-lg-8
+              %input.parsley-validated{"data-required" => "true", "data-type" => "text", :name => "name", :type => "text",:autofocus => true,tabindex:"1" }
+          .row
+            %label.col.col-lg-3.control-label
+              = t('common.description')
+            .col.col-lg-8
+              %textarea{"data-rangelength" => "[20,200]", :rows => "3", tabindex: "2"}
+          .row
+            %label.col.col-lg-3.control-label
+              = t('common.status')
+            .col.col-lg-8
+              %select{:name => "status", tabindex:"5"}
+                %option{:value => "1"}
+                  = t('common.active')
+                %option{:value => "0"}
+                  = t('common.inactive')
+          .row
+            %label.col.col-lg-3.control-label
+              = t('.email_content')
+              %span.required *
+          .row
+            .col.col-lg-10.col-offset-1.control-label
+              %textarea{:class => "ckeditor", :name => "email_content"}
+          .row
+            %label.col.col-lg-3.control-label
+              = t('.email_schedule')
+          .row
+            .col.col-lg-10.col-offset-1
+              .email_schedule
+                .row
+                  = t('.email_schedule_description')
+                .row
+                  .col.col-lg-2.right
+                    .radio
+                      %label.radio-custom
+                        %input{type: "radio", name: "email_schedule"}
+                          %i.icon-circle-blank
+                        = t('.before')
+                  .col.col-lg-2
+                    %select{name: "option1_before"}
+                      - (1..30).each do |time|
+                        %option{value: "#{time}"}#{time}
+                  .col.col-lg-3
+                    %select{name: "option2_before"}
+                      %option{value: "0"}
+                        = t('common.hour_s')
+                      %option{value: "1"}
+                        = t('common.day_s')
+                      %option{value: "2"}
+                        = t('common.week_s')
+                  .col.col-lg-3.control-label.left
+                    = t('.of_appointment_date')
+                .row
+                  .col.col-lg-2.right.radio_after_custom
+                    .radio
+                      %label.radio-custom
+                        %input{type: "radio", name: "email_schedule"}
+                          %i.icon-circle-blank
+                        = t('.after')
+                  .col.col-lg-2
+                    %select{name: "option1_after"}
+                      - (1..30).each do |time|
+                        %option{value: "#{time}"}#{time}
+                  .col.col-lg-3
+                    %select{name: "option2_after"}
+                      %option{value: "0"}
+                        = t('common.hour_s')
+                      %option{value: "1"}
+                        = t('common.day_s')
+                      %option{value: "2"}
+                        = t('common.week_s')
+                  .col.col-lg-5
+                    %select{name: "option3_after"}
+                      %option{value: "0"}
+                        = t('.comleting_appointment')
+                      %option{value: "1"}
+                        = t('.cancelling_appointment')
+                      %option{value: "2"}
+                        = t('.setting_appointment')
+          .row.center.group-button-small
+            = link_to t('button.save'),'#', :class => 'btn btn-success'
+            = link_to t('button.cancel'), organization_email_campaigns_path(current_user.organization_id), :class => 'btn btn-warning'
+    = javascript_include_tag "email_campaigns"
+

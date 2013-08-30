@@ -1,18 +1,18 @@
 .row.custom_datatable#new_appointment
   .panel
     .panel-heading
-      Edit Appointment
+      = t('.title')
     = render "form_appointment", :action => "edit"
     .row.button_action
       / %a.text-link
       /   = link_to "Cancel this appointment",
       %a.text-link{"data-toggle" => "modal", :href => "#cancel_appointment.modal.modal"}
-        Cancel this appointment
+        = t('link.cancel_appointment')
       .center
-        = link_to t('button.save'),'#', :class => 'btn btn-primary'
+        = link_to t('button.save'),'#', :class => 'btn btn-success'
         = link_to t('button.cancel'), organization_appointments_path(current_user.organization_id), :class => 'btn btn-warning'
       %br
     #cancel_appointment.modal.fade
-      = render "shared/confirm_notice", :message_header => t('.cancel_confirm_header'), :message_body => t('.cancel_confirm_body')
+      = render "shared/confirm_notice", :message_header => t('common.cancel_confirm_header'), :message_body => t('.cancel_confirm_body')
 = javascript_include_tag "appointments"
 = javascript_include_tag "jquery.ui.datepicker"

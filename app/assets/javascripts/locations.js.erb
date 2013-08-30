@@ -1,21 +1,106 @@
-$(document).ready(function(){
-    $("nav#nav li").removeClass("active");
-    $("nav#nav li#store-owners").addClass("active");
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+function renderLocationAction(obj){
+    // thay id cua location vao day => demo voi id = 1
+    var edit_link = g_editLocationPath.replace("%5Bid%5D",1);
+    var editString = '<a data-toggle="modal" href="'+edit_link+'" class="action-link">Edit</a>';
+    var deleteString = '<a data-toggle="modal" href="#delModal.modal" class="action-link">Delete</a>';
+    return editString+" "+deleteString;
+  }
 
-    $("#locations_table").dataTable({
-      sPaginationType: "full_numbers",
-      sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
-       aoColumnDefs:
-        [{"bSortable": false, "aTargets": [0,1,2,3,4]}]
+function renderStaffAction(obj){
+    // thay id cua location vao day => demo voi id = 1
+    var edit_link = g_editStaffPath.replace("%5Bid%5D",1);
+    var editString = '<a data-toggle="modal" href="'+edit_link+'" class="action-link">Edit</a>';
+    var deleteString = '<a data-toggle="modal" href="#delModalStaff.modal" class="action-link">Delete</a>';
+    return editString+" "+deleteString;
+  }
+ $(document).ready(function(){  
+  var table = $('#table_location').dataTable({
+    sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+    "bFilter": true,
+    "bLengthChange": true,
+    "bInfo": true,
+    "bProcessing": true,
+    "bServerSide": false,
+    "sPaginationType": "full_numbers",
+    "iDisplayLength": g_displayLength,
+    "aaSorting": [[ 1, "asc" ]],
+    "aoColumns": [
+      { "sTitle": I18n.t('locations.name'),            
+        'bSortable': false,
+        "sWidth": "20%"
+      },
+      { "sTitle": I18n.t('locations.address'),            
+        'bSortable': false,
+        "sWidth": "30%"
+      },
+      { "sTitle": I18n.t('locations.website'),
+        'bSortable': false,            
+        "sWidth": "20%"
+       },
+      { "sTitle": I18n.t('locations.phone'),
+        'bSortable': false,                        
+        "sWidth": "15%"
+      },          
+      { "sTitle": I18n.t('common.action'),
+        'bSortable': false,
+        "fnRender": renderLocationAction,
+        "sClass": "center vertical-middle",
+        "sWidth": "15%"
+      },
+      {  "bVisible": false }
+    ],
+    "sAjaxSource": "#{organization_locations_path}",
+    "fnInitComplete": function () {
+      $('div.dataTables_filter input').focus();
+    }                
+  });    
+  jQuery.fn.reverse = [].reverse;
+  $('.group-staff-dataTable').reverse().each(function() {
+      console.log(this);
+      var table = $(this).dataTable({
+        sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+        "bFilter": true,
+        "bLengthChange": true,
+        "bInfo": true,
+        "bProcessing": true,
+        "bServerSide": false,
+        "sPaginationType": "full_numbers",
+        "iDisplayLength": g_displayLength,
+        "aaSorting": [[ 1, "asc" ]],
+        "aoColumns": [
+          { "sTitle": I18n.t('staff.j_name'),            
+            'bSortable': false,
+            "sWidth": "20%"
+          },
+          { "sTitle": I18n.t('staff.j_email'),            
+            'bSortable': false,
+            "sWidth": "15%"
+          },
+          { "sTitle": I18n.t('staff.j_phone'),
+            'bSortable': false,            
+            "sWidth": "15%"
+           },                  
+          { "sTitle": I18n.t('staff.j_action'),
+            'bSortable': false,
+            "fnRender": renderStaffAction,
+            "sClass": "center",
+            "sWidth": "20%"
+          },
+          {  "bVisible": false }
+        ],
+        "sAjaxSource": "#{organization_staffs_path}",
+        "fnServerParams": function ( aoData ) {
+          aoData.push( { "name": "staff_group_id", "value": $(this).attr('id')});
+        },
+        "fnInitComplete": function () {
+          $('div.dataTables_filter#1_filter input').focus();
+
+        }
+      });
     });
-    
 
-    $("#staff_table").dataTable({
-      sPaginationType: "full_numbers",
-      sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
-       aoColumnDefs:
-        [{"bSortable": false, "aTargets": [0,1,2,3]}]
-    });
+  
+});
 
-
-  });

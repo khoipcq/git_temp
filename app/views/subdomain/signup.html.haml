@@ -1,0 +1,51 @@
+.row#devise-register-new-customer
+  .col.col-lg-7.col-offset-2.m-t-large
+    %section.panel
+      %header.panel-heading.text-center
+        = t('devise.registrations.new.title')      
+      %form.form-horizontal
+        - if flash[:alert]
+          %p(style="color: red")= flash[:alert]
+        .row
+          %label.col.col-lg-4.control-label
+            = "#{t('users.last_name')} *"
+          .col.col-lg-6
+            = text_field_tag 'last_name','', autofocus: true, :placeholder => 'Yamada'
+          .clearfix
+        .row
+          %label.col.col-lg-4.control-label
+            = "#{t('users.first_name')} *"
+          .col.col-lg-6
+            = text_field_tag 'first_name','', :placeholder => 'Taro'
+          .clearfix
+        .row
+          %label.col.col-lg-4.control-label
+            = "#{t('users.phone_number')} *"
+          .col.col-lg-6
+            = text_field_tag 'phone_number','', :placeholder => '090-1234-5678'
+          .clearfix
+        .row
+          %label.col.col-lg-4.control-label
+            = "#{t('users.email_address')} *"
+          .col.col-lg-6
+            = email_field_tag 'email_address','', :placeholder => 'taro_yamada@example.com'
+          .clearfix
+        .row
+          %label.col.col-lg-4.control-label
+            = "#{t('devise.sessions.password')} *"
+          .col.col-lg-6
+            = password_field_tag 'last_name','', :placeholder => t('devise.sessions.password_promt')
+          .clearfix
+        .row
+          %label.col.col-lg-4.control-label
+            = "#{t('devise.sessions.password_confirm')} *"
+          .col.col-lg-6
+            = password_field_tag 'password_confirm','',:placeholder => t('devise.sessions.confirm_pass_promt')
+          .clearfix
+        %br/
+        .text-center
+          = link_to t('button.register_book'),'#', :class => "btn btn-success"
+        
+        
+        
+          

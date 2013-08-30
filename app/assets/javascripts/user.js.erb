@@ -87,14 +87,17 @@ $(function(){
     },
     messages: {
       "user[first_name]":{
-        required: I18n.t('required_msg', {field : I18n.t('firstname')}),
+        // required: I18n.t('required_msg', {field : I18n.t('firstname')}),
+        required: I18n.t('require_field_msg'),
         maxlength: I18n.t('maxlength_msg', {field : I18n.t('firstname'), length: 50})
       },
       "user[email]":{
         required: I18n.t('required_msg', {field : I18n.t('email')}),
+        email: I18n.t('email_valid')
       },
       "user[last_name]":{
-        required: I18n.t('required_msg', {field : I18n.t('lastname')}),
+        // required: I18n.t('required_msg', {field : I18n.t('lastname')}),
+        required: I18n.t('require_field_msg'),
         maxlength: I18n.t('maxlength_msg', {field : I18n.t('lastname'), length: 50})
       },
       "user[username]": {
@@ -105,8 +108,8 @@ $(function(){
       },
       "user[password]":{
         required: I18n.t('required_msg', {field : I18n.t('password')}),
-        minlength: I18n.t('minlength_msg', {field : I18n.t('password'), length: 6}),
-        maxlength: I18n.t('maxlength_msg', {field : I18n.t('password'), length: 32})
+        minlength: I18n.t('password_minlength'),//, {field : I18n.t('password'), length: 6}),
+        maxlength: I18n.t('password_maxlength')//, {field : I18n.t('password'), length: 32})
       },
       "user[password_confirmation]": {
         equalTo: I18n.t('password_not_match')
@@ -153,14 +156,17 @@ $("#edit_user").validate({
     },
     messages: {
       "user[first_name]":{
-        required: I18n.t('required_msg', {field : I18n.t('firstname')}),
+        // required: I18n.t('required_msg', {field : I18n.t('firstname')}),
+        required: I18n.t('require_field_msg'),
         maxlength: I18n.t('maxlength_msg', {field : I18n.t('firstname'), length: 50})
       },
       "user[email]":{
         required: I18n.t('required_msg', {field : I18n.t('email')}),
+        email: I18n.t('email_valid')
       },
       "user[last_name]":{
-        required: I18n.t('required_msg', {field : I18n.t('lastname')}),
+        // required: I18n.t('required_msg', {field : I18n.t('lastname')}),
+        required: I18n.t('require_field_msg'),
         maxlength: I18n.t('maxlength_msg', {field : I18n.t('lastname'), length: 50})
       },
       "user[username]": {
@@ -168,10 +174,15 @@ $("#edit_user").validate({
         regex: I18n.t('regex_username', {field : I18n.t('username')}),
         maxlength: I18n.t('maxlength_msg', {field : I18n.t('username'), length: 50})
       },
+      // "user[password]":{
+      //   required: I18n.t('required_msg', {field : I18n.t('password')}),
+      //   maxlength: I18n.t('password_length'),
+      //   minlength: I18n.t('password_length')
+      // },
       "user[password]":{
         required: I18n.t('required_msg', {field : I18n.t('password')}),
-        maxlength: I18n.t('password_length'),
-        minlength: I18n.t('password_length')
+        minlength: I18n.t('password_minlength'),//, {field : I18n.t('password'), length: 6}),
+        maxlength: I18n.t('password_maxlength')//, {field : I18n.t('password'), length: 32})
       },
       "user[password_confirmation]": {
         equalTo: I18n.t('password_not_match')
@@ -253,3 +264,4 @@ $("#edit_user").validate({
       }
     });
   });
+

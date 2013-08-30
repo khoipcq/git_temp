@@ -44,8 +44,11 @@ gem 'thin'
 gem 'public_activity'
 gem "recaptcha", :require => "recaptcha/rails"
 gem 'remotipart', '~> 1.2'
+gem "spreadsheet", "~> 0.8.8"
 # Used to async sending emails for devise
 gem "devise-async"
+# text editor
+gem 'ckeditor_rails'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

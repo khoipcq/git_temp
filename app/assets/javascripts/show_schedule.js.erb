@@ -1,13 +1,91 @@
+function renderClosedDateAction(obj){
+    // thay id cua location vao day => demo voi id = 1
+    var editString = '<a data-toggle="modal" href="#" class="action-link">Edit</a>';
+    var deleteString = '<a data-toggle="modal" href="#delModalClosed.modal" class="action-link">Delete</a>';
+    return editString+" "+deleteString;
+  }
+function renderClosedDate(obj){
+    // thay id cua location vao day => demo voi id = 1
+
+    var date = '<a data-toggle="modal" href="#" class="action-link">Aug 1, 2013 - Aug 3, 2013</a>';
+    return date;
+  }
 $(document).ready(function(){
-  $( "#tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
-  $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
-  $("#store_closed_table").dataTable({
-    sPaginationType: "full_numbers",
-    sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6">>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
-     aoColumnDefs:
-      [{"bSortable": false, "aTargets": [0,1,2,3]}]
+  // $( "#tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+  // $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+  $(function() {
+    var list = $("input:checkbox:not(:checked)");
+    jQuery.each(list, function() {
+      var id = $(this).attr('id');
+      var length = id.length;
+      var sub = id.substr(3,length);
+      var idFrom = "#from".concat(sub);
+      var idTo = "#to".concat(sub);
+      $(idFrom).attr('disabled', 'disabled');
+      $(idTo).attr('disabled', 'disabled');
+
+    });
+  });
+  $('.table_operating').on('click', 'input', function(){
+    var checkbox = $(this);
+    console.log(checkbox);
+    var id = $(this).attr('id');
+    var length = id.length;
+    var sub = id.substr(3,length);
+    var idFrom = "#from".concat(sub);
+    var idTo = "#to".concat(sub);
+    if (checkbox.is(':checked')) {
+      $(idFrom).removeAttr('disabled');
+      $(idTo).removeAttr('disabled');
+    } else {
+      $(idFrom).attr('disabled', 'disabled');
+      $(idTo).attr('disabled', 'disabled');
+    };
   });
 
-  
-  
+
+  var table = $('#store_closed_table').dataTable({
+    sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+    "bFilter": true,
+    "bLengthChange": true,
+    "bInfo": true,
+    "bProcessing": true,
+    "bServerSide": false,
+    "sPaginationType": "full_numbers",
+    "iDisplayLength": g_displayLength,
+    "aaSorting": [[ 1, "asc" ]],
+    "aoColumns": [
+      { "sTitle": I18n.t('closed_date.name'),
+        'bSortable': false,
+        'fnRender': renderClosedDate,
+        'sClass': 'center',
+        "sWidth": "40%"
+      },
+      { "sTitle": I18n.t('closed_date.total_days'),
+        'bSortable': false,
+        'sClass': 'text-right',
+        "sWidth": "15%"
+      },
+      { "sTitle": I18n.t('closed_date.description'),
+        'bSortable': false,
+        "sWidth": "25%"
+       },
+      { "sTitle": I18n.t('closed_date.action'),
+        'bSortable': false,
+        "fnRender": renderClosedDateAction,
+        "sClass": "center",
+        "sWidth": "20%"
+      },
+      {  "bVisible": false }
+    ],
+    "sAjaxSource": "#{organization_staffs_path}",
+    "fnServerParams": function ( aoData ) {
+      aoData.push( { "name": "closed_table_id", "value": '1'});
+    },
+    "fnInitComplete": function () {
+      $('#store_closed_table_filter').focus();
+
+    }
+  });
+
 });

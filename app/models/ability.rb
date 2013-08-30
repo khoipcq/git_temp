@@ -17,7 +17,9 @@ class Ability
     # permission view org for any user
     #can :show, Organization, :id => user.organization_id
     can :read, Organization, :id =>  user.organization_id
+    can :get_appointments, Organization, :id =>  user.organization_id
     can :update_profile, User
+    can :update_profile_store_owner, User
     # all permission for super admin
     if user.admin? && user.organization.super_org?
       can :manage, Feature
@@ -33,10 +35,13 @@ class Ability
       can :manage, Customer
       can :manage, UserGroup
       can :manage, Review
-      can :index, Activity
+      can :manage, Activity
       can :manage, Appointment
       can :manage, Location
       can :manage, Service
+      can :manage, EmailCampaign
+      can :manage, Setting
+
       return
     end
     # Allow user to view, edit himself

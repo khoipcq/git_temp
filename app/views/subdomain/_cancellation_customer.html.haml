@@ -1,0 +1,32 @@
+#cancellation_customer
+  .modal-dialog
+    .modal-content      
+      - if (isCancel == true)
+        .modal-header
+          %h4.modal-title.text-center
+            = message_header_ok
+        .modal-body
+          %center
+            %form            
+              = message_body_ok
+            %br/          
+          .row.text-center
+            %a.btn.btn-success.button-min{:href => "#"}
+              = t('button.txt_yes')
+            %a.btn.btn-warning.button-min{'data-dismiss' => 'modal'}
+              = t('button.txt_no')     
+      
+      - else
+        .modal-header
+          %h4.modal-title.text-center
+            = message_header_no 
+        .modal-body
+          %center
+            %form            
+              = message_body_no  
+            %br/
+          .text-center
+            %a.btn.btn-info{'data-dismiss' => 'modal'}
+              = t('button.close')          
+      
+              

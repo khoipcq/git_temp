@@ -1,0 +1,21 @@
+$(document).ready(function(){
+  var width = $(".outer").width() - 110;
+  $('.inner').css("width", width);
+  $('.th-week').css("width", width);
+  $('.td').css("min-width", 200);
+
+  $(".pick_date").datepicker();
+  $('.recurring_filter').addClass("hidden");
+  $( "#repeat_options" ).change(function() {
+    $( "#repeat_options option:selected" ).each(function() {
+      $('.recurring_filter').addClass("hidden");
+      $('#'+$(this).val()).removeClass("hidden");
+    });
+  });
+  $('#repeat_help').popover({
+        placement: "right",
+        content: "The day that is same booking day will be repeated on",
+        trigger: 'hover',
+        html: true
+    });
+});

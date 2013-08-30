@@ -2,21 +2,21 @@
   %br/
   .panel
     .button_add
-      = link_to "Add New Customer", "#{new_organization_customer_path(current_user.organization_id)}" ,:class => "btn btn-primary "
-      %input.btn.btn-primary{"data-toggle" => "modal", :href => "#show_export.modal", :type => "button", :value => "Export"}
+      = link_to t('link.add_new_customer'), "#{new_organization_customer_path(current_user.organization_id)}" ,:class => "btn btn-primary "
+      %input.btn.btn-primary{"data-toggle" => "modal", :href => "#show_export.modal", :type => "button", :value => "#{t('button.export')}"}
     .panel-heading
-      List of Customers
+      = t('.title')
     %table#customers_table.table.table-striped.dataTable
       %div
 
 
-  / = render "export"
-  / = render "edit_note"
+  = render "export"
+  /= render "edit_note"
   = render "view_history"
 
 
   #delete_notice.modal.fade
-    = render "shared/confirm_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body')
+    = render "shared/confirm_notice", :message_header => t('common.delete_confirm_header'), :message_body => t('.delete_confirm_body')
 
 = javascript_include_tag "customers"
 :javascript

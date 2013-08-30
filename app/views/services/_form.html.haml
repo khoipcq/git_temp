@@ -1,18 +1,19 @@
-%section.panel
-  %header.panel-heading
-    %ul.nav.nav-tabs.pull-left.font_normal
-      %li.active
-        %a{"data-toggle" => "tab", :href => "#service_info"}
-          = t('.service_info')
-      %li
-        %a{"data-toggle" => "tab", :href => "#assign_staff"}
-          = t('.assign_staff')
-  .tab-content
-    #service_info.tab-pane.active
-      = render 'form_service_info'
-    #assign_staff.tab-pane
-      = render 'form_assign_staff'
-.row.center
-  = link_to t('button.save'),'#', :class => 'btn btn-success button_min'
-  = link_to t('button.cancel'), organization_services_path(current_user.organization_id), :class => 'btn btn-warning button_min'
-%br/
+#form  
+  %section.panel
+    %header.panel-heading
+      %ul.nav.nav-tabs.pull-left.font_normal
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#service_info"}
+            = t('.service_info')
+        %li
+          %a{"data-toggle" => "tab", :href => "#assign_staff"}
+            = t('.assign_staff')
+    .tab-content
+      #service_info.tab-pane.active
+        = render 'form_service_info'
+      #assign_staff.tab-pane
+        = render 'form_assign_staff'
+  .row.center
+    = link_to t('button.save'),'#', :class => 'btn btn-success button-min'
+    = link_to t('button.cancel'), organization_services_path(current_user.organization_id), :class => 'btn btn-warning button-min'
+  %br/

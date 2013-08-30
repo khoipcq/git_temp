@@ -1,33 +1,19 @@
-%h4
-  = t('.title')
-.row.text-right.margin_bottom
-  = link_to t('button.add'),'#',:class => "btn btn-primary"
-.custom-datatable
-  %table#store_closed_table.table_store_closed.table.table-striped.dataTable
-    %thead
-      %tr
-        %th.text-center
-          = t('.closed_date')
-        %th.text-center
-          = t('.total_day')
-        %th.text-center
-          = t('.description')
-        %th.text-center
-          = t('.action')
-    %tbody
-      - 50.times do
-        %tr
-          %td.action_link.text-center
-            = link_to 'Aug 1, 2013- Aug 3, 2013', '#'
-          %td.text-right
-            = 3
-          %td.text_left
-            = "Vacation"
-          %td.text-center.action_link
-            = link_to t('link.delete'), '#', "data-toggle" => "modal", :href => "#delModalClosed"
-
-
-  %br/
+#form_schedule_closed
+  .custom_datatable
+    .panel
+      .button_add
+        = link_to t('button.add_new_closed_date'),'#',:class => "btn btn-primary button-min"
+      .panel-heading
+        = t('.title')
+      %table#store_closed_table.table.table-striped.dataTable
+        %div
+  / %h4
+  /   = t('.title')
+  / .row.text-right.margin-bottom
+  /   = link_to t('button.add'),'#',:class => "btn btn-primary button-min"
+  / .row.custom-datatable
+  /   %table#store_closed_table.table.table-striped.dataTable
 
 #delModalClosed.modal.fade
-  = render "shared/warning_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body')
+  = render "shared/warning_notice", :message_header => t('common.delete_confirm_header'), :message_body => t('.delete_confirm_body')
+

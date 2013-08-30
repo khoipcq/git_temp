@@ -15,7 +15,7 @@
               %input{ :name => "feature_name",:disabled =>"disabled",:id=>"feature_name", :type => "text",:autofocus => true,tabindex:"1" }
           .row
             %label.col.col-lg-4.control-label
-              = t('.description')
+              = t('common.description')
             .col.col-lg-8
               %textarea{:rows => "3", tabindex: "2",:name=>"description",:id => "description"}
           / .row
@@ -32,14 +32,14 @@
           /           %i.icon-chevron-down
           .row
             %label.col.col-lg-4.control-label
-              = t('.status.name')
+              = t('common.status')
               %span.required *
             .col.col-lg-8
               %select{:name => "status",:id =>"feature_status", tabindex: "6"}
                 %option{:value => "true"}
-                  = t('.status.active')
+                  = t('common.active')
                 %option{:value => "false"}
-                  = t('.status.inactive')
+                  = t('common.inactive')
               %input{:type =>"hidden",:id =>"hidden_feature_id",:name =>"hidden_feature_id"}
           %br/
           .row.center

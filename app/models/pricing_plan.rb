@@ -4,7 +4,7 @@ class PricingPlan < ActiveRecord::Base
   has_many :features, :through => :features_pricing_plans
   has_many :features_pricing_plans, :dependent => :destroy
   accepts_nested_attributes_for :features_pricing_plans
-  scope :search_by_name, lambda { |search| where("lower(name) like ?", "%" + search + "%") }
+  scope :search_by_name, lambda { |search| where("lower(name) like :search or lower(description) like :search",{:search => "%" + search + "%"}) }
   
   ##
   #Get all pricing plan
@@ -52,9 +52,38 @@ class PricingPlan < ActiveRecord::Base
       status: params["status"],
       price_per_month: params["price_per_month"],
       number_of_stores: params["number_of_stores"],
-      user_staff: params["users_staff"],
+      user_staff: params["user_staff"],
       :features_pricing_plans_attributes => feature_data
     )
    
+  end
+  
+  ##
+  #Update pricing plan
+  #Parameters::
+  # * (Integer) *id*: pricing plan id
+  #Return::
+  # * (json) status
+  #*Author*:: KhoiPCQ
+  def self.update_pricing_plan(params)
+    pricing_plan = PricingPlan.find_by_id(params["pp_id"])
+    features = JSON.parse(params["feature_data"])
+    feature_data = []
+    features.each do |feature|
+      feature_data << {feature_id:feature}
+    end
+    FeaturesPricingPlan.destroy_all(pricing_plan_id: params["pp_id"])
+    result = pricing_plan.update_attributes({
+      name: params["name"],
+      description: params["description"],
+      status: params["status"],
+      price_per_month: params["price_per_month"],
+      number_of_stores: params["number_of_stores"],
+      user_staff: params["user_staff"],
+      :features_pricing_plans_attributes => feature_data
+    })
+    
+    return result
+    
   end
 end

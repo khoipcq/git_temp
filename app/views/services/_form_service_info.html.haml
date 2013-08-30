@@ -1,61 +1,62 @@
-%form.form-horizontal
-  %br/
-  .row
-    %label.col.col-lg-4.control-label.text-right
-      = "#{t('.name')} *"
-    .col.col-lg-5.form-control
-      = text_field_tag 'name'
-    .clearfix    
-  .row
-    %label.col.col-lg-4.control-label.text-right
-      = "#{t('.description')}"
-    .col.col-lg-5
-      %textarea.parsley-validated{"data-rangelength" => "[20,200]", "data-trigger" => "keyup", :rows => "5"}
-    .clearfix            
-  .row
-    %label.col.col-lg-4.control-label.text-right
-      = "#{t('.category')}"
-    .col.col-lg-5.form-control
-      = select_tag "category", options_for_select(["MAKE UP", "NAIL"])
-    .clearfix  
-  .row
-    %label.col.col-lg-4.control-label.text-right
-      = "#{t('.status')}"
-    .col.col-lg-5.form-control
-      = select_tag "status", options_for_select(["Active", "Inactive"])
-    .clearfix  
-  .row
-    %label.col.col-lg-4.control-label.text-right
-      = "#{t('.duration')} *"
-    
-    .col.col-lg-2.form-control
-      = text_field_tag 'duration'
-    %label.col.col-lg-1.control-label.text_left
-      = t('time.minute')
-    .col.col-lg-1.margin_radio
-      %a.icon-question-sign.icon-large          
-    .clearfix    
-  .row
-    %label.col.col-lg-4.control-label.text-right
-      = "#{t('.cost')} *"
-    
-    .col.col-lg-2.form-control
-      = text_field_tag 'cost'
-    %label.col.col-lg-1.control-label.text_left
-      = t('shared.jpy')
-    .col.col-lg-1.margin_radio
-      %a.icon-question-sign.icon-large          
-    .clearfix    
+#form_service_info  
+  %form.form-horizontal
+    %br/
+    .row
+      %label.col.col-lg-4.control-label.text-right
+        = "#{t('common.name')} *"
+      .col.col-lg-5
+        = text_field_tag 'name', '',:autofocus => true
+      .clearfix    
+    .row
+      %label.col.col-lg-4.control-label.text-right
+        = "#{t('common.description')}"
+      .col.col-lg-5
+        %textarea.parsley-validated.no-resize{"data-rangelength" => "[20,200]", "data-trigger" => "keyup", :rows => "5"}
+      .clearfix            
+    .row
+      %label.col.col-lg-4.control-label.text-right
+        = "#{t('services.category')}"
+      .col.col-lg-5
+        = select_tag "category", options_for_select(["MAKE UP", "NAIL"])
+      .clearfix  
+    .row
+      %label.col.col-lg-4.control-label.text-right
+        = "#{t('common.status')}"
+      .col.col-lg-5
+        = select_tag "status", options_for_select(["Active", "Inactive"])
+      .clearfix  
+    .row
+      %label.col.col-lg-4.control-label.text-right
+        = "#{t('services.duration')} *"
+      
+      .col.col-lg-2
+        = text_field_tag 'duration'
+      %label.col.col-lg-1.text-left.control-label
+        = t('time.minute')
+      .col.col-lg-1.margin_radio
+        %a.icon-question-sign.icon-large          
+      .clearfix    
+    .row
+      %label.col.col-lg-4.control-label
+        = "#{t('services.cost')} *"
+      
+      .col.col-lg-2
+        = text_field_tag 'cost'
+      %label.col.col-lg-1.text-left.control-label
+        = t('common.jpy')
+      .col.col-lg-1.margin_radio
+        %a.icon-question-sign.icon-large          
+      .clearfix    
 
-  .row
-    .col.col-lg-4          
-    .col.col-lg-3
-      .checkbox
-        %label.checkbox-custom
-          %input{:name => "checkcost", :type => "checkbox"}
-          %i.icon-unchecked
-          = t('.publish_cost')
-    .col.col-lg-1.margin_radio
-      %a.icon-question-sign.icon-large          
-    .clearfix    
+    .row
+      .col.col-lg-4          
+      .col.col-lg-3
+        .checkbox
+          %label.checkbox-custom
+            %input{:name => "checkcost", :type => "checkbox"}
+            %i.icon-unchecked
+            = t('.publish_cost')
+      .col.col-lg-1.margin_radio
+        %a.icon-question-sign.icon-large          
+      .clearfix    
 

@@ -1,36 +1,36 @@
-.row.custom_datatable.store-owners.locations
+#edit_location.row.custom_datatable
   .panel
     .panel-heading
       = t('.title')
-    .row.custom_datatable.locations
-      %section.panel
-        %header.panel-heading
-          %ul.nav.nav-tabs.pull-left.font_normal
-            %li
-              %a{"data-toggle" => "tab", :href => "#information"}
-                = t('.information')
-            %li.active
-              %a{"data-toggle" => "tab", :href => "#service"}
-                = t('.service')
-            %li
-              %a{"data-toggle" => "tab", :href => "#staff"}
-                = t('.staff')
-            %li
-              %a{"data-toggle" => "tab", :href => "#schedule"}
-                = t('.schedule')
-        .tab-content
-          #information.tab-pane
-            = "No content"
-          #service.tab-pane.active
-            #table_service
-              = render 'services/services'
-          #staff.tab-pane
-            = render 'form_staff'
-          #schedule.tab-pane
-            = render 'form_schedule'
+    .row
+    %section.panel
+      %header.panel-heading
+        %ul.nav.nav-tabs.pull-left
+          %li
+            %a{"data-toggle" => "tab", :href => "#information"}
+              = t('common.information')
+          %li.active
+            %a{"data-toggle" => "tab", :href => "#service"}
+              = t('services.service')
+          %li
+            %a{"data-toggle" => "tab", :href => "#staff"}
+              = t('users.staff')
+          %li
+            %a{"data-toggle" => "tab", :href => "#schedule"}
+              = t('common.schedule')
+      .tab-content
+        #information.tab-pane
+          = "No content"
+        #service.tab-pane.active
+          #table_service
+            = render 'services/services'
+        #staff.tab-pane
+          = render 'form_staff'
+        #schedule.tab-pane
+          = render 'form_schedule'
       .row.center
-        = link_to t('button.save'),'#', :class => 'btn btn-success button_min'
-        = link_to t('button.cancel'), organization_locations_path(current_user.organization_id), :class => 'btn btn-warning button_min'
+        = link_to t('button.save'),'#', :class => 'btn btn-success button-min'
+        = link_to t('button.cancel'), organization_locations_path(current_user.organization_id), :class => 'btn btn-warning button-min'
       %br/
 
 

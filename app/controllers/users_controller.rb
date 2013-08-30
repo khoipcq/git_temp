@@ -139,8 +139,8 @@ class UsersController < ApplicationController
   #*Author*:: NamTV
   #
   def edit
-    @user = User.find_by_id(params[:id])
-    @user_groups = UserGroup.get_all_user_groups_in_org(params[:organization_id])
+    @user = User.includes(:organization, :billing_info, :card_info).find_by_id(params[:id])
+    #@user_groups = UserGroup.get_all_user_groups_in_org(params[:organization_id])
     #render :edit_temp
     render :edit
     #render :_edit_store_owner
@@ -191,20 +191,17 @@ class UsersController < ApplicationController
   #*Author*:: ThuyLC
   #
   def update_profile
-    puts "========params"
-    puts params
     @status_update = false;
     user_info ={}
     user_info["first_name"] = params["first_name"]
     user_info["last_name"] = params["last_name"]
     user_info["email"] = params["email"]
-    user_info["password"] = params["password"]
-
+    user_info["password"] = params["password"] unless params["password"].blank?
     @existed_user = User.find_by_id(params["hidden_user_id"])
     if @existed_user.id == current_user.id
       @existed_user.organization.update_attributes(:language => params["language"],:time_zone => params["time_zone"])
       @status_update = @existed_user.update_attributes(user_info)
-      sign_in(@existed_user)
+      sign_in(@existed_user,:bypass => true)
 
       @full_name = @existed_user.first_name + " " + @existed_user.last_name 
     end
@@ -212,6 +209,67 @@ class UsersController < ApplicationController
       format.js
     end
   end
+
+  ##
+  #Update account store owner
+  #Parameters::
+  # * (integer) *id*: current user id to update
+  # * (object) *user*: current user input
+  #Return::
+  # * (object) an new instance user
+  #*Author*:: KhoiPCQ
+  #
+  def update_profile_store_owner
+    @status_update = false;
+    user_info ={}
+    error_type = ""
+    org_name = params["business_name"]
+    user_info["first_name"] = params["first_name"]
+    user_info["last_name"] = params["last_name"]
+    user_info["email"] = params["email"]
+    user_info["password"] = params["password"] unless params["password"].blank?
+    @existed_user = User.find_by_id(params["hidden_user_id"])
+    if @existed_user.id == current_user.id
+      @status_update = @existed_user.update_attributes(user_info)
+      @existed_user.organization.update_attributes(:name =>params["business_name"])
+      sign_in(@existed_user,:bypass => true)
+      @full_name = @existed_user.first_name + " " + @existed_user.last_name 
+    end
+    respond_to do |format|
+      format.js
+    end
+    #render :js => "update_success(#{@status_update}, #{@full_name})"
+  end
+
+  ##
+  #Update creadit card store owner
+  #Parameters::
+  # * (integer) *id*: current user id to update
+  # * (object) *user*: current user input
+  #Return::
+  # * (object) an new instance user
+  #*Author*:: KhoiPCQ
+  #
+  def update_credit_card_store_owner
+
+    @status_update = false;
+    user_info ={}
+    user_info["first_name"] = params["first_name"]
+    user_info["last_name"] = params["last_name"]
+    user_info["email"] = params["email"]
+    user_info["password"] = params["password"] unless params["password"].blank?
+    @existed_user = User.find_by_id(params["hidden_user_id"])
+    if @existed_user.id == current_user.id
+      @status_update = @existed_user.update_attributes(user_info)
+      sign_in(@existed_user)
+      @full_name = @existed_user.first_name + " " + @existed_user.last_name 
+    end
+    respond_to do |format|
+      format.js
+    end
+    #render :js => "update_success(#{@status_update}, #{@full_name})"
+  end
+
   ##
   #Handle detroy an user
   #Parameters::

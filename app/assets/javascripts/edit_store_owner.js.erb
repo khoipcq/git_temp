@@ -1,7 +1,12 @@
-$(document).ready(function(){    
+$.validator.addMethod("regex", function(value, element, regexp) {
+        return this.optional(element) || regexp.test(value);
+    }, "");
+$(document).ready(function(){   
+  $('#business_name').focus(); 
   $('#collapseOne').on('show.bs.collapse', function() {
     $('#id1').removeClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-e');
     $('#id1').addClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-s');
+    $('#business_name').focus();
   }); 
    
   $('#collapseOne').on('hide.bs.collapse', function() {
@@ -12,6 +17,7 @@ $(document).ready(function(){
   $('#collapseTwo').on('show.bs.collapse', function() {
     $('#id2').removeClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-e');
     $('#id2').addClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-s');
+    $('#state').focus();
   });  
   $('#collapseTwo').on('hide.bs.collapse', function() {
     $('#id2').removeClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-s');
@@ -35,4 +41,211 @@ $(document).ready(function(){
     $('#id4').removeClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-s');
     $('#id4').addClass('ui-accordion-header-icon ui-icon ui-icon-triangle-1-e');
   });  
+  
+  $("#update_profile_store_owner").validate({
+    rules:{
+      "business_name": {
+        required: true,
+        maxlength: 256,
+        regex: /^[A-Za-z0-9\. ]+$/
+      },
+      "last_name": {
+        required: true,
+        maxlength: 256,
+        regex: /^[A-Za-z0-9\. ]+$/
+      },
+      "first_name": {
+        required: true,
+        regex: /^[A-Za-z0-9\. ]+$/,
+        maxlength: 256
+      },
+       "email": {
+        required: true,
+        email: true
+      },
+      "password": {
+        // required: true,
+        minlength: 6,
+        maxlength: 100
+      },
+      "password_confirmation": {
+        equalTo: "#password"
+      }
+    },
+    messages: {
+      "business_name":{
+        required: I18n.t('require_field_msg'),
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('business_name'), length: 256}),
+        regex: I18n.t('regex_textfield', {field : I18n.t('business_name')})
+      },
+      "first_name":{
+        required: I18n.t('require_field_msg'),
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('firstname'), length: 256}),
+        regex: I18n.t('regex_textfield', {field : I18n.t('firstname')})
+      },
+      "email":{
+        required: I18n.t('require_field_msg'),
+        email: I18n.t('email_valid')
+      },
+      "last_name":{
+        required: I18n.t('require_field_msg'),
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('lastname'), length: 256}),
+        regex: I18n.t('regex_textfield', {field : I18n.t('lastname')})
+      },
+      "pass":{
+        required: I18n.t('require_field_msg'),
+        minlength: I18n.t('password_minlength'),
+        maxlength: I18n.t('password_maxlength')
+      },
+      "confirm_pass": {
+        equalTo: I18n.t('password_not_match')
+      }
+    },
+    errorPlacement: function(error, element){
+      error.appendTo(element.parent());
+    }
+  });
+
+  jQuery.validator.addMethod("validateExpiryDate", function(value, element, params) {   
+    var toDay = Date.parse($.datepicker.formatDate('M 01, yy', new Date()));
+    console.log(toDay);
+    var ex_month = parseFloat($("#creditCardExpirationMonth").val());
+    
+    var ex_year = $("#creditCardExpirationYear").val();
+    
+  
+    var expired_date = Date.parse($.datepicker.formatDate('M 01, yy', new Date(ex_year, ex_month - 1)));
+    console.log(expired_date);
+    return (expired_date >= toDay);
+  }, jQuery.validator.format("acac"));
+
+  jQuery.validator.addMethod("numericSelection", function(value, element, params) {   
+    
+    return (value != "");
+  }, jQuery.validator.format("rtrt"));
+
+  $("#update_credit_card_store_owner").validate({
+    rules:{
+      "state": {
+        required: true,
+        maxlength: 256
+      },
+      "city": {
+        required: true,
+        maxlength: 256
+      },
+      "address": {
+        required: true,
+        maxlength: 256
+      },
+      "postal_code": {
+        required: true,
+        maxlength: 256,
+        number:true,
+        range: [7,7]
+      },
+      "country": {
+        required: true
+      },
+      "phone_number": {
+        required: true,
+        maxlength: 256
+      },
+      "card_type": {
+        required: true
+      },
+      "card_number": {
+        required: true
+      },
+      "month": {
+        required: true
+      },
+      "year": {
+        required: true
+      },
+      "cvv": {
+        required: true
+      },
+      "cardholder_name": {
+        required: true
+      }
+    },
+    groups: {
+      expire_date: "month year"
+    },
+    messages: {
+      "state":{
+        required: I18n.t('require_field_msg'),
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('state'), length: 256})
+      },
+      "city":{
+        required: I18n.t('require_field_msg'),
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('city'), length: 256})
+      },
+      "address":{
+        required: I18n.t('require_field_msg'),
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('locations.address'), length: 256})
+      },
+      "postal_code":{
+        required: I18n.t('require_field_msg'),
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('state'), length: 256})
+      },
+      "country":{
+        required: I18n.t('require_field_msg'),
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('state'), length: 256})
+      },
+      "phone_number":{
+        required: I18n.t('require_field_msg'),
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('state'), length: 256})
+      },
+      "card_type":{
+        required: I18n.t('require_field_msg'),
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('state'), length: 256})
+      },
+      "month":{
+        required: I18n.t('require_field_msg'),
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('state'), length: 256})
+      },
+      "year":{
+        required: I18n.t('require_field_msg'),
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('state'), length: 256})
+      },
+      "cvv":{
+        required: I18n.t('require_field_msg'),
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('state'), length: 256})
+      },
+      "cardholder_name":{
+        required: I18n.t('require_field_msg'),
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('state'), length: 256})
+      }
+
+    },
+    errorPlacement: function(error, element){
+      if (element.attr("name") == "month" || element.attr("name") == "year") {
+        error.addClass("col col-offset-3");
+        error.appendTo(element.parent().parent());
+        //error.insertAfter('#creditCardExpirationYear'); 
+      }else{
+        error.appendTo(element.parent());  
+      }
+      
+    }
+  });
+
+  get_user_info(user_info);
+  init_form();
+
 });
+
+function init_form(){
+  $('#password').val('');
+  $('#password_confirmation').val('');
+}
+
+function get_user_info(obj)
+{
+  if(obj){
+   $("#hidden_user_id").val(obj.id);
+  }
+
+}

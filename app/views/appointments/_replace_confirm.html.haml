@@ -2,20 +2,26 @@
   .modal-content
     .modal-header.text-center
       %h4.modal-title
-        Replace Confirmation
+        = t('.title')
     .modal-body
       %center
-        There are some timeslots are booked by other appointments, would you like to replace the existing ones?
+        = t('.message')
         .table
           %table.table.table-bordered
             %tbody
               %tr.table-head
-                %td.left Date
-                %td.left Time
-                %td.left Duration
-                %td.left Customer
-                %td.left Service
-                %td.center Action
+                %td.left
+                  = t('time.date')
+                %td.left
+                  = t('time.time')
+                %td.left 
+                  = t('services.duration')
+                %td.left 
+                  = t('locations.customer')
+                %td.left 
+                  = t('services.service')
+                %td.center
+                  = t('common.action')
               %tr
                 %td.left Aug 08 2013
                 %td.left 09:00AM-10:30AM
@@ -23,7 +29,7 @@
                 %td.left Cindy Pham
                 %td.left Massage
                 %td.center
-                  = link_to "Omit", "", :class => "label-control"
+                  = link_to t('link.omit'), "", :class => "label-control"
               %tr
                 %td.left Aug 09 2013
                 %td.left 2:00PM-3:30PM
@@ -31,9 +37,9 @@
                 %td.left Cindy Pham
                 %td.left Massage
                 %td.center
-                  = link_to "Omit", "", :class => "label-control"
+                  = link_to t('link.omit'), "", :class => "label-control"
     .text-center
       %a.btn.btn-primary{:href => "#"}
-        = t('button.btn-yes')
+        = t('button.txt_yes')
       %a.btn{'data-dismiss' => 'modal'}
-        = t('button.btn-no')
+        = t('button.txt_no')

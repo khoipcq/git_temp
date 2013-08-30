@@ -55,9 +55,18 @@ div.datepicker {
 }
 #filter-dialog .modal-dialog {
   top: 200px;
-  width: 440px;
+  width: 510px;
   left: 55%;
 }
 #filter-dialog .modal-dialog .modal-body select{
   padding: 5px !important;
+}
+input.hasDatepicker
+{
+  width: 75%;
+  float: left;
+}
+.modal img {
+  padding-top: 8px;
+  padding-left: 3px;
 }

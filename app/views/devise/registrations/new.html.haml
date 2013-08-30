@@ -1,3 +1,4 @@
+=javascript_include_tag "sign_up"
 .content
   .row#devise-register-new
     .form
@@ -12,7 +13,7 @@
         = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {:class => 'form-horizontal', id: "new_user"}) do |f|
           .row
             %label.col.col-lg-4.control-label
-              = "#{t('.business_name')} *"
+              = "#{t('users.business_name')} *"
             .col.col-lg-7.form-control
               = text_field_tag 'business_name', '', autofocus: true
             .clearfix
@@ -20,7 +21,7 @@
 
           .row
             %label.col.col-lg-4.control-label
-              = "#{t('.last_name')} *"
+              = "#{t('users.last_name')} *"
             .col.col-lg-7.form-control
               = f.text_field :last_name
             .clearfix
@@ -28,7 +29,7 @@
 
           .row
             %label.col.col-lg-4.control-label
-              = "#{t('.first_name')} *"
+              = "#{t('users.first_name')} *"
             .col.col-lg-7.form-control
               = f.text_field :first_name
             .clearfix
@@ -36,7 +37,7 @@
 
           .row
             %label.col.col-lg-4.control-label
-              = "#{t('.email')} *"
+              = "#{t('users.email')} *"
             .col.col-lg-7
               = f.text_field :email, :value => ""
             .clearfix
@@ -44,32 +45,32 @@
 
           .row.password-container
             %label.col.col-lg-4.control-label
-              = "#{t('.password')} *"
+              = "#{t('devise.sessions.password')} *"
             .col.col-lg-7
               = f.password_field :password, :class => "strong-password"
             .clearfix
           %br
 
-          .row
-            .col.col-lg-4
-            .col.col-lg-7
-              .row
-              .progress.meter
-                .progress-bar#weak
-                  = t('users.password_strength.weak')
-                .progress-bar#fair
-                  = t('users.password_strength.fair')
-                .progress-bar#strong
-                  = t('users.password_strength.strong')
-            .col.col-lg-1
-              .pull-left
-                %a#image_help.icon-question-sign.icon-large
-            .clearfix
-          %br
+          / .row
+          /   .col.col-lg-4
+          /   .col.col-lg-7
+          /     .row
+          /     .progress.meter
+          /       .progress-bar#weak
+          /         = t('devise.sessions.password_strength.weak')
+          /       .progress-bar#fair
+          /         = t('devise.sessions.password_strength.fair')
+          /       .progress-bar#strong
+          /         = t('devise.sessions.password_strength.strong')
+          /   .col.col-lg-1
+          /     .pull-left
+          /       %a#image_help.icon-question-sign.icon-large
+          /   .clearfix
+          / %br
 
           .row
             %label.col.col-lg-4.control-label
-              = "#{t('.password_confirm')} *"
+              = "#{t('devise.sessions.password_confirm')} *"
             .col.col-lg-7
               = f.password_field :password_confirmation
             .clearfix
@@ -84,7 +85,7 @@
                   = t('.accept')
                   %u
                     = link_to t('.term_service'), "#", class: 'link'
-              
+              %div{:style=>"clear:both"}
 
           %br
           .row

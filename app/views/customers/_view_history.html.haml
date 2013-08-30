@@ -7,14 +7,18 @@
       .modal-body
         %fieldset
           %legend
-            Recent Appointment
+            = t('.title')
           %table.table.table-striped.dataTable
             %thead
               %tr{:role => "row"}
-                %th Date
-                %th Staff
-                %th Service
-                %th Heard From
+                %th 
+                  = t('time.date')
+                %th
+                  = t('users.staff')
+                %th
+                  = t('services.service')
+                %th 
+                  = t('heard_from')
             %tbody{"aria-live" => "polite", "aria-relevant" => "all", :role => "alert"}
               %tr.odd
                 %td Sep 1, 2013
@@ -38,6 +42,6 @@
                 %td Newspaper
           %br/
         .row.center
-          %buton.btn.btn-warning{"data-dismiss" => "modal", :type => "button"}
-            Close
+          %buton.btn.btn-info{"data-dismiss" => "modal", :type => "button"}
+            = t('button.close')
       .modal-footer

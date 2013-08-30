@@ -1,35 +1,42 @@
 #report
   %h3
-    Appointment Report
+    = t('.title')
   .row#filter
     - if params["type_report"] == "day"
       .col.col-lg-2
         %label
-          Date:
+          = "#{t('time.date')}: "
         July 29, 2013
     - else
       .col.col-lg-4
         %label
-          Date:
+          = "#{t('time.date')}: "
         July 20, 2013 - July 26, 2013
 
   .row#filter
     .col.col-lg-1.col-offset-9.text-right
-      = link_to "<< Back", "#{organization_appointments_path}",class: "text-link"
+      = link_to t('link.back'), "#{organization_appointments_path}",class: "text-link"
     .col.col-lg-2.text-right
-      = link_to "Export XLS", "",class: "text-link"
+      = link_to t('link.export_xls'), "",class: "text-link"
 
   .table
     %table.table.table-bordered
       %tbody
         %tr.table-head
-          %th.center Appointment Date
-          %th.center Confirmation ID
-          %th.center Customer
-          %th.center Staff
-          %th.center Service
-          %th.center Received Date
-          %th.center Status
+          %th.center
+            = t('appointments.date')
+          %th.center 
+            = t('appointments.confirm_id')
+          %th.center
+            = t('locations.customer')
+          %th.center
+            = t('users.staff')
+          %th.center
+            = t('services.service')
+          %th.center
+            = t('time.received_date')
+          %th.center
+            = t('common.status')
         %tr
           %td.left July 29 2013 9:00AM
           %td.center EC123FF12

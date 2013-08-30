@@ -1,0 +1,33 @@
+%fieldset
+  %legend
+    = t(".booking")
+  .row
+    %label
+      = t(".book_up_to_option")
+    %span
+      %select#book_up_to_option{:name => "book_up_to_option"}
+        - (1..30).each do |time|
+          %option{value: "#{time}"}#{time}
+    %span
+      = t(".days")
+%fieldset
+  %legend
+    = t(".cancellation")
+  .checkbox
+    %label.checkbox-custom
+      %input#allow_online_cancellation{:name => "allow_online_cancellation", :type => "checkbox"}
+      %i.icon-unchecked
+      = t(".allow_online_cancellation")
+  .row
+    %label
+      = t(".cancel_up_to_option")
+    %span
+      %select{:name => "cancel_up_to_option"}
+        - (1..24).each do |time|
+          %option{value: "#{time}"}#{time}
+    %span
+      = t(".cancel_up_to_option_expand")
+%br/
+.row.center
+  %button.btn.btn-success{"data-dismiss" => "modal", :type => "submit"}
+    = t("button.save")

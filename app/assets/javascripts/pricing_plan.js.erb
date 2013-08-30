@@ -21,7 +21,7 @@
     }else{
       return '<div class="radio_button"><div class="btn-group" data-toggle="buttons-radio"><label class="btn btn-small btn-white" feature_id="' + feature_id  +  '" store="1" ><input type="radio" name="options" id="option1">On</label><label class="btn btn-small btn-white active" feature_id="' + feature_id  +  '" store="0"><input type="radio" name="options" id="option2">Off</label></div></div>';
     }
-    
+
   }
   function renderAction(obj){
     if(g_bDeletePricingPlan && g_bEditPricingPlan){
@@ -38,8 +38,8 @@
 
   //Set style table
   $(document).ready(function(){
-    
-    
+
+
 
     $("#pricing_plan_form").validate({
       rules:{
@@ -52,9 +52,9 @@
         },
         "price_per_month" : {
           required: true,
-          range: [0, 1000000]
+          range: [1, 1000000]
         }
-        
+
       },
       messages:{
         "name": {
@@ -85,9 +85,9 @@
         },
         "price_per_month" : {
           required: true,
-          range: [0, 1000000]
+          range: [1, 1000000]
         }
-        
+
       },
       messages:{
         "name": {
@@ -116,19 +116,25 @@
       "bProcessing": false,
       "bServerSide": true,
       "sPaginationType": "full_numbers",
+      "oLanguage": {
+          "sEmptyTable": I18n.t('datatable.no_record'),
+          "sZeroRecords": I18n.t('datatable.no_record')
+        },
       "iDisplayLength": g_displayLength,
       "aaSorting": [[ 1, "asc" ]],
       "aoColumns": [
         { "sTitle": I18n.t('pricing_plan.j_name'),
+          'bSortable': true,
           "sClass": "left",
           "sWidth": "30%"
         },
         { "sTitle": I18n.t('pricing_plan.j_description'),
+          'bSortable': true,
           "sClass": "left",
           "sWidth": "40%"
         },
         { "sTitle": I18n.t('pricing_plan.j_active'),
-          'bSortable': false,
+          'bSortable': true,
           "fnRender": renderActive,
           "sClass": "center",
           "sWidth": "10%"
@@ -169,19 +175,17 @@
         { "sTitle": "Feature Name",
           'bSortable': false,
           "sClass": "left",
-          "sWidth": "80%"
         },
         { "sTitle": "Supported",
           'bSortable': false,
           "fnRender": renderSupport,
           "sClass": "center",
-          "sWidth": "20%"
         },
         {  "bVisible": false }
       ],
       "sAjaxSource": "/features/get_all_data"
     });
-    
+
     var tfe = $("#feature_include_table_edit").dataTable({
       sDom: '<rt>',
       "bFilter": true,
@@ -196,14 +200,12 @@
       "aoColumns": [
         { "sTitle": "Feature Name",
           'bSortable': false,
-          "sClass": "left",
-          "sWidth": "80%"
+          "sClass": "left"
         },
         { "sTitle": "Supported",
           'bSortable': false,
           "fnRender": renderSupportEdit,
-          "sClass": "center",
-          "sWidth": "20%"
+          "sClass": "center"
         },
         {  "bVisible": false }
       ],
@@ -215,7 +217,7 @@
         });
       }
     });
-    
+
 
     $("#btn_delete_pricing_plan").on('click',function(){
       delete_pp_request();
@@ -227,7 +229,7 @@
       $('#feature_include_table').dataTable().fnReloadAjax();
 
     });
-    
+
     $("#pricing_plan_form").submit(function(e){
 
       var result = JSON.stringify(get_feature("#pricing_plan_form"));
@@ -240,6 +242,7 @@
       var result = JSON.stringify(get_feature("#pricing_plan_form_edit"));
       var input = $("<input>").attr("type", "hidden").attr("name", "feature_data").val(result);
       $('#pricing_plan_form_edit').append($(input));
+
       return true;
     });
 
@@ -250,7 +253,7 @@ function myParamsCollection(aoData){
 function view_edit_dialog(obj){
   aPos = $('#pricing_plan_table').dataTable().fnGetPosition(obj.parentNode);
   aData = $('#pricing_plan_table').dataTable().fnGetData(aPos[0]);
-
+  g_feature_ids = [];
   init_form("#edit_pricing_plan");
   get_pricing_plan_info(aData[4], function(ppInfo){
     $("#edit_pricing_plan input[name=name]").val(ppInfo.name);
@@ -261,11 +264,12 @@ function view_edit_dialog(obj){
     $('#edit_pricing_plan select[name=status]').val(ppInfo.status);
   });
   $('#feature_include_table_edit').dataTable().fnReloadAjax("/features/get_all_data_by_pricing_plan_id?id=" + aData[4] );
+  $('#pp_id').val(aData[4]);
   $("#edit_pricing_plan.modal").modal("show");
 }
 
 function get_pricing_plan_info(id, callback){
- 
+
   $.ajax({
     url: g_pricingPlanPath + "/" + id + "/edit",
     type: 'GET',
@@ -277,7 +281,7 @@ function get_pricing_plan_info(id, callback){
 }
 
 function get_feature(form){
-  return_value = [];
+  var return_value = [];
   for(var i =0; i < g_feature_ids.length; i++){
     var f_id = g_feature_ids[i];
     if($(form + " label.active[feature_id="+ f_id +"]").attr("store") == "1"){
@@ -301,8 +305,18 @@ function create_success(success){
   if(success){
     $("#new_pricing_plan.modal").modal("hide");
     init_form("#pricing_plan_form");
+    showAlert('myAlert','alert-success', I18n.t("msg.msg_save_pricing_plan_success"));
     $('#pricing_plan_table').dataTable().fnReloadAjax();
-    
+
+  }
+}
+
+function update_success(success){
+  if(success){
+    $("#edit_pricing_plan.modal").modal("hide");
+    init_form("#edit_pricing_plan");
+    showAlert('myAlert','alert-success', I18n.t("msg.msg_update_pricing_plan_success"));
+    $('#pricing_plan_table').dataTable().fnReloadAjax(); 
   }
 }
 
@@ -314,6 +328,8 @@ function init_form(form){
   $(form + " select[name=users_staff]").val(1);
   $(form + " select[name=status]").val("true");
   $(form + " input[name=feature_data]").remove();
+  $(form).validate().resetForm();
+  $(".error").removeClass("error");
 }
 // Author: KhoiPCQ
 // Description: This JavaScript code handle event when user ok to delete and store owner
@@ -333,11 +349,15 @@ function delete_pp_request()
     //when done ajax
     request.done(function(msg) {
       if(msg["status"]=="deleted"){
+        showAlert('myAlert','alert-success', I18n.t("msg.msg_delete_pricing_plan_success"));
         $("#delete_notice").modal("hide");
         $('#pricing_plan_table').dataTable().fnReloadAjax();
-      }else{
+      }else if(msg["status"]=="is_used"){
         $("#delete_notice").modal("hide");
         $("#warningModal").modal("show");
+      }else{
+        $("#delete_notice").modal("hide");
+        $("#warningModalNotDelete").modal("show");
       }
     });
 

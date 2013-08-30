@@ -1,0 +1,36 @@
+#settings
+  %section.panel
+    %header.panel-heading.text-right
+      %ul.nav.nav-tabs.pull-left
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#appointment_page"}
+            = t(".appointment_page")
+        %li
+          %a{"data-toggle" => "tab", :href => "#shop_details"}
+            = t(".shop_details")
+        %li
+          %a{"data-toggle" => "tab", :href => "#appointment_setup"}
+            = t(".appointment_setup")
+        %li
+          %a{"data-toggle" => "tab", :href => "#customer_review_setup"}
+            = t(".customer_review_setup")
+    .tab-content
+      #appointment_page.tab-pane.active
+        = render "appointment_page"
+      #shop_details.tab-pane
+        = render "shop_details"
+      #appointment_setup.tab-pane
+        = render "appointment_setup"
+      #customer_review_setup.tab-pane
+        = render "customer_review_setup"
+
+= javascript_include_tag "jquery.ui.datepicker"
+= javascript_include_tag "settings"
+:javascript
+  var g_settingPath = "#{organization_settings_path}";
+  var g_editEmailCampaignPath = "#{edit_organization_setting_path(params[:organization_id], '[id]')}";
+  $(document).ready(function(){
+    $("nav#nav li").removeClass("active");
+    $("nav#nav li#menu_settings").addClass("active");
+  });
+

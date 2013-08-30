@@ -6,9 +6,11 @@
       %header.panel-heading
         %ul.nav.nav-tabs.pull-left
           %li.active
-            %a{"data-toggle" => "tab", :href => "#personal_information"} Personal Information
+            %a{"data-toggle" => "tab", :href => "#personal_information"}
+              = t('users.personal_info')
           %li
-            %a{"data-toggle" => "tab", :href => "#customer_notes"} Customer Notes
+            %a{"data-toggle" => "tab", :href => "#customer_notes"}
+              = t('customers.customer_note')
       .tab-content
         #personal_information.tab-pane.active
           %h5.modal-title
@@ -20,13 +22,16 @@
         #customer_notes.tab-pane
           %br/
           %br/
-          %h5.modal-title Add New Note
+          %h5.modal-title
+            = t('.add_new_note')
           %textarea.parsley-validated{"data-rangelength" => "[20,200]", "data-trigger" => "keyup", :name => "note", :rows => "5"}
           %br/
-          %button.btn.btn-primary{:type => "submit"} Add Note
+          %button.btn.btn-primary{:type => "submit"}
+            = t('button.add_note')
           %br/
           %br/
-          %h5.modal-title Notes
+          %h5.modal-title
+            = t('common.notes')
           %br/
           %table.table.table-striped.dataTable
             %tr.even
@@ -34,25 +39,30 @@
                 She wants to delay appointment
                 %br/
                 %span.action
-                  %a.action-link{"data-toggle" => "modal", :href => "#show_edit_note.modal"} Edit
-                  %a.action-link{"data-toggle" => "modal", :href => "#delete_note.modal"} Delete
+                  %a.action-link{"data-toggle" => "modal", :href => "#show_edit_note.modal"}
+                    = t('link.edit')
+                  %a.action-link{"data-toggle" => "modal", :href => "#delete_note.modal"}
+                    = t('link.delete')
               %td On July 25, 2013
             %tr.odd
               %td.sorting_1
                 She is a loyal customer
                 %br/
                 %span.action
-                  %a.action-link{"data-toggle" => "modal", :href => "#show_edit_note.modal"} Edit
-                  %a.action-link{"data-toggle" => "modal", :href => "#delete_note.modal"} Delete
+                  %a.action-link{"data-toggle" => "modal", :href => "#show_edit_note.modal"}
+                    = t('link.edit')
+                  %a.action-link{"data-toggle" => "modal", :href => "#delete_note.modal"}
+                    = t('link.delete')
               %td On June 5, 2013
           %br/
           %br/
     %br/
     = render "edit_note"
     #delete_note.modal.fade
-      = render "shared/confirm_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body')
+      = render "shared/confirm_notice", :message_header => t('dcommon.delete_confirm_header'), :message_body => t('.delete_confirm_body')
 
     .row.center
-      %button.btn.btn-primary{"data-dismiss" => "modal", :type => "submit"} Save
+      %button.btn.btn-success{"data-dismiss" => "modal", :type => "submit"}
+        = t('button.save')
       = link_to t('button.cancel'), organization_customers_path(current_user.organization_id), :class => 'btn btn-warning'
     %br

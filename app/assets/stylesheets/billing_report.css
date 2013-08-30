@@ -73,3 +73,10 @@
 .store-owners {
   font-family: Arial;
 }
+#btn_export a {
+  color: white;
+}
+#btn_export{
+  margin-right: 10px;
+  margin-bottom: 5px;
+}

@@ -1,0 +1,52 @@
+#view_appointment_detail.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title 
+          = t('subdomain.view_appoitment_detail_customer.title')
+      .modal-body
+        %form
+          %fieldset
+            %legend
+              = t('.appointment_detail')
+            %dl.dl-horizontal                            
+              %dt
+                = "#{t('services.service')}: "                
+              %dd Top Coat                     
+              %dt
+                = "#{t('menu.staff')}: "                
+              %dd LEe Dung              
+              %dt
+                = "#{t('time.date')}: "                
+              %dd Wednesday, September 14, 2013              
+              %dt
+                = "#{t('time.time')}: "                
+              %dd 03:00 PM              
+              %dt
+                = "#{t('appointments.confirm_id')}: "               
+              %dd 4CEEZAUGUP              
+              %dt 
+                = "#{t('subdomain.view_appoitment_detail_customer.special_request')}: "                
+              %dd Please offer me special service.        
+              
+              
+              
+            
+          %fieldset
+            %legend
+              = t('.your_details')
+            %dl.dl-horizontal               
+              %dt Tom Jee                            
+              %dd 
+                %i
+              %dt
+                = "#{t('subdomain.view_appoitment_detail_customer.tell')}: "
+              %dd 01657 656 050              
+              %dt
+                = "#{t('users.email')}: "                
+              %dd tomjee@example.com
+            
+          .text-center
+            %button.btn.btn-info{'data-dismiss' => 'modal'}= t('button.close')
+      .modal-footer       

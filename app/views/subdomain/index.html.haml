@@ -1,0 +1,31 @@
+#view_store_info.row
+  .panel
+    .panel-heading
+      .col.col-lg-10
+      .col.col-lg-2.text-center
+        %label Apotori
+        %p 
+          = t('.customer_center')
+    .row.text-right
+      = link_to 'My Page', '/my_page', :class => 'text-link margin-link-right'     
+    .row    
+      .col.col-lg-4.margin-logo
+        %img{:src => "/assets/rails.png", :class => 'img-rounded'}       
+        %span.store_name ABC Salon
+      .clearfix
+    .vertical-tab#view_store_info
+      .tabbable.tabs-left.full-height
+        %ul.nav.nav-tabs.full-height
+          %li
+            %a{:href => "#", :id => 'customer_booking'}
+              = t('.booking')
+          %li.active
+            %a{"data-toggle" => "tab", :href => "#about_apotori"}
+              = t('.about_apotori')        
+        .tab-content          
+          #about_apotori.tab-pane.active
+            = render "about_apotori"              
+      %br/
+= javascript_tag nil, id: "passed_data", data: {redirect_url: '/booking'}      
+= javascript_include_tag "view_store_info"
+= javascript_include_tag "jquery.ui.tabs"

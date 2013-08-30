@@ -12,20 +12,105 @@
   //     $('#from_date, #to_date').datepicker('hide');
   //   });
 
-    var dates = $( "#from_date, #to_date" ).datepicker({
-        defaultDate: "+1w",
-        dateFormat: I18n.t('time.datepicker_format'),
-        autoSize: true,
-        numberOfMonths: 1,
-        onSelect: function( selectedDate ) {
-            var option = this.id == "from_date" ? "minDate" : "maxDate",
-                instance = $( this ).data( "datepicker" );
-                   date = $.datepicker.parseDate(
-                    instance.settings.dateFormat ||
-                    $.datepicker._defaults.dateFormat,
-                    selectedDate, instance.settings );
-            dates.not( this ).datepicker( "option", option, date );
-        }
-    });
-
+    // var dates = $( "#from_date, #to_date" ).datepicker({
+    //     defaultDate: "+1w",
+    //     dateFormat: I18n.t('time.datepicker_format'),
+    //     autoSize: true,
+    //     // buttonImageOnly: true,
+    //     // showOn: "both",
+    //     // buttonText: "View Calendar",
+    //     // buttonImage: "/assets/date_picker.png",
+    //     numberOfMonths: 1,
+    //     onSelect: function( selectedDate ) {
+    //         var option = this.id == "from_date" ? "minDate" : "maxDate",
+    //           instance = $( this ).data( "datepicker" );
+    //              date = $.datepicker.parseDate(
+    //               instance.settings.dateFormat ||
+    //               $.datepicker._defaults.dateFormat,
+    //               selectedDate, instance.settings );
+    //         dates.not( this ).datepicker( "option", option, date );
+    //     }
+    // });
+  var dates = $( "#from_date, #to_date" ).datepicker({
+    defaultDate: "+1w",
+    dateFormat: I18n.t('time.datepicker_format'),
+    autoSize: true,
+    numberOfMonths: 1,
+    buttonImageOnly: true,
+    showOn: "both",
+    buttonText: "View Calendar",
+    buttonImage: "/assets/date_picker.gif",
+    onSelect: function( selectedDate ) {
+        var option = this.id == "from_date" ? "minDate" : "maxDate",
+            instance = $( this ).data( "datepicker" );
+               date = $.datepicker.parseDate(
+                instance.settings.dateFormat ||
+                $.datepicker._defaults.dateFormat,
+                selectedDate, instance.settings );
+        dates.not( this ).datepicker( "option", option, date );
+    }
+  });
+  //Add customers
+  bind_customer(g_list_customer);
+  bind_staff(g_list_staff);
+  bind_service(g_list_service);
+  // reset_filter();
+  $("#option-on").bind("click",function(){
+    reset_filter();
+  });
 });
+
+function reset_filter()
+{
+  $("#from_date").val("");
+  $("#to_date").val("");
+  $("#select_customer").val(0);
+  $("#select_staff").val(0);
+  $("#select_service").val(0);
+}
+
+
+function add_option(text,value,ddl_id)
+{
+  html ="<span style='text-decoration:underline'>"+text+"</span>";
+  var o = new Option(html, value);
+  /// jquerify the DOM object 'o' so we can use the html method
+  $(o).html(text);
+  $("#"+ddl_id).append(o);
+}
+
+function bind_customer(list)
+{
+  if (list.length >0){
+    add_option('',0,"select_customer");
+    $.each(list, function(key, value) {
+        value.first_name = value.first_name || ''
+        value.last_name = value.last_name || ''
+        full_name = value.first_name + value.last_name
+        add_option(full_name,value.id,"select_customer");
+      });
+  }
+}
+
+function bind_staff(list)
+{
+  if (list.length >0){
+    add_option('',0,"select_staff");
+    $.each(list, function(key, value) {
+        value.first_name = value.first_name || ''
+        value.last_name = value.last_name || ''
+        full_name = value.first_name + value.last_name
+        add_option(full_name,value.id,"select_staff");
+      });
+  }
+}
+
+function bind_service(list)
+{
+  if (list.length >0){
+    add_option('',0,"select_service");
+    $.each(list, function(key, value) {
+        add_option(value.name,value.id,"select_service");
+      });
+  }
+}

@@ -3,38 +3,39 @@
     %section.toolbar.clearfix.m-t-large.m-b
       %a.btn.btn-white.btn-circle{:href => "mail.html"}
         %i.icon-envelope-alt>
-        Inbox
+        = t('.inbox')
         %b.badge.bg-white 5
       %a.btn.btn-primary.btn-circle.active{:href => "#"}
         %i.icon-lightbulb>
-        Projects
+        = t('.projects')
       %a.btn.btn-success.btn-circle{:href => "#"}
         %i.icon-check>
-        Tasks
+        = t('.tasks')
       %a.btn.btn-info.btn-circle.active{:href => "#"}
         %i.icon-time>
-        Timeline
+        = t('.timeline')
         %b.badge.bg-info
           %i.icon-plus
       %a.btn.btn-inverse.btn-circle{:href => "#"}
         %i.icon-bar-chart>
-        Stats
+        = t('.stats')
       %a.btn.btn-warning.btn-circle{:href => "calendar.html"}
         %i.icon-calendar-empty>
-        Calendar
+        = t('.calendar')
       %a.btn.btn-danger.btn-circle{:href => "#"}
         %i.icon-group>
-        Groups
+        = t('users.new.groups')
       %a.btn.btn-circle{:href => "#"}
         %i.icon-plus>
-        More
+        = t('.more')
   .col.col-lg-6
     .row
       / easypiechart
       .col.col-sm-6
         %section.panel
           %header.panel-heading.bg-white
-            .text-center.h5 Play/Pause pie
+            .text-center.h5 
+              = t('.play_pause_pie')
           .pull-in.text-center
             .inline
               .easypiechart{"data-loop" => "true", "data-percent" => "55"}
@@ -48,7 +49,7 @@
         %section.panel
           %header.panel-heading.bg-white
             .text-center.h5
-              Total:
+              = "#{t('common.total')}: "
               %strong 5,000
           .pull-in.text-center
             .inline
@@ -81,19 +82,24 @@
               %span.caret
             %ul.dropdown-menu.pull-right
               %li.active
-                %a{:href => "#"} Day
+                %a{:href => "#"}
+                  = t('time.day')
               %li
-                %a{:href => "#"} Week
+                %a{:href => "#"}
+                  = t('time.week')
               %li
-                %a{:href => "#"} Month
-        %span Snapshot
+                %a{:href => "#"}
+                  = t('time.month')
+        %span 
+          = t('common.snapshot')
       %ul.list-group.list-group-flush.m-t-n
         %li.list-group-item
           .media
             .pull-left.text-center.media-large
               .h4.m-t-mini
                 %strong 890
-              %small.text-muted Total views
+              %small.text-muted 
+                = t('.total_views')
             .pull-right.hidden-sm.text-right.m-t
               %b.badge.bg-info{"data-title" => "New", "data-toggle" => "tooltip"} 250
             .media-body
@@ -121,7 +127,8 @@
             .pull-left.text-center.media-large
               .h4.m-t-mini
                 %strong $4,800
-              %small.text-muted Revenue
+              %small.text-muted
+                = t('.revenue')
             .pull-right.hidden-sm.text-right.m-t
               %b.badge.bg-success{"data-title" => "Captured", "data-toggle" => "tooltip"} $4,000
             .media-body
@@ -149,7 +156,8 @@
             .pull-left.text-center.media-large
               .h4.m-t-mini
                 %strong 595
-              %small.text-muted Orders
+              %small.text-muted
+                = t('.orders')
             .pull-right.hidden-sm.text-right.m-t
               %b.badge{"data-title" => "Awaiting", "data-toggle" => "tooltip"}
                 120
@@ -186,7 +194,7 @@
               %i.icon-caret-down.icon-large.text-active
               %i.icon-caret-up.icon-large.text
         %span.label.label-large.bg-default 15
-        Inbox
+        = t('.inbox')
       %section.panel-content.scrollbar.scroll-y{:style => "height:214px"}
         %article.media
           %span.pull-left.thumb-small
@@ -231,7 +239,7 @@
       %header.panel-heading
         %a.btn.btn-link.pull-right.nav
           %i.icon-search.text-default.icon-large
-        Tasks
+        = t('.tasks')
       %ul.panel-content.list-group.list-group-flush.m-t-n
         %li.list-group-item{"data-target" => "#todo-1", "data-toggle" => "class:active"}
           .media

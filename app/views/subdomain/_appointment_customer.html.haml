@@ -1,0 +1,56 @@
+#appointment_customer
+  %table.appointment_detail
+    %tbody
+      %tr
+        %td
+          %h4
+            = "#{t('services.service')}: "
+            %span Top Coat  
+        %td
+          %p 03:00 PM Aug 14 2013
+      %tr
+        %td
+          %h5
+            = "#{t('menu.staff')}: " 
+            %span Lee Dung 
+        %td
+      %tr
+        %td          
+        %td
+          = link_to t('link.view'), '#', :class => 'btn btn-info button-min', data: {toggle: 'modal', target: '#view_appointment_detail'}
+
+          = link_to t('link.book_again'),'#', :class => 'btn btn-info'
+          = link_to t('button.cancel'),'#', :class => 'btn btn-warning', data: {toggle: 'modal', target: '#cancellation_customer'}
+      %tr
+        %td{:colspan => 2}
+          %hr/
+  %table.appointment_detail
+    %tbody
+      %tr
+        %td
+          %h4
+            = "#{t('services.service')}: "
+            %span Top Coat    
+        %td
+          %p 03:00 PM Aug 14 2013
+      %tr
+        %td
+          %h5
+            = "#{t('menu.staff')}: " 
+            %span Lee Dung 
+        %td
+      %tr
+        %td          
+        %td
+          = link_to t('link.view'),'#', :class => 'btn btn-info button-min', data: {toggle: 'modal', target: '#view_appointment_detail'}
+          = link_to t('link.book_again'),'#', :class => 'btn btn-info'
+          = link_to t('button.cancel'),'#', :class => 'btn btn-warning', data: {toggle: 'modal', target: '#cancellation_customer'}
+      %tr
+        %td{:colspan => 2}
+          %hr/
+  
+= render 'view_appointment_detail_customer'
+#cancellation_customer.modal.fade
+  = render "cancellation_customer", :message_header_ok => t('.message_header_ok'), :message_header_no => t('.message_header_no'), :message_body_no => t('.message_body_no'), :message_body_ok => t('.message_body_ok'), :isCancel => true
+            
+    

@@ -1,5 +1,5 @@
 .content
-  %h2= t('users.new.name')
+  %h2= t('users.new_user')
   - if !@user.errors.messages[:username].blank?
     %div{:style=>'color: red'}
       = t('users.new.exist')
@@ -12,32 +12,32 @@
       .column_left
         .text_input
           %div
-            = t('users.new.user_name')
+            = t('users.user_name')
             %span.require (*)
           = f.text_field :username, :autofocus => true
         .text_input
           %div
-            = t('users.new.email')
+            = t('users.email')
             %span.require (*)
           = f.text_field :email
         .text_input
           %div
-            = t('users.new.first_name')
+            = t('users.first_name')
             %span.require (*)
           = f.text_field :first_name
         .text_input
           %div
-            = t('users.new.last_name')
+            = t('users.last_name')
             %span.require (*)
           = f.text_field :last_name
         .text_input
           %div
-            = t('users.new.password')
+            = t('devise.sessions.password')
             %span.require (*)
           = f.password_field :password
         .text_input
           %div
-            = t('users.new.password_confirmation')
+            = t('devise.sessions.password_confirmation')
             %span.require (*)
           = f.password_field :password_confirmation
       .column_right

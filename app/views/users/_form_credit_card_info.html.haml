@@ -1,96 +1,103 @@
-%h4
-  = t('.billing_contact_info')
-%form.form-horizontal
+
+= form_tag update_credit_card_store_owner_organization_users_path(current_user.organization_id),:remote => true,:class =>"form-horizontal", :id=>"update_credit_card_store_owner"  do
+  .row
+    %h4
+      = t('users.billing_contact_info')
   .row
     %label.col.col-lg-3.control-label.text-right
-      = "#{t('.state')}"
-    .col.col-lg-7.form-control
+      = "#{t('users.state')} *"
+    .col.col-lg-6.form-control
       = text_field_tag 'state'
     .clearfix
   %br
 
   .row
     %label.col.col-lg-3.control-label.text-right
-      = "#{t('.city')} *"
-    .col.col-lg-7.form-control
+      = "#{t('users.city')} *"
+    .col.col-lg-6.form-control
       = text_field_tag 'city'
     .clearfix
   %br
 
   .row
     %label.col.col-lg-3.control-label.text-right
-      = "#{t('.address')} *"
-    .col.col-lg-7.form-control
+      = "#{t('users.address')} *"
+    .col.col-lg-6.form-control
       = text_field_tag 'address', '', autofocus: true
     .clearfix
   %br
 
   .row
     %label.col.col-lg-3.control-label.text-right
-      = "#{t('.postal_code')} *"
-    .col.col-lg-7
+      = "#{t('users.postal_code')} *"
+    .col.col-lg-6
       = text_field_tag 'postal_code'
     .clearfix
   %br
 
   .row
     %label.col.col-lg-3.control-label.text-right
-      = "#{t('.country')} *"
-    .col.col-lg-7
-      = select_tag "country", options_for_select(['Japan', 'Singapore','Vietnam','US']), {:prompt => "#{t('.country_promt')}"}
+      = "#{t('users.country')} *"
+    .col.col-lg-6
+      = select_tag "country", options_for_select(['Japan', 'Singapore','Vietnam','US']), {:prompt => "#{t('common.select')}"}
     .clearfix
   %br
 
   .row
     %label.col.col-lg-3.control-label.text-right
-      = "#{t('.phone_number')} *"
-    .col.col-lg-7
+      = "#{t('users.phone_number')} *"
+    .col.col-lg-6
       = text_field_tag 'phone_number'
     .clearfix
   %br
 
-%h4
-  = t('.credit_card_information')
-
-%form.form-horizontal
+  .row
+    %h4
+      = t('users.credit_card_information')
   .row
     %label.col.col-lg-3.control-label.text-right
-      = "#{t('.card_type')} *"
-    .col.col-lg-7.form-control
-      = select_tag "card_type", options_for_select(['Standard','Premium','Charge','Business']), {:prompt => "#{t('.card_promt')}"}
+      = "#{t('users.credit_card.card_type')} *"
+    .col.col-lg-6.form-control
+      = select_tag "card_type", options_for_select(['Standard','Premium','Charge','Business']), {:prompt => "#{t('common.select')}"}
     .clearfix
   %br
 
   .row
     %label.col.col-lg-3.control-label.text-right
-      = "#{t('.card_number')} *"
-    .col.col-lg-7.form-control
+      = "#{t('users.credit_card.card_number')} *"
+    .col.col-lg-6.form-control
       = text_field_tag 'card_number'
     .clearfix
   %br
 
-  .row
+  .row    
     %label.col.col-lg-3.control-label.text-right
-      = "#{t('.expiration_date')} *"
+      = "#{t('users.credit_card.expiration_date')} *"
     .col.col-lg-2.form-control
-      = select_tag "month", options_for_select([1,2,3,4,5,6,7,8,9,10,11,12]), {:prompt => "#{t('.month_promt')}", :default => nil}
-    .col.col-lg-2
-      = select_tag "year", options_for_select([2008,2009,2010,2012,2013,2014,2015, 2016, 2017]), {:prompt => "#{t('.year_promt')}"}
+      = select_tag "month", options_for_select([1,2,3,4,5,6,6,8,9,10,11,12]), {:prompt => "#{t('time.month_promt')}", :default => nil}
+    %h3.col.col-lg-1.control-label.text-center.no_margin_top
+      = "/"
+    .col.col-lg-3
+      = select_tag "year", options_for_select([2008,2009,2010,2012,2013,2014,2015, 2016, 2016]), {:prompt => "#{t('time.year_promt')}"}
     .clearfix
+
   %br
 
   .row
     %label.col.col-lg-3.control-label.text-right
-      = "#{t('.cvv')} *"
-    .col.col-lg-7
+      = "#{t('users.credit_card.cvv')} *"
+    .col.col-lg-6
       = text_field_tag 'cvv'
     .clearfix
   %br
 
   .row
     %label.col.col-lg-3.control-label.text-right
-      = "#{t('.cardholder_name')} *"
-    .col.col-lg-7
+      = "#{t('users.credit_card.cardholder_name')} *"
+    .col.col-lg-6
       = text_field_tag 'cardholder_name'
     .clearfix
   %br
+  .row.text-center
+    %button.btn.btn-success#button_update_credit_card{:type => "submit"}
+      = t('button.save')

@@ -1,0 +1,89 @@
+$(document).ready(function(){
+  var tbs = $("#billing_report_detail").dataTable({
+        sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+        "bFilter": false,
+        "bLengthChange": false,
+        "bInfo": false,
+        "bProcessing": false,
+        "bServerSide": true,
+        "bPaginate": false,
+        "oLanguage": {
+          "sEmptyTable": I18n.t('datatable.no_record'),
+          "sZeroRecords": I18n.t('datatable.no_record')
+        },
+        // "sPaginationType": "full_numbers",
+        // "iDisplayLength": g_per_page,
+        "aaSorting": [[ 0, "asc" ]],
+        "aoColumns": [
+          { "sTitle": I18n.t('billing_report.col_billing_date'),
+            'bSortable': true,
+            "sClass": "left",
+            "sWidth": "25%",
+            "mData": "created_at_s"
+          },
+          { "sTitle": I18n.t('billing_report.col_transaction_amount'),
+            "sWidth": "40%",
+            "mData": "total_paid",
+            "sClass": "right",
+            "mRender": render_total_paid
+            // "mRender": render_date
+          },
+          { "sTitle": I18n.t('billing_report.col_note'),
+            'bSortable': false,
+            "sClass": "left",
+            "sWidth": "20%",
+            "mData": "note"
+           }
+        ],
+        "sAjaxSource": g_url_billing_org,
+        "fnInitComplete": function () {
+          $('div.dataTables_filter input[type="text"]').focus();
+          $("div.dataTables_filter input[type=\"text\"]").unbind();
+          $(".dataTables_filter input[type=\"text\"]").bind('keydown',function (e) {
+            if (e.keyCode == 13) {
+              tbs.fnFilter(this.value );
+              $(".dataTables_filter input[type=\"text\"]").focus();
+            }
+          });
+        },
+        "fnDrawCallback": function (oSettings) {
+          sum = 0;
+           if(oSettings.aoData.length>0 )
+          {
+            sum = oSettings.aoData[0]._aData.sum_paid;
+            tr = document.createElement("tr");
+            td2= document.createElement("td");
+            td_text_total = document.createElement("td");
+            td_text_total.innerHTML = I18n.t("billing_report.col_sum_paid");
+            td_text_total.setAttribute("class","left");
+            td_sum = document.createElement("td");
+            td_sum.setAttribute("class","right_bold");
+            td_sum.innerHTML = accounting.formatNumber(sum);
+            tr.appendChild(td_text_total);
+            tr.appendChild(td_sum);
+            tr.appendChild(td2);
+            $("#billing_report_detail tbody").append(tr);
+          }
+          
+
+          
+        }
+      });
+
+//Handle event
+  // $('#view').on('show.bs.modal', function() {
+  //     alert("dasdasd");
+  //   })
+        // $("#btn_export").click(function (e) {
+        //     window.open('data:application/vnd.ms-excel,' + $('#billing_report_detail').html());
+        //     e.preventDefault();
+        // });
+  
+});
+// Author: ThuyLC
+// Description: This JavaScript code customize render action column
+// Created Date: July 26, 2013
+function render_total_paid(obj)
+{
+  return accounting.formatNumber(obj);
+}

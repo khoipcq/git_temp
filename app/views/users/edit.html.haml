@@ -1,4 +1,4 @@
-.row.custom_datatable.store-owners
+.row.custom_datatable.store-owners#edit_store_owner
   .panel
     .panel-heading
       = t('.title') 
@@ -8,31 +8,26 @@
           .accordion-toggle#padding{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseOne"}  
             %i#id1.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-s       
             %a.action-link
-              = t('.account_info')
+              = t('users.credit_card.account_info')
         #collapseOne.accordion-body.collapse.in
           .accordion-inner.no_border#padding_inner
-            = render 'form_account_info'
+            = render :partial => 'form_account_info', :locals => {organization_name: @user.organization.name}
       .accordion-group.no_border
         .accordion-heading.custom_datatable
           .accordion-toggle#padding{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseTwo"}
             %i#id2.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-e
             %a.action-link
-              = t('.credit_card_info')
+              = t('users.credit_card.credit_card_info')
         #collapseTwo.accordion-body.collapse
           .accordion-inner.no_border#padding_inner
-            = render 'form_credit_card_info'  
-            .form-group.text-center
-              .btn.btn-success#button_update_admin{:type => "submit"}
-                = t('button.save')
-
-              .btn.btn-warning#button_update_admin{'data-dismiss' => 'modal'}
-                = t('button.cancel')          
+            = render :partial => 'form_credit_card_info', :locals => {billing_info: @user.billing_info, card_info: @user.card_info}  
+        
       .accordion-group.no_border
         .accordion-heading.custom_datatable
           .accordion-toggle#padding{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseThree"}
             %i#id3.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-e
             %a.action-link
-              = t('.account_status')
+              = t('users.account_status_title')
         #collapseThree.accordion-body.collapse
           .accordion-inner.no_border#padding_inner
             = render 'account_status'
@@ -42,13 +37,14 @@
           .accordion-toggle#padding{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseFour"}
             %i#id4.ui-accordion-header-icon.ui-icon.ui-icon-triangle-1-e
             %a.action-link
-              = t('.payment_plan')
+              = t('users.payment_plan_title')
         #collapseFour.accordion-body.collapse
           .accordion-inner.no_border#padding_inner
             = render 'payment_plan'
 
 = javascript_include_tag "edit_store_owner"
-  
+:javascript
+  var user_info = #{current_user.to_json || nil};
 
 
 

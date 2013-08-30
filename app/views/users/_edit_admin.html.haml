@@ -11,18 +11,18 @@
         - if current_user
           = form_tag update_profile_organization_users_path(current_user.organization_id),:remote => true,:class =>"form-horizontal", :id=>"update_user_profile"  do 
             %br
-              .table
+              .table{:style=>"margin-bottom:0px"}
                 %br
                 %div.form-group
                   %label.col.col-lg-4.control-label
-                    = "#{t('.first_name')} *"
+                    = "#{t('users.first_name')} *"
                   %div.col.col-lg-7
                     = text_field_tag 'first_name'
                   .clearfix
                 %br
                 %div.form-group
                   %label.col.col-lg-4.control-label
-                    = "#{t('.last_name')} *"
+                    = "#{t('users.last_name')} *"
                   %div.col.col-lg-7
                     = text_field_tag 'last_name'
                   .clearfix
@@ -30,7 +30,7 @@
 
                 %div.form-group
                   %label.col.col-lg-4.control-label
-                    = "#{t('.email')} *"
+                    = "#{t('users.email')} *"
                   %div.col.col-lg-7
                     = text_field_tag 'email'
                   .clearfix
@@ -38,9 +38,8 @@
 
                 %div.form-group
                   %label.col.col-lg-4.control-label
-                    = t('.language')
-                  %div.col.col-lg-7
-                    / = select_tag "language", "<option>English(US)</option><option>Vietnamese</option><option>English(UK)</option><option>Japanese</option>".html_safe
+                    = t('common.language')
+                  %div.col.col-lg-7                    
                     %select#select_language{:name=>"language"}
                       %option{:value=>"en"}
                         =t(".lang_en_us")
@@ -52,50 +51,51 @@
 
                 %div.form-group
                   %label.col.col-lg-4.control-label
-                    = t('.time_zone')
+                    = t('time.time_zone')
                   %div.col.col-lg-7
-                    = select_tag "time_zone", "<option>Canada/Eastern</option><option>Vietnam/Ho Chi Minh</option>".html_safe
+                    = select_tag "time_zone", options_for_select(["Canada/Eastern", "Viet Nam/Ho Chi Minh"])
                   .clearfix
-                %br
-
 
             %div.form-group.password-container
               %label.col.col-lg-4.control-label
-                = t('.password')
+                = t('devise.sessions.password')
               %div.col.col-lg-7
                 = password_field_tag 'pass',nil, :class => "strong-password"
               .clearfix
             %br
 
-            %div.form-group
-              %label.col.col-lg-4.control-label
-              .col.col-lg-7
-                .row
-                .progress.meter
-                  .progress-bar#weak
-                    = t('users.password_strength.weak')
-                  .progress-bar#fair
-                    = t('users.password_strength.fair')
-                  .progress-bar#strong
-                    = t('users.password_strength.strong')
-              %div.col.col-lg-1
-                %a#image_help.icon-question-sign.icon-large
-              .clearfix
-            %br
+            / %div.form-group
+            /   %label.col.col-lg-4.control-label
+            /   .col.col-lg-7
+            /     .row
+            /     .progress.meter
+            /       .progress-bar#weak
+            /         = t('devise.sessions..password_strength.weak')
+            /       .progress-bar#fair
+            /         = t('devise.sessions..password_strength.fair')
+            /       .progress-bar#strong
+            /         = t('devise.sessions..password_strength.strong')
+            /   %div.col.col-lg-1
+            /     %a#image_help.icon-question-sign.icon-large
+            /   .clearfix
+            / %br
 
             %div.form-group
               %label.col.col-lg-4.control-label
-                = t('.password_confirm')
+                = t('devise.sessions.password_confirm')
               %div.col.col-lg-7
                 = password_field_tag 'confirm_pass'
-
-                %br
+            %div{:style=>"clear:both;height:20px"}
+            %div.form-group
+              %label.col.col-lg-4.control-label
+                &nbsp;
+              %div.col.col-lg-7
                 %button.btn.btn-success#button_update_admin{:type => "submit"}
                   = t('button.save')
                 %input{:type=>"hidden",:value=>"",:id=>"hidden_user_id",:name=>"hidden_user_id"}
-                .btn.btn-warning#button_update_admin{'data-dismiss' => 'modal'}
+                .btn.btn-warning#button_cancel_admin{'data-dismiss' => 'modal'}
                   = t('button.cancel')
-              .clearfix
+            .clearfix
       .model-footer
 = javascript_include_tag "pass_meter"
 :javascript

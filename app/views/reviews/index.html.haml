@@ -2,15 +2,15 @@
   %br/
   .panel
     .button_add
-      %input.btn.btn-primary{:type=>"button",:value=>t('button.btn-publish')}
-      %input.btn.btn-primary{:type=>"button",:value=>t('button.btn-unpublish')}
+      %input.btn.btn-primary{:type=>"button",:value=>t('button.publish')}
+      %input.btn.btn-primary{:type=>"button",:value=>t('button.unpublish')}
     .panel-heading
       = t('.list')
     %table#reviews_table.table.table-striped.dataTable
       %div
     = render "show_review"
     #delete_notice.modal.fade
-      = render "shared/confirm_notice", :message_header => t('.delete_confirm_header'), :message_body => t('.delete_confirm_body')
+      = render "shared/confirm_notice", :message_header => t('common.delete_confirm_header'), :message_body => t('.delete_confirm_body')
 
 = javascript_include_tag "review"
 :javascript

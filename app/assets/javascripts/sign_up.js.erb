@@ -43,27 +43,35 @@ $(document).ready(function(){
     },
     messages: {
       "business_name":{
-        required: I18n.t('required_msg', {field : I18n.t('business_name')}),
+        // required: I18n.t('required_msg', {field : I18n.t('business_name')}),
+        required: I18n.t('require_field_msg'),
         maxlength: I18n.t('maxlength_msg', {field : I18n.t('business_name'), length: 256}),
         regex: I18n.t('regex_textfield', {field : I18n.t('business_name')}),
       },
       "user[first_name]":{
-        required: I18n.t('required_msg', {field : I18n.t('firstname')}),
+        // required: I18n.t('required_msg', {field : I18n.t('firstname')}),
+        required: I18n.t('require_field_msg'),
         maxlength: I18n.t('maxlength_msg', {field : I18n.t('firstname'), length: 256}),
         regex: I18n.t('regex_textfield', {field : I18n.t('firstname')})
       },
       "user[email]":{
-        required: I18n.t('required_msg', {field : I18n.t('email')}),
+        // required: I18n.t('required_msg', {field : I18n.t('email')}),
+        required: I18n.t('require_field_msg'),
+        email: I18n.t('email_valid')
       },
       "user[last_name]":{
-        required: I18n.t('required_msg', {field : I18n.t('lastname')}),
+        // required: I18n.t('required_msg', {field : I18n.t('lastname')}),
+        required: I18n.t('require_field_msg'),
         maxlength: I18n.t('maxlength_msg', {field : I18n.t('lastname'), length: 256}),
         regex: I18n.t('regex_textfield', {field : I18n.t('lastname')})
       },
       "user[password]":{
-        required: I18n.t('required_msg', {field : I18n.t('password')}),
-        minlength: I18n.t('minlength_msg', {field : I18n.t('password'), length: 6}),
-        maxlength: I18n.t('maxlength_msg', {field : I18n.t('password'), length: 32})
+        // required: I18n.t('required_msg', {field : I18n.t('password')}),
+        required: I18n.t('require_field_msg'),
+        // minlength: I18n.t('minlength_msg', {field : I18n.t('password'), length: 6}),
+        // maxlength: I18n.t('maxlength_msg', {field : I18n.t('password'), length: 32})
+        minlength: I18n.t('password_minlength'),//, {field : I18n.t('password'), length: 6}),
+        maxlength: I18n.t('password_maxlength')
       },
       "user[password_confirmation]": {
         equalTo: I18n.t('password_not_match')

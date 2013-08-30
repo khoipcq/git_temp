@@ -2,30 +2,30 @@
   %fieldset
     .row
       %label.col.col-lg-4.control-label
-        Staff
+        = t('users.staff')
       .col.col-lg-5
         %select{:name => "staff", autofocus: true}
           %option{:value => "1"}Member 1
       .col.col-lg-1.control-label.left
-        = link_to "View", "", class: "text-link"
+        = link_to t('link.view'), "", class: "text-link"
     .row
       %label.col.col-lg-4.control-label
-        Service
+        = t('services.service')
       .col.col-lg-5
         %select{:name => "service"}
           %option{:value => "1"}Ross A.
       .col.col-lg-1.control-label.left
-        = link_to "View", "", class: "text-link"
+        = link_to t('link.view'), "", class: "text-link"
     .row
       %label.col.col-lg-4.control-label
-        Cost
+        = t('services.cost')
       .col.col-lg-2
         = text_field_tag :cost, nil
       %label.control-label
-        JPY
+        = t('common.jpy')
     .row
       %label.col.col-lg-4.control-label
-        Date and Time
+        = t('time.date_and_time')
       .col.col-lg-4
         = text_field_tag :date_customer, Date.current.strftime('%a ' + t('time.short_format')), readonly: "readonly",class: "pick_date"
       .col.col-lg-3
@@ -33,7 +33,7 @@
           %option{:value => "1"}09:00 am
     .row
       %label.col.col-lg-4.control-label
-        Duration
+        = t('services.duration')
       .col.col-lg-2
         %select{:name => "hours"}
           %option{:value => "1"}1
@@ -41,63 +41,65 @@
         %select{:name => "minute"}
           %option{:value => "1"}30
       .col.col-lg-3.control-label.left
-        hrs / mins
+        = t('time.hour_per_min')
   %fieldset
     .row
       %label.col.col-lg-4.control-label
-        Last Name
+        = t('users.last_name')
       .col.col-lg-7
         = text_field_tag :last_name
     .row
       %label.col.col-lg-4.control-label
-        First Name
+        = t('users.first_name')
       .col.col-lg-7
         = text_field_tag :first_name
     .row
       %label.col.col-lg-4.control-label
-        Gender
+        = t('users.gender')
       .col.col-lg-7
         %select{:name => "gender"}
-          %option{:value => "0"}Female
-          %option{:value => "1"}Male
+          %option{:value => "0"}
+            = t('users.female')
+          %option{:value => "1"}
+            = t('users.male')
     .row
       %label.col.col-lg-4.control-label
-        Email Address
+        = t('users.email_address')
       .col.col-lg-7
         = text_field_tag :email_address
     .row
       %label.col.col-lg-4.control-label
-        State
+        = t('users.state')
       .col.col-lg-7
         = text_field_tag :state
     .row
       %label.col.col-lg-4.control-label
-        City
+        = t('users.city')
       .col.col-lg-7
         = text_field_tag :city
     .row
       %label.col.col-lg-4.control-label
-        Address
+        = t('users.address')
       .col.col-lg-7
         = text_field_tag :address
     .row
       %label.col.col-lg-4.control-label
-        Postal Code
+        = t('users.postal_code')
       .col.col-lg-7
         = text_field_tag :postal_code
     .row
       %label.col.col-lg-4.control-label
-        Country
+        = t('users.country')
       .col.col-lg-7
         %select{:name => "country"}
           %option{:value => "1"}USA
     .row
       %label.col.col-lg-4.control-label
-        Phone
+        = t('users.phone')
       .col.col-lg-7
         = text_field_tag :phone_number
   .row
     %label.col.col-lg-4.control-label
-      Note
+      = t('common.note')
     .col.col-lg-7
       = text_area_tag :note

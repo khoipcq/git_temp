@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130816063426) do
+ActiveRecord::Schema.define(:version => 20130828073315) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -32,6 +32,93 @@ ActiveRecord::Schema.define(:version => 20130816063426) do
   add_index "activities", ["owner_id", "owner_type"], :name => "index_activities_on_owner_id_and_owner_type"
   add_index "activities", ["recipient_id", "recipient_type"], :name => "index_activities_on_recipient_id_and_recipient_type"
   add_index "activities", ["trackable_id", "trackable_type"], :name => "index_activities_on_trackable_id_and_trackable_type"
+
+  create_table "appointment_recurrings", :force => true do |t|
+    t.string   "repeat_type"
+    t.string   "repeat_every"
+    t.boolean  "date_mon",       :default => false
+    t.boolean  "date_tue",       :default => false
+    t.boolean  "date_wed",       :default => false
+    t.boolean  "date_thu",       :default => false
+    t.boolean  "date_fri",       :default => false
+    t.boolean  "date_sat",       :default => false
+    t.boolean  "date_sun",       :default => false
+    t.integer  "time_to_repeat"
+    t.date     "end_date"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  create_table "appointments", :force => true do |t|
+    t.integer  "staff_id"
+    t.integer  "organization_id"
+    t.datetime "appointment_date"
+    t.boolean  "is_locked",                                              :default => false
+    t.string   "status"
+    t.integer  "created_by"
+    t.integer  "appointment_recurring_id"
+    t.string   "appointment_unique_id"
+    t.integer  "service_id"
+    t.decimal  "cost",                     :precision => 2, :scale => 0, :default => 0
+    t.time     "appointment_time"
+    t.time     "time"
+    t.time     "duration"
+    t.string   "first_name",                                             :default => ""
+    t.string   "last_name",                                              :default => ""
+    t.string   "gender",                                                 :default => ""
+    t.string   "email",                                                  :default => ""
+    t.string   "state",                                                  :default => ""
+    t.string   "city",                                                   :default => ""
+    t.string   "address",                                                :default => ""
+    t.string   "postal_code",                                            :default => ""
+    t.string   "country",                                                :default => ""
+    t.string   "phone",                                                  :default => ""
+    t.string   "note",                                                   :default => ""
+    t.integer  "customer_id",                                            :default => 0
+    t.datetime "created_at",                                                                :null => false
+    t.datetime "updated_at",                                                                :null => false
+  end
+
+  create_table "billing_infos", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "state"
+    t.string   "city"
+    t.string   "address"
+    t.string   "postal_code"
+    t.string   "phone_number"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "card_infos", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "card_type"
+    t.string   "card_number"
+    t.string   "expiration_month"
+    t.string   "expiration_year"
+    t.string   "cvv"
+    t.string   "card_holder_name"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "customers", :force => true do |t|
+    t.integer  "organization_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "gender"
+    t.string   "email"
+    t.string   "state"
+    t.string   "city"
+    t.string   "address"
+    t.string   "postal_code"
+    t.string   "country"
+    t.string   "phone"
+    t.string   "note"
+    t.date     "date_of_birth"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -66,22 +153,32 @@ ActiveRecord::Schema.define(:version => 20130816063426) do
   end
 
   create_table "organizations", :force => true do |t|
-    t.string  "name"
-    t.boolean "is_super_org",    :default => false
-    t.string  "description"
-    t.string  "language",        :default => "en"
-    t.string  "time_zone",       :default => ""
-    t.date    "expired_date"
-    t.boolean "is_monthly_paid", :default => false
-    t.boolean "is_stopped",      :default => false
+    t.string   "name"
+    t.boolean  "is_super_org",    :default => false
+    t.string   "description"
+    t.string   "language",        :default => "en"
+    t.string   "time_zone",       :default => ""
+    t.date     "expired_date"
+    t.boolean  "is_monthly_paid", :default => false
+    t.boolean  "is_stopped",      :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "state",           :default => ""
+    t.string   "city",            :default => ""
+    t.string   "address",         :default => ""
+    t.string   "country",         :default => ""
+    t.string   "phone",           :default => ""
+    t.integer  "pricing_plan_id", :default => 0
+    t.string   "subdomain"
   end
 
   create_table "payment_histories", :force => true do |t|
     t.integer  "user_id"
     t.integer  "pricing_plan_id"
     t.float    "total_paid"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.string   "note",            :default => ""
   end
 
   create_table "permissions", :force => true do |t|
@@ -96,11 +193,26 @@ ActiveRecord::Schema.define(:version => 20130816063426) do
     t.string   "name"
     t.string   "description"
     t.boolean  "status",           :default => true
-    t.integer  "price_per_month"
+    t.float    "price_per_month"
     t.integer  "number_of_stores"
     t.integer  "user_staff"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+  end
+
+  create_table "service_staffs", :force => true do |t|
+    t.integer  "service_id"
+    t.string   "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "services", :force => true do |t|
+    t.integer  "organization_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "user_groups", :force => true do |t|

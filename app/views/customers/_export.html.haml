@@ -3,7 +3,7 @@
     .modal-content
       .modal-header
         %h4.modal-title
-          Export Data
+          = t('.title')
       .modal-body
         %form.form-horizontal
           .col.col-lg-12
@@ -11,14 +11,16 @@
               %label.radio-custom{:for => "xls"}
                 %input#xls{:checked => "checked", :name => "export", :type => "radio", :value => "xls"}/
                 %i.icon-circle-blank.checked
-                Export to XLS
+                = t('.export_xls')
             .radio
               %label.radio-custom{:for => "csv"}
                 %input#csv{:name => "export", :type => "radio", :value => "csv"}/
                 %i.icon-circle-blank
-                Export to CSV
+                = t('.export_csv')
         %br/
         .row.center
-          %button.btn.btn-primary{"data-dismiss" => "modal", :type => "submit"} Save
-          %button.btn.btn-warning{"data-dismiss" => "modal", :type => "submit"} Cancel
+          %button.btn.btn-success{"data-dismiss" => "modal", :type => "submit"}
+            = t('button.save')
+          %button.btn.btn-warning{"data-dismiss" => "modal", :type => "submit"}
+            = t('button.cancel')
       .modal-footer

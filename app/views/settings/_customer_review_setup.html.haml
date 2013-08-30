@@ -1,0 +1,22 @@
+.row
+  %h3
+    = t(".pulish_customer_reviews")
+%br
+.row
+  %label
+    = t(".publish_customer_description")
+.checkbox
+  %label.checkbox-custom
+    %input{:name => "auto_publish", :type => "checkbox"}/
+    %i.icon-unchecked
+    = t(".auto_publish")
+    %a.icon-question-sign.icon-large{:title => t(".help_auto_publish")}
+.checkbox
+  %label.checkbox-custom
+    %input{:name => "suppress_customer", :type => "checkbox"}/
+    %i.icon-unchecked
+    = t(".suppress_customer")
+    %a.icon-question-sign.icon-large{:title => t(".help_suppress_customer")}
+%br/
+.row.center
+  %button.btn.btn-success{"data-dismiss" => "modal", :type => "submit"}#{t("button.save")}

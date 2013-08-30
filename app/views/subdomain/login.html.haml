@@ -1,0 +1,29 @@
+.row#devise-session-new-customer
+  .col.col-lg-4.col-offset-4.m-t-large
+    %section.panel
+      %header.panel-heading.text-center
+        = t('devise.sessions.new.log_in')      
+      %form.form-horizontal
+        - if flash[:alert]
+          %p(style="color: red")= flash[:alert]
+        .block
+          %label.text-left.control-label
+            = t('users.email_address')
+          = email_field_tag 'email'
+        .block
+          %label.text-left.control-label
+            = t('devise.sessions.password')
+          = password_field_tag 'password'        
+          .checkbox
+            %label.control-label.checkbox-custom
+              = check_box_tag 'accept_term'
+              %i.icon-unchecked
+              = check_box_tag 'remember_me'
+              = t('devise.sessions.new.remember')
+          
+        .text-center
+          = link_to t('devise.sessions.new.log_in'),'#',:class=>"btn btn-info button-min"
+          %br/
+          %br/         
+          .link
+            = link_to t('devise.link.forgot_pass'), '/auth/password/new', :class => 'text-link'              

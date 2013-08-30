@@ -53,7 +53,7 @@
     %br/
     .row
       %label.col.col-lg-3.control-label
-        Repeat Every
+        = t('.repeat_every')
       .col.col-lg-3
         %select{name: "repeat_every"}
           - (1..5).each do |day|
@@ -64,102 +64,104 @@
           %label.radio-custom
             %input{type: "radio", name: "daily"}
               %i.icon-circle-blank.checked
-            Times
+            = t('time.Times')
       .col.col-lg-3.control-label
         %select{name: "times"}
-          %option{value: "0"}Twice
+          %option{value: "0"}
+            = t('time.twice')
           - (1..8).each do |time|
-            %option{value: "#{time}"}#{time + 2} times
+            %option{value: "#{time}"} #{time + 2} #{t('time.times')}              
     .row
       .col.col-lg-3.col-offset-3
         .radio
           %label.radio-custom
             %input{type: "radio", name: "daily"}
               %i.icon-circle-blank
-            End Date
+            = t('time.end_date')
       .col.col-lg-4.control-label
         = text_field_tag :end_date_daily, Date.current.strftime('%a ' + t('time.short_format')), readonly: "readonly", class: "pick_date"
   #weekly.recurring_filter
     %br/
     .row
       %label.col.col-lg-3.control-label
-        Repeat Every
+        = t('.repeat_every')
       .col.col-lg-3
         %select{name: "repeat_every"}
           - (1..8).each do |week|
             %option{value: "#{week - 1}"}#{week} week#{"s" unless week == 1}
     .row
       %label.col.col-lg-3.control-label
-        Repeat on
+        = t('.repeat_on')
       .col.col-lg-2
         .checkbox
           %label.checkbox-custom.padding_checkbox_custom
             %input{:name => "allow_login", :type => "checkbox"}
               %i.icon-unchecked
-            Mon
+            = t('time.monday')
       .col.col-lg-2
         .checkbox
           %label.checkbox-custom.padding_checkbox_custom
             %input{:name => "allow_login", :type => "checkbox"}
               %i.icon-unchecked
-            Tue
+            = t('time.tuesday')
       .col.col-lg-2
         .checkbox
           %label.checkbox-custom.padding_checkbox_custom
             %input{:name => "allow_login", :type => "checkbox"}
               %i.icon-unchecked
-            Wed
+            = t('time.wedsday')
     .row
       .col.col-lg-2.col-offset-3
         .checkbox
           %label.checkbox-custom.padding_checkbox_custom
             %input{:name => "allow_login", :type => "checkbox"}
               %i.icon-unchecked
-            Thu
+            = t('time.thursday')
       .col.col-lg-2
         .checkbox
           %label.checkbox-custom.padding_checkbox_custom
             %input{:name => "allow_login", :type => "checkbox"}
               %i.icon-unchecked
-            Fri
+            = t('time.friday')
       .col.col-lg-2
         .checkbox
           %label.checkbox-custom.padding_checkbox_custom
             %input{:name => "allow_login", :type => "checkbox"}
               %i.icon-unchecked
-            Sat
+            = t('time.saturday')
       .col.col-lg-2
         .checkbox
           %label.checkbox-custom.padding_checkbox_custom
             %input{:name => "allow_login", :type => "checkbox"}
               %i.icon-unchecked
-            Sun
+            = t('time.sunday')
     .row
       .col.col-lg-3.col-offset-3.special_col
         .radio
           %label.radio-custom
             %input{type: "radio", name: "weekly"}
               %i.icon-circle-blank.checked
-            Times
+            = t('time.Times')
       .col.col-lg-3.control-label
         %select{name: "times"}
-          %option{value: "0"}Twice
+          %option{value: "0"}
+            = t('time.twice')
           - (1..8).each do |time|
-            %option{value: "#{time}"}#{time + 2} times
+            %option{value: "#{time}"} #{time + 2} #{t('time.times')}          
     .row
       .col.col-lg-3.col-offset-3.special_col
         .radio
           %label.radio-custom
             %input{type: "radio", name: "weekly"}
               %i.icon-circle-blank
-            End Date
+            = t('time.end_date')
       .col.col-lg-3.control-label
         = text_field_tag :end_date_weekly, Date.current.strftime('%a ' + t('time.short_format')), :class => "input-small", readonly: "readonly", class: "pick_date"
   #monthly.recurring_filter
     %br/
     .row
       %label.col.col-lg-3.control-label
-        Repeat Every
+        = t('.repeat_every')
       .col.col-lg-3
         %select{name: "repeat_every"}
           - (1..4).each do |month|
@@ -173,25 +175,27 @@
           %label.radio-custom
             %input{type: "radio", name: "monthly"}
               %i.icon-circle-blank.checked
-            Times
+            = t('time.Times')
       .col.col-lg-3.control-label
         %select{name: "times"}
-          %option{value: "0"}Twice
+          %option{value: "0"}
+            = t('time.twice')
           - (1..8).each do |time|
-            %option{value: "#{time}"}#{time + 2} times
+            %option{value: "#{time}"}#{time + 2} #{t('time.times')}
+              
     .row
       .col.col-lg-3.col-offset-3.special_col
         .radio
           %label.radio-custom
             %input{type: "radio", name: "monthly"}
               %i.icon-circle-blank
-            End Date
+            = t('time.end_date')
       .col.col-lg-3.control-label
         = text_field_tag :end_date_monthly, Date.current.strftime('%a ' + t('time.short_format')), :class => "input-small", readonly: "readonly", class: "pick_date"
   #replace_confirm_notice.modal.fade
     = render "replace_confirm"
 
-= javascript_include_tag "appointments"
+= javascript_include_tag "new_appointment"
 / :javascript
 /   $(document).ready(function(){
 /     $("#recurring_day_table").dataTable({

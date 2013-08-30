@@ -10,24 +10,24 @@
         .col{style: 'color: red'}
           = devise_error_messages!
         .block.col-lg-large.password-container
-          = f.password_field :password, placeholder: t('.new_password'), autofocus: true,:class => "strong-password"
+          = f.password_field :password, placeholder: t('devise.sessions.new_password'), autofocus: true,:class => "strong-password"
         .progress.col-lg-large.pull-left
           .progress.meter
             .progress-bar#weak
-              = t('users.password_strength.weak')
+              = t('devise.sessions.password_strength.weak')
             .progress-bar#fair
-              = t('users.password_strength.fair')
+              = t('devise.sessions.password_strength.fair')
             .progress-bar#strong
-              = t('users.password_strength.strong')
+              = t('devise.sessions.password_strength.strong')
           / .progress-bar.progress-bar-success#weak= t('.weak')
           / .progress-bar#fair= t('.fair')
           / .progress-bar#strong= t('.strong')
         .pull-left
           %a.icon-question-sign.icon-large#question{'data-content' => t('.password_description')}
         .block.col-lg-large
-          = f.password_field :password_confirmation, placeholder: t('.password_confirm')
+          = f.password_field :password_confirmation, placeholder: t('devise.sessions.password_confirm')
         .text-center
-          = f.submit t('.submit'),:class=>"btn btn-success"
+          = f.submit t('button.submit'),:class=>"btn btn-success"
 :javascript
   $(document).ready(function () {
     $("#question").popover({

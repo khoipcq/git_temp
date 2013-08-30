@@ -1,3 +1,4 @@
+  
   function deleteReview(url, id){
     var message = I18n.t('confirm_delete_pricing_plan');
     var confirm = showConfirm(message, "");
@@ -38,6 +39,7 @@
 
   //Set style table
   $(document).ready(function(){
+    
     var tb = $("#customers_table").dataTable({
       sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
       "bFilter": true,
@@ -88,5 +90,6 @@
         $('div.dataTables_filter input').focus();
       }
     });
+   
 
   });

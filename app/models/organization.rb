@@ -8,14 +8,16 @@ class Organization < ActiveRecord::Base
   after_create :after_create_org
   before_destroy :before_destroy_org
 
-  attr_accessible :name, :description,:is_stopped, :users_attributes,:language,:time_zone,:expired_date,:is_monthly_paid
+  before_create :generate_subdomain
+  attr_accessible :name, :description,:is_stopped, :users_attributes,:language,:time_zone,:expired_date,:is_monthly_paid,:state,:city,:address,:phone,:country,:pricing_plan_id
   has_many :users, :dependent => :destroy
   has_many :user_groups, :dependent => :destroy
   has_many :activities, :dependent => :destroy
-
+  belongs_to :pricing_plan
   accepts_nested_attributes_for :users
 
-  validates :name,:uniqueness => true
+
+  # validates :name,:uniqueness => true
 
   scope :not_super_org, where(:is_super_org => false)
   scope :search_name, lambda { |search| where("lower(name) like ?", "%" + search + "%") }
@@ -125,6 +127,22 @@ class Organization < ActiveRecord::Base
     end
   end
 
+  private
+  ##
+  # Generate api access token for a organization
+  # 
+  #**Args* :
+  #**Return* :
+  #*Written:* LienPTB
+  #
+  #*Date:* August 2, 2013
+  #
+  #*Modified:*
+  def generate_subdomain
+    begin
+      self.subdomain = (0...8).map{ ('a'..'z').to_a[rand(26)] }.join
+    end while self.class.exists?(subdomain: subdomain)
+  end
 end
 
 

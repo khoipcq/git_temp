@@ -1,0 +1,14 @@
+.custom_datatable
+  .panel
+    .button_add
+      %input.btn.btn-primary{:type=>"button",:value=> t('.add'), "data-toggle" => "modal", "data-target" => "#new_closed_date"}
+    .panel-heading
+      = t('.list')
+    %table#closed_dates_table.table.table-striped.dataTable
+      %div
+#delete_notice.modal.fade
+  = render "shared/confirm_notice", :message_header => t('common.delete_confirm_header'), :message_body => t('.delete_confirm_body')
+#new_closed_date.modal.fade.in
+  = render "form_closed_date", :message_header => t(".new_closed_date")
+#edit_closed_date.modal.fade.in
+  = render "form_closed_date", :message_header => t(".edit_closed_date")

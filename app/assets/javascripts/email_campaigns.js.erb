@@ -1,0 +1,61 @@
+function renderAction(obj){
+    var viewString = '<a data-toggle="modal" href="#preview_email_campaign" class="action-link">View</a>';
+    var edit_link = g_editEmailCampaignPath .replace("%5Bid%5D",1);
+    var editString = '<a href="'+edit_link+'" class="action-link">Edit</a>';
+    var deleteString = '<a data-toggle="modal" href="#delete_notice.modal" class="action-link">Delete</a>';
+    return viewString+" "+editString+" "+deleteString;
+}
+function renderStatus(obj){
+  if(obj.aData[1]){
+    return I18n.t("common.active");
+  }
+  else {
+    return I18n.t("common.deactive");
+  }
+}
+//Set style table
+  $(document).ready(function(){
+    $('.ckeditor').ckeditor();
+
+    var tb = $("#email_campaign_table").dataTable({
+      sDom: '<"#tbhead"<"row"<"col col-lg-6 col-offset-6"f>>>rt<"#tbfoot"<"row"<"col col-lg-6"l><"col col-lg-6"p>>>',
+      "bFilter": true,
+      "bLengthChange": true,
+      "bInfo": true,
+      "bProcessing": false,
+      "bServerSide": true,
+      "sPaginationType": "full_numbers",
+      "oLanguage": {
+          "sEmptyTable": I18n.t('datatable.no_record'),
+          "sZeroRecords": I18n.t('datatable.no_record')
+        },
+      "iDisplayLength": g_displayLength,
+      "aaSorting": [[ 1, "asc" ]],
+      "aoColumns": [
+        { "sTitle": I18n.t('email_campaign.j_name'),
+          'bSortable': true,
+          "sClass": "left",
+          "sWidth": "50%"
+        },
+        { "sTitle": I18n.t('email_campaign.j_status'),
+          'bSortable': false,
+          "sClass": "center",
+          "fnRender": renderStatus,
+          "sWidth": "20%"
+        },
+        { "sTitle": I18n.t('pricing_plan.j_action'),
+          'bSortable': false,
+          "fnRender": renderAction,
+          "sClass": "center",
+          "sWidth": "30%"
+        },
+        {  "bVisible": false }
+      ],
+      "sAjaxSource": g_emailCampaignPath,
+      "fnInitComplete": function () {
+        $('div.dataTables_filter input').focus();
+      }
+    });
+  });
+
+

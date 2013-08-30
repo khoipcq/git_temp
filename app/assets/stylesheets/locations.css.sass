@@ -1,6 +1,46 @@
 // Place all the styles related to the Locations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#locations
+  #table_location thead th:nth-child(1)
+    width: 20%
+    text-align: left
+  #table_location thead th:nth-child(2)
+    width: 30%
+    text-align: left
+  #table_location thead th:nth-child(3)
+    width: 20%
+    text-align: left
+  #table_location thead th:nth-child(4)
+    width: 15%
+    text-align: left
+  #table_location thead th:nth-child(5)
+    width: 15%
+    text-align: center
+  .margin-bottom
+    margin-bottom: 10px
+#new_location
+  .margin_radio
+    margin-top: 7px
+  .no-resize
+    resize: none
+#form_staff_loc
+  #staff_table thead th:nth-child(1)
+    width: 20%
+    text-align: left
+  #staff_table thead th:nth-child(2)
+    width: 30%
+    text-align: left
+  #staff_table thead th:nth-child(3)
+    width: 30%
+    text-align: left
+  #staff_table thead th:nth-child(4)
+    width: 20%
+    text-align: center
+  .margin-fit-table
+    margin-right: 5px
+
+
 .locations
   .action_link
     a
@@ -11,90 +51,38 @@
     padding:
       left: 3px
       right: 3px
-  .no_margin_right
-    margin-right: 0px
-  .margin_bottom
-    margin-bottom: 10px !important
   .category_table
     background-color: #f7f8f9
-  .table_staff thead th:nth-child(1)
-    width: 20%
-    text-align: left
-  .table_staff thead th:nth-child(2)
-    width: 30%
-    text-align: left
-  .table_staff thead th:nth-child(3)
-    width: 30%
-    text-align: left
-  .table_staff thead th:nth-child(4)
-    width: 20%
-    text-align: center
+
+#form_schedule
+  margin-top: 10px
+#form_schedule_operating
   .table_operating
     width: 100%
   .table_operating thead th
     padding: 6px 0px
-  .table_operating  thead th:nth-child(1)
-    width: 9%
-  .table_operating  thead th:nth-child(2)
-    width: 13%
-  .table_operating  thead th:nth-child(3)
-    width: 13%
-  .table_operating  thead th:nth-child(4)
-    width: 13%
-  .table_operating  thead th:nth-child(5)
-    width: 13%
-  .table_operating  thead th:nth-child(6)
-    width: 13%
-  .table_operating  thead th:nth-child(7)
-    width: 13%
-  .table_operating  thead th:nth-child(8)
-    width: 13%
+    text-align: center
   .table_operating  tbody td
-    padding: 6px 4px
     border-top: none
+    padding: 6px 1px 6px 2px
     vertical-align: middle
-  #table_service
-    .table_service thead th:nth-child(1)
-      width: 16%
-      text-align: left
-    .table_service thead th:nth-child(2)
-      width: 17%
-      text-align: left
-    .table_service thead th:nth-child(3)
-      width: 16%
-      text-align: right
-    .table_service thead th:nth-child(4)
-      width: 17%
-      text-align: left
-    .table_service thead th:nth-child(5)
-      width: 17%
-      text-align: left
-    .table_service thead th:nth-child(6)
-      width: 17%
-      text-align: center
-    .table_service .text_sort
-      width: 70px
-      height: 35px
-      border-radius: 4px
-
-  .category_table thead th:nth-child(1)
-    width: 60%
+#form_schedule_closed
+  .margin-bottom
+    margin-bottom: 10px
+  #store_closed_table thead th:nth-child(1)
+    width: 30% !important
+    text-align: center
+  #store_closed_table thead th:nth-child(2)
+    width: 15% !important
     text-align: left
-  .category_table thead th:nth-child(2)
-    width: 10%
+  #store_closed_table thead th:nth-child(3)
+    width: 40% !important
+    text-align: left
+  #store_closed_table thead th:nth-child(4)
+    width: 15% !important
     text-align: center
-  .category_table thead th:nth-child(3)
-    width: 10%
-    text-align: center
-  .category_table thead th:nth-child(4)
-    width: 20%
-    text-align: center
-  .category_table
-    border-collapse:collapse
-    .no_border
-      border: none
-
-
+  #store_closed_table
+    border-collapse: collapse !important
 
 .ui-tabs-vertical
   width: 100%
@@ -141,43 +129,27 @@
     float: right
     width: 87%
     border: 1px solid #aaaaaa !important
-.a_color
-  color: #3a5a7a !important
+  .category_table thead th:nth-child(1)
+    width: 60%
+    text-align: left
+  .category_table thead th:nth-child(2)
+    width: 10%
+    text-align: center
+  .category_table thead th:nth-child(3)
+    width: 10%
+    text-align: center
+  .category_table thead th:nth-child(4)
+    width: 20%
+    text-align: center
+  .category_table
+    border-collapse:collapse
+    .no_border
+      border: none
 
-.text_center
-  text-align: center
-.text_left
-  text-algin: left !important
-.text_right
-  text-align: right !important
-.margin_radio
-  margin-top: 7px !important
-.radio
-  margin-top: 7px !important
-.font_normal
-  font-size: 13px !important
-.margin_fit_table
-  margin-right: 5px !important
 
-.button_normal, .button_min
-  border-radius: 4px !important
-  min-width: 70px
-.button_min
-  width: 70px !important
-.font_normal
-  font-size: 13px
-  font-family: "Arial"
-.table_store_closed thead th:nth-child(1)
-  width: 30% !important
-  text-align: center
-.table_store_closed thead th:nth-child(2)
-  width: 15% !important
-  text-align: left
-.table_store_closed thead th:nth-child(3)
-  width: 40% !important
-  text-align: left
-.table_store_closed thead th:nth-child(4)
-  width: 15% !important
-  text-align: center
-.table_store_closed
-  border-collapse: collapse !important
+
+
+
+
+
+

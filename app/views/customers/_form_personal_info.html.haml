@@ -2,19 +2,19 @@
   %form.form-horizontal
     .row
       %label.col.col-lg-3.control-label
-        Last Name
+        = t('users.last_name')
         %span *
       .col.col-lg-6
         %input.parsley-validated{"data-required" => "true", :name => "lastname",  :type => "text"}
     .row
       %label.col.col-lg-3.control-label
-        First Name
+        = t('users.first_name')
         %span *
       .col.col-lg-6
         %input.parsley-validated{"data-required" => "true", :name => "firstname", :type => "text"}
     .row
       %label.col.col-lg-3.control-label
-        Date of Birth
+        = t('users.date_of_birth')
         %span *
       %div
         %input{"data-format" => "DD-MM-YYYY", "data-template" => "D  MMM  YYYY", :name => "dateofbirth", :style => "display: none;", :type => "text", :value => "21-12-2012"}/
@@ -118,45 +118,47 @@
             %option{:value => "1970"} 1970
     .row
       %label.col.col-lg-3.control-label
-        Gender
+        = t('users.gender')
         %span *
       .col.col-lg-6
         %select{:name => "gender"}
-          %option{:value => "1"} Male
-          %option{:value => "0"} Female
+          %option{:value => "1"}
+            = t('users.male')
+          %option{:value => "0"}
+            = t('users.female')
     .row
       %label.col.col-lg-3.control-label
-        Email Address
+        = t('users.email_address')
         %span *
       .col.col-lg-6
         %input.parsley-validated{"data-required" => "true", :name => "email",  :type => "email"}
     .row
       %label.col.col-lg-3.control-label
-        State
+        = t('user.state')
         %span *
       .col.col-lg-6
         %input.parsley-validated{"data-required" => "true", :name => "state", :type => "text"}
     .row
       %label.col.col-lg-3.control-label
-        City
+        = t('users.city')
         %span *
       .col.col-lg-6
         %input.parsley-validated{"data-required" => "true", :name => "city",:type => "text"}
     .row
       %label.col.col-lg-3.control-label
-        Address
+        = t('users.address')
         %span *
       .col.col-lg-6
         %input.parsley-validated{"data-required" => "true", :name => "address", :type => "text"}/
     .row
       %label.col.col-lg-3.control-label
-        Postal Code
+        = t('users.postal_code')
         %span *
       .col.col-lg-6
         %input.parsley-validated{"data-required" => "true", :name => "postalcode",  :type => "text"}/
     .row
       %label.col.col-lg-3.control-label
-        Country
+        = t('users.country')
         %span *
       .col.col-lg-6
         %select{:name => "status"}
@@ -164,7 +166,7 @@
           %option{:value => "0"} Vietnam
     .row
       %label.col.col-lg-3.control-label
-        Phone
+        = t('users.phone')
         %span *
       .col.col-lg-6
         %input{:type => "text"}/

@@ -2,39 +2,39 @@
   .modal-dialog
     .modal-content
       .modal-body
-        %form.form-horizontal{"data-validate" => "parsley", :method => "get"}
+        .form-horizontal{:method => "get"}
           .row
             %label.col.col-lg-3.control-label
-              From
+              = t('common.from')
             .col.col-lg-4
-              = text_field_tag :from_date, (Date.current - 30.days).strftime(t('time.short_format')), :class => 'input-small'
+              = text_field_tag :from_date, (Date.current - 30.days).strftime(t('time.short_format')), :class => ''
             .col.col-lg-1
               %label.control-label
-                To
+                = t('common.to')
             .col.col-lg-4
-              = text_field_tag :to_date, Date.current.strftime(t('time.short_format')), :class => 'input-small'
+              = text_field_tag :to_date, Date.current.strftime(t('time.short_format')), :class => ''
           .row
             %label.col.col-lg-3.control-label
-              Staff
+              = t('users.staff')
             .col.col-lg-9
-              %select{:name => "staff",:class => 'input-small'}
-                %option{:value => "1"}Member 1
+              %select#select_staff{:name => "staff",:class => 'input-small'}
+                / %option{:value => "1"}Member 1
           .row
             %label.col.col-lg-3.control-label
-              Customer
+              = t('menu.customers')
             .col.col-lg-9
-              %select{:name => "customer",:class => 'input-small'}
-                %option{:value => "1"}Ross A.
+              %select#select_customer{:name => "customer",:class => 'input-small'}
+                / %option{:value => "1"}Ross A.
           .row
             %label.col.col-lg-3.control-label
-              Service
+              = t('menu.services')
             .col.col-lg-9
-              %select{:name => "service",:class => 'input-small'}
-                %option{:value => "1"}Hair Cut
+              %select#select_service{:name => "service",:class => 'input-small'}
+                / %option{:value => "1"}Hair Cut
 
       .text-center
         %a#btn-apply.btn.btn-primary{'data-dismiss' => 'modal'}
-          Apply
+          =t("button.apply")
       %br/
 = javascript_include_tag "show_org"
-= javascript_include_tag "jquery.ui.all"
+= javascript_include_tag "jquery.ui.datepicker"

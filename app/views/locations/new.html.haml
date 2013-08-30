@@ -1,68 +1,68 @@
-.row.custom_datatable.store-owners.locations
+#new_location.row.custom_datatable
   .panel
     .panel-heading
       = t('.title')
-    .row.custom_datatable.store-owners.locations
+    .row.custom_datatable
       %div
         .row
           .col.col-lg-7
             %h4
-              = t('.location')
+              = t('locations.location')
             %br/
             %form.form-horizontal
               .row
                 %label.col.col-lg-4.control-label.text-right
-                  = "#{t('.company_name')} *"
-                .col.col-lg-5.form-control
-                  = text_field_tag 'company_name'
+                  = "#{t('locations.company_name')} *"
+                .col.col-lg-5
+                  = text_field_tag 'company_name','', :autofocus => true
                 .clearfix
                 %br/
               .row
                 %label.col.col-lg-4.control-label.text-right
-                  = "#{t('.location_name')} *"
-                .col.col-lg-5.form-control
+                  = "#{t('locations.location_name')} *"
+                .col.col-lg-5
                   = text_field_tag 'location_name'
                 .clearfix
               %br/
               .row
                 %label.col.col-lg-4.control-label.text-right
-                  = "#{t('.state')} *"
-                .col.col-lg-5.form-control
+                  = "#{t('users.state')} *"
+                .col.col-lg-5
                   = text_field_tag 'state'
                 .clearfix
               %br/
               .row
                 %label.col.col-lg-4.control-label.text-right
-                  = "#{t('.city')} *"
-                .col.col-lg-5.form-control
+                  = "#{t('users.city')} *"
+                .col.col-lg-5
                   = text_field_tag 'city'
                 .clearfix
               %br/
               .row
-                %label.col.col-lg-4.control-label.text-right
-                  = "#{t('.address')} *"
-                .col.col-lg-5.form-control
+                %label.col.col-lg-4.control-label
+                  = "#{t('users.address')} *"
+                .col.col-lg-5
                   = text_field_tag 'address'
                 .clearfix
               %br/
               .row
-                %label.col.col-lg-4.control-label.text-right
-                  = "#{t('.postal_code')} *"
-                .col.col-lg-5.form-control
+                %label.col.col-lg-4.control-label
+                  = "#{t('users.postal_code')} *"
+                .col.col-lg-5
                   = text_field_tag 'postal_code'
                 .clearfix
               %br/
               .row
-                %label.col.col-lg-4.control-label.text-right
-                  = "#{t('.country')}"
-                .col.col-lg-5.form-control
+                %label.col.col-lg-4.control-label
+                  = "#{t('users.country')}"
+                .col.col-lg-5
                   = select_tag "language", options_for_select(["Japan", "Singapore", "Viet Nam"])
                 .clearfix
               %br/
               .row
-                %label.col.col-lg-4.control-label.text-right
-                  = "#{t('.web_address')}"
-                .col.col-lg-5.form-control
+                %label.col.col-lg-4.control-label
+                  = "#{t('locations.web_address')}"
+                .col.col-lg-5
                   = text_field_tag 'web_address'
                 %label.col.col-lg-2.control-label
                   = ".apotori.com"
@@ -70,19 +70,19 @@
               %br/
 
               .row
-                %label.col.col-lg-4.control-label.text-right
+                %label.col.col-lg-4.control-label
                   = "#{t('.use_headquater_value')}"
                 .col.col-lg-6
-                  .radio.col.col-lg-4
+                  .radio.col.col-lg-4.margin_radio
                     %label.radio-custom
                       %input{:checked => "checked", :name => "answer", :type => "radio"}/
                       %i.icon-circle-blank.checked
-                      = t('.yes')
-                  .radio.col.col-lg-4
+                      = t('button.txt_yes')
+                  .radio.col.col-lg-4.margin_radio
                     %label.radio-custom
                       %input{:name => "answer", :type => "radio"}/
                       %i.icon-circle-blank
-                      = t('.no')
+                      = t('button.no')
                   .col.col-lg-4.margin_radio
                     %a.icon-question-sign.icon-large.vertical_align_middle
 
@@ -90,26 +90,26 @@
               %br/
 
               .row
-                %label.col.col-lg-4.control-label.text-right
+                %label.col.col-lg-4.control-label
                   = "#{t('.direction')}"
                 .col.col-lg-5
-                  %textarea.parsley-validated{"data-rangelength" => "[20,200]", "data-trigger" => "keyup", :rows => "5"}
+                  %textarea.no-resize.parsley-validated{"data-rangelength" => "[20,200]", "data-trigger" => "keyup", :rows => "5"}
                 .clearfix
               %br/
 
               .row
-                %label.col.col-lg-4.control-label.text-right
-                  = "#{t('.time_zone')}"
-                .col.col-lg-5.form-control
+                %label.col.col-lg-4.control-label
+                  = "#{t('time.time_zone')}"
+                .col.col-lg-5
                   = select_tag "time_zone", options_for_select(["Asia/Singapore", "Asia/Tokyo", "Germany/Berlin"])
                 .clearfix
               %br/
 
               .row
-                %label.col.col-lg-4.control-label.text-right
-                  = "#{t('.status')}"
-                .col.col-lg-5.form-control
-                  = select_tag "status", options_for_select(["Active", "Inactive"])
+                %label.col.col-lg-4.control-label
+                  = "#{t('common.status')}"
+                .col.col-lg-5
+                  = select_tag "status", options_for_select([t('common.active'), t("common.inactive")])
                 .clearfix
               %br/
 
@@ -122,42 +122,42 @@
             %br/
             %form.form-horizontal
               .row
-                %label.col.col-lg-4.control-label.text-right
-                  = "#{t('.last_name')} *"
-                .col.col-lg-7.form-control
+                %label.col.col-lg-4.control-label
+                  = "#{t('users.last_name')} *"
+                .col.col-lg-7
                   = text_field_tag 'last_name'
                 .clearfix
               %br/
               .row
-                %label.col.col-lg-4.control-label.text-right
-                  = "#{t('.first_name')} *"
-                .col.col-lg-7.form-control
+                %label.col.col-lg-4.control-label
+                  = "#{t('users.first_name')} *"
+                .col.col-lg-7
                   = text_field_tag 'first_name'
                 .clearfix
               %br/
               .row
-                %label.col.col-lg-4.control-label.text-right
-                  = "#{t('.phone')} *"
-                .col.col-lg-7.form-control
+                %label.col.col-lg-4.control-label
+                  = "#{t('users.phone')} *"
+                .col.col-lg-7
                   = text_field_tag 'phone'
                 .clearfix
               %br/
               .row
-                %label.col.col-lg-4.control-label.text-right
-                  = "#{t('.fax')}"
-                .col.col-lg-7.form-control
+                %label.col.col-lg-4.control-label
+                  = "#{t('locations.fax')}"
+                .col.col-lg-7
                   = text_field_tag 'fax'
                 .clearfix
               %br/
               .row
-                %label.col.col-lg-4.control-label.text-right
-                  = "#{t('.email_address')} *"
-                .col.col-lg-7.form-control
+                %label.col.col-lg-4.control-label
+                  = "#{t('users.email_address')} *"
+                .col.col-lg-7
                   = text_field_tag 'email_address'
                 .clearfix
               %br/
         .center
-          = link_to t('button.save'),'#', :class => 'btn btn-success button_min'
-          = link_to t('button.cancel'), organization_locations_path(current_user.organization_id), :class => 'btn btn-warning button_min'
+          = link_to t('button.save'),'#', :class => 'btn btn-success button-min'
+          = link_to t('button.cancel'), organization_locations_path(current_user.organization_id), :class => 'btn btn-warning button-min'
         %br/
 
