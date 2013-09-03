@@ -13,7 +13,7 @@ en:
   password: "Password"
   state: "State"
   city: "City"
-  
+  cardholder_name: "Cardholder Name"
   captcha: "Captcha"
   require_field_msg: "Required field cannot be left blank."
   email_valid: "The Email address must be in the format \"user@example.com\"."
@@ -199,6 +199,11 @@ en:
     msg_fail_delete: "Fail to delete the Pricing Plan"
     msg_update_personal_info_success: "Your Personal Information has been updated successfully"
     email_in_use: "The Email Address you entered is already in-use. Please input another one."
+    postal_code: "The Postal Code must be 7 numbers and no space"
+    phone: "The Phone number must be 10 digits"
+    card_number: "The Card Number must be 15 or 16 numbers and no space"
+    cvv: "The CVV must be 3 or 4 numbers and no space"
+    msg_update_credit_card_success: "Your Credit Card Information has been updated successfully"
   common:
     active: Active
     inactive: Inactive

@@ -140,22 +140,27 @@ $(document).ready(function(){
       },
       "postal_code": {
         required: true,
-        maxlength: 256,
-        number:true,
-        range: [7,7]
+        maxlength: 7,
+        minlength: 7,
+        number:true
       },
       "country": {
         required: true
       },
       "phone_number": {
         required: true,
-        maxlength: 256
+        maxlength: 10,
+        minlength: 10,
+        number:true
       },
       "card_type": {
         required: true
       },
       "card_number": {
-        required: true
+        required: true,
+        maxlength: 16,
+        minlength: 15,
+        number:true
       },
       "month": {
         required: true
@@ -164,7 +169,10 @@ $(document).ready(function(){
         required: true
       },
       "cvv": {
-        required: true
+        required: true,
+        maxlength: 4,
+        minlength: 3,
+        number:true
       },
       "cardholder_name": {
         required: true
@@ -188,35 +196,43 @@ $(document).ready(function(){
       },
       "postal_code":{
         required: I18n.t('require_field_msg'),
-        maxlength: I18n.t('maxlength_msg', {field : I18n.t('state'), length: 256})
+        number: I18n.t('msg.postal_code'),
+        maxlength: I18n.t('msg.postal_code'),
+        minlength: I18n.t('msg.postal_code')
       },
       "country":{
-        required: I18n.t('require_field_msg'),
-        maxlength: I18n.t('maxlength_msg', {field : I18n.t('state'), length: 256})
+        required: I18n.t('require_field_msg')
       },
       "phone_number":{
         required: I18n.t('require_field_msg'),
-        maxlength: I18n.t('maxlength_msg', {field : I18n.t('state'), length: 256})
+        number: I18n.t('msg.phone'),
+        maxlength: I18n.t('msg.phone'),
+        minlength: I18n.t('msg.phone')
       },
       "card_type":{
+        required: I18n.t('require_field_msg')
+      },
+      "card_number": {
         required: I18n.t('require_field_msg'),
-        maxlength: I18n.t('maxlength_msg', {field : I18n.t('state'), length: 256})
+        maxlength: I18n.t('msg.card_number'),
+        minlength: I18n.t('msg.card_number'),
+        number: I18n.t('msg.card_number')
       },
       "month":{
-        required: I18n.t('require_field_msg'),
-        maxlength: I18n.t('maxlength_msg', {field : I18n.t('state'), length: 256})
+        required: I18n.t('require_field_msg')
       },
       "year":{
-        required: I18n.t('require_field_msg'),
-        maxlength: I18n.t('maxlength_msg', {field : I18n.t('state'), length: 256})
+        required: I18n.t('require_field_msg')
       },
       "cvv":{
         required: I18n.t('require_field_msg'),
-        maxlength: I18n.t('maxlength_msg', {field : I18n.t('state'), length: 256})
+        maxlength: I18n.t('msg.cvv'),
+        minlength: I18n.t('msg.cvv'),
+        number: I18n.t('msg.cvv')
       },
       "cardholder_name":{
         required: I18n.t('require_field_msg'),
-        maxlength: I18n.t('maxlength_msg', {field : I18n.t('state'), length: 256})
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('cardholder_name'), length: 256})
       }
 
     },
@@ -231,21 +247,27 @@ $(document).ready(function(){
       
     }
   });
-
-  get_user_info(user_info);
+  console.log($("#hidden_credit_card_user_id"));
+  get_owner_user_info(user_info);
   init_form();
 
 });
 
 function init_form(){
+
   $('#password').val('');
   $('#password_confirmation').val('');
 }
 
-function get_user_info(obj)
+function get_owner_user_info(obj)
 {
+  
   if(obj){
-   $("#hidden_user_id").val(obj.id);
+    $("#first_name").val(obj.first_name);
+    $("#last_name").val(obj.last_name);
+    $("#email").val(obj.email);
+    $("#hidden_user_id").val(obj.id);
+    $("#hidden_credit_card_user_id").val(obj.id);
   }
 
 }

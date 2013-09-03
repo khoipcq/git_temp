@@ -139,7 +139,8 @@ class UsersController < ApplicationController
   #*Author*:: NamTV
   #
   def edit
-    @user = User.includes(:organization, :billing_info, :card_info).find_by_id(params[:id])
+    @user = User.includes(:organization, :billing_card_info).find_by_id(params[:id])
+
     #@user_groups = UserGroup.get_all_user_groups_in_org(params[:organization_id])
     #render :edit_temp
     render :edit
@@ -253,16 +254,27 @@ class UsersController < ApplicationController
   def update_credit_card_store_owner
 
     @status_update = false;
-    user_info ={}
-    user_info["first_name"] = params["first_name"]
-    user_info["last_name"] = params["last_name"]
-    user_info["email"] = params["email"]
-    user_info["password"] = params["password"] unless params["password"].blank?
-    @existed_user = User.find_by_id(params["hidden_user_id"])
-    if @existed_user.id == current_user.id
-      @status_update = @existed_user.update_attributes(user_info)
-      sign_in(@existed_user)
-      @full_name = @existed_user.first_name + " " + @existed_user.last_name 
+    billing_card_info ={
+      state:params["state"],
+      city:params["city"],
+      address:params["address"],
+      postal_code:params["postal_code"],
+      phone_number:params["phone_number"],
+      country:params["country"],
+      card_type:params["card_type"],
+      card_number:params["card_number"],
+      expiration_month:params["month"],
+      expiration_year:params["year"],
+      cvv:params["cvv"],
+      card_holder_name:params["cardholder_name"]
+    }
+    
+    @existed_billing_card_info = BillingCardInfo.find_by_user_id(params["hidden_credit_card_user_id"])
+    if !@existed_billing_card_info.nil?
+      @status_update = @existed_billing_card_info.update_attributes(billing_card_info) 
+    else
+      billing_card_info["user_id"] = params["hidden_credit_card_user_id"]
+      BillingCardInfo.create(billing_card_info)
     end
     respond_to do |format|
       format.js

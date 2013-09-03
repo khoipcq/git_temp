@@ -1,0 +1,7 @@
+var is_saved = "<%= @status_update%>";
+
+if(is_saved=="true"){
+   showAlert('myAlert','alert-success', I18n.t("msg.msg_update_credit_card_success"));
+ }else{
+   showAlert('myAlert','alert-error', I18n.t("msg.msg_update_user_failed"));
+}

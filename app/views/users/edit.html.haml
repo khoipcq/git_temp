@@ -20,7 +20,7 @@
               = t('users.credit_card.credit_card_info')
         #collapseTwo.accordion-body.collapse
           .accordion-inner.no_border#padding_inner
-            = render :partial => 'form_credit_card_info', :locals => {billing_info: @user.billing_info, card_info: @user.card_info}  
+            = render :partial => 'form_credit_card_info', :locals => {billing_card_info: @user.billing_card_info}  
         
       .accordion-group.no_border
         .accordion-heading.custom_datatable
@@ -44,7 +44,8 @@
 
 = javascript_include_tag "edit_store_owner"
 :javascript
-  var user_info = #{current_user.to_json || nil};
+  var user_info = #{@user.to_json || nil};
+  var billing_card_info = #{@user.billing_card_info.to_json || nil};
 
 
 
