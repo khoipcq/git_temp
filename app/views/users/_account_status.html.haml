@@ -1,8 +1,11 @@
-%p
-	= "#{t('.auto_renewal')}: "
-	%strong
-		= t('common.active')
-%p
-	= raw t('.renew_message')
-.text-center
-	= button_tag t('button.deactivate'), :class => 'btn btn-warning '
+= form_tag update_org_active_store_owner_organization_users_path(current_user.organization_id),:remote => true,:class =>"form-horizontal", :style => "width:100%", :id=>"update_org_active_store_owner"  do
+  %p
+    = "#{t('.auto_renewal')}: "
+    %strong#is_org_act
+      = is_org_active ? t('common.active') : t('common.inactive')
+  %p#renew_message
+    = is_org_active ? (raw t('.renew_message')) : (raw t('.renew_deactive_message'))
+  .text-center#btn-active
+    = is_org_active ? (button_tag t('common.deactivate'), :class => 'btn btn-warning ') : (button_tag t('common.activate'), :class => 'btn btn-success')
+  %input{:type=>"hidden",:value=>"",:id=>"hidden_org_active_user_id",:name=>"hidden_org_active_user_id"}
+  %input{:type=>"hidden",:value=> (!is_org_active).to_s,:id=>"is_org_active",:name=>"is_org_active"}

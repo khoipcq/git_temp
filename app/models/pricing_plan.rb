@@ -86,4 +86,6 @@ class PricingPlan < ActiveRecord::Base
     return result
     
   end
+
+
 end

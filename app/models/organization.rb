@@ -9,7 +9,7 @@ class Organization < ActiveRecord::Base
   before_destroy :before_destroy_org
 
   before_create :generate_subdomain
-  attr_accessible :name, :description,:is_stopped, :users_attributes,:language,:time_zone,:expired_date,:is_monthly_paid,:state,:city,:address,:phone,:country,:pricing_plan_id
+  attr_accessible :name, :description,:is_stopped, :users_attributes,:language,:time_zone,:expired_date,:is_monthly_paid,:state,:city,:address,:phone,:country,:pricing_plan_id, :is_org_active
   has_many :users, :dependent => :destroy
   has_many :user_groups, :dependent => :destroy
   has_many :activities, :dependent => :destroy

@@ -169,6 +169,7 @@ en:
     account_status:
       auto_renewal: Auto renewal
       renew_message: "The account will be auto renewed each month. To cancel the auto-renewal, click the \"<strong>Deactivate</strong>\" button below. After being deactivated, your account will be expired at the end of the paid period."
+      renew_deactive_message: "Please click the \"<strong>Activate</strong>\" button below to Active the auto-renewal."
     payment_plan:
       pro_plan: Professional Plan
       basic_plan: Basic Plan

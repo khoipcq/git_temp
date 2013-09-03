@@ -1,0 +1,18 @@
+var is_saved = "<%= @status_update%>";
+var is_org_ac = "<%= @is_org_active%>";
+if(is_saved=="true"){
+   showAlert('myAlert','alert-success', I18n.t("msg.msg_update_account_status_success"));
+   $("#is_org_active").val("<%= !@is_org_active%>");
+   if(is_org_ac == "false"){
+     $("#is_org_act").html(I18n.t('common.inactive'));
+     $("#renew_message").html(I18n.t('users.account_status.renew_deactive_message'));
+
+     $("#btn-active").html("<button class='btn btn-success' type='submit' name='button'>" + I18n.t('common.activate') + "</button>");
+   }else if(is_org_ac == "true"){
+     $("#is_org_act").html(I18n.t('common.active'));
+     $("#renew_message").html(I18n.t('users.account_status.renew_message'));
+     $("#btn-active").html("<button class='btn btn-warning' type='submit' name='button'>" + I18n.t('common.deactivate') + "</button>");
+   }
+ }else{
+   showAlert('myAlert','alert-error', I18n.t("msg.msg_update_user_failed"));
+}

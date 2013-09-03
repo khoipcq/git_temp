@@ -53,6 +53,7 @@ HelloWorld::Application.routes.draw do
       post "update_profile", :on =>:collection
       post "update_profile_store_owner", :on =>:collection
       post "update_credit_card_store_owner", :on =>:collection
+      post "update_org_active_store_owner", :on =>:collection
     end
     resources :locations
     
@@ -77,6 +78,7 @@ HelloWorld::Application.routes.draw do
   resources :pricing_plans do
     post "delete",:on =>:collection
     post "update_pricing_plan",:on =>:collection
+    post "pricing_plan_list",:on =>:collection
   end
   resources :store_owners do
     post "delete",:on =>:collection

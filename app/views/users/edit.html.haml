@@ -30,7 +30,7 @@
               = t('users.account_status_title')
         #collapseThree.accordion-body.collapse
           .accordion-inner.no_border#padding_inner
-            = render 'account_status'
+            = render :partial => 'account_status', :locals => {is_org_active: @user.organization.is_org_active}
             
       .accordion-group.no_border
         .accordion-heading.custom_datatable
@@ -39,13 +39,15 @@
             %a.action-link
               = t('users.payment_plan_title')
         #collapseFour.accordion-body.collapse
-          .accordion-inner.no_border#padding_inner
-            = render 'payment_plan'
+          .accordion-inner.no_border#payment_plan
+            
 
 = javascript_include_tag "edit_store_owner"
 :javascript
   var user_info = #{@user.to_json || nil};
   var billing_card_info = #{@user.billing_card_info.to_json || nil};
+  var g_pricingPlanPath = "#{pricing_plans_path}";
+  var g_token = '#{form_authenticity_token}';
 
 
 

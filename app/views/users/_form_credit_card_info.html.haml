@@ -58,7 +58,7 @@
     %label.col.col-lg-3.control-label.text-right
       = "#{t('users.credit_card.card_type')} *"
     .col.col-lg-6.form-control
-      = select_tag "card_type", options_for_select(['Standard','Premium','Charge','Business']), {:prompt => "#{t('common.select')}"}
+      = select_tag "card_type", options_for_select(["Visa", "Master", "American Express", "JCB"]), {:prompt => "#{t('common.select')}"}
     .clearfix
   %br
 

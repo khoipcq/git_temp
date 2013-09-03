@@ -204,10 +204,13 @@ en:
     card_number: "The Card Number must be 15 or 16 numbers and no space"
     cvv: "The CVV must be 3 or 4 numbers and no space"
     msg_update_credit_card_success: "Your Credit Card Information has been updated successfully"
+    msg_update_account_status_success: "Your Account Status has been updated successfully"
   common:
     active: Active
     inactive: Inactive
     deactive: Deactive
+    activate: Activate
+    deactivate: Deactivate
     action: Action
   email_campaign:
     j_name: Template Name

@@ -54,6 +54,13 @@ class PricingPlansController < ApplicationController
     #end
   end
 
+  ##
+  #Create pricing plan
+  #Parameters::
+  # * (Integer) *id*: pricing plan id
+  #Return::
+  # * (json) status
+  #*Author*:: KhoiPCQ
   def create
     @pricing_plan = PricingPlan.new_pricing_plan(params)
     @is_saved = false
@@ -66,6 +73,14 @@ class PricingPlansController < ApplicationController
     end
     
   end
+
+  ##
+  #Edit pricing plan
+  #Parameters::
+  # * (Integer) *id*: pricing plan id
+  #Return::
+  # * (json) status
+  #*Author*:: KhoiPCQ
   def edit
     @pricing_plan = PricingPlan.find_by_id(params[:id])
     if request.xhr?
@@ -82,6 +97,14 @@ class PricingPlansController < ApplicationController
       render :json => pricing_plan
     end
   end
+
+  ##
+  #Update pricing plan
+  #Parameters::
+  # * (Integer) *id*: pricing plan id
+  #Return::
+  # * (json) status
+  #*Author*:: KhoiPCQ
   def update_pricing_plan
     is_saved = PricingPlan.update_pricing_plan(params)
     
@@ -89,5 +112,18 @@ class PricingPlansController < ApplicationController
         result = "update_success(#{is_saved})"
         render :js => result
     end
+  end
+  
+  ##
+  #Get pricing plan
+  #Parameters::
+  # * (Integer) *id*: pricing plan id
+  #Return::
+  # * (json) status
+  #*Author*:: KhoiPCQ
+  def pricing_plan_list
+    @pricing_plan = PricingPlan.paginate(:page => params["page"], :per_page => params["per_page"])
+ 
+    render :layout => false
   end
 end

@@ -275,11 +275,36 @@ class UsersController < ApplicationController
     else
       billing_card_info["user_id"] = params["hidden_credit_card_user_id"]
       BillingCardInfo.create(billing_card_info)
+      @status_update = true
     end
     respond_to do |format|
       format.js
     end
     #render :js => "update_success(#{@status_update}, #{@full_name})"
+  end
+
+  ##
+  #Update org active
+  #Parameters::
+  # * (integer) *id*: current user id to update
+  # * (object) *user*: current user input
+  #Return::
+  # * (object) an new instance user
+  #*Author*:: KhoiPCQ
+  #
+  def update_org_active_store_owner
+    @status_update = false;
+    user_info ={}
+    error_type = ""
+    @existed_user = User.find_by_id(params["hidden_org_active_user_id"])
+    if @existed_user.id == current_user.id
+      @status_update = @existed_user.organization.update_attributes(:is_org_active =>params["is_org_active"])
+      @is_org_active = @existed_user.organization.is_org_active
+    end
+    respond_to do |format|
+      format.js
+    end
+    
   end
 
   ##
