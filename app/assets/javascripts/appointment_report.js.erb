@@ -1,0 +1,60 @@
+
+
+
+$(document).ready(function(){
+
+  var tb = $("#appointment_report_table").dataTable({
+    sDom: '<"#tbhead"<"row">>rt<"#tbfoot"<"row">>',
+    "bFilter": true,
+    "bLengthChange": true,
+    "bInfo": true,
+    "bProcessing": false,
+    "bServerSide": true,
+    "sPaginationType": "full_numbers",
+    "oLanguage": {
+        "sEmptyTable": I18n.t('datatable.no_record'),
+        "sZeroRecords": I18n.t('datatable.no_record')
+      },
+    "iDisplayLength": g_displayLength,
+    "aaSorting": [[ 1, "asc" ]],
+    "aoColumns": [
+        { "sTitle": I18n.t('appointments.date'),
+          'bSortable': false,
+          "sClass": "left"
+        },
+        { "sTitle": I18n.t('appointments.confirm_id'),
+          'bSortable': false,
+          "sClass": "center"
+        },
+        { "sTitle": I18n.t('locations.customer'),
+          'bSortable': false,
+          "sClass": "left"
+        },
+        { "sTitle": I18n.t('users.staff'),
+          'bSortable': false,
+          "sClass": "left"
+        },
+        { "sTitle": I18n.t('services.service'),
+          'bSortable': false,
+          "sClass": "center"
+        },
+        { "sTitle": I18n.t('time.received_date'),
+          'bSortable': false,
+          "sClass": "left"
+        },
+        { "sTitle": I18n.t('common.status'),
+          'bSortable': false,
+          "sClass": "center"
+        }
+    ],
+    "sAjaxSource": g_appointmentReportPath,
+    "fnServerParams": function ( aoData ) {
+      aoData.push(
+        {"name": "current_day", "value": reportDate});
+      aoData.push({"name": "type_report",         "value": reportType});
+    },
+    "fnInitComplete": function () {
+      $('div.dataTables_filter input').focus();
+    }
+  });
+});

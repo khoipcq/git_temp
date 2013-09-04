@@ -31,6 +31,9 @@ class User < ActiveRecord::Base
   has_many :user_groups_users, :dependent => :destroy
   has_many :user_groups, :through => :user_groups_users
   has_one :billing_card_info
+  has_many :appointments, foreign_key: "staff_id"
+  has_many :appointments, foreign_key: "customer_id"
+
   # Relationship with organization
   belongs_to :organization
 

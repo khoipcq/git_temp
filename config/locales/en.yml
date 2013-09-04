@@ -10,6 +10,7 @@ en:
     hello: Hello
     logout: Logout
     login: Login
+    sign_up: Sign Up
   layouts:
     application:
       profile: Profile
@@ -71,6 +72,7 @@ en:
     print_confirm: Print Confirmation
     book_another_appointment: 'Book Another Appointment'
   button:
+    preview: Preview
     save: Save
     txt_yes: "Yes"
     txt_no: "No"
@@ -176,9 +178,10 @@ en:
       per_month: per month
       find_more: Find more about
       apotori_feature: Apotori features
-      note_content: "The feature Individual Staff Logins and Phone Support are not avaiable on Basic Plan"
+      note_content: "The feature %{field} are not avaiable on %{plan_name}"
     reorder:
       title: Your Order
+      order_desc: "Purchase Editon (%{field}) until %{date}"
   user_profile:
     title: Edit User Profile
     update_success: User Profile has updated.
@@ -202,11 +205,12 @@ en:
   time:
     full_format: "%m/%d/%Y %H:%M:%S"
     short_format: "%m/%d/%Y"
+    text_format: "%B %d %Y %l:%M%p"
     minute: minutes
     month_promt: MM
     year_promt: YYYY
     time_zone: Time Zone
-    date_and_time: Data and Time
+    date_and_time: Date and Time
     hour_per_min: "hrs / mins"
     date: Date
     day: Day
@@ -581,7 +585,7 @@ en:
       my_page: My Page
       my_account_info: My Account Info
       my_appointment: My Appointments
-    view_appoitment_detail_customer:
+    view_appointment_detail_customer:
       title: Appointment
       appointment_detail: Appointment Details
       special_request: Special Request
@@ -589,6 +593,7 @@ en:
       tell: Tell
     about_apotori:
       business_hour: Business Hours
+      post_by: Posted by
       map: Map
     account_info_customer:
       my_login_email: My Log In Email
@@ -597,12 +602,14 @@ en:
       message_header_ok: Cancellation - Confirmation
       message_header_no: Cancellation - Failed
       message_body_no: Online cancellation for this booking is no longer avaiable
-      message_body_ok: Are you sure you want to cancel this appointment
+      message_body_ok: Are you sure you want to cancel this appointment?
     change_email:
       new_email: New Email
       email_confirm: Email Confirmation
+      title: Change Your Log In Email Address
     change_password:
       old_password: Old Password
+      title: Change Your Password
     confirm_customer:
       review_notice: Please review and confirm your appointment
       your_details: Your details
@@ -623,3 +630,4 @@ en:
       service_staff: "Service & Staff"
       confirm: Confirm
       finished: Finished
+

@@ -11,17 +11,17 @@
     %thead
       %tr
         %th
-          = t('subdomain.view_appoitment_detail_customer.appointment_detail')
+          = t('subdomain.view_appointment_detail_customer.appointment_detail')
     %tbody
       %tr
         %td
           .row
             .col.col-lg-3
-              = t('subdomain.view_appoitment_detail_customer.title')
+              = t('subdomain.view_appointment_detail_customer.title')
             .col.col-lg-3
               = "#{t('services.service')}: "
             .col.col-lg-4
-              Top Coat
+              %span#span_service_confirm
             .col.col-lg-2.text-right
               = link_to t('link.edit_detail'), '#', :class => 'text-link'
           .row
@@ -30,21 +30,21 @@
             .col.col-lg-3
               = "#{t('menu.staff')}: "
             .col.col-lg-6
-              Lee Dung
+              %span#staff_confirm
           .row
             .col.col-lg-3
 
             .col.col-lg-3
               = "#{t('time.date')}: "
             .col.col-lg-6
-              Wednesday, August 13, 2013
+              %span#date_confirm
           .row
             .col.col-lg-3
 
             .col.col-lg-3
               = "#{t('time.time')}: "
             .col.col-lg-6
-              03:00PM
+              %span#time_confirm
       %tr
         %td
           .row
@@ -69,7 +69,8 @@
 
 
   .row
-    .actions.m-t
+    .actions.m-t.pull-left.margin_back_confirm
       = link_to 'Back', '#', :class => 'btn btn-info margin_back_confirm', data: {:target => '#form-wizard', :wizard => 'previous'}
     .text-center.margin_confirm
       = link_to t('button.confirm_appointment'), '#', :class => 'btn btn-info', data: {:target => '#form-wizard', :wizard => 'next'}
+= javascript_include_tag 'customer_booking'

@@ -59,9 +59,9 @@
     %br/
     = render "edit_note"
     #delete_note.modal.fade
-      = render "shared/confirm_notice", :message_header => t('dcommon.delete_confirm_header'), :message_body => t('.delete_confirm_body')
+      = render "shared/confirm_notice", :message_header => t('common.delete_confirm_header'), :message_body => t('.delete_confirm_body')
 
-    .row.center
+    .row.center.group-button-small
       %button.btn.btn-success{"data-dismiss" => "modal", :type => "submit"}
         = t('button.save')
       = link_to t('button.cancel'), organization_customers_path(current_user.organization_id), :class => 'btn btn-warning'

@@ -1,7 +1,7 @@
 include ActionView::Helpers::NumberHelper
 class BillingReport < ActiveRecord::Base
   set_table_name "payment_histories"
-  attr_accessible :total_paid,:user_id,:pricing_plan_id
+  attr_accessible :total_paid,:user_id,:pricing_plan_id, :note
   belongs_to :user
   belongs_to :pricing_plan
   scope :join_org, lambda {

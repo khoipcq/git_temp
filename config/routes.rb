@@ -67,6 +67,8 @@ HelloWorld::Application.routes.draw do
     resources :reviews
     resources :appointments do
       get "report", :on => :collection
+      post "create_appointment",:on =>:collection
+      get "get_service_by_staff",:on =>:collection
     end
     resources :services
     resources :customers
@@ -78,7 +80,7 @@ HelloWorld::Application.routes.draw do
   resources :pricing_plans do
     post "delete",:on =>:collection
     post "update_pricing_plan",:on =>:collection
-    post "pricing_plan_list",:on =>:collection
+    get "pricing_plan_list",:on =>:collection
   end
   resources :store_owners do
     post "delete",:on =>:collection

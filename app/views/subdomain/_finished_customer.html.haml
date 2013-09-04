@@ -19,48 +19,48 @@
     %thead
       %tr
         %th
-          = t('subdomain.view_appoitment_detail_customer.appointment_detail')
+          = t('subdomain.view_appointment_detail_customer.appointment_detail')
     %tbody
       %tr
         %td
           .row
             .col.col-lg-3
-              = t('subdomain.view_appoitment_detail_customer.title')
+              = t('subdomain.view_appointment_detail_customer.title')
             .col.col-lg-3
               = "#{t('services.service')}: "
             .col.col-lg-6
-              Top Coat          
+              %span#span_service_finish
           .row
             .col.col-lg-3
               
             .col.col-lg-3
               = "#{t('menu.staff')}: " 
             .col.col-lg-6
-              Lee Dung
+              %span#staff_finish
           .row
             .col.col-lg-3
               
             .col.col-lg-3
               = "#{t('time.date')}: "
             .col.col-lg-6
-              Wednesday, August 13, 2013
+              %span#date_finish
           .row
             .col.col-lg-3
               
             .col.col-lg-3
               = "#{t('time.time')}: "
             .col.col-lg-6
-              03:00PM
+              %span#time_finish
           .row            
             .col.col-lg-3
-              = t('subdomain.view_appoitment_detail_customer.special_request')
+              = t('subdomain.view_appointment_detail_customer.special_request')
             .col.col-lg-8
               Please offer me a special service
       %tr
         %td
           .row
             .col.col-lg-3
-              = t('domain.confirm_customer.your_details')
+              = t('subdomain.confirm_customer.your_details')
             .col.col-lg-9
               Tom Jee
           .row
@@ -75,3 +75,4 @@
       
   .text-center
     = link_to t('link.book_another_appointment'), '#', :class => 'btn btn-info'
+= javascript_include_tag 'customer_booking'

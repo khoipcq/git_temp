@@ -5,19 +5,25 @@
 #appointment span{
   margin-left: 0px
 }
+#appointment .wc-header{
+  margin-top: 36px;
+}
 #appointment .wc-header table{
   table-layout: auto;
+  display: inline-block;
 
 }
 
 #appointment .wc-user-header{
-  min-width: 50px;
-  width: 50px;
+  min-width: 100px;
+  width: 100px;
+  max-width: 100px;
+  text-overflow: ellipsis;
 }
 #appointment .wc-day-column{
-  min-width: 50px !important;
-  width: 50px;
-  max-width: 50px;
+  min-width: 100px !important;
+  width: 100px;
+  max-width: 100px;
 }
 #appointment .wc-time-slots{
   table-layout: auto;
@@ -30,6 +36,7 @@
 }
 #appointment .wc-header table td{
   border: 1px solid black;
+  border-collapse: collapse;
 }
 #appointment .wc-container{
   overflow-x: auto;
@@ -37,9 +44,43 @@
 }
 #appointment .wc-scrollable-grid{
   table-layout: auto;
-  overflow: visible !important;
+  /*overflow: visible !important;*/
+  /*width: inherit !important;*/
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 400px;
 }
 #appointment .wc-scrollable-grid table{
   overflow-y: scroll !important;
 
+}
+#appointment .wc-scrollable-grid .wc-day-column-first {
+  border-width: 0 0 0 1px;
+}
+#appointment .wc-today.wc-day-column-last{
+  border-right-width: 1px;
+}
+#appointment .wc-time-column-header{
+  border: 0px !important;
+}
+#appointment ::-webkit-scrollbar{
+  height: .35em;
+}
+#appointment .wc-user-header td{
+  text-overflow: ellipsis;
+}
+#appointment .ui-icon-seek-prev{
+  margin-top: -7px;
+  margin-left: -10px;
+}
+#appointment .ui-icon-home{
+  margin-top: -8px;
+}
+#appointment .ui-icon-seek-next{
+  margin-top: -7px;
+  margin-left: -10px;
+}
+#appointment .wc-toolbar{
+  position: absolute;
+  height: 32px;
 }

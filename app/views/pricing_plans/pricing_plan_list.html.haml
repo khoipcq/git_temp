@@ -1,83 +1,65 @@
-%div
-  %h5
-    %strong
-      = t('.pro_plan')
-  %hr/
-  .row
-    .col.col-lg-4
-      %h4
-        %i.icon-yen
-        %strong 3,900
-      %p 
-        = t('.per_month')
-      = link_to t('button.choose_plan'),'#', :class => 'btn btn-info '
-    .col.col-lg-4
-      %p . Stores        
-      %p . User - staff
-      %p . 24/7 Appointment Scheduling
-      %p . Facebook/Google sign in
-      %p . Daily Backups
-      %p . Secure HTTPS access
-      %p . Export data to CSV
-      %p . Instant Appointment Confirmation
-      %p . Email Notifications
-      %p . Appointment Scheduling Web Page
-    .col.col-lg-4
-      %p . Offer Unlimited Services
-      %p . 12 Month Appointment Calendar
-      %p . Automatic Appointment Reminders
-      %p . Mobile/Tablet Web App
-      %p . Collect & Promote Reviews
-      %p . Customer Database & Analytics
-      %p . Customer Support
-      %p . Individual Staff Logins
-      %p . Phone support 
-  %br/
-    
-%div
-  %h5
-    %strong 
-      = t('.basic_plan')	
-  %hr/
-  .row
-    .col.col-lg-4
-      %h4
-        %i.icon-yen
-        %strong 1,995
-      %p 
-        = t('.per_month')
-      = link_to t('button.reactivate'), organization_user_reorder_path(current_user.organization_id, current_user.id), :class => 'btn btn-info '    
-      
-    .col.col-lg-4
-      %p . Stores        
-      %p . User - staff
-      %p . 24/7 Appointment Scheduling
-      %p . Facebook/Google sign in
-      %p . Daily Backups
-      %p . Secure HTTPS access
-      %p . Export data to CSV
-      %p . Instant Appointment Confirmation
-      %p . Email Notifications
-      %p . Appointment Scheduling Web Page
-    .col.col-lg-4   
-      %p . Offer Unlimited Services
-      %p . 12 Month Appointment Calendar
-      %p . Automatic Appointment Reminders
-      %p . Mobile/Tablet Web App
-      %p . Collect & Promote Reviews
-      %p . Customer Database & Analytics
-      %p . Customer Support 
-  %br/     
-  .row
-    .col.col-lg-4
-    .col.col-lg-8
-      %p
-        %strong
-          = "#{t('common.note')}:"      
-      %p
-        = "- #{t('.note_content')}"
-      %br/
-      %br/
-      %p.custom_datatable
-        = t('.find_more')        
-        = link_to t('.apotori_feature'), "#", :class => "action-link"
+-@pricing_plan.each do |pricing_plan|
+  %div
+    %h5
+      %strong
+        = pricing_plan.name
+    %hr/
+    .row
+      .col.col-lg-4
+        %h4
+          %i.icon-yen
+          %strong 
+            = number_with_precision(pricing_plan.price_per_month, :strip_insignificant_zeros => true, :delimiter => '.', :separator => ',')
+        %p 
+          = t('users.payment_plan.per_month')
+        - if @organization.pricing_plan_id != pricing_plan.id
+          = link_to t('button.choose_plan'),organization_user_reorder_path(current_user.organization_id, current_user.id, :params => {:pp_name => pricing_plan.name,:pp_id => pricing_plan.id, :pp_price => number_with_precision(pricing_plan.price_per_month, :strip_insignificant_zeros => true, :delimiter => '.', :separator => ','), :pp_expired => @organization.expired_date}), :class => 'btn btn-info'
+        - elsif @organization.pricing_plan_id == pricing_plan.id && @organization.expired_date < DateTime.now
+          = link_to t('button.reactivate'), organization_user_reorder_path(current_user.organization_id, current_user.id, :params => {:pp_name => pricing_plan.name,:pp_id => pricing_plan.id, :pp_price => number_with_precision(pricing_plan.price_per_month, :strip_insignificant_zeros => true, :delimiter => '.', :separator => ','), :pp_expired => @organization.expired_date}), :class => 'btn btn-info '
+        - else
+          = link_to t('button.reactivate'),"#", :class => 'btn btn-disable '
+      - if @feature_pp_list[pricing_plan.id][0].length > 0
+        .col.col-lg-4
+          - (0..@feature_pp_list[pricing_plan.id][0].size - 1).step(2)  do |i|
+            %p 
+              = ". " + @feature_pp_list[pricing_plan.id][0][i]      
+            
+        .col.col-lg-4
+          - (1..@feature_pp_list[pricing_plan.id][0].size - 1).step(2)  do |i|
+            %p
+              = ". " + @feature_pp_list[pricing_plan.id][0][i]
+      - elsif @feature_pp_list[pricing_plan.id][0].length == 0 && @feature_pp_list[pricing_plan.id][1].length > 0
+        .col.col-lg-8
+          %p
+            %strong
+              = "#{t('common.note')}:"      
+          %p
+            = "- #{t('users.payment_plan.note_content', {field: @feature_pp_list[pricing_plan.id][1].to_sentence, plan_name: pricing_plan.name})}"     
+    %br/
+    - if @feature_pp_list[pricing_plan.id][1].length > 0 && @feature_pp_list[pricing_plan.id][0].length > 0
+      .row
+        .col.col-lg-4
+        .col.col-lg-8
+          %p
+            %strong
+              = "#{t('common.note')}:"      
+          %p
+            = "- #{t('users.payment_plan.note_content', {field: @feature_pp_list[pricing_plan.id][1].to_sentence, plan_name: pricing_plan.name})}"
+
+= will_paginate(@pricing_plan)
+
+:javascript
+  $(".pagination a").click(function() {
+    var req = $.ajax({
+      type: "GET",
+      url: $(this).attr("href") + "&organization_id=" + user_info.organization_id
+    });
+    req.done(function(msg) {
+      $("#payment_plan").html(msg);
+    });
+    req.fail(function(jqXHR, textStatus) {
+      alert( "Request failed: " + textStatus );
+    });
+
+    return false;
+  });

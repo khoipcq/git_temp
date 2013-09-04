@@ -254,6 +254,7 @@ class UsersController < ApplicationController
   def update_credit_card_store_owner
 
     @status_update = false;
+    @is_edit = params["is_edit"]
     billing_card_info ={
       state:params["state"],
       city:params["city"],
@@ -276,6 +277,20 @@ class UsersController < ApplicationController
       billing_card_info["user_id"] = params["hidden_credit_card_user_id"]
       BillingCardInfo.create(billing_card_info)
       @status_update = true
+    end
+    if @is_edit == "false"
+      payment_his_data = {
+        user_id: params["hidden_credit_card_user_id"],
+        pricing_plan_id: params["pp_id"],
+        total_paid: params["pp_price"],
+        note: ""
+      }
+      BillingReport.create(payment_his_data)
+      organization = Organization.find_by_id(params["organization_id"])
+      if !organization.nil?
+        @status_update = organization.update_attributes(:pricing_plan_id =>params["pp_id"], :expired_date => (DateTime.now + 30.days))
+      end
+      
     end
     respond_to do |format|
       format.js
@@ -322,7 +337,7 @@ class UsersController < ApplicationController
   end
 
   def reorder
-
+    @user = User.includes(:organization, :billing_card_info).find_by_id(params[:user_id])
   end
 
 end

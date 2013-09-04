@@ -108,7 +108,7 @@ $(document).ready(function(){
 
   jQuery.validator.addMethod("validateExpiryDate", function(value, element, params) {   
     var toDay = Date.parse($.datepicker.formatDate('M 01, yy', new Date()));
-    console.log(toDay);
+    
     var ex_month = parseFloat($("#creditCardExpirationMonth").val());
     
     var ex_year = $("#creditCardExpirationYear").val();
@@ -251,6 +251,8 @@ $(document).ready(function(){
   get_owner_user_info(user_info, billing_card_info);
   get_pricing_plan();
 
+  
+
 });
 
 function init_form(){
@@ -303,15 +305,17 @@ function get_pricing_plan(){
 
   request = $.ajax({
     url: g_pricingPlanPath + "/pricing_plan_list",
-    type: 'POST',
+    type: 'GET',
     data: {
       authenticity_token: g_token,
       page:1,
-      per_page:10
+      per_page:10,
+      organization_id: user_info.organization_id
     }
   });
   request.done(function(data){
     $("#payment_plan").html(data);
+    
   });
-  return false;
 }
+

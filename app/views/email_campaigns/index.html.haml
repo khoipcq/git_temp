@@ -1,6 +1,6 @@
 #email_campaigns
   .custom_datatable
-    .panel
+    .panel.table-responsive
       .button_add
         = link_to t('.add'), "#{new_organization_email_campaign_path(current_user.organization_id)}" ,:class => "btn btn-primary "
       .panel-heading

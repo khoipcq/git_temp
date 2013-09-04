@@ -26,3 +26,24 @@ function showAlert(id,type, message) {
   $("#"+id).append($("<div class='alert " + type + " fade in alert-msg-align'><a class='close' data-dismiss='alert'>×</a><p> " + message + " </p></div>"));
   $(".alert").delay(2000).fadeOut("slow", function () { $(this).remove();});
 }
+// Author: ThuyLC
+// Description: This JavaScript code to manual add option to dropdownlist
+//
+// Created Date: July 26, 2013
+function add_option(text,value,ddl_id)
+{
+  html ="<span style='text-decoration:underline'>"+text+"</span>";
+  var o = new Option(html, value);
+  /// jquerify the DOM object 'o' so we can use the html method
+  $(o).html(text);
+  $("#"+ddl_id).append(o);
+}
+// Author: ThuyLC
+// Description: This JavaScript code to manual remove all option in category dropdownbox
+//              on activity modal
+//
+// Created Date: July 26, 2013
+function remove_all_option(id)
+{
+  $('#'+id).find('option').remove();
+}

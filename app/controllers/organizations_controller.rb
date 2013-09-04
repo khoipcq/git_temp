@@ -46,6 +46,7 @@ class OrganizationsController < ApplicationController
     arel_appointment = Appointment.arel_table
     @sum_month = Appointment.where(arel_appointment[:created_at].gteq(begin_of_month).and(arel_appointment[:created_at].lteq(end_of_month))).count(:id)
     @sum_day = Appointment.where(arel_appointment[:created_at].eq(date_now)).count(:id)
+    
   end
 
   def get_appointments

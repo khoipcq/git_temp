@@ -30,8 +30,14 @@
               = t('.email_content')
               %span.required *
           .row
-            .col.col-lg-10.col-offset-1.control-label
-              %textarea{:class => "ckeditor", :name => "email_content"}
+            .col.col-lg-10.col-offset-1
+              .edit_template
+                .row
+                  [Customer Name]
+                .row
+                  .editable_header
+                    .col.col-lg-12.control-label
+                      %textarea{:class => "ckeditor", :name => "editable_header"}
           .row
             %label.col.col-lg-3.control-label
               = t('.email_schedule')

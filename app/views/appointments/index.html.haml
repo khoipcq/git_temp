@@ -15,7 +15,8 @@
           = t('time.date')
         = text_field_tag :on_date, Date.current.strftime(t('time.short_format')), :class => 'input-small', readonly: "readonly"
       .col.col-lg-2.col-offset-6.text-right
-        = link_to t("link.view_report"), "#{report_organization_appointments_path(type_report: "day")}",class: "text-link"
+        %a#view_report_day.text-link{:href => "#"}
+          = t("link.view_report")
   #list_week.hidden
     .row#filter
       .col.col-lg-6
@@ -40,11 +41,15 @@
 = stylesheet_link_tag "jquerycalendar/skins/default"
 = stylesheet_link_tag "jquerycalendar/skins/gcalendar"
 = stylesheet_link_tag "custom_calendar"
- 
+
 :javascript
   $(document).ready(function(){
     $("nav#nav li").removeClass("active");
     $("nav#nav li#menu_appointments").addClass("active");
   });
+  var reportAppoinmentPath = "#{report_organization_appointments_path}";
   var newAppoinmentPath = "#{new_organization_appointment_path}";
   var g_list_user = #{@list_user.to_json} ;
+  var g_list_events = #{@list_appointments.to_json}
+  var g_list;
+  

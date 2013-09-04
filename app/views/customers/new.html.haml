@@ -4,7 +4,7 @@
       = t('.title')
     = render "form_personal_info"
     %br/
-    .row.center
+    .row.center.group-button-small
       %button.btn.btn-success{"data-dismiss" => "modal", :type => "submit"}
         = t('button.save')
       = link_to t('button.cancel'), organization_customers_path(current_user.organization_id), :class => 'btn btn-warning'

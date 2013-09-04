@@ -3,10 +3,10 @@
     %header.panel-heading.text-right
       %ul.nav.nav-tabs.pull-left
         %li.active
-          %a{"data-toggle" => "tab", :href => "#customer-tab"}
+          %a{"data-toggle" => "tab",:na=>"tab_cus", :href => "#customer-tab"}
             = t(".customer_tab")
         %li
-          %a{"data-toggle" => "tab", :href => "#recurring-tab"}
+          %a{"data-toggle" => "tab",:na=>"tab_curring", :href => "#recurring-tab"}
             = t(".recurring_tab")
 
     .tab-content
@@ -14,3 +14,8 @@
         = render "customer"
       #recurring-tab.tab-pane
         = render "recurring"
+      .row.center.button_action
+        %button#save_appointment{:class =>"btn btn-success",:type =>"button"}
+          = t('button.save')
+        / = link_to t('button.save'),'#', :class => 'btn btn-success',:type=>"submit"
+        = link_to t('button.cancel'), organization_appointments_path(current_user.organization_id), :class => 'btn btn-warning'

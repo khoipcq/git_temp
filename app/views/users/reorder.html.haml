@@ -12,17 +12,19 @@
       %tbody
         %tr
           %td.text-left.border_cell 
-            = "Purchase Editon (Basic) until Sep 6, 2013"
+            = "#{t('users.reorder.order_desc', {field: params["pp_name"], date: (DateTime.now + 30.days).strftime("%b %d, %Y")})}"
           %td.text-right.border_cell 
-            = "3,990"
+            = raw params["pp_price"]
         %tr
           %td.text-right
             = "#{t('common.total')} (#{t('common.jpy')})"
           %td.text-right.border_cell
-            = "3,990"
+            = raw params["pp_price"]
     %br/
-    = render 'form_credit_card_info'
-    .text-center
-      .btn.btn-success{:type => "submit"}
-        = t('button.subscribe')
+    = render :partial => 'form_credit_card_info', :locals => {is_edit: false}
+    
     %br/
+= javascript_include_tag "reorder_store_owner"
+
+:javascript
+  var billing_card_info = #{@user.billing_card_info.to_json || nil};

@@ -1071,6 +1071,7 @@
           var self = this;
           var options = this.options;
           $weekDay.mousedown(function(event) {
+            if( event.button == 2 ) { return false}
             var $target = $(event.target);
             if ($target.hasClass('wc-day-column-inner')) {
 

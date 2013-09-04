@@ -1,10 +1,13 @@
+$.validator.addMethod("regex", function(value, element, regexp) {
+        return this.optional(element) || regexp.test(value);
+    }, "");
 $(document).ready(function(){
   var width = $(".outer").width() - 110;
   $('.inner').css("width", width);
   $('.th-week').css("width", width);
   $('.td').css("min-width", 200);
 
-  $(".pick_date").datepicker();
+  $(".pick_date").datepicker({ dateFormat: 'mm/dd/yy' });
   $('.recurring_filter').addClass("hidden");
   $( "#repeat_options" ).change(function() {
     $( "#repeat_options option:selected" ).each(function() {
@@ -18,4 +21,231 @@ $(document).ready(function(){
         trigger: 'hover',
         html: true
     });
+
+
+  $("#new_appointment_form").validate({
+    rules:{
+      "cost":{
+        required: true,
+        min: 0,
+        max: 1000000,
+        number: true
+      },
+      "first_name": {
+        required: true,
+        regex: /^[A-Za-z0-9\. ]+$/,
+        maxlength: 256
+      },
+      "last_name": {
+        regex: /^[A-Za-z0-9\. ]+$/,
+        maxlength: 256
+      },
+      "state": {
+        regex: /^[A-Za-z0-9\. ]+$/,
+        maxlength: 256
+      },
+      "city": {
+        regex: /^[A-Za-z0-9\. ]+$/,
+        maxlength: 256
+      },
+      "address": {
+        regex: /^[A-Za-z0-9\. ]+$/,
+        maxlength: 256
+      },
+      "postal_code": {
+        minlength: 7,
+        maxlength: 7
+      },
+       "email_address": {
+        email: true
+      },
+      "note": {
+        maxlength: 1024
+      }
+    },
+    messages: {
+      "cost_money": {
+        required: I18n.t('require_field_msg'),
+        min: I18n.t('appointment.cost'),
+        max: I18n.t('appointment.cost')
+      },
+      "first_name":{
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('firstname'), length: 256}),
+        regex: I18n.t('regex_textfield', {field : I18n.t('firstname')})
+      },
+      "state":{
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('appointment.state'), length: 256}),
+        regex: I18n.t('regex_textfield', {field : I18n.t('appointment.state')})
+      },
+      "city":{
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('appointment.city'), length: 256}),
+        regex: I18n.t('regex_textfield', {field : I18n.t('appointment.city')})
+      },
+      "address":{
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('appointment.address'), length: 256}),
+        regex: I18n.t('regex_textfield', {field : I18n.t('appointment.address')})
+      },
+      "postal_code": {
+        minlength: I18n.t('appointment.postal_code'),
+        maxlength: I18n.t('appointment.postal_code'),
+      },
+      "note": {
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('appointment.note'), length: 1024})
+      },
+      "email_address":{
+        email: I18n.t('email_valid')
+      },
+      "last_name":{
+        maxlength: I18n.t('maxlength_msg', {field : I18n.t('lastname'), length: 256}),
+        regex: I18n.t('regex_textfield', {field : I18n.t('lastname')})
+      }
+    },
+    errorPlacement: function(error, element){
+      error.appendTo(element.parent());
+    }
+  });
+  load_staff("select_staff");
+  bind_time(8,16,"time_appointment");
+  bind_service();
+
+  // Handle event
+  $("#select_staff").bind("change",function(){
+    bind_service();
+  });
+  
+  $("#save_appointment").bind("click",function(){
+    is_valid = $("#new_appointment_form").valid();
+    if(is_valid == true){
+      save_appointment();
+    }else{
+      $("#form_appointment a[href='#customer-tab']").tab('show');
+      $("#new_appointment_form").valid();
+    }
+
+  });
+
+  $('a[data-toggle="tab"]').on('click', function (e) {
+    if(e.target.getAttribute("na") == "tab_curring"){
+      is_valid = $("#new_appointment_form").valid();
+      if(is_valid == false){
+        console.log("vao fakse");
+        e.preventDefault();
+        return false;
+      }
+    }
+    // e.relatedTarget // previous tab
+  })
+  $("#duration_hour").bind("change",function(){
+    bind_duration_minute();
+  });
+  bind_duration_minute();
 });
+function bind_duration_minute(){
+  duration_hour = $("#duration_hour").val();
+  if(duration_hour==0){
+    $("#duration_min").val(15);
+    $("#duration_min option[value=0]").attr("disabled","disabled");
+  }else{
+
+    $("#duration_min option[value=0]").removeAttr("disabled");
+  }
+}
+function save_appointment(){
+  list_param = collect_appointmen_param();
+  console.log(list_param);
+  $.ajax({
+    url: g_url_create_appointment,
+    type: 'POST',
+    data: {
+      data: list_param,
+      authenticity_token: g_token
+    }
+
+  }).done(function(msg){
+    //
+    window.location = g_url_appointment_path;
+  });
+}
+function collect_appointmen_param()
+{
+  result ={};
+  result["staff_id"] = $("#select_staff").val();
+  result["service_id"] =$("#select_service").val() || 0;
+  result["cost"] = $("#cost").val();
+  result["appointment_date"] = $("#date_customer").val();
+  result["appointment_time"] = $("#time_appointment").val();
+  result["duration_hour"] = $("#duration_hour").val();
+  result["duration_min"] = $("#duration_min").val();
+  result["last_name"] = $("#last_name").val();
+  result["first_name"] = $("#first_name").val();
+  result["gender"] = $("#select_gender").val();
+  result["email_address"] = $("#email_address").val();
+  result["state"] = $("#state").val();
+  result["city"] = $("#city").val();
+  result["address"] = $("#address").val();
+  result["postal_code"] = $("#postal_code").val();
+  result["phone"] = $("#phone_number").val();
+  result["country"] = $("#select_country").val();
+  result["note"] = $("#note").val();
+  return result;
+  
+}
+function load_staff(dl)
+{
+  if(typeof g_list_staff !="undifined"){
+    for(var i =0;i< g_list_staff.length;i++){
+      first_name = g_list_staff[i].first_name || ""
+      last_name = g_list_staff[i].last_name || ""
+      full_name = first_name + " " + last_name
+      add_option(full_name,g_list_staff[i].id,dl);
+    }
+  }
+}
+function bind_time(min,max,dl){
+  length = max -min;
+  for(var i =0;i<= length;i++){
+    string_am = "AM"
+    str_prefix = ""
+    hour = min+i
+    if (hour >=12){
+      string_am = "PM"
+    }
+    if (hour<10){
+      str_prefix ="0"
+    }else{
+      str_prefix =""
+    }
+    for(var j =0;j<= 4;j++){
+      string_min = j*15;
+      value = hour*60+string_min;
+      if (j==0){
+        string_min = "00";
+      }
+      add_option(str_prefix+hour+":"+string_min+" "+string_am,value,dl);
+    }
+    
+  }
+}
+function bind_service(){
+  selected_staff_id = $("#select_staff").val();
+  console.log(selected_staff_id);
+  if(selected_staff_id >0){
+    $.ajax({
+      url: g_url_get_service_by_staff,
+      type: 'GET',
+      data: {
+        staff_id: selected_staff_id,
+        authenticity_token: g_token
+      }
+
+    }).done(function(msg){
+      //
+      remove_all_option("select_service");
+      list_service = msg["data"];
+      for(var i =0;i< list_service.length;i++){
+        
+        add_option(list_service[i].name,list_service[i].id,"select_service");
+      }
+    });
+  }
+}

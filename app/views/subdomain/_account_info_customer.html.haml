@@ -44,7 +44,7 @@
             = t('users.female')    
     .row
       %label.col.col-lg-3.control-label
-        = t('user.state')       
+        = t('users.state')       
       .col.col-lg-6
         %input.parsley-validated{"data-required" => "true", :name => "state", :type => "text"}
     .row
@@ -85,9 +85,9 @@
         %span *
       .col.col-lg-6
         %input.parsley-validated{"data-required" => "true", :name => "email",  :type => "email"}
-        %br/
+        %br
         = link_to t('.change_login_email'), '#', :class => 'text-link', :data => {:toggle => 'modal', :target => '#change_email'}
-        %br/
+        %br
         = link_to t('devise.forgot_password.change_your_password'), '#', :class => 'text-link', :data => {:toggle => 'modal', :target => '#change_password'}
     %br
     .row.text-center

@@ -1,4 +1,8 @@
-#report
+#appointment_report
+  - p "--------report view---------"
+  - p params["type_report"]
+  - p params["current_day"]
+  - p "-----------------------"
   %h3
     = t('.title')
   .row#filter
@@ -12,52 +16,18 @@
         %label
           = "#{t('time.date')}: "
         July 20, 2013 - July 26, 2013
-
   .row#filter
     .col.col-lg-1.col-offset-9.text-right
       = link_to t('link.back'), "#{organization_appointments_path}",class: "text-link"
     .col.col-lg-2.text-right
       = link_to t('link.export_xls'), "",class: "text-link"
 
-  .table
-    %table.table.table-bordered
-      %tbody
-        %tr.table-head
-          %th.center
-            = t('appointments.date')
-          %th.center 
-            = t('appointments.confirm_id')
-          %th.center
-            = t('locations.customer')
-          %th.center
-            = t('users.staff')
-          %th.center
-            = t('services.service')
-          %th.center
-            = t('time.received_date')
-          %th.center
-            = t('common.status')
-        %tr
-          %td.left July 29 2013 9:00AM
-          %td.center EC123FF12
-          %td.left Cindy Pham
-          %td.left Susan Botton
-          %td.left Massage
-          %td.left July 15 2013 9:00PM
-          %td.center Booked
-        %tr
-          %td.left July 29 2013 2:00PM
-          %td.center EC123FF13
-          %td.left Tamika Leaka
-          %td.left Susan Botton
-          %td.left Massage
-          %td.left July 22 2013 5:00PM
-          %td.center Booked
-        %tr
-          %td.left July 29 2013 3:30PM
-          %td.center EC123FF14
-          %td.left Vicky P.Pollay
-          %td.left Magdalena
-          %td.left Massage
-          %td.left July 25 2013 7:00PM
-          %td.center Booked
+  .custom_datatable
+    .panel.table-responsive
+      %table#appointment_report_table.table.table-bordered.dataTable
+
+= javascript_include_tag "appointment_report"
+:javascript
+  var reportType = "#{params["type_report"]}";
+  var reportDate = "#{params["current_day"]}"
+  var g_appointmentReportPath = "#{report_organization_appointments_path}";

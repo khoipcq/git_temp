@@ -13,6 +13,14 @@ var service_group; //group of service
 var staff;//hold the selected staff
 var select_date; // hold the select date
 var select_time; // hold the select time
+var span_service_date_time = $('span#span_service_date_time');
+var span_service_your_detail = $('span#span_service_your_detail');
+var span_service_confirm =  $('span#span_service_confirm');
+var span_service_finish = $('span#span_service_finish');
+var staff_date_time = $('span#staff_date_time');
+var staff_your_detail = $('span#staff_your_detail');
+var staff_confirm = $('span#staff_confirm');
+var staff_finish = $('span#staff_finish');
 
 $(document).ready(function() {
   //select service event
@@ -36,11 +44,11 @@ $(document).ready(function() {
     prev_service = list2;
     prev_label = label_service;
     prev_link = link;
-    //set text for service
-    var span_service = $('#span_service');
-    span_service.text(service_group + ">" + service);
-    console.log(span_service);
-
+    //set text for service    
+    span_service_date_time.text(service_group + ">" + service);    
+    span_service_your_detail.text(service_group + ">" + service);    
+    span_service_confirm.text(service);
+    span_service_finish.text(service);
   });
 
   //select staff event
@@ -50,10 +58,11 @@ $(document).ready(function() {
     var link = list1.find('a');
     staff = link.text();
     console.log(staff);
-    //set text for service
-    var span_staff = $('#span_staff');
-    span_staff.text(staff);
-    console.log(span_staff);
+    //set text for service    
+    staff_date_time.text(staff);
+    staff_your_detail.text(staff);
+    staff_confirm.text(staff);
+    staff_finish.text(staff);
 
     if (prev_staff) {
       prev_staff.removeClass('select_li');
@@ -73,6 +82,11 @@ $(document).ready(function() {
   $('#hour_appointment').on('click', 'li', function(){
     time = $(this);
     select_time = time.text();
+    //set text for html elements
+    $('#time_your_detail').text(select_time);
+    $('#time_confirm').text(select_time);
+    $('#time_finish').text(select_time);
+
     if (prev) {
       prev.removeClass('select_li');
     };
@@ -81,7 +95,7 @@ $(document).ready(function() {
   });
   // $('#datepicker').datepicker('show');
   // $('#datepicker').on('changeDate', function(ev){
-  //     var tmp = Date.parse(ev.date);
+  //     var tmp = Date.parse(ev.dateTitle);
   //     $('#select_date').text(tmp.toString("dddd, MMMM dd"));
   //     var date_show = tmp.toString("dddd, MMMM dd, yyyy");
   //     $('#span_date_time').text(date_show + " at " + select_time);
@@ -95,8 +109,12 @@ $(document).ready(function() {
       date = $.datepicker.formatDate('DD, MM dd', new Date(selectedDate));
       $('#select_date').text(date);
         //alert(dateFormat);
-      var date_show = selectedDate.toString("dddd, MMMM dd, yyyy");
-      $('#span_date_time').text(date_show + " at " + select_time);
+      var date_show = $.datepicker.formatDate('DD, MM dd, yy', new Date(selectedDate));
+      //set text for html elements
+      $('#date_your_detail').text(date_show);      
+      $('#date_confirm').text(date_show);
+      $('#date_finish').text(date_show);
     }
   })
+  $('.ui-datepicker-inline').addClass('width_datetime');
 });

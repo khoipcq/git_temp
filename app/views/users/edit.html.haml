@@ -20,7 +20,7 @@
               = t('users.credit_card.credit_card_info')
         #collapseTwo.accordion-body.collapse
           .accordion-inner.no_border#padding_inner
-            = render :partial => 'form_credit_card_info', :locals => {billing_card_info: @user.billing_card_info}  
+            = render :partial => 'form_credit_card_info', :locals => {billing_card_info: @user.billing_card_info, is_edit: true}  
         
       .accordion-group.no_border
         .accordion-heading.custom_datatable

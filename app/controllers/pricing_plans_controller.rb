@@ -122,8 +122,8 @@ class PricingPlansController < ApplicationController
   # * (json) status
   #*Author*:: KhoiPCQ
   def pricing_plan_list
-    @pricing_plan = PricingPlan.paginate(:page => params["page"], :per_page => params["per_page"])
- 
+    @pricing_plan, @feature_pp_list = PricingPlan.get_pricing_plan_list(params)
+    @organization = Organization.find_by_id(params["organization_id"])
     render :layout => false
   end
 end

@@ -30,13 +30,19 @@
     width: 80%
     margin: 0 auto
 #view_store_info
+  #panel_about
+    padding: 0px 0px
+    p
+      font-size: 15px
   .margin-link-right
     margin-right: 17px
   .margin-logo
     margin-left: 8px
   .store_name
     margin-left: 8px
-    font-size: 15px !important
+    font-size: 18px !important
+  .modal-dialog
+    width: 600px
   #business_hour
     width: 100%
     thead th:nth-child(1)
@@ -54,12 +60,16 @@
     thead th:nth-child(7)
       width: 15%
   #about_apotori
-    #googleMap    
-      height: 300px       
+    #googleMap
+      height: 300px
       margin: 0
       padding: 0
     #margin_address
       margin-left: 30px
+      .cus-icon
+        width: 20px
+        float: left
+        margin-right: 5px
     .table_reviews
       width: 100%
     .table_reviews tbody td:nth-child(1)
@@ -72,12 +82,15 @@
       width: 25%
     .icon-star
       color: #FF9900
+    .table_reviews
+      tr
+        color: grey
 #my_page
   .margin-link-right
     margin-right: 17px
   .margin-title
     margin-left: 8px
-  #view_appointment_detail  
+  #view_appointment_detail
     legend
       font-size: 18px
       width: auto
@@ -88,9 +101,11 @@
       padding: 0.35em 0.625em 0.75em
       margin: 0 2px 15px
       font-size: 15px
-      border: 1px solid #c0c0c0  
+      border: 1px solid #c0c0c0
       dt
         text-align: left
+      .row
+        margin-left: 0px
   #appointment_customer
 
     .appointment_detail
@@ -100,16 +115,19 @@
       margin-left: 15%
       margin-right: 15%
       tbody td:nth-child(1)
-        width: 50%   
+        width: 50%
       tbody td:nth-child(2)
         width: 50%
-        text-align: right  
+        text-align: right
       h4
         color: #006600
       h5
         color: #0000FF
 #account_info_customer
   margin-top: 5%
+  #form_account_info
+    width: 98%
+
 #customer_booking
   #service_staff
     width: 60%
@@ -120,6 +138,13 @@
         width: 50%
       thead th:nth-child(2)
         width: 50%
+
+
+#change_email, #change_password
+  .modal-dialog
+    margin-top: 8% !important
+#view_service_detail .modal-dialog
+  margin-top: 10%
 
 
 

@@ -1,0 +1,108 @@
+.row
+  %h4
+    = t('users.billing_contact_info')
+.row
+  %label.col.col-lg-3.control-label.text-right
+    = "#{t('users.state')} *"
+  .col.col-lg-6.form-control
+    = text_field_tag 'state'
+  .clearfix
+%br
+
+.row
+  %label.col.col-lg-3.control-label.text-right
+    = "#{t('users.city')} *"
+  .col.col-lg-6.form-control
+    = text_field_tag 'city'
+  .clearfix
+%br
+
+.row
+  %label.col.col-lg-3.control-label.text-right
+    = "#{t('users.address')} *"
+  .col.col-lg-6.form-control
+    = text_field_tag 'address', '', autofocus: true
+  .clearfix
+%br
+
+.row
+  %label.col.col-lg-3.control-label.text-right
+    = "#{t('users.postal_code')} *"
+  .col.col-lg-6
+    = text_field_tag 'postal_code'
+  .clearfix
+%br
+
+.row
+  %label.col.col-lg-3.control-label.text-right
+    = "#{t('users.country')} *"
+  .col.col-lg-6
+    = select_tag "country", options_for_select(['Japan', 'Singapore','Vietnam','US']), {:prompt => "#{t('common.select')}"}
+  .clearfix
+%br
+
+.row
+  %label.col.col-lg-3.control-label.text-right
+    = "#{t('users.phone_number')} *"
+  .col.col-lg-6
+    = text_field_tag 'phone_number'
+  .clearfix
+%br
+
+.row
+  %h4
+    = t('users.credit_card_information')
+.row
+  %label.col.col-lg-3.control-label.text-right
+    = "#{t('users.credit_card.card_type')} *"
+  .col.col-lg-6.form-control
+    = select_tag "card_type", options_for_select(["Visa", "Master", "American Express", "JCB"]), {:prompt => "#{t('common.select')}"}
+  .clearfix
+%br
+
+.row
+  %label.col.col-lg-3.control-label.text-right
+    = "#{t('users.credit_card.card_number')} *"
+  .col.col-lg-6.form-control
+    = text_field_tag 'card_number'
+  .clearfix
+%br
+
+.row    
+  %label.col.col-lg-3.control-label.text-right
+    = "#{t('users.credit_card.expiration_date')} *"
+  .col.col-lg-2.form-control
+    = select_tag "month", options_for_select([1,2,3,4,5,6,6,8,9,10,11,12]), {:prompt => "#{t('time.month_promt')}", :default => nil}
+  %h3.col.col-lg-1.control-label.text-center.no_margin_top
+    = "/"
+  .col.col-lg-3
+    = select_tag "year", options_for_select([2008,2009,2010,2012,2013,2014,2015, 2016, 2016]), {:prompt => "#{t('time.year_promt')}"}
+  .clearfix
+
+%br
+
+.row
+  %label.col.col-lg-3.control-label.text-right
+    = "#{t('users.credit_card.cvv')} *"
+  .col.col-lg-6
+    = text_field_tag 'cvv'
+  .clearfix
+%br
+
+.row
+  %label.col.col-lg-3.control-label.text-right
+    = "#{t('users.credit_card.cardholder_name')} *"
+  .col.col-lg-6
+    = text_field_tag 'cardholder_name'
+  .clearfix
+%br
+.row.text-center
+  - if is_edit
+    %button.btn.btn-success#button_update_credit_card{:type => "submit"}
+      = t('button.save')
+  - else
+    %button.btn.btn-success#button_create_credit_card{:type => "submit"}
+      = t('button.subscribe')
+  %input{:type=>"hidden",:value=>"",:id=>"hidden_credit_card_user_id",:name=>"hidden_credit_card_user_id"}
+  %input{:type=>"hidden",:value=> "#{is_edit}",:id=>"is_edit",:name=>"is_edit"}
+  

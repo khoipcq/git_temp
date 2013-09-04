@@ -12,43 +12,7 @@
           = t(".repeat_week")
         %option{:value => "monthly"}
           = t(".repeat_month")
-        / %option{:value => "specific_day"}Specific Days
-  / #specific_day.recurring_filter
-  /   %br/
-  /   .row.custom_datatable
-  /     .panel#list-panel
-  /       .panel-heading
-  /         .row
-  /           .label-middle
-  /             %label.col.col-lg-3
-  /               Recurrences
-  /           .col.col-lg-1.col-offset-1.control-label
-  /             Date
-  /           .col.col-lg-3
-  /             = text_field_tag :date_recurring, Date.current.strftime('%a ' + t('time.short_format')), :class => 'input-small', readonly: "readonly",class: "pick_date"
-  /           .text-right
-  /             %input.btn-primary.btn{ :type => "button", value: "Add"}
-  /       %table#recurring_day_table.table.table-striped.dataTable
-  /         %thead
-  /           %tr
-  /             %th.left Date
-  /             %th.left Time
-  /             %th.center Action
-  /         %tbody
-  /           %tr
-  /             %td.left Sat 08/03/2013
-  /             %td.left 9:00AM
-  /             %td.center
-  /           %tr
-  /             %td.left Web 08/21/2013
-  /             %td.left 9:00AM
-  /             %td.center
-  /               = link_to "Delete", "", class: "label-control"
-  /           %tr
-  /             %td.left Tue 09/03/2013
-  /             %td.left 9:00AM
-  /             %td.center
-  /               = link_to "Delete", "", class: "label-control"
+  
   #daily.recurring_filter
     %br/
     .row
@@ -195,7 +159,7 @@
   #replace_confirm_notice.modal.fade
     = render "replace_confirm"
 
-= javascript_include_tag "new_appointment"
+/ = javascript_include_tag "new_appointment"
 / :javascript
 /   $(document).ready(function(){
 /     $("#recurring_day_table").dataTable({

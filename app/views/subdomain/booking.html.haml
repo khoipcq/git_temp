@@ -9,24 +9,24 @@
         = t('time.date_time')
       %li{"data-target" => "#your_details"}
         %span.badge> 3
-        = t('subdomain.view_appoitment_detail_customer.your_details')
+        = t('subdomain.view_appointment_detail_customer.your_details')
       %li{"data-target" => "#confirm"}
         %span.badge> 4
         = t('.confirm')
       %li{"data-target" => "#finished"}
         %span.badge> 5
-        = t('.finished')   
+        = t('.finished')
   .step-content
     %form
       #service_staff_customer.step-pane.active
         = render 'service_staff_customer'
       #date_time.step-pane
         = render 'date_time_customer'
-      #your_details.step-pane 
+      #your_details.step-pane
         = render 'your_details_customer'
-      #confirm.step-pane 
+      #confirm.step-pane
         = render 'confirm_customer'
-      #finished.step-pane 
+      #finished.step-pane
         = render 'finished_customer'
-    
+
 

@@ -3,26 +3,26 @@
     .modal-content
       .modal-header        
         %h4.modal-title
-          Change your log in email 
+          = t('.title') 
       .modal-body
         %center
           %form.form-horizontal
             .row
-              %label.col.col-lg-5.control-label
+              %label.col.col-lg-4.control-label
                 = t('.new_email')
-              .col.col-lg-7            
+              .col.col-lg-8            
                 = email_field_tag "email", '', :autofocus => true
               .clearfix
             .row
-              %label.col.col-lg-5.control-label
+              %label.col.col-lg-4.control-label
                 = t('.email_confirm')
-              .col.col-lg-7            
+              .col.col-lg-8            
                 = email_field_tag "email_confirmation"
               .clearfix
             .row
-              %label.col.col-lg-5.control-label
+              %label.col.col-lg-4.control-label
                 = t('devise.sessions.password')
-              .col.col-lg-7            
+              .col.col-lg-8            
                 = email_field_tag "password"
               .clearfix
       .text-center

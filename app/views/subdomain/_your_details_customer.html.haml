@@ -1,24 +1,25 @@
-.panel    
+.panel
   %div#success_message
     .row
       %p.col.col-lg-10
-        = "#{t('services.service')}: " 
-        %span#span_service Nail > Top Coat
+        = "#{t('services.service')}: "
+        %span#span_service_your_detail
       .col.col-lg-2.text-right
-        = link_to t('button.change'), '#', :class => 'text-link'   
+        = link_to t('link.change'), '#', :class => 'text-link'
     .row
       %p.col.col-lg-10
         = "#{t('menu.staff')}: "
-        %span#span_staff
-          Lee Dung
+        %span#staff_your_detail
       .col.col-lg-2.text-right
-        = link_to t('button.change'), '#', :class => 'text-link'  
+        = link_to t('link.change'), '#', :class => 'text-link'
     .row
       %p.col.col-lg-10
-        = "#{t('time.date_time')}: " 
-        %span#span_date_time Wednesday, August 14, 2013 at 3:00 PM
+        = "#{t('time.date_time')}: "
+        %span#date_your_detail
+        = " at "
+        %span#time_your_detail
       .col.col-lg-2.text-right
-        = link_to t('button.change'), '#', :class => 'text-link' 
+        = link_to t('link.change'), '#', :class => 'text-link'
   %br
   .row#row_form
     .col.col-lg-7
@@ -27,32 +28,31 @@
       %section.panel
         %header.panel-heading.text-center
           = t('devise.sessions.new.log_in')
-        %form#form_log_in.form-horizontal   
-
+        %div
           .row
             .col.col-lg-1
-            .col.col-lg-10  
+            .col.col-lg-10
               %label
-                = t('users.email_address') 
-              = email_field_tag 'email_address'                       
-              %br         
+                = t('users.email_address')
+              = email_field_tag 'email_address'
+              %br
               %label
-                = t('devise.sessions.password')    
-              = password_field_tag 'password'                    
+                = t('devise.sessions.password')
+              = password_field_tag 'password'
               %br
               %label.checkbox-custom.no_margin_left
                 %input{:checked => "checked", :name => "remember", :type => "checkbox"}
                 %i.icon-unchecked
-                = t('devise.sessions.new.remember')             
+                = t('devise.sessions.new.remember')
             .clearfix
-          %br   
-          
+          %br
+
         .text-center
           = link_to t('devise.sessions.new.log_in') , '#', :class => 'btn btn-success button-min', data: {:target => '#form-wizard', :wizard => 'next'}
 
         %br/
         .text-center
-          = link_to t('devise.link.forgot_pass'), '#', :class => 'text-link'  
+          = link_to t('devise.link.forgot_pass'), '/auth/password/new', :class => 'text-link'
     .col.col-lg-5
       %h4.row.text-center
         First Time User
@@ -61,11 +61,9 @@
           Registration takes a minute. Please register and proceed for appointment.
         %br
         .text-center
-          = link_to 'Register and Book Appointment', '#', :class => 'btn btn-info'
-  .actions.m-t
-    = link_to 'Back', '#', :class => 'btn btn-info margin_back_confirm', data: {:target => '#form-wizard', :wizard => 'previous'}
-  
+          = link_to 'Register and Book Appointment', '/auth/sign_up', :class => 'btn btn-info'
+
+
 = javascript_include_tag 'customer_booking'
 
-      
-  
+

@@ -87,5 +87,34 @@ class PricingPlan < ActiveRecord::Base
     
   end
 
+  ##
+  #Get pricing plan list
+  #Parameters::
+  # * (Integer) *id*: pricing plan id
+  #Return::
+  # * (json) status
+  #*Author*:: KhoiPCQ
+  def self.get_pricing_plan_list(params)
+    pricing_plans = PricingPlan.paginate(:page => params["page"], :per_page => params["per_page"])
+    feature_pp_list = {}
+    pricing_plans.each do |pricing_plan| 
+      feature_list = Feature.get_all_data_by_pricing_plan_id(pricing_plan.id)
+      p "LLLLLLLLLLLLLLLLLLLL"
+      p pricing_plan.id
+      p feature_list
+      feature_list_in = []
+      feature_list_out =[]
+      feature_list["aaData"].each do |fl|
+        if fl[1] == "1"
+          feature_list_in << fl[0]
+        else
+          feature_list_out << fl[0]
+        end
+      end
 
+      feature_pp_list[pricing_plan.id] = [feature_list_in, feature_list_out] 
+      pricing_plan["feature_list"] = feature_list
+    end
+    return pricing_plans, feature_pp_list
+  end
 end
